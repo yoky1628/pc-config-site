@@ -16,17 +16,8 @@
   </header>
 
   <section class="toolbar">
-    <select id="presetSelect">
-      <option value="">加载预设配置</option>
-      <option value="preset1">游戏主机方案A</option>
-      <option value="preset2">设计办公方案B</option>
-      <option value="preset3">家庭娱乐方案C</option>
-      <option value="preset4">性价比方案D</option>
-      <option value="preset5">高端旗舰方案E</option>
-    </select>
-    <button id="addRow">添加配件</button>
-    <button id="clearAll">清空配置</button>
     <button id="copyBtn">复制配置单</button>
+    <button id="clearAll">清空</button>
   </section>
 
   <table id="configTable">
@@ -36,18 +27,19 @@
         <th>配件名称</th>
         <th>成本价</th>
         <th>销售价</th>
-        <th>利润</th>
         <th>数量</th>
         <th>小计</th>
+        <th>利润</th>
       </tr>
     </thead>
     <tbody id="tableBody"></tbody>
   </table>
 
   <footer>
-    <p>成本总计：<span id="costTotal">0</span> 元　
-       销售价总计：<span id="saleTotal">0</span> 元　
-       利润总计：<span id="profitTotal">0</span> 元
+    <p>
+      成本总计：<span id="costTotal">0</span> 元　
+      销售价总计：<span id="saleTotal">0</span> 元　
+      利润总计：<span id="profitTotal">0</span> 元
     </p>
   </footer>
 

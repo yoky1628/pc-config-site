@@ -48,12 +48,14 @@ class ConfigGenerator {
                                    min="1" value="1" placeholder="1" style="width: 60px; padding: 6px; display: block;">
                         </td>
                         <td>
-                            <input type="number" class="cost-input" data-type="${type}" 
-                                   placeholder="成本价" style="width: 80px; padding: 6px; display: block;">
+                            <input type="text" class="cost-input" data-type="${type}" 
+                                   placeholder="成本价" style="width: 80px; padding: 6px; display: block;"
+                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
                         </td>
                         <td>
-                            <input type="number" class="price-input" data-type="${type}" 
-                                   placeholder="销售价" style="width: 80px; padding: 6px; display: block;">
+                            <input type="text" class="price-input" data-type="${type}" 
+                                   placeholder="销售价" style="width: 80px; padding: 6px; display: block;"
+                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')">
                         </td>
                         <td class="subtotal" data-type="${type}">-</td>
                         <td class="profit" data-type="${type}">-</td>
@@ -107,16 +109,10 @@ class ConfigGenerator {
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
             
-            if (e.target.classList.contains('other-name-input')) {
-                this.handleOtherInput(type);
-            }
-            if (e.target.classList.contains('quantity-input')) {
-                this.handleOtherInput(type);
-            }
-            if (e.target.classList.contains('price-input')) {
-                this.handleOtherInput(type);
-            }
-            if (e.target.classList.contains('cost-input')) {
+            if (e.target.classList.contains('other-name-input') || 
+                e.target.classList.contains('quantity-input') ||
+                e.target.classList.contains('price-input') ||
+                e.target.classList.contains('cost-input')) {
                 this.handleOtherInput(type);
             }
         });
@@ -189,8 +185,8 @@ class ConfigGenerator {
             const subtotal = component.price * component.quantity;
             const profit = (component.price - component.cost) * component.quantity;
             
-            row.querySelector('.subtotal').textContent = `¥${subtotal}`;
-            row.querySelector('.profit').textContent = `¥${profit}`;
+            row.querySelector('.subtotal').textContent = `¥${subtotal.toFixed(2)}`;
+            row.querySelector('.profit').textContent = `¥${profit.toFixed(2)}`;
         } else {
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
@@ -294,8 +290,8 @@ class ConfigGenerator {
             }
         });
 
-        document.getElementById('totalPrice').textContent = totalPrice;
-        document.getElementById('totalProfit').textContent = totalProfit;
+        document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+        document.getElementById('totalProfit').textContent = totalProfit.toFixed(2);
     }
 
     handleKeyboard(e) {
@@ -454,12 +450,12 @@ class ConfigGenerator {
                     displayName += `【数量${component.quantity}】`;
                 }
                 
-                lines.push(`${type}\t${displayName}\t${subtotal}`);
+                lines.push(`${type}\t${displayName}\t${subtotal.toFixed(2)}`);
             }
         });
 
         if (lines.length > 0) {
-            lines.push(`总价\t${totalAmount}`);
+            lines.push(`总价\t${totalAmount.toFixed(2)}`);
         }
 
         const text = lines.join('\n');

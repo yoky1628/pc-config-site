@@ -628,7 +628,7 @@ class ConfigGenerator {
         alert('配置单已复制到剪贴板！');
     }
 }
-
+}
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();

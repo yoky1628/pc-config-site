@@ -3,45 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>装机配置单生成器</title>
+  <title>电脑配置单工具</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="店铺LOGO" class="logo">
-    <div class="info">
-      <h1>装机配置单</h1>
-      <p id="date"></p>
+  <div class="container">
+    <h2>🖥️ 电脑配置单</h2>
+    <div class="header">
+      <div>日期：<span id="date"></span></div>
+      <div class="btns">
+        <button id="copyBtn">复制配置单</button>
+        <button id="clearAll">清空</button>
+      </div>
     </div>
-  </header>
 
-  <section class="toolbar">
-    <button id="copyBtn">复制配置单</button>
-    <button id="clearAll">清空</button>
-  </section>
+    <table id="configTable">
+      <thead>
+        <tr>
+          <th>配件类别</th>
+          <th>配件名称</th>
+          <th>成本价</th>
+          <th>销售价</th>
+          <th>数量</th>
+          <th>小计</th>
+          <th>利润</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- JS 自动填充行 -->
+      </tbody>
+    </table>
 
-  <table id="configTable">
-    <thead>
-      <tr>
-        <th>配件类别</th>
-        <th>配件名称</th>
-        <th>成本价</th>
-        <th>销售价</th>
-        <th>数量</th>
-        <th>小计</th>
-        <th>利润</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-
-  <footer>
-    <p>
-      成本总计：<span id="costTotal">0</span> 元　
-      销售价总计：<span id="saleTotal">0</span> 元　
-      利润总计：<span id="profitTotal">0</span> 元
-    </p>
-  </footer>
+    <div class="totals">
+      <p>总成本：<span id="costTotal">0</span></p>
+      <p>总售价：<span id="saleTotal">0</span></p>
+      <p>总利润：<span id="profitTotal">0</span></p>
+    </div>
+  </div>
 
   <script src="ui.js"></script>
 </body>

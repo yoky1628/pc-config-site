@@ -587,41 +587,45 @@ class ConfigGenerator {
     }
 
     async copyConfigToClipboard() {
-        const lines = [];
-        let totalAmount = 0;
+    const lines = [];
+    let totalAmount = 0;
 
-        Object.entries(this.selectedComponents).forEach(([type, component]) => {
-            if (component.quantity > 0 && component.price > 0) {
-                const subtotal = component.price * component.quantity;
-                totalAmount += subtotal;
-                
-                let displayName = component.name;
-                if (component.quantity > 1) {
-                    displayName += `【数量${component.quantity}】`;
-                }
-                
-                lines.push(`${type}\t${displayName}\t${subtotal}`);
+    // 定义配件类型的显示顺序
+    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+    
+    // 按照指定顺序处理配件
+    typeOrder.forEach(type => {
+        const component = this.selectedComponents[type];
+        if (component && component.quantity > 0 && component.price > 0) {
+            const subtotal = component.price * component.quantity;
+            totalAmount += subtotal;
+            
+            let displayName = component.name;
+            if (component.quantity > 1) {
+                displayName += `【数量${component.quantity}】`;
             }
-        });
-
-        if (lines.length > 0) {
-            lines.push(`总价\t${totalAmount}`);
+            
+            lines.push(`${type}\t${displayName}\t${subtotal}`);
         }
+    });
 
-        const text = lines.join('\n');
+    if (lines.length > 0) {
+        lines.push(`总价\t${totalAmount}`);
+    }
 
-        try {
-            await navigator.clipboard.writeText(text);
-            alert('配置单已复制到剪贴板！');
-        } catch (err) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            alert('配置单已复制到剪贴板！');
-        }
+    const text = lines.join('\n');
+
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('配置单已复制到剪贴板！');
+    } catch (err) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('配置单已复制到剪贴板！');
     }
 }
 

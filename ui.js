@@ -79,7 +79,11 @@ class ConfigGenerator {
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td class="cost" data-type="${type}">-</td>
-                        <td class="price" data-type="${type}">-</td>
+                        <td>
+                            <input type="text" class="price-input" data-type="${type}" 
+                                   placeholder="销售价" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
                         <td class="subtotal" data-type="${type}">-</td>
                         <td class="profit" data-type="${type}">-</td>
                     </tr>
@@ -107,19 +111,26 @@ class ConfigGenerator {
             }
         });
 
-        // 其它类型输入事件 - 使用延迟处理
+        // 所有输入事件 - 使用延迟处理
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
             
             if (e.target.classList.contains('other-name-input') || 
                 e.target.classList.contains('quantity-input') ||
                 e.target.classList.contains('price-input') ||
-                e.target.classList.contains('cost-input')) {
+                e.target.classList.contains('cost-input') ||
+                e.target.classList.contains('search-input')) {
                 
                 // 延迟处理输入，让用户有时间完成输入
                 clearTimeout(this.inputTimeout);
                 this.inputTimeout = setTimeout(() => {
-                    this.processOtherInput(type);
+                    if (e.target.classList.contains('price-input') || e.target.classList.contains('cost-input')) {
+                        this.handlePriceInput(type);
+                    } else if (e.target.classList.contains('quantity-input')) {
+                        this.handleQuantityInput(type);
+                    } else if (e.target.classList.contains('other-name-input')) {
+                        this.handleOtherInput(type);
+                    }
                 }, 800);
             }
         });
@@ -153,7 +164,44 @@ class ConfigGenerator {
         });
     }
 
-    processOtherInput(type) {
+    // 处理普通配件的价格输入
+    handlePriceInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const priceInput = row.querySelector('.price-input');
+        const newPrice = parseInt(priceInput.value) || 0;
+
+        if (newPrice > 0) {
+            component.price = newPrice;
+            this.updateRegularRowDisplay(type);
+        }
+    }
+
+    // 处理数量输入
+    handleQuantityInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+        const newQuantity = parseInt(quantityInput.value) || 0;
+
+        if (newQuantity > 0) {
+            component.quantity = newQuantity;
+            if (component.isCustom) {
+                this.updateOtherRowDisplay(type);
+            } else {
+                this.updateRegularRowDisplay(type);
+            }
+        } else if (newQuantity === 0) {
+            this.clearSelection(type);
+        }
+    }
+
+    // 处理其它类型输入
+    handleOtherInput(type) {
         const row = document.querySelector(`tr[data-type="${type}"]`);
         const nameInput = row.querySelector('.other-name-input');
         const quantityInput = row.querySelector('.quantity-input');
@@ -197,6 +245,8 @@ class ConfigGenerator {
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }
+        
+        this.updateTotals();
     }
 
     handleSearch(input) {
@@ -255,8 +305,13 @@ class ConfigGenerator {
         input.value = name;
 
         const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
+        const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
+        
         quantityInput.style.display = 'block';
         quantityInput.value = '1';
+        
+        priceInput.style.display = 'block';
+        priceInput.value = price;
 
         this.selectedComponents[type] = {
             name,
@@ -276,7 +331,6 @@ class ConfigGenerator {
         
         const row = document.querySelector(`tr[data-type="${type}"]`);
         row.querySelector('.cost').textContent = `¥${estimatedCost}`;
-        row.querySelector('.price').textContent = `¥${component.price}`;
         row.querySelector('.subtotal').textContent = `¥${subtotal}`;
         row.querySelector('.profit').textContent = `¥${profit}`;
 
@@ -414,8 +468,13 @@ class ConfigGenerator {
 
                     input.value = component.name;
                     const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
+                    const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
+                    
                     quantityInput.style.display = 'block';
                     quantityInput.value = '1';
+                    
+                    priceInput.style.display = 'block';
+                    priceInput.value = component.price;
 
                     this.updateRegularRowDisplay(item.type);
                 }
@@ -438,11 +497,15 @@ class ConfigGenerator {
             input.value = '';
             
             const quantityInput = row.querySelector('.quantity-input');
+            const priceInput = row.querySelector('.price-input');
+            
             quantityInput.style.display = 'none';
             quantityInput.value = '';
             
+            priceInput.style.display = 'none';
+            priceInput.value = '';
+            
             row.querySelector('.cost').textContent = '-';
-            row.querySelector('.price').textContent = '-';
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }

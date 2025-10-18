@@ -41,20 +41,22 @@ class ConfigGenerator {
                         <td>${type}</td>
                         <td>
                             <input type="text" class="other-name-input" 
-                                   data-type="${type}" placeholder="请输入${type}名称" 
-                                   style="width: 100%; padding: 6px; border: 1px solid #ced4da; border-radius: 3px;">
+                                   data-type="${type}" placeholder="请输入${type}名称">
                         </td>
                         <td>
-                            <input type="number" class="quantity-input" data-type="${type}" 
-                                   min="1" value="1" placeholder="1" style="width: 60px; padding: 6px; display: block;">
+                            <input type="text" class="quantity-input" data-type="${type}" 
+                                   value="1" placeholder="1"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
-                                   placeholder="成本价" style="width: 80px; padding: 6px; display: block;">
+                                   placeholder="成本价"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td>
                             <input type="text" class="price-input" data-type="${type}" 
-                                   placeholder="销售价" style="width: 80px; padding: 6px; display: block;">
+                                   placeholder="销售价"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td class="subtotal" data-type="${type}">-</td>
                         <td class="profit" data-type="${type}">-</td>
@@ -67,13 +69,14 @@ class ConfigGenerator {
                         <td>
                             <div class="search-container">
                                 <input type="text" class="search-input" placeholder="搜索或选择配件" 
-                                       data-type="${type}" autocomplete="off" style="width: 100%; padding: 6px;">
+                                       data-type="${type}" autocomplete="off">
                                 <div class="dropdown" style="display: none;"></div>
                             </div>
                         </td>
                         <td>
-                            <input type="number" class="quantity-input" data-type="${type}" 
-                                   min="1" value="" placeholder="0" style="width: 60px; padding: 6px; display: none;">
+                            <input type="text" class="quantity-input" data-type="${type}" 
+                                   value="" placeholder="0" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td class="cost" data-type="${type}">-</td>
                         <td class="price" data-type="${type}">-</td>
@@ -117,7 +120,7 @@ class ConfigGenerator {
                 clearTimeout(this.inputTimeout);
                 this.inputTimeout = setTimeout(() => {
                     this.processOtherInput(type);
-                }, 800); // 800毫秒后处理
+                }, 800);
             }
         });
 
@@ -159,8 +162,8 @@ class ConfigGenerator {
         
         const name = nameInput.value.trim();
         const quantity = parseInt(quantityInput.value) || 0;
-        const price = parseFloat(priceInput.value) || 0;
-        const cost = parseFloat(costInput.value) || 0;
+        const price = parseInt(priceInput.value) || 0;
+        const cost = parseInt(costInput.value) || 0;
 
         if (name && quantity > 0 && price > 0) {
             this.selectedComponents[type] = {
@@ -188,16 +191,305 @@ class ConfigGenerator {
             const subtotal = component.price * component.quantity;
             const profit = (component.price - component.cost) * component.quantity;
             
-            row.querySelector('.subtotal').textContent = `¥${subtotal.toFixed(2)}`;
-            row.querySelector('.profit').textContent = `¥${profit.toFixed(2)}`;
+            row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+            row.querySelector('.profit').textContent = `¥${profit}`;
         } else {
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }
     }
 
-    // ... 其他方法保持不变（handleSearch, searchComponents, showAllOptions 等）
-    // 为了节省空间，这里省略了其他未改变的方法，您只需要替换上面的部分
+    handleSearch(input) {
+        const query = input.value.trim();
+        const type = input.dataset.type;
+        
+        if (query === '') {
+            this.showAllOptions(input);
+            return;
+        }
+
+        const results = this.searchComponents(query, type);
+        this.showDropdown(input, results);
+    }
+
+    searchComponents(query, type) {
+        const lowerQuery = query.toLowerCase();
+        return this.components.filter(component => {
+            if (component.type !== type) return false;
+            return component.name.toLowerCase().includes(lowerQuery);
+        });
+    }
+
+    showAllOptions(input) {
+        const type = input.dataset.type;
+        const components = this.components.filter(c => c.type === type);
+        this.showDropdown(input, components);
+    }
+
+    showDropdown(input, components) {
+        const dropdown = input.nextElementSibling;
+        
+        if (components.length === 0) {
+            dropdown.style.display = 'none';
+            return;
+        }
+
+        dropdown.innerHTML = components.map(component => `
+            <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
+                 data-price="${component.price}">
+                ${component.name} (¥${component.price})
+            </div>
+        `).join('');
+
+        dropdown.style.display = 'block';
+    }
+
+    selectComponent(item) {
+        const name = item.dataset.name;
+        const type = item.dataset.type;
+        const price = parseInt(item.dataset.price);
+
+        item.closest('.dropdown').style.display = 'none';
+
+        const input = item.closest('.search-container').querySelector('.search-input');
+        input.value = name;
+
+        const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
+        quantityInput.style.display = 'block';
+        quantityInput.value = '1';
+
+        this.selectedComponents[type] = {
+            name,
+            price,
+            quantity: 1,
+            isCustom: false
+        };
+
+        this.updateRegularRowDisplay(type);
+    }
+
+    updateRegularRowDisplay(type) {
+        const component = this.selectedComponents[type];
+        const estimatedCost = Math.round(component.price * 0.8);
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - estimatedCost) * component.quantity;
+        
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        row.querySelector('.cost').textContent = `¥${estimatedCost}`;
+        row.querySelector('.price').textContent = `¥${component.price}`;
+        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+        row.querySelector('.profit').textContent = `¥${profit}`;
+
+        this.updateTotals();
+    }
+
+    updateTotals() {
+        let totalPrice = 0;
+        let totalProfit = 0;
+
+        Object.values(this.selectedComponents).forEach(component => {
+            if (component.quantity > 0) {
+                const cost = component.isCustom ? component.cost : Math.round(component.price * 0.8);
+                totalPrice += component.price * component.quantity;
+                totalProfit += (component.price - cost) * component.quantity;
+            }
+        });
+
+        document.getElementById('totalPrice').textContent = totalPrice;
+        document.getElementById('totalProfit').textContent = totalProfit;
+    }
+
+    handleKeyboard(e) {
+        const dropdown = e.target.nextElementSibling;
+        const items = dropdown.querySelectorAll('.dropdown-item');
+        let selectedIndex = -1;
+
+        items.forEach((item, index) => {
+            if (item.classList.contains('selected')) {
+                selectedIndex = index;
+            }
+        });
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                selectedIndex = (selectedIndex + 1) % items.length;
+                this.selectDropdownItem(items, selectedIndex);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+                this.selectDropdownItem(items, selectedIndex);
+                break;
+            case 'Enter':
+                e.preventDefault();
+                if (selectedIndex >= 0) {
+                    items[selectedIndex].click();
+                }
+                break;
+            case 'Escape':
+                dropdown.style.display = 'none';
+                break;
+        }
+    }
+
+    selectDropdownItem(items, index) {
+        items.forEach(item => item.classList.remove('selected'));
+        if (items[index]) {
+            items[index].classList.add('selected');
+            items[index].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    showPresetModal() {
+        const modal = document.getElementById('presetModal');
+        const presetList = document.getElementById('presetList');
+        
+        const presets = this.getPresetConfigs();
+        presetList.innerHTML = presets.map((preset, index) => `
+            <div class="preset-item" data-index="${index}">
+                <h4>${preset.name}</h4>
+                <p>${preset.description}</p>
+            </div>
+        `).join('');
+
+        presetList.querySelectorAll('.preset-item').forEach(item => {
+            item.addEventListener('click', () => {
+                this.loadPresetConfig(parseInt(item.dataset.index));
+                modal.style.display = 'none';
+            });
+        });
+
+        modal.style.display = 'block';
+    }
+
+    getPresetConfigs() {
+        return [
+            {
+                name: '办公配置',
+                description: '适合日常办公使用',
+                components: [
+                    { type: 'CPU', name: 'Intel i5-13400F' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' }
+                ]
+            },
+            {
+                name: '游戏配置',
+                description: '主流游戏配置',
+                components: [
+                    { type: 'CPU', name: 'Intel i7-13700K' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' },
+                    { type: '显卡', name: '技嘉 RTX 4060 8G' }
+                ]
+            }
+        ];
+    }
+
+    loadPresetConfig(index) {
+        const presets = this.getPresetConfigs();
+        const preset = presets[index];
+        
+        if (!preset) return;
+
+        Object.keys(this.selectedComponents).forEach(type => {
+            this.clearSelection(type);
+        });
+
+        preset.components.forEach(item => {
+            const component = this.components.find(c => 
+                c.type === item.type && c.name === item.name
+            );
+            
+            if (component) {
+                const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
+                if (input) {
+                    this.selectedComponents[item.type] = {
+                        name: component.name,
+                        price: component.price,
+                        quantity: 1,
+                        isCustom: false
+                    };
+
+                    input.value = component.name;
+                    const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
+                    quantityInput.style.display = 'block';
+                    quantityInput.value = '1';
+
+                    this.updateRegularRowDisplay(item.type);
+                }
+            }
+        });
+    }
+
+    clearSelection(type) {
+        if (type === '其它1' || type === '其它2') {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            row.querySelector('.other-name-input').value = '';
+            row.querySelector('.quantity-input').value = '1';
+            row.querySelector('.cost-input').value = '';
+            row.querySelector('.price-input').value = '';
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        } else {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            const input = row.querySelector('.search-input');
+            input.value = '';
+            
+            const quantityInput = row.querySelector('.quantity-input');
+            quantityInput.style.display = 'none';
+            quantityInput.value = '';
+            
+            row.querySelector('.cost').textContent = '-';
+            row.querySelector('.price').textContent = '-';
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        }
+
+        delete this.selectedComponents[type];
+        this.updateTotals();
+    }
+
+    async copyConfigToClipboard() {
+        const lines = [];
+        let totalAmount = 0;
+
+        Object.entries(this.selectedComponents).forEach(([type, component]) => {
+            if (component.quantity > 0 && component.price > 0) {
+                const subtotal = component.price * component.quantity;
+                totalAmount += subtotal;
+                
+                let displayName = component.name;
+                if (component.quantity > 1) {
+                    displayName += `【数量${component.quantity}】`;
+                }
+                
+                lines.push(`${type}\t${displayName}\t${subtotal}`);
+            }
+        });
+
+        if (lines.length > 0) {
+            lines.push(`总价\t${totalAmount}`);
+        }
+
+        const text = lines.join('\n');
+
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('配置单已复制到剪贴板！');
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('配置单已复制到剪贴板！');
+        }
+    }
 }
 
-// 其余代码保持不变
+document.addEventListener('DOMContentLoaded', () => {
+    new ConfigGenerator();
+});

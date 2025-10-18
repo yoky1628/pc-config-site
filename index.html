@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电脑配置单生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>电脑配置单生成器</h1>
+            <p>轻松创建专业的电脑配置方案</p>
+        </header>
+
+        <div class="main-content">
+            <div class="configurator">
+                <div class="category-selector">
+                    <label for="usageType">使用场景：</label>
+                    <select id="usageType">
+                        <option value="office">办公办公</option>
+                        <option value="gaming">游戏电竞</option>
+                        <option value="design">设计创作</option>
+                        <option value="programming">编程开发</option>
+                        <option value="custom">自定义</option>
+                    </select>
+                    <label for="budget">预算范围：</label>
+                    <select id="budget">
+                        <option value="3000">3000元以下</option>
+                        <option value="5000">3000-5000元</option>
+                        <option value="8000">5000-8000元</option>
+                        <option value="12000">8000-12000元</option>
+                        <option value="12001">12000元以上</option>
+                    </select>
+                </div>
+
+                <div class="components">
+                    <!-- 各个配件选择区域将通过JavaScript动态生成 -->
+                </div>
+
+                <div class="summary">
+                    <h3>配置总览</h3>
+                    <div id="totalPrice">总价: 0元</div>
+                    <div class="actions">
+                        <button id="generateBtn">生成配置单</button>
+                        <button id="exportBtn">导出配置</button>
+                        <button id="resetBtn">重置配置</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview">
+                <h3>配置预览</h3>
+                <div id="configPreview" class="config-preview">
+                    <!-- 配置详情将在这里显示 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

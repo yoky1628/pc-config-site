@@ -1,43 +1,181 @@
-[
-  // CPU
-  {"type":"CPU","name":"锐龙5 5600X","basePrice":1200, "preset": [0]},  // 预设配置1
-  {"type":"CPU","name":"Core i5-13400F","basePrice":1100, "preset": [1]},  // 预设配置2
-  {"type":"CPU","name":"锐龙7 5800X","basePrice":1800, "preset": [2]},  // 预设配置3
-  {"type":"CPU","name":"Core i7-13700F","basePrice":2000, "preset": [3]},  // 预设配置4
-  {"type":"CPU","name":"锐龙9 7900X","basePrice":3500, "preset": [4]},  // 预设配置5
+let parts = [];
+let selectedParts = [];
+let presetConfigs = [];
 
-  // GPU
-  {"type":"GPU","name":"RTX 4060","basePrice":2500, "preset": [0]},
-  {"type":"GPU","name":"RTX 4070","basePrice":4000, "preset": [1]},
-  {"type":"GPU","name":"RTX 4080","basePrice":7000, "preset": [3,4]},
-  {"type":"GPU","name":"RX 7700XT","basePrice":3500, "preset": [2]},
-  {"type":"GPU","name":"RX 7800XT","basePrice":4500, "preset": []},
+// 加载 data.json
+fetch('data.json')
+  .then(res => res.json())
+  .then(data => {
+    parts = data;
+    presetConfigs = generatePresetConfigs();
+    loadPresetButtons();
+  })
+  .catch(err => console.error("加载 data.json 出错:", err));
 
-  // RAM
-  {"type":"RAM","name":"金士顿 16GB DDR4","basePrice":350, "preset": []},
-  {"type":"RAM","name":"芝奇 16GB DDR4","basePrice":380, "preset": []},
-  {"type":"RAM","name":"海盗船 32GB DDR4","basePrice":700, "preset": []},
-  {"type":"RAM","name":"金士顿 32GB DDR5","basePrice":900, "preset": []},
-  {"type":"RAM","name":"芝奇 32GB DDR5","basePrice":950, "preset": []},
+// 加价规则示例
+const pricingRules = { 
+  CPU:{mode:"fixed",value:200}, 
+  GPU:{mode:"percent",value:0.2}, 
+  RAM:{mode:"fixed",value:50}, 
+  Motherboard:{mode:"percent",value:0.15}, 
+  SSD:{mode:"fixed",value:100}, 
+  PSU:{mode:"percent",value:0.1} 
+};
 
-  // SSD
-  {"type":"SSD","name":"三星 500GB NVMe","basePrice":400, "preset": []},
-  {"type":"SSD","name":"西部数据 1TB NVMe","basePrice":700, "preset": []},
-  {"type":"SSD","name":"铠侠 1TB SATA","basePrice":500, "preset": []},
-  {"type":"SSD","name":"三星 2TB NVMe","basePrice":1200, "preset": []},
-  {"type":"SSD","name":"西部数据 2TB NVMe","basePrice":1300, "preset": []},
+// 计算销售价
+function calculateSalePrice(part){ 
+  const rule = pricingRules[part.type]; 
+  if(!rule) return part.basePrice; 
+  if(rule.mode==="fixed") return part.basePrice+rule.value; 
+  if(rule.mode==="percent") return Math.round(part.basePrice*(1+rule.value)); 
+  return part.basePrice; 
+}
 
-  // PSU
-  {"type":"PSU","name":"海盗船 650W","basePrice":500, "preset": []},
-  {"type":"PSU","name":"振华 700W","basePrice":450, "preset": []},
-  {"type":"PSU","name":"鑫谷 750W","basePrice":400, "preset": []},
-  {"type":"PSU","name":"海盗船 850W","basePrice":700, "preset": []},
-  {"type":"PSU","name":"长城 1000W","basePrice":900, "preset": []},
+// 更新配置表格
+function updateConfigTable(){
+  const tbody = document.querySelector("#configTable tbody");
+  tbody.innerHTML="";
+  let totalProfit = 0;
+  selectedParts.forEach((p,index)=>{
+    const sale = calculateSalePrice(p);
+    const profit = (sale-p.basePrice)*p.quantity;
+    totalProfit += profit;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${p.type}</td>
+      <td>${p.name}</td>
+      <td>${p.basePrice}</td>
+      <td>${sale}</td>
+      <td><input type="number" min="1" value="${p.quantity}" data-index="${index}" class="qtyInput"></td>
+      <td>${sale*p.quantity}</td>
+      <td>${profit}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById("totalProfit").textContent = totalProfit;
 
-  // Motherboard
-  {"type":"Motherboard","name":"华硕 B550","basePrice":900, "preset": []},
-  {"type":"Motherboard","name":"技嘉 B660","basePrice":1000, "preset": []},
-  {"type":"Motherboard","name":"微星 X570","basePrice":1800, "preset": []},
-  {"type":"Motherboard","name":"华硕 Z690","basePrice":2000, "preset": []},
-  {"type":"Motherboard","name":"技嘉 X670","basePrice":2500, "preset": []}
-]
+  document.querySelectorAll(".qtyInput").forEach(input=>{
+    input.addEventListener("change",e=>{
+      const idx = e.target.dataset.index;
+      let val = parseInt(e.target.value);
+      if(val<1) val=1;
+      selectedParts[idx].quantity = val;
+      updateConfigTable();
+    });
+  });
+}
+
+// 选择配件
+function selectPart(part){
+  if(!selectedParts.find(p=>p.name===part.name && p.type===part.type)){
+    selectedParts.push({...part,quantity:1});
+  }
+  updateConfigTable();
+  document.querySelectorAll(".search-results").forEach(c=>c.innerHTML="");
+}
+
+// 设置当前日期
+function setCurrentDate(){
+  const now = new Date();
+  const d = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+  document.getElementById("currentDate").textContent = d;
+}
+
+// 一键复制
+function copyConfigToClipboard(){
+  let text="电脑配置单\n类型\t名称\t成本\t销售\t数量\t小计\t利润\n";
+  selectedParts.forEach(p=>{
+    const sale = calculateSalePrice(p);
+    const profit = (sale-p.basePrice)*p.quantity;
+    text += `${p.type}\t${p.name}\t${p.basePrice}\t${sale}\t${p.quantity}\t${sale*p.quantity}\t${profit}\n`;
+  });
+  text += `总利润: ${selectedParts.reduce((sum,p)=>(sum+(calculateSalePrice(p)-p.basePrice)*p.quantity),0)} 元\n`;
+  navigator.clipboard.writeText(text).then(()=>alert("已复制到剪贴板"));
+}
+document.getElementById("copyBtn").addEventListener("click", copyConfigToClipboard);
+
+// 搜索功能
+function matchKeyword(keyword, name){
+  keyword = keyword.trim().toLowerCase();
+  return name.toLowerCase().includes(keyword);
+}
+
+function searchParts(keyword, typeFilter){
+  const allParts = parts.filter(p => p.type === typeFilter);
+  if(keyword.trim() === "") return allParts;
+  return allParts.filter(p => matchKeyword(keyword, p.name));
+}
+
+function renderResults(containerId, results, currentPresetIndex = null){
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  results.forEach((item, index)=>{
+    const div = document.createElement("div");
+    div.className = "search-result";
+    div.setAttribute("data-index", index);
+    let text = `${item.name} - 成本:${item.basePrice} 销售:${calculateSalePrice(item)}`;
+    if(currentPresetIndex !== null && item.preset.includes(currentPresetIndex)){
+      text += " ⭐";
+      div.style.fontWeight = "bold";
+    }
+    div.textContent = text;
+    div.onclick = () => selectPart(item);
+    container.appendChild(div);
+  });
+}
+
+function bindSearch(inputId, containerId, typeFilter){
+  const input = document.getElementById(inputId);
+  const container = document.getElementById(containerId);
+
+  input.addEventListener("focus", ()=>renderResults(containerId, searchParts("", typeFilter)));
+  input.addEventListener("input", ()=>renderResults(containerId, searchParts(input.value, typeFilter)));
+
+  input.addEventListener("keydown", e=>{
+    const items = container.querySelectorAll(".search-result");
+    if(!items.length) return;
+    let selectedIndex = Array.from(items).findIndex(i => i.classList.contains("selected"));
+
+    if(e.key==="ArrowDown"){ selectedIndex = selectedIndex<items.length-1?selectedIndex+1:0; }
+    else if(e.key==="ArrowUp"){ selectedIndex = selectedIndex>0?selectedIndex-1:items.length-1; }
+    else if(e.key==="Enter"){ if(selectedIndex>=0) selectPart(searchParts(input.value,typeFilter)[selectedIndex]); e.preventDefault(); return; }
+
+    items.forEach(i=>i.classList.remove("selected"));
+    if(selectedIndex>=0) items[selectedIndex].classList.add("selected");
+    e.preventDefault();
+  });
+}
+
+// 自动生成预设配置数组
+function generatePresetConfigs() {
+  if(!parts || parts.length===0) return [];
+  const maxPresetIndex = Math.max(...parts.flatMap(p => p.preset.length? p.preset:[-1]));
+  const presets = [];
+  for(let i=0;i<=maxPresetIndex;i++){
+    presets.push(parts.filter(p=>p.preset.includes(i)).map(p=>({...p,quantity:1})));
+  }
+  return presets;
+}
+
+// 加载预设配置按钮
+function loadPresetButtons() {
+  document.querySelectorAll(".presetBtn").forEach(btn => {
+    const idx = Number(btn.dataset.index);
+    btn.addEventListener("click", () => {
+      if(presetConfigs[idx] && presetConfigs[idx].length>0){
+        selectedParts = JSON.parse(JSON.stringify(presetConfigs[idx]));
+        updateConfigTable();
+      } else {
+        alert("该预设配置暂无配件数据");
+      }
+    });
+  });
+}
+
+// 页面初始化
+document.addEventListener("DOMContentLoaded",()=>{
+  setCurrentDate();
+  bindSearch("cpuInput","cpuResults","CPU");
+  bindSearch("gpuInput","gpuResults","GPU");
+  // 可继续绑定 RAM/SSD/PSU
+});

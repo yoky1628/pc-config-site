@@ -2,6 +2,9 @@ class ConfigGenerator {
     constructor() {
         this.components = [];
         this.selectedComponents = {};
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
         this.init();
     }
 
@@ -93,9 +96,6 @@ class ConfigGenerator {
                 `;
             }
         }).join('');
-
-        // 立即绑定其它类型的输入事件
-        this.bindOtherInputs();
     }
 
     bindEvents() {
@@ -114,6 +114,31 @@ class ConfigGenerator {
             }
             if (e.target.classList.contains('dropdown-item')) {
                 this.selectComponent(e.target);
+            }
+        });
+
+        // 修复：分别处理不同类型的事件
+        document.addEventListener('input', (e) => {
+            const type = e.target.dataset.type;
+            
+            if (!type) return;
+            
+            // 处理其它类型的输入
+            if (type === '其它1' || type === '其它2') {
+                if (e.target.classList.contains('other-name-input') || 
+                    e.target.classList.contains('quantity-input') ||
+                    e.target.classList.contains('price-input') ||
+                    e.target.classList.contains('cost-input')) {
+                    this.handleOtherInput(e);
+                }
+            } 
+            // 处理普通配件的输入
+            else {
+                if (e.target.classList.contains('quantity-input') ||
+                    e.target.classList.contains('price-input') ||
+                    e.target.classList.contains('cost-input')) {
+                    this.handleRegularInput(type);
+                }
             }
         });
 
@@ -144,19 +169,7 @@ class ConfigGenerator {
         });
     }
 
-    // 专门绑定其它类型的输入事件
-    bindOtherInputs() {
-        const otherInputs = document.querySelectorAll('.other-name-input, .quantity-input, .cost-input, .price-input');
-        
-        otherInputs.forEach(input => {
-            // 移除可能重复的事件监听器
-            input.removeEventListener('input', this.handleOtherInput.bind(this));
-            // 添加新的事件监听器
-            input.addEventListener('input', this.handleOtherInput.bind(this));
-        });
-    }
-
-    // 处理其它类型输入的直接函数
+    // 处理其它类型输入
     handleOtherInput(e) {
         const type = e.target.dataset.type;
         const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -172,8 +185,6 @@ class ConfigGenerator {
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
-
-        console.log('其它类型输入:', { type, name, quantity, price, cost });
 
         // 只要有名称、数量和价格就计算
         if (name && quantity > 0 && price > 0) {
@@ -194,7 +205,36 @@ class ConfigGenerator {
         }
     }
 
-    // 专门更新其它类型行的函数
+    // 处理普通配件输入
+    handleRegularInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+        const priceInput = row.querySelector('.price-input');
+        const costInput = row.querySelector('.cost-input');
+        
+        const quantity = parseInt(quantityInput.value) || 0;
+        const price = parseInt(priceInput.value) || 0;
+        const cost = parseInt(costInput.value) || 0;
+
+        // 更新组件数据
+        if (quantity > 0) component.quantity = quantity;
+        if (price > 0) component.price = price;
+        if (cost >= 0) {
+            component.cost = cost;
+            component.manualCost = true;
+        }
+
+        if (component.quantity > 0 && component.price > 0) {
+            this.updateRegularRow(type);
+        } else if (quantity === 0) {
+            this.clearSelection(type);
+        }
+    }
+
+    // 更新其它类型行
     updateOtherRow(type) {
         const component = this.selectedComponents[type];
         const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -203,8 +243,6 @@ class ConfigGenerator {
             const subtotal = component.price * component.quantity;
             const profit = (component.price - component.cost) * component.quantity;
             
-            console.log('更新计算:', { type, subtotal, profit });
-            
             row.querySelector('.subtotal').textContent = `¥${subtotal}`;
             row.querySelector('.profit').textContent = `¥${profit}`;
         } else {
@@ -212,6 +250,21 @@ class ConfigGenerator {
             row.querySelector('.profit').textContent = '-';
         }
         
+        this.updateTotals();
+    }
+
+    // 更新普通配件行
+    updateRegularRow(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - component.cost) * component.quantity;
+        
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+        row.querySelector('.profit').textContent = `¥${profit}`;
+
         this.updateTotals();
     }
 
@@ -231,7 +284,7 @@ class ConfigGenerator {
         document.getElementById('totalProfit').textContent = totalProfit;
     }
 
-    // 搜索相关功能保持不变
+    // 搜索相关功能
     handleSearch(input) {
         const query = input.value.trim();
         const type = input.dataset.type;
@@ -264,6 +317,9 @@ class ConfigGenerator {
         
         if (components.length === 0) {
             dropdown.style.display = 'none';
+            this.currentDropdown = null;
+            this.currentDropdownItems = [];
+            this.currentSelectedIndex = -1;
             return;
         }
 
@@ -275,6 +331,9 @@ class ConfigGenerator {
         `).join('');
 
         dropdown.style.display = 'block';
+        this.currentDropdown = dropdown;
+        this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
+        this.currentSelectedIndex = -1;
     }
 
     selectComponent(item) {
@@ -283,6 +342,9 @@ class ConfigGenerator {
         const price = parseInt(item.dataset.price);
 
         item.closest('.dropdown').style.display = 'none';
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
 
         const input = item.closest('.search-container').querySelector('.search-input');
         input.value = name;
@@ -312,20 +374,47 @@ class ConfigGenerator {
         this.updateRegularRow(type);
     }
 
-    updateRegularRow(type) {
-        const component = this.selectedComponents[type];
-        const subtotal = component.price * component.quantity;
-        const profit = (component.price - component.cost) * component.quantity;
-        
-        const row = document.querySelector(`tr[data-type="${type}"]`);
-        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
-        row.querySelector('.profit').textContent = `¥${profit}`;
+    handleKeyboard(e) {
+        if (!this.currentDropdown || this.currentDropdown.style.display === 'none') {
+            return;
+        }
 
-        this.updateTotals();
+        const items = this.currentDropdownItems;
+        if (items.length === 0) return;
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                this.currentSelectedIndex = (this.currentSelectedIndex + 1) % items.length;
+                this.selectDropdownItem(items, this.currentSelectedIndex);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                this.currentSelectedIndex = (this.currentSelectedIndex - 1 + items.length) % items.length;
+                this.selectDropdownItem(items, this.currentSelectedIndex);
+                break;
+            case 'Enter':
+                e.preventDefault();
+                if (this.currentSelectedIndex >= 0 && items[this.currentSelectedIndex]) {
+                    items[this.currentSelectedIndex].click();
+                }
+                break;
+            case 'Escape':
+                e.preventDefault();
+                this.currentDropdown.style.display = 'none';
+                this.currentDropdown = null;
+                this.currentDropdownItems = [];
+                this.currentSelectedIndex = -1;
+                break;
+        }
     }
 
-    handleKeyboard(e) {
-        // 键盘事件处理保持不变
+    selectDropdownItem(items, index) {
+        items.forEach(item => item.classList.remove('selected'));
+        if (items[index]) {
+            items[index].classList.add('selected');
+            items[index].scrollIntoView({ block: 'nearest' });
+        }
     }
 
     showPresetModal() {
@@ -359,6 +448,16 @@ class ConfigGenerator {
                     { type: 'CPU', name: 'Intel i5-13400F' },
                     { type: '主板', name: '华硕 B760M-P' },
                     { type: '内存', name: '金士顿 16GB DDR5 5200' }
+                ]
+            },
+            {
+                name: '游戏配置',
+                description: '主流游戏配置',
+                components: [
+                    { type: 'CPU', name: 'Intel i7-13700K' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' },
+                    { type: '显卡', name: '技嘉 RTX 4060 8G' }
                 ]
             }
         ];

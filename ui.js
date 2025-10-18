@@ -2,6 +2,7 @@ class ConfigGenerator {
     constructor() {
         this.components = [];
         this.selectedComponents = {};
+        this.inputTimeout = null;
         this.currentDropdown = null;
         this.currentDropdownItems = [];
         this.currentSelectedIndex = -1;
@@ -117,29 +118,42 @@ class ConfigGenerator {
             }
         });
 
-        // 修复：分别处理不同类型的事件
+        // 修复：添加普通配件的输入事件处理
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
             
-            if (!type) return;
-            
-            // 处理其它类型的输入
-            if (type === '其它1' || type === '其它2') {
-                if (e.target.classList.contains('other-name-input') || 
-                    e.target.classList.contains('quantity-input') ||
-                    e.target.classList.contains('price-input') ||
-                    e.target.classList.contains('cost-input')) {
-                    this.handleOtherInput(e);
-                }
-            } 
-            // 处理普通配件的输入
-            else {
+            // 处理普通配件的数量、价格、成本输入
+            if (type && type !== '其它1' && type !== '其它2') {
                 if (e.target.classList.contains('quantity-input') ||
                     e.target.classList.contains('price-input') ||
                     e.target.classList.contains('cost-input')) {
+                    
                     this.handleRegularInput(type);
                 }
             }
+            
+            // 处理其它类型的输入
+            if ((type === '其它1' || type === '其它2') && 
+                (e.target.classList.contains('other-name-input') || 
+                 e.target.classList.contains('quantity-input') ||
+                 e.target.classList.contains('price-input') ||
+                 e.target.classList.contains('cost-input'))) {
+                
+                this.handleOtherInputImmediate(type);
+            }
+            
+            // 搜索输入保持原有逻辑
+            if (e.target.classList.contains('search-input')) {
+                clearTimeout(this.inputTimeout);
+                this.inputTimeout = setTimeout(() => {
+                    this.handleSearch(e.target);
+                }, 300);
+            }
+        });
+
+        // 键盘事件
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboard(e);
         });
 
         // 按钮事件
@@ -162,18 +176,46 @@ class ConfigGenerator {
                 modal.style.display = 'none';
             }
         });
-
-        // 全局键盘事件
-        document.addEventListener('keydown', (e) => {
-            this.handleKeyboard(e);
-        });
     }
 
-    // 处理其它类型输入
-    handleOtherInput(e) {
-        const type = e.target.dataset.type;
+    // 处理普通配件的输入
+    handleRegularInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
         const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+        const priceInput = row.querySelector('.price-input');
+        const costInput = row.querySelector('.cost-input');
         
+        // 获取输入值
+        const quantity = parseInt(quantityInput.value) || 0;
+        const price = parseInt(priceInput.value) || 0;
+        const cost = parseInt(costInput.value) || 0;
+
+        // 更新组件数据
+        if (quantity > 0) {
+            component.quantity = quantity;
+        }
+        if (price > 0) {
+            component.price = price;
+        }
+        if (cost >= 0) {
+            component.cost = cost;
+            component.manualCost = true;
+        }
+
+        // 如果满足计算条件，更新显示
+        if (component.quantity > 0 && component.price > 0) {
+            this.updateRegularRow(type);
+        } else if (quantity === 0) {
+            this.clearSelection(type);
+        }
+    }
+
+    // 专门处理其它类型输入的立即响应方法
+    handleOtherInputImmediate(type) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
         if (!row) return;
 
         const nameInput = row.querySelector('.other-name-input');
@@ -197,45 +239,30 @@ class ConfigGenerator {
                 manualCost: cost > 0
             };
             
-            this.updateOtherRow(type);
+            this.updateOtherRowDisplay(type);
         } else {
-            // 不满足条件时清除计算
             delete this.selectedComponents[type];
-            this.updateOtherRow(type);
+            this.updateOtherRowDisplay(type);
         }
     }
 
-    // 处理普通配件输入
-    handleRegularInput(type) {
+    // 更新普通配件行的显示
+    updateRegularRow(type) {
         const component = this.selectedComponents[type];
         if (!component) return;
 
-        const row = document.querySelector(`tr[data-type="${type}"]`);
-        const quantityInput = row.querySelector('.quantity-input');
-        const priceInput = row.querySelector('.price-input');
-        const costInput = row.querySelector('.cost-input');
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - component.cost) * component.quantity;
         
-        const quantity = parseInt(quantityInput.value) || 0;
-        const price = parseInt(priceInput.value) || 0;
-        const cost = parseInt(costInput.value) || 0;
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+        row.querySelector('.profit').textContent = `¥${profit}`;
 
-        // 更新组件数据
-        if (quantity > 0) component.quantity = quantity;
-        if (price > 0) component.price = price;
-        if (cost >= 0) {
-            component.cost = cost;
-            component.manualCost = true;
-        }
-
-        if (component.quantity > 0 && component.price > 0) {
-            this.updateRegularRow(type);
-        } else if (quantity === 0) {
-            this.clearSelection(type);
-        }
+        this.updateTotals();
     }
 
-    // 更新其它类型行
-    updateOtherRow(type) {
+    // 更新其它类型行的显示
+    updateOtherRowDisplay(type) {
         const component = this.selectedComponents[type];
         const row = document.querySelector(`tr[data-type="${type}"]`);
         
@@ -250,21 +277,6 @@ class ConfigGenerator {
             row.querySelector('.profit').textContent = '-';
         }
         
-        this.updateTotals();
-    }
-
-    // 更新普通配件行
-    updateRegularRow(type) {
-        const component = this.selectedComponents[type];
-        if (!component) return;
-
-        const subtotal = component.price * component.quantity;
-        const profit = (component.price - component.cost) * component.quantity;
-        
-        const row = document.querySelector(`tr[data-type="${type}"]`);
-        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
-        row.querySelector('.profit').textContent = `¥${profit}`;
-
         this.updateTotals();
     }
 
@@ -284,7 +296,6 @@ class ConfigGenerator {
         document.getElementById('totalProfit').textContent = totalProfit;
     }
 
-    // 搜索相关功能
     handleSearch(input) {
         const query = input.value.trim();
         const type = input.dataset.type;

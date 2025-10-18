@@ -1,20 +1,37 @@
-{
-  "配件": [
-    {
-      "类别": "CPU",
-      "型号": "Ryzen 5 5600"
-    },
-    {
-      "类别": "主板",
-      "型号": "B550M 迫击炮 wwff"
-    },
-    {
-      "类别": "内存",
-      "型号": "海盗船 16G 3200"
-    },
-    {
-      "类别": "显卡",
-      "型号": "RTX 3060 8G"
-    }
-  ]
-}
+[
+  {"type":"CPU","name":"锐龙5 5600X","basePrice":1200},
+  {"type":"CPU","name":"Core i5-13400F","basePrice":1100},
+  {"type":"CPU","name":"锐龙7 5800X","basePrice":1800},
+  {"type":"CPU","name":"Core i7-13700F","basePrice":2000},
+  {"type":"CPU","name":"锐龙9 7900X","basePrice":3500},
+
+  {"type":"GPU","name":"RTX 4060","basePrice":2500},
+  {"type":"GPU","name":"RTX 4070","basePrice":4000},
+  {"type":"GPU","name":"RTX 4080","basePrice":7000},
+  {"type":"GPU","name":"RX 7700XT","basePrice":3500},
+  {"type":"GPU","name":"RX 7800XT","basePrice":4500},
+
+  {"type":"RAM","name":"金士顿 16GB DDR4","basePrice":350},
+  {"type":"RAM","name":"芝奇 16GB DDR4","basePrice":380},
+  {"type":"RAM","name":"海盗船 32GB DDR4","basePrice":700},
+  {"type":"RAM","name":"金士顿 32GB DDR5","basePrice":900},
+  {"type":"RAM","name":"芝奇 32GB DDR5","basePrice":950},
+
+  {"type":"SSD","name":"三星 500GB NVMe","basePrice":400},
+  {"type":"SSD","name":"西部数据 1TB NVMe","basePrice":700},
+  {"type":"SSD","name":"铠侠 1TB SATA","basePrice":500},
+  {"type":"SSD","name":"三星 2TB NVMe","basePrice":1200},
+  {"type":"SSD","name":"西部数据 2TB NVMe","basePrice":1300},
+
+  {"type":"PSU","name":"海盗船 650W","basePrice":500},
+  {"type":"PSU","name":"振华 700W","basePrice":450},
+  {"type":"PSU","name":"鑫谷 750W","basePrice":400},
+  {"type":"PSU","name":"海盗船 850W","basePrice":700},
+  {"type":"PSU","name":"长城 1000W","basePrice":900},
+
+  {"type":"Motherboard","name":"华硕 B550","basePrice":900},
+  {"type":"Motherboard","name":"技嘉 B660","basePrice":1000},
+  {"type":"Motherboard","name":"微星 X570","basePrice":1800},
+  {"type":"Motherboard","name":"华硕 Z690","basePrice":2000},
+  {"type":"Motherboard","name":"技嘉 X670","basePrice":2500}
+]

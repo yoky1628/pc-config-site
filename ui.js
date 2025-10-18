@@ -78,7 +78,11 @@ class ConfigGenerator {
                                    value="" placeholder="0" style="display: none;"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
-                        <td class="cost" data-type="${type}">-</td>
+                        <td>
+                            <input type="text" class="cost-input" data-type="${type}" 
+                                   placeholder="成本价" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
                         <td>
                             <input type="text" class="price-input" data-type="${type}" 
                                    placeholder="销售价" style="display: none;"
@@ -124,8 +128,10 @@ class ConfigGenerator {
                 // 延迟处理输入，让用户有时间完成输入
                 clearTimeout(this.inputTimeout);
                 this.inputTimeout = setTimeout(() => {
-                    if (e.target.classList.contains('price-input') || e.target.classList.contains('cost-input')) {
+                    if (e.target.classList.contains('price-input')) {
                         this.handlePriceInput(type);
+                    } else if (e.target.classList.contains('cost-input')) {
+                        this.handleCostInput(type);
                     } else if (e.target.classList.contains('quantity-input')) {
                         this.handleQuantityInput(type);
                     } else if (e.target.classList.contains('other-name-input')) {
@@ -175,7 +181,29 @@ class ConfigGenerator {
 
         if (newPrice > 0) {
             component.price = newPrice;
-            this.updateRegularRowDisplay(type);
+            // 如果成本价是自动计算的，重新计算利润
+            if (!component.manualCost) {
+                this.updateRegularRowDisplay(type);
+            } else {
+                // 如果成本价是手动输入的，只更新小计和利润
+                this.updateRowCalculations(type);
+            }
+        }
+    }
+
+    // 处理成本价输入
+    handleCostInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const costInput = row.querySelector('.cost-input');
+        const newCost = parseInt(costInput.value) || 0;
+
+        if (newCost >= 0) {
+            component.cost = newCost;
+            component.manualCost = true; // 标记为手动输入的成本价
+            this.updateRowCalculations(type);
         }
     }
 
@@ -193,7 +221,7 @@ class ConfigGenerator {
             if (component.isCustom) {
                 this.updateOtherRowDisplay(type);
             } else {
-                this.updateRegularRowDisplay(type);
+                this.updateRowCalculations(type);
             }
         } else if (newQuantity === 0) {
             this.clearSelection(type);
@@ -219,7 +247,8 @@ class ConfigGenerator {
                 price,
                 cost,
                 quantity,
-                isCustom: true
+                isCustom: true,
+                manualCost: cost > 0 // 如果输入了成本价，标记为手动输入
             };
             
             this.updateOtherRowDisplay(type);
@@ -246,6 +275,19 @@ class ConfigGenerator {
             row.querySelector('.profit').textContent = '-';
         }
         
+        this.updateTotals();
+    }
+
+    // 更新行计算（不修改成本价显示）
+    updateRowCalculations(type) {
+        const component = this.selectedComponents[type];
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - component.cost) * component.quantity;
+        
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+        row.querySelector('.profit').textContent = `¥${profit}`;
+
         this.updateTotals();
     }
 
@@ -305,10 +347,14 @@ class ConfigGenerator {
         input.value = name;
 
         const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
+        const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
         const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
         
         quantityInput.style.display = 'block';
         quantityInput.value = '1';
+        
+        costInput.style.display = 'block';
+        costInput.value = Math.round(price * 0.8); // 自动计算成本价
         
         priceInput.style.display = 'block';
         priceInput.value = price;
@@ -316,8 +362,10 @@ class ConfigGenerator {
         this.selectedComponents[type] = {
             name,
             price,
+            cost: Math.round(price * 0.8), // 自动计算成本价
             quantity: 1,
-            isCustom: false
+            isCustom: false,
+            manualCost: false // 初始为自动计算
         };
 
         this.updateRegularRowDisplay(type);
@@ -325,12 +373,10 @@ class ConfigGenerator {
 
     updateRegularRowDisplay(type) {
         const component = this.selectedComponents[type];
-        const estimatedCost = Math.round(component.price * 0.8);
         const subtotal = component.price * component.quantity;
-        const profit = (component.price - estimatedCost) * component.quantity;
+        const profit = (component.price - component.cost) * component.quantity;
         
         const row = document.querySelector(`tr[data-type="${type}"]`);
-        row.querySelector('.cost').textContent = `¥${estimatedCost}`;
         row.querySelector('.subtotal').textContent = `¥${subtotal}`;
         row.querySelector('.profit').textContent = `¥${profit}`;
 
@@ -343,9 +389,8 @@ class ConfigGenerator {
 
         Object.values(this.selectedComponents).forEach(component => {
             if (component.quantity > 0) {
-                const cost = component.isCustom ? component.cost : Math.round(component.price * 0.8);
                 totalPrice += component.price * component.quantity;
-                totalProfit += (component.price - cost) * component.quantity;
+                totalProfit += (component.price - component.cost) * component.quantity;
             }
         });
 
@@ -462,16 +507,22 @@ class ConfigGenerator {
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
+                        cost: Math.round(component.price * 0.8),
                         quantity: 1,
-                        isCustom: false
+                        isCustom: false,
+                        manualCost: false
                     };
 
                     input.value = component.name;
                     const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
+                    const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
                     
                     quantityInput.style.display = 'block';
                     quantityInput.value = '1';
+                    
+                    costInput.style.display = 'block';
+                    costInput.value = Math.round(component.price * 0.8);
                     
                     priceInput.style.display = 'block';
                     priceInput.value = component.price;
@@ -497,15 +548,18 @@ class ConfigGenerator {
             input.value = '';
             
             const quantityInput = row.querySelector('.quantity-input');
+            const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
             
             quantityInput.style.display = 'none';
             quantityInput.value = '';
             
+            costInput.style.display = 'none';
+            costInput.value = '';
+            
             priceInput.style.display = 'none';
             priceInput.value = '';
             
-            row.querySelector('.cost').textContent = '-';
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }

@@ -60,32 +60,60 @@ class ConfigGenerator {
         const tbody = document.getElementById('tableBody');
         const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
         
-        tbody.innerHTML = types.map(type => `
-            <tr data-type="${type}">
-                <td>${type}</td>
-                <td>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="搜索或选择配件" 
-                               data-type="${type}" autocomplete="off">
-                        <div class="dropdown" style="display: none;"></div>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" class="input-field quantity" data-type="${type}" 
-                           min="1" value="" placeholder="0" style="display: none;">
-                </td>
-                <td class="cost" data-type="${type}">-</td>
-                <td class="price" data-type="${type}">-</td>
-                <td class="subtotal" data-type="${type}">-</td>
-                <td class="profit" data-type="${type}">-</td>
-            </tr>
-        `).join('');
+        tbody.innerHTML = types.map(type => {
+            // 对于"其它1"和"其它2"类型，显示输入框而不是搜索框
+            if (type === '其它1' || type === '其它2') {
+                return `
+                    <tr data-type="${type}">
+                        <td>${type}</td>
+                        <td>
+                            <input type="text" class="input-field other-input" 
+                                   data-type="${type}" placeholder="请输入${type}名称" 
+                                   style="width: 100%;">
+                        </td>
+                        <td>
+                            <input type="number" class="input-field quantity" data-type="${type}" 
+                                   min="1" value="" placeholder="0" style="display: none;">
+                        </td>
+                        <td class="cost" data-type="${type}">-</td>
+                        <td class="price" data-type="${type}">-</td>
+                        <td class="subtotal" data-type="${type}">-</td>
+                        <td class="profit" data-type="${type}">-</td>
+                    </tr>
+                `;
+            } else {
+                return `
+                    <tr data-type="${type}">
+                        <td>${type}</td>
+                        <td>
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="搜索或选择配件" 
+                                       data-type="${type}" autocomplete="off">
+                                <div class="dropdown" style="display: none;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" class="input-field quantity" data-type="${type}" 
+                                   min="1" value="" placeholder="0" style="display: none;">
+                        </td>
+                        <td class="cost" data-type="${type}">-</td>
+                        <td class="price" data-type="${type}">-</td>
+                        <td class="subtotal" data-type="${type}">-</td>
+                        <td class="profit" data-type="${type}">-</td>
+                    </tr>
+                `;
+            }
+        }).join('');
     }
 
     bindEvents() {
         document.addEventListener('input', (e) => {
             if (e.target.classList.contains('search-input')) {
                 this.handleSearch(e.target);
+            }
+            // 添加对其它类型输入框的监听
+            if (e.target.classList.contains('other-input')) {
+                this.handleOtherInput(e.target);
             }
         });
 
@@ -133,6 +161,39 @@ class ConfigGenerator {
                 modal.style.display = 'none';
             }
         });
+    }
+
+    // 处理其它类型的手动输入
+    handleOtherInput(input) {
+        const type = input.dataset.type;
+        const name = input.value.trim();
+        
+        if (name === '') {
+            // 如果输入为空，清除选择
+            this.clearSelection(type);
+            return;
+        }
+
+        // 显示并设置数量
+        const quantityInput = document.querySelector(`.quantity[data-type="${type}"]`);
+        quantityInput.style.display = 'block';
+        if (!quantityInput.value) {
+            quantityInput.value = '1';
+        }
+
+        // 设置默认价格（用户可以后续修改）
+        const defaultPrice = 0; // 初始价格为0，需要用户手动输入
+
+        // 保存选择
+        this.selectedComponents[type] = {
+            name,
+            price: defaultPrice,
+            quantity: parseInt(quantityInput.value) || 1,
+            isCustom: true // 标记为自定义项
+        };
+
+        // 更新计算
+        this.updateCalculations(type);
     }
 
     handleSearch(input) {
@@ -197,7 +258,8 @@ class ConfigGenerator {
         this.selectedComponents[type] = {
             name,
             price,
-            quantity: 1
+            quantity: 1,
+            isCustom: false
         };
 
         this.updateCalculations(type);
@@ -216,9 +278,30 @@ class ConfigGenerator {
             return;
         }
 
+        // 对于自定义项，需要手动输入价格
+        if (component.isCustom && component.price === 0) {
+            // 提示用户输入价格
+            const priceInput = document.querySelector(`.price[data-type="${type}"]`);
+            priceInput.innerHTML = `<input type="number" class="input-field price-input" data-type="${type}" placeholder="输入价格" min="0" style="width: 80px;">`;
+            
+            // 绑定价格输入事件
+            const priceField = priceInput.querySelector('.price-input');
+            priceField.addEventListener('input', (e) => {
+                component.price = parseFloat(e.target.value) || 0;
+                this.updateRowDisplay(type);
+            });
+            
+            return;
+        }
+
+        this.updateRowDisplay(type);
+    }
+
+    updateRowDisplay(type) {
+        const component = this.selectedComponents[type];
         const estimatedCost = Math.round(component.price * 0.8);
-        const subtotal = component.price * quantity;
-        const profit = (component.price - estimatedCost) * quantity;
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - estimatedCost) * component.quantity;
         
         const row = document.querySelector(`tr[data-type="${type}"]`);
         row.querySelector('.cost').textContent = `¥${estimatedCost}`;
@@ -231,10 +314,16 @@ class ConfigGenerator {
 
     clearSelection(type) {
         const row = document.querySelector(`tr[data-type="${type}"]`);
-        const input = row.querySelector('.search-input');
-        const quantityInput = row.querySelector('.quantity');
         
-        input.value = '';
+        if (type === '其它1' || type === '其它2') {
+            const input = row.querySelector('.other-input');
+            input.value = '';
+        } else {
+            const input = row.querySelector('.search-input');
+            input.value = '';
+        }
+        
+        const quantityInput = row.querySelector('.quantity');
         quantityInput.style.display = 'none';
         quantityInput.value = '';
         
@@ -252,7 +341,7 @@ class ConfigGenerator {
         let totalProfit = 0;
 
         Object.values(this.selectedComponents).forEach(component => {
-            if (component.quantity > 0) {
+            if (component.quantity > 0 && component.price > 0) {
                 const estimatedCost = Math.round(component.price * 0.8);
                 totalPrice += component.price * component.quantity;
                 totalProfit += (component.price - estimatedCost) * component.quantity;
@@ -348,7 +437,8 @@ class ConfigGenerator {
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
-                        quantity: 1
+                        quantity: 1,
+                        isCustom: false
                     };
 
                     input.value = component.name;
@@ -367,7 +457,7 @@ class ConfigGenerator {
         let totalAmount = 0;
 
         Object.entries(this.selectedComponents).forEach(([type, component]) => {
-            if (component.quantity > 0) {
+            if (component.quantity > 0 && component.price > 0) {
                 const subtotal = component.price * component.quantity;
                 totalAmount += subtotal;
                 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电脑配置单生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1>电脑配置单生成器</h1>
+                <div class="date" id="currentDate"></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="loadPreset" class="btn">加载预设配置</button>
+                <button id="copyConfig" class="btn primary">一键复制配置单</button>
+            </div>
+
+            <div class="table-container">
+                <table id="configTable">
+                    <thead>
+                        <tr>
+                            <th width="15%">类型</th>
+                            <th width="25%">配件名称</th>
+                            <th width="10%">数量</th>
+                            <th width="12%">成本价</th>
+                            <th width="12%">销售价</th>
+                            <th width="13%">小计</th>
+                            <th width="13%">利润</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- 表格内容由JS动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="summary">
+                <div class="total-row">
+                    <span>总价: ¥<span id="totalPrice">0</span></span>
+                    <span>总利润: ¥<span id="totalProfit">0</span></span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 预设配置模态框 -->
+    <div id="presetModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>选择预设配置</h3>
+            <div id="presetList" class="preset-list">
+                <!-- 预设列表由JS生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="ui.js"></script>
+</body>
+</html>

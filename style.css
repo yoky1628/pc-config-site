@@ -1,7 +1,7 @@
-/* 在原有的样式基础上，添加以下内容 */
+/* 在原有的样式基础上，确保包含以下内容 */
 
-/* 普通配件的价格输入框样式 */
-.price-input {
+/* 成本价输入框样式 */
+.cost-input {
     width: 80px;
     padding: 6px;
     border: 1px solid #ced4da;
@@ -10,21 +10,21 @@
     background: white;
 }
 
-.price-input:focus {
+.cost-input:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-/* 移动端适配中的价格输入框 */
+/* 移动端适配中的成本价输入框 */
 @media (max-width: 768px) {
-    .price-input {
+    .cost-input {
         width: 70px;
     }
 }
 
 @media (max-width: 480px) {
-    .price-input {
+    .cost-input {
         width: 65px;
         padding: 4px;
     }

@@ -23,37 +23,10 @@ class ConfigGenerator {
             const response = await fetch('data.json');
             if (!response.ok) throw new Error('数据加载失败');
             this.components = await response.json();
-            
-            if (!this.components || this.components.length === 0) {
-                this.components = this.getSampleData();
-            }
         } catch (error) {
             console.error('加载数据失败:', error);
-            this.components = this.getSampleData();
-            alert('加载数据失败，使用示例数据');
+            this.components = [];
         }
-    }
-
-    getSampleData() {
-        return [
-            { type: 'CPU', name: 'Intel i5-13400F', price: 1299 },
-            { type: 'CPU', name: 'Intel i7-13700K', price: 2899 },
-            { type: '主板', name: '华硕 B760M-P', price: 899 }
-        ];
-    }
-
-    getPresetConfigs() {
-        return [
-            {
-                name: '办公配置',
-                description: '适合日常办公使用',
-                components: [
-                    { type: 'CPU', name: 'Intel i5-13400F' },
-                    { type: '主板', name: '华硕 B760M-P' },
-                    { type: '内存', name: '金士顿 16GB DDR5 5200' }
-                ]
-            }
-        ];
     }
 
     renderTable() {
@@ -61,22 +34,27 @@ class ConfigGenerator {
         const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
         
         tbody.innerHTML = types.map(type => {
-            // 对于"其它1"和"其它2"类型，显示输入框而不是搜索框
             if (type === '其它1' || type === '其它2') {
                 return `
                     <tr data-type="${type}">
                         <td>${type}</td>
                         <td>
-                            <input type="text" class="input-field other-input" 
+                            <input type="text" class="other-name-input" 
                                    data-type="${type}" placeholder="请输入${type}名称" 
-                                   style="width: 100%;">
+                                   style="width: 100%; padding: 6px; border: 1px solid #ced4da; border-radius: 3px;">
                         </td>
                         <td>
-                            <input type="number" class="input-field quantity" data-type="${type}" 
-                                   min="1" value="" placeholder="0" style="display: none;">
+                            <input type="number" class="quantity-input" data-type="${type}" 
+                                   min="1" value="1" placeholder="1" style="width: 60px; padding: 6px; display: block;">
                         </td>
-                        <td class="cost" data-type="${type}">-</td>
-                        <td class="price" data-type="${type}">-</td>
+                        <td>
+                            <input type="number" class="cost-input" data-type="${type}" 
+                                   placeholder="成本价" style="width: 80px; padding: 6px; display: block;">
+                        </td>
+                        <td>
+                            <input type="number" class="price-input" data-type="${type}" 
+                                   placeholder="销售价" style="width: 80px; padding: 6px; display: block;">
+                        </td>
                         <td class="subtotal" data-type="${type}">-</td>
                         <td class="profit" data-type="${type}">-</td>
                     </tr>
@@ -88,13 +66,13 @@ class ConfigGenerator {
                         <td>
                             <div class="search-container">
                                 <input type="text" class="search-input" placeholder="搜索或选择配件" 
-                                       data-type="${type}" autocomplete="off">
+                                       data-type="${type}" autocomplete="off" style="width: 100%; padding: 6px;">
                                 <div class="dropdown" style="display: none;"></div>
                             </div>
                         </td>
                         <td>
-                            <input type="number" class="input-field quantity" data-type="${type}" 
-                                   min="1" value="" placeholder="0" style="display: none;">
+                            <input type="number" class="quantity-input" data-type="${type}" 
+                                   min="1" value="" placeholder="0" style="width: 60px; padding: 6px; display: none;">
                         </td>
                         <td class="cost" data-type="${type}">-</td>
                         <td class="price" data-type="${type}">-</td>
@@ -107,13 +85,10 @@ class ConfigGenerator {
     }
 
     bindEvents() {
+        // 搜索功能事件
         document.addEventListener('input', (e) => {
             if (e.target.classList.contains('search-input')) {
                 this.handleSearch(e.target);
-            }
-            // 添加对其它类型输入框的监听
-            if (e.target.classList.contains('other-input')) {
-                this.handleOtherInput(e.target);
             }
         });
 
@@ -123,26 +98,37 @@ class ConfigGenerator {
                     this.showAllOptions(e.target);
                 }
             }
-        });
-
-        document.addEventListener('input', (e) => {
-            if (e.target.classList.contains('quantity')) {
-                this.updateCalculations(e.target.dataset.type);
-            }
-        });
-
-        document.addEventListener('click', (e) => {
             if (e.target.classList.contains('dropdown-item')) {
                 this.selectComponent(e.target);
             }
         });
 
+        // 其它类型输入事件
+        document.addEventListener('input', (e) => {
+            const type = e.target.dataset.type;
+            
+            if (e.target.classList.contains('other-name-input')) {
+                this.handleOtherInput(type);
+            }
+            if (e.target.classList.contains('quantity-input')) {
+                this.handleOtherInput(type);
+            }
+            if (e.target.classList.contains('price-input')) {
+                this.handleOtherInput(type);
+            }
+            if (e.target.classList.contains('cost-input')) {
+                this.handleOtherInput(type);
+            }
+        });
+
+        // 键盘事件
         document.addEventListener('keydown', (e) => {
             if (e.target.classList.contains('search-input')) {
                 this.handleKeyboard(e);
             }
         });
 
+        // 按钮事件
         document.getElementById('copyConfig').addEventListener('click', () => {
             this.copyConfigToClipboard();
         });
@@ -151,6 +137,7 @@ class ConfigGenerator {
             this.showPresetModal();
         });
 
+        // 模态框事件
         document.querySelector('.close').addEventListener('click', () => {
             document.getElementById('presetModal').style.display = 'none';
         });
@@ -163,39 +150,54 @@ class ConfigGenerator {
         });
     }
 
-    // 处理其它类型的手动输入
-    handleOtherInput(input) {
-        const type = input.dataset.type;
-        const name = input.value.trim();
+    // 处理其它类型输入
+    handleOtherInput(type) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const nameInput = row.querySelector('.other-name-input');
+        const quantityInput = row.querySelector('.quantity-input');
+        const priceInput = row.querySelector('.price-input');
+        const costInput = row.querySelector('.cost-input');
         
-        if (name === '') {
-            // 如果输入为空，清除选择
-            this.clearSelection(type);
-            return;
+        const name = nameInput.value.trim();
+        const quantity = parseInt(quantityInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
+        const cost = parseFloat(costInput.value) || 0;
+
+        if (name && quantity > 0 && price > 0) {
+            this.selectedComponents[type] = {
+                name,
+                price,
+                cost,
+                quantity,
+                isCustom: true
+            };
+            
+            this.updateOtherRowDisplay(type);
+        } else {
+            delete this.selectedComponents[type];
+            this.updateOtherRowDisplay(type);
         }
-
-        // 显示并设置数量
-        const quantityInput = document.querySelector(`.quantity[data-type="${type}"]`);
-        quantityInput.style.display = 'block';
-        if (!quantityInput.value) {
-            quantityInput.value = '1';
-        }
-
-        // 设置默认价格（用户可以后续修改）
-        const defaultPrice = 0; // 初始价格为0，需要用户手动输入
-
-        // 保存选择
-        this.selectedComponents[type] = {
-            name,
-            price: defaultPrice,
-            quantity: parseInt(quantityInput.value) || 1,
-            isCustom: true // 标记为自定义项
-        };
-
-        // 更新计算
-        this.updateCalculations(type);
+        
+        this.updateTotals();
     }
 
+    updateOtherRowDisplay(type) {
+        const component = this.selectedComponents[type];
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        
+        if (component) {
+            const subtotal = component.price * component.quantity;
+            const profit = (component.price - component.cost) * component.quantity;
+            
+            row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+            row.querySelector('.profit').textContent = `¥${profit}`;
+        } else {
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        }
+    }
+
+    // 原有的搜索功能方法保持不变
     handleSearch(input) {
         const query = input.value.trim();
         const type = input.dataset.type;
@@ -251,7 +253,7 @@ class ConfigGenerator {
         const input = item.closest('.search-container').querySelector('.search-input');
         input.value = name;
 
-        const quantityInput = document.querySelector(`.quantity[data-type="${type}"]`);
+        const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
         quantityInput.style.display = 'block';
         quantityInput.value = '1';
 
@@ -262,42 +264,10 @@ class ConfigGenerator {
             isCustom: false
         };
 
-        this.updateCalculations(type);
+        this.updateRegularRowDisplay(type);
     }
 
-    updateCalculations(type) {
-        const component = this.selectedComponents[type];
-        if (!component) return;
-
-        const quantityInput = document.querySelector(`.quantity[data-type="${type}"]`);
-        const quantity = parseInt(quantityInput.value) || 0;
-        component.quantity = quantity;
-
-        if (quantity === 0) {
-            this.clearSelection(type);
-            return;
-        }
-
-        // 对于自定义项，需要手动输入价格
-        if (component.isCustom && component.price === 0) {
-            // 提示用户输入价格
-            const priceInput = document.querySelector(`.price[data-type="${type}"]`);
-            priceInput.innerHTML = `<input type="number" class="input-field price-input" data-type="${type}" placeholder="输入价格" min="0" style="width: 80px;">`;
-            
-            // 绑定价格输入事件
-            const priceField = priceInput.querySelector('.price-input');
-            priceField.addEventListener('input', (e) => {
-                component.price = parseFloat(e.target.value) || 0;
-                this.updateRowDisplay(type);
-            });
-            
-            return;
-        }
-
-        this.updateRowDisplay(type);
-    }
-
-    updateRowDisplay(type) {
+    updateRegularRowDisplay(type) {
         const component = this.selectedComponents[type];
         const estimatedCost = Math.round(component.price * 0.8);
         const subtotal = component.price * component.quantity;
@@ -312,39 +282,15 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    clearSelection(type) {
-        const row = document.querySelector(`tr[data-type="${type}"]`);
-        
-        if (type === '其它1' || type === '其它2') {
-            const input = row.querySelector('.other-input');
-            input.value = '';
-        } else {
-            const input = row.querySelector('.search-input');
-            input.value = '';
-        }
-        
-        const quantityInput = row.querySelector('.quantity');
-        quantityInput.style.display = 'none';
-        quantityInput.value = '';
-        
-        row.querySelector('.cost').textContent = '-';
-        row.querySelector('.price').textContent = '-';
-        row.querySelector('.subtotal').textContent = '-';
-        row.querySelector('.profit').textContent = '-';
-
-        delete this.selectedComponents[type];
-        this.updateTotals();
-    }
-
     updateTotals() {
         let totalPrice = 0;
         let totalProfit = 0;
 
         Object.values(this.selectedComponents).forEach(component => {
-            if (component.quantity > 0 && component.price > 0) {
-                const estimatedCost = Math.round(component.price * 0.8);
+            if (component.quantity > 0) {
+                const cost = component.isCustom ? component.cost : Math.round(component.price * 0.8);
                 totalPrice += component.price * component.quantity;
-                totalProfit += (component.price - estimatedCost) * component.quantity;
+                totalProfit += (component.price - cost) * component.quantity;
             }
         });
 
@@ -416,6 +362,20 @@ class ConfigGenerator {
         modal.style.display = 'block';
     }
 
+    getPresetConfigs() {
+        return [
+            {
+                name: '办公配置',
+                description: '适合日常办公使用',
+                components: [
+                    { type: 'CPU', name: 'Intel i5-13400F' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' }
+                ]
+            }
+        ];
+    }
+
     loadPresetConfig(index) {
         const presets = this.getPresetConfigs();
         const preset = presets[index];
@@ -442,14 +402,42 @@ class ConfigGenerator {
                     };
 
                     input.value = component.name;
-                    const quantityInput = document.querySelector(`.quantity[data-type="${item.type}"]`);
+                    const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
                     quantityInput.style.display = 'block';
                     quantityInput.value = '1';
 
-                    this.updateCalculations(item.type);
+                    this.updateRegularRowDisplay(item.type);
                 }
             }
         });
+    }
+
+    clearSelection(type) {
+        if (type === '其它1' || type === '其它2') {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            row.querySelector('.other-name-input').value = '';
+            row.querySelector('.quantity-input').value = '1';
+            row.querySelector('.cost-input').value = '';
+            row.querySelector('.price-input').value = '';
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        } else {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            const input = row.querySelector('.search-input');
+            input.value = '';
+            
+            const quantityInput = row.querySelector('.quantity-input');
+            quantityInput.style.display = 'none';
+            quantityInput.value = '';
+            
+            row.querySelector('.cost').textContent = '-';
+            row.querySelector('.price').textContent = '-';
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        }
+
+        delete this.selectedComponents[type];
+        this.updateTotals();
     }
 
     async copyConfigToClipboard() {

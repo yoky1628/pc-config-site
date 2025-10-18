@@ -116,6 +116,9 @@ class ConfigGenerator {
             if (e.target.classList.contains('dropdown-item')) {
                 this.selectComponent(e.target);
             }
+            
+            // 新增：点击页面其他区域时隐藏下拉框
+            this.handleOutsideClick(e);
         });
 
         // 修复：添加普通配件的输入事件处理
@@ -176,6 +179,30 @@ class ConfigGenerator {
                 modal.style.display = 'none';
             }
         });
+    }
+
+    // 新增方法：处理外部点击事件
+    handleOutsideClick(e) {
+        // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
+        if (!e.target.classList.contains('search-input') && 
+            !e.target.classList.contains('dropdown-item') &&
+            !e.target.closest('.dropdown')) {
+            
+            this.hideAllDropdowns();
+        }
+    }
+
+    // 新增方法：隐藏所有下拉框
+    hideAllDropdowns() {
+        const allDropdowns = document.querySelectorAll('.dropdown');
+        allDropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+        
+        // 重置当前下拉框状态
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
     }
 
     // 处理普通配件的输入
@@ -325,6 +352,9 @@ class ConfigGenerator {
 
     showDropdown(input, components) {
         const dropdown = input.nextElementSibling;
+        
+        // 新增：先隐藏所有其他下拉框
+        this.hideAllDropdowns();
         
         if (components.length === 0) {
             dropdown.style.display = 'none';

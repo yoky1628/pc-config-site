@@ -287,106 +287,155 @@ tbody tr:hover {
     -moz-appearance: textfield;
 }
 
-/* 移动端适配 */
+/* 移动端表格优化 */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 5px;
+        font-size: 14px;
     }
     
     .container {
-        border-radius: 8px;
+        border-radius: 5px;
+        margin: 0 auto;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -10px;
+        padding: 0 10px;
+    }
+    
+    table {
+        min-width: 650px;
+        font-size: 12px;
+    }
+    
+    /* 优化列宽 */
+    th:nth-child(1), td:nth-child(1) {
+        width: 12%;
+        min-width: 50px;
+    }
+    
+    th:nth-child(2), td:nth-child(2) {
+        width: 28%;
+        min-width: 90px;
+    }
+    
+    th:nth-child(3), td:nth-child(3) {
+        width: 8%;
+        min-width: 40px;
+    }
+    
+    th:nth-child(4), td:nth-child(4) {
+        width: 10%;
+        min-width: 60px;
+    }
+    
+    th:nth-child(5), td:nth-child(5) {
+        width: 10%;
+        min-width: 60px;
+    }
+    
+    th:nth-child(6), td:nth-child(6) {
+        width: 12%;
+        min-width: 65px;
+    }
+    
+    th:nth-child(7), td:nth-child(7) {
+        width: 12%;
+        min-width: 65px;
+    }
+    
+    th, td {
+        padding: 6px 3px;
+        font-size: 11px;
+        line-height: 1.2;
+    }
+    
+    .search-input,
+    .other-name-input {
+        font-size: 11px;
+        padding: 4px 2px;
+    }
+    
+    .quantity-input,
+    .cost-input,
+    .price-input {
+        width: 100%;
+        font-size: 11px;
+        padding: 4px 2px;
+    }
+    
+    .controls {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .total-row {
+        padding: 12px 15px;
+        font-size: 16px;
+        flex-direction: column;
+        gap: 8px;
     }
     
     .logo-area {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .controls {
-        padding: 10px;
-    }
-    
-    .btn {
-        flex: 1;
-        min-width: 120px;
-    }
-    
-    th, td {
-        padding: 8px 6px;
-        font-size: 14px;
-    }
-    
-    .total-row {
-        flex-direction: column;
-        gap: 10px;
-        font-size: 16px;
-    }
-    
-    .quantity-input {
-        width: 50px;
-    }
-    
-    .cost-input,
-    .price-input {
-        width: 70px;
-    }
-    
-    .other-name-input,
-    .quantity-input,
-    .cost-input,
-    .price-input {
-        padding: 4px;
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 5px;
-    }
-    
-    th, td {
-        padding: 6px 4px;
-        font-size: 12px;
-    }
-    
-    .input-field, .search-input {
-        padding: 4px;
-        font-size: 12px;
-    }
-    
-    .quantity-input {
-        width: 45px;
-        padding: 4px;
-    }
-    
-    .cost-input,
-    .price-input {
-        width: 65px;
-        padding: 4px;
-    }
-    
-    .other-name-input {
-        font-size: 12px;
-        padding: 4px;
-    }
-    
-    .btn {
-        padding: 6px 12px;
-        font-size: 12px;
+        gap: 8px;
     }
     
     .logo-area h1 {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .date {
         font-size: 12px;
     }
+}
+
+/* 小屏手机进一步优化 */
+@media (max-width: 480px) {
+    body {
+        padding: 3px;
+    }
     
-    .total-row {
-        font-size: 14px;
+    table {
+        min-width: 580px;
+    }
+    
+    th:nth-child(1), td:nth-child(1) { min-width: 45px; }
+    th:nth-child(2), td:nth-child(2) { min-width: 80px; }
+    th:nth-child(3), td:nth-child(3) { min-width: 35px; }
+    th:nth-child(4), td:nth-child(4) { min-width: 55px; }
+    th:nth-child(5), td:nth-child(5) { min-width: 55px; }
+    th:nth-child(6), td:nth-child(6) { min-width: 60px; }
+    th:nth-child(7), td:nth-child(7) { min-width: 60px; }
+    
+    th, td {
+        padding: 4px 2px;
+        font-size: 10px;
+    }
+    
+    .search-input,
+    .other-name-input,
+    .quantity-input,
+    .cost-input,
+    .price-input {
+        font-size: 10px;
+        padding: 3px 1px;
+    }
+    
+    .btn {
+        padding: 6px 8px;
+        font-size: 12px;
     }
 }
 
@@ -529,17 +578,6 @@ th:nth-child(7) {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-}
-
-/* 响应式表格头部 */
-@media (max-width: 768px) {
-    th:nth-child(1), td:nth-child(1) { min-width: 70px; }
-    th:nth-child(2), td:nth-child(2) { min-width: 120px; }
-    th:nth-child(3), td:nth-child(3) { min-width: 60px; }
-    th:nth-child(4), td:nth-child(4) { min-width: 80px; }
-    th:nth-child(5), td:nth-child(5) { min-width: 80px; }
-    th:nth-child(6), td:nth-child(6) { min-width: 85px; }
-    th:nth-child(7), td:nth-child(7) { min-width: 85px; }
 }
 
 /* 打印样式 */

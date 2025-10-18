@@ -8,8 +8,12 @@ const fixedParts = [
 document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("date").innerText = new Date().toLocaleDateString();
 
-  const res = await fetch("data.json");
-  partsData = await res.json();
+  try {
+    const res = await fetch("data.json");
+    partsData = await res.json();
+  } catch (e) {
+    console.error("data.json 加载失败", e);
+  }
 
   const tbody = document.getElementById("tableBody");
   fixedParts.forEach(type => tbody.appendChild(createRow(type)));
@@ -24,7 +28,7 @@ function createRow(type) {
   tr.innerHTML = `
     <td>${type}</td>
     <td style="position:relative;">
-      <input class="nameInput" placeholder="输入关键字搜索" ${type.includes("其它") ? "" : ""}>
+      <input class="nameInput" placeholder="输入关键字搜索" autocomplete="off">
       <div class="suggestions"></div>
     </td>
     <td class="cost">0</td>
@@ -38,25 +42,29 @@ function createRow(type) {
   const box = tr.querySelector(".suggestions");
   const qty = tr.querySelector(".qty");
 
-  if (!type.includes("其它")) {
-    input.addEventListener("input", () => showSuggestions(type, input, box, tr));
-  } else {
-    input.addEventListener("input", () => manualUpdate(tr));
-  }
+  input.addEventListener("input", () => {
+    if (type.includes("其它")) {
+      manualUpdate(tr);
+    } else {
+      showSuggestions(type, input, box, tr);
+    }
+  });
 
   qty.addEventListener("input", () => updateSubtotal(tr));
   return tr;
 }
 
-// 搜索建议框
+// 搜索建议
 function showSuggestions(type, input, box, tr) {
   const keyword = input.value.trim();
   if (!keyword) {
     box.style.display = "none";
     return;
   }
+
   const list = partsData[type] || [];
   const results = list.filter(p => p.name.includes(keyword)).slice(0, 10);
+
   if (!results.length) {
     box.style.display = "none";
     return;
@@ -75,9 +83,9 @@ function showSuggestions(type, input, box, tr) {
   });
 }
 
-// 填充成本、售价、利润
+// 填充单行数据
 function fillRowData(tr, part) {
-  const cost = part.cost;
+  const cost = part.cost || 0;
   const sale = Math.round(cost * 1.15);
   const qty = parseInt(tr.querySelector(".qty").value) || 1;
 
@@ -140,7 +148,7 @@ function copyConfig() {
     const qty = tr.querySelector(".qty").value;
     const subtotal = tr.querySelector(".subtotal").textContent;
     const profit = tr.querySelector(".profit").textContent;
-    text += `${type}：${name} ×${qty}\n成本￥${cost} / 售价￥${sale} / 小计￥${subtotal} / 利润￥${profit}\n\n`;
+    text += `${type}：${name || "-"} ×${qty}\n成本￥${cost} / 售价￥${sale} / 小计￥${subtotal} / 利润￥${profit}\n\n`;
   });
   text += `总成本：￥${document.getElementById("costTotal").textContent}\n`;
   text += `总售价：￥${document.getElementById("saleTotal").textContent}\n`;
@@ -150,6 +158,7 @@ function copyConfig() {
   alert("配置单已复制到剪贴板");
 }
 
+// 清空
 function clearAll() {
   document.querySelectorAll(".nameInput").forEach(i => i.value = "");
   document.querySelectorAll(".cost,.sale,.subtotal,.profit").forEach(c => c.textContent = "0");

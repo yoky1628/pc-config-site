@@ -175,6 +175,7 @@ tbody tr:hover {
     color: #2c3e50;
 }
 
+/* 模态框样式 */
 .modal {
     display: none;
     position: fixed;
@@ -236,6 +237,40 @@ tbody tr:hover {
     font-size: 14px;
 }
 
+/* 其它类型的输入框样式 */
+.other-name-input,
+.quantity-input,
+.cost-input,
+.price-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 14px;
+    background: white;
+}
+
+.other-name-input:focus,
+.quantity-input:focus,
+.cost-input:focus,
+.price-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* 数量输入框特定宽度 */
+.quantity-input {
+    width: 60px;
+}
+
+/* 价格输入框特定宽度 */
+.cost-input,
+.price-input {
+    width: 80px;
+}
+
+/* 移动端适配 */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -270,6 +305,15 @@ tbody tr:hover {
         gap: 10px;
         font-size: 16px;
     }
+    
+    .quantity-input {
+        width: 50px;
+    }
+    
+    .cost-input,
+    .price-input {
+        width: 70px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -281,5 +325,16 @@ tbody tr:hover {
     .input-field, .search-input {
         padding: 4px;
         font-size: 12px;
+    }
+    
+    .quantity-input {
+        width: 45px;
+        padding: 4px;
+    }
+    
+    .cost-input,
+    .price-input {
+        width: 65px;
+        padding: 4px;
     }
 }

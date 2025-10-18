@@ -1,74 +1,87 @@
 body {
-  font-family: "Microsoft YaHei", sans-serif;
+  font-family: "Microsoft Yahei", sans-serif;
+  background: #f5f7fa;
   margin: 0;
-  padding: 0;
-  background-color: #f9fafc;
-  color: #333;
+  padding: 20px;
 }
 
-header {
+.container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
-  background: #2a4d8f;
-  color: white;
+  margin-bottom: 15px;
 }
 
-.logo {
-  width: 60px;
-  margin-right: 15px;
-}
-
-.info h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.info p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  background: #eef2f6;
-}
-
-button, select {
+button {
+  margin-left: 10px;
   padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: white;
+  border: none;
+  border-radius: 5px;
+  background: #0078ff;
+  color: #fff;
+  cursor: pointer;
 }
 
 button:hover {
-  background: #e8ecf2;
+  background: #005fcc;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  margin-bottom: 15px;
 }
 
 th, td {
   border: 1px solid #ddd;
-  padding: 6px;
+  padding: 8px;
   text-align: center;
 }
 
-td input, td select {
-  width: 90%;
+th {
+  background: #f0f0f0;
 }
 
-#suggestions {
+input[type="text"], input[type="number"] {
+  width: 95%;
+  padding: 4px;
+}
+
+.suggestions {
   position: absolute;
-  background: white;
+  background: #fff;
   border: 1px solid #ccc;
-  max-height: 150px;
+  width: 95%;
+  max-height: 200px;
   overflow-y: auto;
-  z-index: 10;
+  display: none;
+  z-index: 100;
+}
+
+.suggestions div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background: #eee;
+}
+
+.totals {
+  text-align: right;
+  font-size: 1.1em;
 }

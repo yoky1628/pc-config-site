@@ -1,64 +1,65 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电脑配置单生成器</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电脑配置单</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>电脑配置单生成器</h1>
-            <p>轻松创建专业的电脑配置方案</p>
-        </header>
 
-        <div class="main-content">
-            <div class="configurator">
-                <div class="category-selector">
-                    <label for="usageType">使用场景：</label>
-                    <select id="usageType">
-                        <option value="office">办公办公</option>
-                        <option value="gaming">游戏电竞</option>
-                        <option value="design">设计创作</option>
-                        <option value="programming">编程开发</option>
-                        <option value="custom">自定义</option>
-                    </select>
-                    <label for="budget">预算范围：</label>
-                    <select id="budget">
-                        <option value="3000">3000元以下</option>
-                        <option value="5000">3000-5000元</option>
-                        <option value="8000">5000-8000元</option>
-                        <option value="12000">8000-12000元</option>
-                        <option value="12001">12000元以上</option>
-                    </select>
-                </div>
+<header>
+  <img src="logo.png" alt="LOGO" class="logo">
+  <h1>电脑配置单</h1>
+  <div>日期: <span id="currentDate"></span></div>
+</header>
 
-                <div class="components">
-                    <!-- 各个配件选择区域将通过JavaScript动态生成 -->
-                </div>
+<section class="search-section">
+  <div class="search-block">
+    <input type="text" id="cpuInput" placeholder="搜索CPU">
+    <div id="cpuResults" class="search-results"></div>
+  </div>
+  <div class="search-block">
+    <input type="text" id="gpuInput" placeholder="搜索GPU">
+    <div id="gpuResults" class="search-results"></div>
+  </div>
+  <!-- 可继续添加 RAM/SSD/PSU 搜索框 -->
+</section>
 
-                <div class="summary">
-                    <h3>配置总览</h3>
-                    <div id="totalPrice">总价: 0元</div>
-                    <div class="actions">
-                        <button id="generateBtn">生成配置单</button>
-                        <button id="exportBtn">导出配置</button>
-                        <button id="resetBtn">重置配置</button>
-                    </div>
-                </div>
-            </div>
+<section class="preset-section">
+  <h3>预设配置</h3>
+  <button class="presetBtn" data-index="0">预设配置1</button>
+  <button class="presetBtn" data-index="1">预设配置2</button>
+  <button class="presetBtn" data-index="2">预设配置3</button>
+  <button class="presetBtn" data-index="3">预设配置4</button>
+  <button class="presetBtn" data-index="4">预设配置5</button>
+</section>
 
-            <div class="preview">
-                <h3>配置预览</h3>
-                <div id="configPreview" class="config-preview">
-                    <!-- 配置详情将在这里显示 -->
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="config-section">
+  <table border="1" cellpadding="5" cellspacing="0" id="configTable">
+    <thead>
+      <tr>
+        <th>类型</th>
+        <th>名称</th>
+        <th>成本价</th>
+        <th>销售价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>利润</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <h3>总利润：<span id="totalProfit">0</span> 元</h3>
+  <button id="copyBtn">一键复制配置单</button>
+</section>
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+<script src="js/ui.js"></script>
+<script>
+bindSearch("cpuInput","cpuResults","CPU");
+bindSearch("gpuInput","gpuResults","GPU");
+setCurrentDate();
+loadPresetButtons();
+</script>
 </body>
 </html>

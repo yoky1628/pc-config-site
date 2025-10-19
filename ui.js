@@ -75,12 +75,14 @@ class ConfigGenerator {
     }
 
     bindEvents() {
-        // 添加 touchstart/touchend for haptic simulation
-        document.addEventListener('touchstart', (e) => {
-            if (e.target.classList.contains('btn') || e.target.classList.contains('dropdown-item') || e.target.classList.contains('input-field')) {
-                this.simulateHaptic('light'); // 轻触反馈
+        // 优化touch事件：防冒泡，兼容click
+        document.addEventListener('pointerdown', (e) => {
+            const target = e.target;
+            if (target.classList.contains('btn') || target.classList.contains('dropdown-item') || target.classList.contains('input-field')) {
+                e.preventDefault();
+                this.simulateHaptic('light');
             }
-        }, { passive: true });
+        }, { passive: false });
 
         document.addEventListener('click', (e) => {
             const target = e.target;
@@ -91,6 +93,7 @@ class ConfigGenerator {
                 }
             }
             if (target.classList.contains('dropdown-item')) {
+                e.preventDefault();  // 防双击
                 this.selectComponent(target);
             }
             this.handleOutsideClick(e);
@@ -148,7 +151,6 @@ class ConfigGenerator {
     }
 
     simulateHaptic(type) {
-        // 模拟触觉反馈（浏览器支持 navigator.vibrate）
         if (navigator.vibrate) {
             const patterns = {
                 light: [10],
@@ -196,9 +198,6 @@ class ConfigGenerator {
             });
         });
     }
-
-    // [其余方法保持不变，与之前提供的相同]
-    // handleOutsideClick, hideAllDropdowns, handleRegularInput, handleOtherInputImmediate, updateRegularRow, updateOtherRowDisplay, updateTotals, handleSearch, searchComponents, showAllOptions, showDropdown, selectComponent, handleKeyboard, selectDropdownItem, showPresetModal, getPresetConfigs, loadPresetConfig, clearSelection, copyConfigToClipboard
 
     handleOutsideClick(e) {
         if (!e.target.classList.contains('search-input') && 

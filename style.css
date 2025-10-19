@@ -13,12 +13,11 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     background: white;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    /* 重要：桌面端保持 hidden，但移动端会覆盖 */
     overflow: hidden;
 }
 
@@ -86,6 +85,7 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 800px;
 }
 
 th, td {
@@ -126,7 +126,6 @@ tbody tr:hover {
 
 .search-container {
     position: relative;
-    z-index: 100; /* 确保搜索容器有适当的z-index */
 }
 
 .search-input {
@@ -147,7 +146,7 @@ tbody tr:hover {
     border-top: none;
     max-height: 200px;
     overflow-y: auto;
-    z-index: 1000; /* 确保下拉框在最上层 */
+    z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -260,6 +259,17 @@ tbody tr:hover {
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
+/* 数量输入框特定宽度 */
+.quantity-input {
+    width: 60px;
+}
+
+/* 价格输入框特定宽度 */
+.cost-input,
+.price-input {
+    width: 80px;
+}
+
 /* 移除所有输入框的上下箭头 */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button,
@@ -277,60 +287,76 @@ tbody tr:hover {
     -moz-appearance: textfield;
 }
 
-/* 移动端表格优化 - 修复下拉框显示问题 */
+/* 移动端表格优化 */
 @media (max-width: 768px) {
     body {
         padding: 5px;
         font-size: 14px;
-        overflow-x: hidden;
     }
     
     .container {
-        max-width: calc(100% - 16px);
-        margin: 0 auto;
         border-radius: 5px;
-        /* 重要：改为 visible 允许下拉框显示 */
-        overflow: visible;
+        margin: 0 auto;
     }
     
     .table-container {
-        overflow-x: visible;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        position: relative;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -10px;
+        padding: 0 10px;
     }
     
     table {
-        min-width: 100%;
-        width: 100%;
+        min-width: 650px;
         font-size: 12px;
-        table-layout: fixed;
     }
     
     /* 优化列宽 */
-    th:nth-child(1), td:nth-child(1) { width: 14%; }
-    th:nth-child(2), td:nth-child(2) { width: 26%; }
-    th:nth-child(3), td:nth-child(3) { width: 8%; }
-    th:nth-child(4), td:nth-child(4) { width: 12%; }
-    th:nth-child(5), td:nth-child(5) { width: 12%; }
-    th:nth-child(6), td:nth-child(6) { width: 14%; }
-    th:nth-child(7), td:nth-child(7) { width: 14%; }
+    th:nth-child(1), td:nth-child(1) {
+        width: 12%;
+        min-width: 50px;
+    }
+    
+    th:nth-child(2), td:nth-child(2) {
+        width: 28%;
+        min-width: 90px;
+    }
+    
+    th:nth-child(3), td:nth-child(3) {
+        width: 8%;
+        min-width: 40px;
+    }
+    
+    th:nth-child(4), td:nth-child(4) {
+        width: 10%;
+        min-width: 60px;
+    }
+    
+    th:nth-child(5), td:nth-child(5) {
+        width: 10%;
+        min-width: 60px;
+    }
+    
+    th:nth-child(6), td:nth-child(6) {
+        width: 12%;
+        min-width: 65px;
+    }
+    
+    th:nth-child(7), td:nth-child(7) {
+        width: 12%;
+        min-width: 65px;
+    }
     
     th, td {
         padding: 6px 3px;
         font-size: 11px;
         line-height: 1.2;
-        word-wrap: break-word;
-        overflow: hidden;
     }
     
     .search-input,
     .other-name-input {
         font-size: 11px;
         padding: 4px 2px;
-        max-width: 100%;
-        box-sizing: border-box;
     }
     
     .quantity-input,
@@ -339,22 +365,6 @@ tbody tr:hover {
         width: 100%;
         font-size: 11px;
         padding: 4px 2px;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    
-    /* 确保搜索容器在移动端正常显示下拉框 */
-    .search-container {
-        position: relative;
-        z-index: 1001;
-    }
-    
-    /* 移动端下拉框样式调整 */
-    .dropdown {
-        z-index: 1002; /* 提高z-index确保显示在最上层 */
-        max-height: 150px;
-        /* 确保下拉框不被裁剪 */
-        position: absolute;
     }
     
     .controls {
@@ -397,24 +407,17 @@ tbody tr:hover {
         padding: 3px;
     }
     
-    .container {
-        max-width: calc(100% - 16px);
-        overflow: visible; /* 保持可见 */
-    }
-    
     table {
-        min-width: 100%;
-        width: 100%;
-        table-layout: fixed;
+        min-width: 580px;
     }
     
-    th:nth-child(1), td:nth-child(1) { width: 12%; }
-    th:nth-child(2), td:nth-child(2) { width: 28%; }
-    th:nth-child(3), td:nth-child(3) { width: 8%; }
-    th:nth-child(4), td:nth-child(4) { width: 10%; }
-    th:nth-child(5), td:nth-child(5) { width: 10%; }
-    th:nth-child(6), td:nth-child(6) { width: 16%; }
-    th:nth-child(7), td:nth-child(7) { width: 16%; }
+    th:nth-child(1), td:nth-child(1) { min-width: 45px; }
+    th:nth-child(2), td:nth-child(2) { min-width: 80px; }
+    th:nth-child(3), td:nth-child(3) { min-width: 35px; }
+    th:nth-child(4), td:nth-child(4) { min-width: 55px; }
+    th:nth-child(5), td:nth-child(5) { min-width: 55px; }
+    th:nth-child(6), td:nth-child(6) { min-width: 60px; }
+    th:nth-child(7), td:nth-child(7) { min-width: 60px; }
     
     th, td {
         padding: 4px 2px;
@@ -426,7 +429,7 @@ tbody tr:hover {
     .quantity-input,
     .cost-input,
     .price-input {
-        font-size: 9px;
+        font-size: 10px;
         padding: 3px 1px;
     }
     
@@ -434,21 +437,43 @@ tbody tr:hover {
         padding: 6px 8px;
         font-size: 12px;
     }
-    
-    /* 小屏手机下拉框可以更小一些 */
-    .dropdown {
-        max-height: 120px;
-    }
 }
 
 /* 表格列宽优化 */
-th:nth-child(1), td:nth-child(1) { width: 15%; }
-th:nth-child(2), td:nth-child(2) { width: 25%; }
-th:nth-child(3), td:nth-child(3) { width: 10%; }
-th:nth-child(4), td:nth-child(4) { width: 12%; }
-th:nth-child(5), td:nth-child(5) { width: 12%; }
-th:nth-child(6), td:nth-child(6) { width: 13%; }
-th:nth-child(7), td:nth-child(7) { width: 13%; }
+th:nth-child(1), td:nth-child(1) { /* 类型列 */
+    width: 15%;
+    min-width: 80px;
+}
+
+th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
+    width: 25%;
+    min-width: 150px;
+}
+
+th:nth-child(3), td:nth-child(3) { /* 数量列 */
+    width: 10%;
+    min-width: 70px;
+}
+
+th:nth-child(4), td:nth-child(4) { /* 成本价列 */
+    width: 12%;
+    min-width: 90px;
+}
+
+th:nth-child(5), td:nth-child(5) { /* 销售价列 */
+    width: 12%;
+    min-width: 90px;
+}
+
+th:nth-child(6), td:nth-child(6) { /* 小计列 */
+    width: 13%;
+    min-width: 95px;
+}
+
+th:nth-child(7), td:nth-child(7) { /* 利润列 */
+    width: 13%;
+    min-width: 95px;
+}
 
 /* 输入框占满单元格 */
 td input {
@@ -479,6 +504,36 @@ th:nth-child(7) {
 .cost-input,
 .price-input {
     text-align: right;
+}
+
+/* 下拉菜单优化 */
+.dropdown {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+}
+
+.dropdown-item.selected {
+    background: #3498db;
+    color: white;
 }
 
 /* 滚动条样式 */
@@ -513,6 +568,16 @@ th:nth-child(7) {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* 按钮组样式优化 */
+.controls {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* 打印样式 */

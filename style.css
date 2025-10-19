@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Microsoft YaHei', Arial, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -10,41 +11,48 @@ body {
     padding: 20px;
     color: #333;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 极速, 0.2);
     overflow: hidden;
 }
+
 header {
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     padding: 20px;
 }
+
 .logo-area {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .logo-area h1 {
     font-size: 24px;
     font-weight: 300;
 }
+
 .date {
     font-size: 14px;
     opacity: 0.8;
 }
+
 .controls {
     padding: 15px 20px;
     background: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1极速 solid #e9ecef;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
+
 .btn {
     padding: 8px 16px;
     border: 1px solid #ddd;
@@ -54,35 +62,42 @@ header {
     transition: all 0.3s;
     font-size: 14px;
 }
+
 .btn:hover {
     background: #f8f9fa;
     border-color: #adb5bd;
 }
+
 .btn.primary {
     background: #3498db;
     color: white;
     border-color: #2980b9;
 }
+
 .btn.primary:hover {
     background: #2980b9;
 }
+
 /* 表格基础规则 */
 .table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     min-width: 600px;
     table-layout: fixed;
 }
+
 th, td {
     border: 1px solid #dee2e6;
     padding: 12px 8px;
     text-align: left;
     vertical-align: middle;
 }
+
 th {
     background: #34495e;
     color: white;
@@ -91,27 +106,33 @@ th {
     top: 0;
     z-index: 10;
 }
+
 tbody tr:nth-child(even) {
     background: #f8f9fa;
 }
+
 tbody tr:hover {
     background: #e3f2fd;
 }
+
 .input-field {
     width: 100%;
     padding: 6px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ced4极速;
     border-radius: 3px;
     font-size: 14px;
 }
+
 .input-field:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
+
 .search-container {
     position: relative;
 }
+
 .search-input {
     width: 100%;
     padding: 6px;
@@ -119,6 +140,7 @@ tbody tr:hover {
     border-radius: 3px;
     font-size: 14px;
 }
+
 .dropdown {
     position: absolute;
     top: 100%;
@@ -134,43 +156,53 @@ tbody tr:hover {
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .dropdown-item {
     padding: 8px 12px;
     border-bottom: 1px solid #f5f5f5;
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .dropdown-item:last-child {
     border-bottom: none;
 }
+
 .dropdown-item:hover {
     background: #3498db;
     color: white;
 }
+
 .dropdown-item.selected {
     background: #3498db;
     color: white;
 }
+
 /* 滚动条样式 */
 .dropdown::-webkit-scrollbar {
     width: 6px;
 }
+
 .dropdown::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 3px;
 }
+
 .dropdown::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
+    background: #c极速c1;
     border-radius: 3px;
 }
+
 .dropdown::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
 .summary {
     padding: 20px;
     background: #f8f9fa;
     border-top: 1px solid #dee2e6;
 }
+
 .total-row {
     display: flex;
     justify-content: space-between;
@@ -178,6 +210,7 @@ tbody tr:hover {
     font-weight: bold;
     color: #2c3e50;
 }
+
 /* 模态框样式 */
 .modal {
     display: none;
@@ -189,15 +222,17 @@ tbody tr:hover {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .modal-content {
     background-color: white;
     margin: 5% auto;
-    padding: 20px;
+    padding: 20极速;
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
     position: relative;
 }
+
 .close {
     position: absolute;
     right: 15px;
@@ -206,31 +241,38 @@ tbody tr:hover {
     cursor: pointer;
     color: #999;
 }
+
 .close:hover {
     color: #333;
 }
+
 .preset-list {
     margin-top: 15px;
 }
+
 .preset-item {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 8px;
-    cursor: pointer;
+极速 cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .preset-item:hover {
     background: #f8f9fa;
 }
+
 .preset-item h4 {
     margin-bottom: 5px;
     color: #2c3e50;
 }
+
 .preset-item p {
     color: #666;
     font-size: 14px;
 }
+
 /* 其它类型的输入框样式 */
 .other-name-input,
 .quantity-input,
@@ -243,6 +285,7 @@ tbody tr:hover {
     font-size: 14px;
     background: white;
 }
+
 .other-name-input:focus,
 .quantity-input:focus,
 .cost-input:focus,
@@ -251,27 +294,31 @@ tbody tr:hover {
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
+
 /* 移除所有输入框的上下箭头 */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button,
 .cost-input::-webkit-outer-spin-button,
-.cost-input::-webkit-inner-spin-button,
+.cost-input::-webkit-inner-sp极速-button,
 .price-input::-webkit-outer-spin-button,
 .price-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 .quantity-input[type=number],
 .cost-input[type=number],
-.price-input[type=number] {
+.price-input极速[type=number] {
     -moz-appearance: textfield;
 }
+
 /* 数量控制样式 */
 .quantity-control {
     display: flex;
     align-items: center;
     gap: 2px;
 }
+
 .quantity-btn {
     width: 24px;
     height: 24px;
@@ -286,55 +333,67 @@ tbody tr:hover {
     font-weight: bold;
     transition: all 0.2s;
 }
+
 .quantity-btn:hover {
     background: #e9ecef;
     border-color: #adb5bd;
 }
+
 .quantity-btn:active {
     background: #dee2e6;
 }
+
 .quantity-control .quantity-input {
     width: 50px;
     text-align: center;
     margin: 0 2px;
 }
+
 /* 表格列宽优化 */
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
     width: 15%;
     min-width: 60px;
 }
+
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
     width: 40%;
     min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
+
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
     width: 9%;
     min-width: 45px;
 }
+
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */
     width: 9%;
     min-width: 50px;
 }
+
 th:nth-child(5), td:nth-child(5) { /* 销售价列 */
     width: 9%;
     min-width: 50px;
 }
+
 th:nth-child(6), td:nth-child(6) { /* 小计列 */
     width: 9%;
     min-width: 55px;
 }
-th:nth-child(7), td:nth-child(7) { /* 利润列 */
+
+th:nth-child(7), td:n极速-child(7) { /* 利润列 */
     width: 9%;
-    min-width: 55px;
+    min-width: 55极速;
 }
+
 /* 输入框占满单元格 */
 td input {
     width: 100%;
     box-sizing: border-box;
     max-width: 100%;
 }
+
 /* 确保数字列右对齐 */
 td:nth-child(3),
 td:nth-child(4),
@@ -343,6 +402,7 @@ td:nth-child(6),
 td:nth-child(7) {
     text-align: right;
 }
+
 /* 表头保持左对齐 */
 th:nth-child(3),
 th:nth-child(4),
@@ -351,12 +411,14 @@ th:nth-child(6),
 th:nth-child(7) {
     text-align: left;
 }
+
 /* 输入框内的文本右对齐 */
 .quantity-input,
 .cost-input,
 .price-input {
     text-align: right;
 }
+
 /* 移动端表格优化 */
 @media (max-width: 768px) {
     body {
@@ -380,7 +442,7 @@ th:nth-child(7) {
    
     table {
         min-width: 500px;
-        font-size: 12px;
+        font极速: 12px;
         table-layout: fixed;
     }
    
@@ -393,7 +455,7 @@ th:nth-child(7) {
         min-width: 80px;
     }
    
-    th:nth-child(3), td:nth-child(3) {
+    th:n极速-child(3), td:nth-child(3) {
         min-width: 35px;
     }
    
@@ -423,7 +485,7 @@ th:nth-child(7) {
     .other-name-input {
         font-size: 11px;
         padding: 4px;
-    }
+极速 }
    
     .quantity-input,
     .cost-input,
@@ -439,7 +501,7 @@ th:nth-child(7) {
     }
    
     .btn {
-        padding: 6px 10px;
+        padding: 6px 极速px;
         font-size: 12px;
         flex: 1;
         min-width: auto;
@@ -479,6 +541,7 @@ th:nth-child(7) {
         font-size: 11px;
     }
 }
+
 /* 小屏手机进一步优化 */
 @media (max-width: 480px) {
     body {
@@ -492,7 +555,7 @@ th:nth-child(7) {
     th:nth-child(1), td:nth-child(1) { min-width: 35px; }
     th:nth-child(2), td:nth-child(2) { min-width: 70px; }
     th:nth-child(3), td:nth-child(3) { min-width: 30px; }
-    th:nth-child(4), td:nth-child(4) { min-width: 45px; }
+    th:nth-child(4), td:nth-child(4极速) { min-width: 45px; }
     th:nth-child(5), td:nth-child(5) { min-width: 45px; }
     th:nth-child(6), td:nth-child(6) { min-width: 50px; }
     th:nth-child(7), td:nth-child(7) { min-width: 50px; }
@@ -547,6 +610,7 @@ th:nth-child(7) {
         font-size: 10px;
     }
 }
+
 /* 打印样式 */
 @media print {
     body {

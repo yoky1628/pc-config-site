@@ -44,7 +44,7 @@ class ConfigGenerator {
                         <td>${type}</td>
                         <td>
                             <div class="search-container">
-                                <input type="text" class="search-input" placeholder="搜索或选择配件" 
+                                <input type="text" class="search-input" placeholder="请输入${type}名称" 
                                        data-type="${type}" autocomplete="off">
                                 <div class="dropdown" style="display: none;"></div>
                             </div>
@@ -86,12 +86,12 @@ class ConfigGenerator {
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
-                                   placeholder="成本价" style="display: none;"
+                                   placeholder="成本价" value="" style="display: none;"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td>
                             <input type="text" class="price-input" data-type="${type}" 
-                                   placeholder="销售价" style="display: none;"
+                                   placeholder="销售价" value="" style="display: none;"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td class="subtotal" data-type="${type}">-</td>
@@ -103,57 +103,49 @@ class ConfigGenerator {
     }
 
     bindEvents() {
-        // 搜索功能事件
-        document.addEventListener('input', (e) => {
-            if (e.target.classList.contains('search-input')) {
-                this.handleSearch(e.target);
-            }
-        });
-
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('search-input')) {
-                if (e.target.value === '') {
-                    this.showAllOptions(e.target);
+            const target = e.target;
+            if (target.classList.contains('search-input')) {
+                const type = target.dataset.type;
+                if (target.value === '' && type !== '其它1' && type !== '其它2') {
+                    this.showAllOptions(target);
                 }
             }
-            if (e.target.classList.contains('dropdown-item')) {
-                this.selectComponent(e.target);
+            if (target.classList.contains('dropdown-item')) {
+                this.selectComponent(target);
             }
             
             // 新增：点击页面其他区域时隐藏下拉框
             this.handleOutsideClick(e);
         });
 
-        // 修复：添加普通配件的输入事件处理
+        // 合并输入事件处理
         document.addEventListener('input', (e) => {
-            const type = e.target.dataset.type;
-            
-            // 处理普通配件的数量、价格、成本输入
-            if (type && type !== '其它1' && type !== '其它2') {
-                if (e.target.classList.contains('quantity-input') ||
-                    e.target.classList.contains('price-input') ||
-                    e.target.classList.contains('cost-input')) {
-                    
-                    this.handleRegularInput(type);
+            const target = e.target;
+            if (!target.dataset.type) return;
+            const type = target.dataset.type;
+
+            if (target.classList.contains('search-input')) {
+                // 对于普通类型，延迟搜索
+                if (type !== '其它1' && type !== '其它2') {
+                    clearTimeout(this.inputTimeout);
+                    this.inputTimeout = setTimeout(() => {
+                        this.handleSearch(target);
+                    }, 300);
+                } else {
+                    // 对于其它1/2，直接处理名称输入（立即显示其他输入框）
+                    this.handleOtherInputImmediate(type);
                 }
-            }
-            
-            // 处理其它类型的输入
-            if ((type === '其它1' || type === '其它2') && 
-                (e.target.classList.contains('search-input') || 
-                 e.target.classList.contains('quantity-input') ||
-                 e.target.classList.contains('price-input') ||
-                 e.target.classList.contains('cost-input'))) {
+            } else if (target.classList.contains('quantity-input') ||
+                       target.classList.contains('cost-input') ||
+                       target.classList.contains('price-input')) {
                 
-                this.handleOtherInputImmediate(type);
-            }
-            
-            // 搜索输入保持原有逻辑
-            if (e.target.classList.contains('search-input')) {
-                clearTimeout(this.inputTimeout);
-                this.inputTimeout = setTimeout(() => {
-                    this.handleSearch(e.target);
-                }, 300);
+                // 处理普通或其它类型的数量/成本/价格输入
+                if (type !== '其它1' && type !== '其它2') {
+                    this.handleRegularInput(type);
+                } else {
+                    this.handleOtherInputImmediate(type);
+                }
             }
         });
 

@@ -167,7 +167,6 @@ class ConfigGenerator {
         // 新事件：一键截图到剪贴板
 document.getElementById('screenshotBtn').addEventListener('click', async () => {
     try {
-        // 检查html2canvas是否加载
         if (typeof html2canvas === 'undefined') {
             alert('截图库加载失败，请刷新页面重试！');
             return;
@@ -179,16 +178,17 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             return;
         }
 
-        // 捕获容器为canvas（隐藏controls避免截入按钮）
+        const rect = container.getBoundingClientRect();
         const canvas = await html2canvas(container, {
-            scale: 1,  // 原尺寸，清晰度适中
-            useCORS: true,  // 支持跨域图像
+            scale: 2,
+            width: rect.width,
+            height: rect.height,
+            useCORS: true,
             allowTaint: false,
-            backgroundColor: '#ffffff',  // 白底，确保打印友好
-            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'  // 隐藏按钮
+            backgroundColor: '#ffffff',
+            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'
         });
 
-        // 转为PNG blob并复制到剪贴板
         canvas.toBlob(async (blob) => {
             if (blob) {
                 const item = new ClipboardItem({ 'image/png': blob });
@@ -197,7 +197,7 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             } else {
                 alert('截图生成失败！');
             }
-        }, 'image/png', 0.95);  // 95%质量，文件小
+        }, 'image/png', 0.95);
 
     } catch (error) {
         console.error('截图错误:', error);

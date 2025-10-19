@@ -81,7 +81,7 @@ class ConfigGenerator {
                             </div>
                         </td>
                         <td>
-                            <div class="quantity-control" style="display: none;">
+                            <div class="quantity-control" style="display: none;" data-type="${type}">
                                 <button type="button" class="quantity-btn decrease" data-type="${type}">-</button>
                                 <input type="text" class="quantity-input" data-type="${type}" 
                                        value="1" placeholder="1"
@@ -290,8 +290,8 @@ class ConfigGenerator {
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
-        // 只要有名称、数量和价格就计算
-        if (name && quantity > 0 && price > 0) {
+        // 只要有名称和价格就计算（数量默认为1）
+        if (name && price > 0) {
             this.selectedComponents[type] = {
                 name,
                 price,
@@ -426,13 +426,18 @@ class ConfigGenerator {
         const input = item.closest('.search-container').querySelector('.search-input');
         input.value = name;
 
-        const quantityControl = document.querySelector(`.quantity-control[data-type="${type}"]`);
-        const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
-        const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityControl = row.querySelector('.quantity-control');
+        const quantityInput = row.querySelector('.quantity-input');
+        const costInput = row.querySelector('.cost-input');
+        const priceInput = row.querySelector('.price-input');
         
+        // 显示数量控制区域
         quantityControl.style.display = 'flex';
-        quantityControl.querySelector('.quantity-input').value = '1'; // 确保数量为1
+        // 设置数量为1
+        quantityInput.value = '1';
         
+        // 显示并设置成本价和销售价
         costInput.style.display = 'block';
         costInput.value = Math.round(price * 0.8);
         
@@ -558,6 +563,12 @@ class ConfigGenerator {
             if (component) {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
+                    const row = document.querySelector(`tr[data-type="${item.type}"]`);
+                    const quantityControl = row.querySelector('.quantity-control');
+                    const quantityInput = row.querySelector('.quantity-input');
+                    const costInput = row.querySelector('.cost-input');
+                    const priceInput = row.querySelector('.price-input');
+                    
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
@@ -568,12 +579,9 @@ class ConfigGenerator {
                     };
 
                     input.value = component.name;
-                    const quantityControl = document.querySelector(`.quantity-control[data-type="${item.type}"]`);
-                    const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
-                    const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
                     
                     quantityControl.style.display = 'flex';
-                    quantityControl.querySelector('.quantity-input').value = '1'; // 确保数量为1
+                    quantityInput.value = '1'; // 确保数量为1
                     
                     costInput.style.display = 'block';
                     costInput.value = Math.round(component.price * 0.8);
@@ -607,7 +615,7 @@ class ConfigGenerator {
             const priceInput = row.querySelector('.price-input');
             
             quantityControl.style.display = 'none';
-            quantityControl.querySelector('.quantity-input').value = '1'; // 重置为1
+            quantityInput.value = '1'; // 重置为1
             
             costInput.style.display = 'none';
             costInput.value = '';

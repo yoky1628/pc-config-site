@@ -196,14 +196,24 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
         console.log('比例:', (canvas.width / canvas.height).toFixed(3));
 
         canvas.toBlob(async (blob) => {
-            if (blob) {
-                const item = new ClipboardItem({ 'image/png': blob });
-                await navigator.clipboard.write([item]);
-                alert('截图已复制到剪贴板！（可粘贴到微信/Word/PPT等）');
-            } else {
-                alert('截图生成失败！');
-            }
-        }, 'image/png', 1);  // 新：质量100%，无压缩
+    if (blob) {
+        const item = new ClipboardItem({ 'image/png': blob });
+        await navigator.clipboard.write([item]);
+
+        // 下载fallback
+        const url = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `电脑配置单-${new Date().toISOString().split('T')[0]}.png`;  // 加日期
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        alert('截图已复制到剪贴板&下载！（下载PNG比例最准，用查看器开）');
+    } else {
+        alert('截图生成失败！');
+    }
+}, 'image/png', 1);
 
     } catch (error) {
         console.error('截图错误:', error);

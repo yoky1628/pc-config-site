@@ -172,16 +172,16 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             return;
         }
 
-        const container = document.querySelector('.container');
-        if (!container) {
-            alert('页面容器未找到！');
+        const mainElement = document.querySelector('main');
+        if (!mainElement) {
+            alert('内容容器未找到！');
             return;
         }
 
-        const renderWidth = container.offsetWidth;
-        const renderHeight = container.offsetHeight;
+        const renderWidth = mainElement.offsetWidth;
+        const renderHeight = mainElement.offsetHeight;
 
-        const canvas = await html2canvas(container, {
+        const canvas = await html2canvas(mainElement, {
             scale: 1,
             width: renderWidth,
             height: renderHeight,
@@ -191,33 +191,55 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'
         });
 
+        // 简单裁剪白边
+        function trimCanvas(canvas) {
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            let top = 0, bottom = canvas.height - 1, left = 0, right = canvas.width - 1;
+            while (top < canvas.height && isWhite(data, canvas.width * 4 * top)) top++;
+            while (bottom > 0 && isWhite(data, canvas.width * 4 * bottom)) bottom--;
+            while (left < canvas.width && isWhite(data, 4 * left)) left++;
+            while (right > 0 && isWhite(data, 4 * right)) right--;
+            if (top >= bottom || left >= right) return canvas;
+            const newCanvas = document.createElement('canvas');
+            newCanvas.width = right - left + 1;
+            newCanvas.height = bottom - top + 1;
+            const newCtx = newCanvas.getContext('2d');
+            newCtx.putImageData(imageData, -left, -top);
+            return newCanvas;
+        }
+
+        function isWhite(data, pos) {
+            const r = data[pos], g = data[pos + 1], b = data[pos + 2];
+            return r > 240 && g > 240 && b > 240;
+        }
+
+        const trimmedCanvas = trimCanvas(canvas);
+
         console.log('渲染尺寸:', renderWidth, 'x', renderHeight);
         console.log('Canvas尺寸:', canvas.width, 'x', canvas.height);
-        console.log('比例:', (canvas.width / canvas.height).toFixed(3));
+        console.log('裁剪后:', trimmedCanvas.width, 'x', trimmedCanvas.height);
 
-        canvas.toBlob(async (blob) => {
-    if (blob) {
-        const item = new ClipboardItem({ 'image/png': blob });
-        await navigator.clipboard.write([item]);
-
-        // 下载fallback
-        const url = canvas.toDataURL('image/png');
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `电脑配置单-${new Date().toISOString().split('T')[0]}.png`;  // 加日期
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        alert('截图已复制到剪贴板&下载！（下载PNG比例最准，用查看器开）');
-    } else {
-        alert('截图生成失败！');
-    }
-}, 'image/png', 1);
-
+        trimmedCanvas.toBlob(async (blob) => {
+            if (blob) {
+                const item = new ClipboardItem({ 'image/png': blob });
+                await navigator.clipboard.write([item]);
+                const url = trimmedCanvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `电脑配置单-${new Date().toISOString().split('T')[0]}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                alert('截图已复制&下载！');
+            } else {
+                alert('截图生成失败！');
+            }
+        }, 'image/png', 1);
     } catch (error) {
         console.error('截图错误:', error);
-        alert('截图功能暂不可用（需HTTPS环境或现代浏览器）。提示：可手动截屏。');
+        alert('截图功能暂不可用！');
     }
 });
 

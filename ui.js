@@ -178,16 +178,18 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             return;
         }
 
-        const rect = container.getBoundingClientRect();
         const canvas = await html2canvas(container, {
-            scale: 2,
-            width: rect.width,
-            height: rect.height,
+            scale: 1.5,
             useCORS: true,
             allowTaint: false,
             backgroundColor: '#ffffff',
-            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'
+            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn',
+            logging: true
         });
+
+        console.log('容器尺寸:', container.getBoundingClientRect());
+        console.log('Canvas尺寸:', canvas.width, 'x', canvas.height);
+        console.log('比例:', canvas.width / canvas.height);
 
         canvas.toBlob(async (blob) => {
             if (blob) {

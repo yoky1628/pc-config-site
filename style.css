@@ -409,30 +409,30 @@ th:nth-child(1), td:nth-child(1) { /* 类型列 */
     min-width: 60px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 25%;
-    min-width: 100px;
+    width: 35%;
+    min-width: 160px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 10%;
-    min-width: 50px;
+    width: 7%;
+    min-width: 40px;
 }
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */
-    width: 12%;
-    min-width: 60px;
+    width: 9%;
+    min-width: 50px;
 }
 th:nth-child(5), td:nth-child(5) { /* 销售价列 */
-    width: 12%;
-    min-width: 60px;
+    width: 9%;
+    min-width: 50px;
 }
 th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 13%;
-    min-width: 65px;
+    width: 12%;
+    min-width: 55px;
 }
 th:nth-child(7), td:nth-child(7) { /* 利润列 */
     width: 13%;
-    min-width: 65px;
+    min-width: 55px;
 }
 /* 输入框占满单元格 */
 td input {

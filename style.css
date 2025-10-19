@@ -18,6 +18,7 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* 重要：桌面端保持 hidden，但移动端会覆盖 */
     overflow: hidden;
 }
 
@@ -85,7 +86,6 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
-    /* 移除 min-width: 800px */
 }
 
 th, td {
@@ -126,6 +126,7 @@ tbody tr:hover {
 
 .search-container {
     position: relative;
+    z-index: 100; /* 确保搜索容器有适当的z-index */
 }
 
 .search-input {
@@ -146,7 +147,7 @@ tbody tr:hover {
     border-top: none;
     max-height: 200px;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1000; /* 确保下拉框在最上层 */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -259,16 +260,6 @@ tbody tr:hover {
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-/* 移除固定宽度，使用百分比 */
-.quantity-input {
-    /* 移除 width: 60px */
-}
-
-.cost-input,
-.price-input {
-    /* 移除 width: 80px */
-}
-
 /* 移除所有输入框的上下箭头 */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button,
@@ -286,7 +277,7 @@ tbody tr:hover {
     -moz-appearance: textfield;
 }
 
-/* 移动端表格优化 */
+/* 移动端表格优化 - 修复下拉框显示问题 */
 @media (max-width: 768px) {
     body {
         padding: 5px;
@@ -295,10 +286,11 @@ tbody tr:hover {
     }
     
     .container {
-        max-width: calc(100% - 16px); /* 新增：左右各留8px间距 */
-        border-radius: 5px;
+        max-width: calc(100% - 16px);
         margin: 0 auto;
-        overflow: hidden;
+        border-radius: 5px;
+        /* 重要：改为 visible 允许下拉框显示 */
+        overflow: visible;
     }
     
     .table-container {
@@ -306,6 +298,7 @@ tbody tr:hover {
         margin: 0;
         padding: 0;
         width: 100%;
+        position: relative;
     }
     
     table {
@@ -315,7 +308,7 @@ tbody tr:hover {
         table-layout: fixed;
     }
     
-    /* 使用百分比宽度，移除所有min-width */
+    /* 优化列宽 */
     th:nth-child(1), td:nth-child(1) { width: 14%; }
     th:nth-child(2), td:nth-child(2) { width: 26%; }
     th:nth-child(3), td:nth-child(3) { width: 8%; }
@@ -348,6 +341,20 @@ tbody tr:hover {
         padding: 4px 2px;
         max-width: 100%;
         box-sizing: border-box;
+    }
+    
+    /* 确保搜索容器在移动端正常显示下拉框 */
+    .search-container {
+        position: relative;
+        z-index: 1001;
+    }
+    
+    /* 移动端下拉框样式调整 */
+    .dropdown {
+        z-index: 1002; /* 提高z-index确保显示在最上层 */
+        max-height: 150px;
+        /* 确保下拉框不被裁剪 */
+        position: absolute;
     }
     
     .controls {
@@ -386,11 +393,13 @@ tbody tr:hover {
 
 /* 小屏手机进一步优化 */
 @media (max-width: 480px) {
-    .container {
-        max-width: calc(100% - 16px); /* 新增：保持一致的间距 */
-    }
     body {
         padding: 3px;
+    }
+    
+    .container {
+        max-width: calc(100% - 16px);
+        overflow: visible; /* 保持可见 */
     }
     
     table {
@@ -399,7 +408,6 @@ tbody tr:hover {
         table-layout: fixed;
     }
     
-    /* 更小的列宽比例 */
     th:nth-child(1), td:nth-child(1) { width: 12%; }
     th:nth-child(2), td:nth-child(2) { width: 28%; }
     th:nth-child(3), td:nth-child(3) { width: 8%; }
@@ -426,9 +434,14 @@ tbody tr:hover {
         padding: 6px 8px;
         font-size: 12px;
     }
+    
+    /* 小屏手机下拉框可以更小一些 */
+    .dropdown {
+        max-height: 120px;
+    }
 }
 
-/* 桌面端表格列宽优化 - 移除所有min-width */
+/* 表格列宽优化 */
 th:nth-child(1), td:nth-child(1) { width: 15%; }
 th:nth-child(2), td:nth-child(2) { width: 25%; }
 th:nth-child(3), td:nth-child(3) { width: 10%; }
@@ -468,36 +481,6 @@ th:nth-child(7) {
     text-align: right;
 }
 
-/* 下拉菜单优化 */
-.dropdown {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.dropdown-item {
-    padding: 8px 12px;
-    border-bottom: 1px solid #f5f5f5;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.dropdown-item:last-child {
-    border-bottom: none;
-}
-
-.dropdown-item:hover {
-    background: #f8f9fa;
-}
-
-.dropdown-item.selected {
-    background: #3498db;
-    color: white;
-}
-
 /* 滚动条样式 */
 .dropdown::-webkit-scrollbar {
     width: 6px;
@@ -530,16 +513,6 @@ th:nth-child(7) {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-/* 按钮组样式优化 */
-.controls {
-    background: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    padding: 15px 20px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
 /* 打印样式 */

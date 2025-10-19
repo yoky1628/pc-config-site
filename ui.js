@@ -164,6 +164,47 @@ class ConfigGenerator {
             this.copyConfigToClipboard();
         });
 
+        // 新事件：一键截图到剪贴板
+document.getElementById('screenshotBtn').addEventListener('click', async () => {
+    try {
+        // 检查html2canvas是否加载
+        if (typeof html2canvas === 'undefined') {
+            alert('截图库加载失败，请刷新页面重试！');
+            return;
+        }
+
+        const container = document.querySelector('.container');
+        if (!container) {
+            alert('页面容器未找到！');
+            return;
+        }
+
+        // 捕获容器为canvas（隐藏controls避免截入按钮）
+        const canvas = await html2canvas(container, {
+            scale: 1,  // 原尺寸，清晰度适中
+            useCORS: true,  // 支持跨域图像
+            allowTaint: false,
+            backgroundColor: '#ffffff',  // 白底，确保打印友好
+            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'  // 隐藏按钮
+        });
+
+        // 转为PNG blob并复制到剪贴板
+        canvas.toBlob(async (blob) => {
+            if (blob) {
+                const item = new ClipboardItem({ 'image/png': blob });
+                await navigator.clipboard.write([item]);
+                alert('截图已复制到剪贴板！（可粘贴到微信/Word/PPT等）');
+            } else {
+                alert('截图生成失败！');
+            }
+        }, 'image/png', 0.95);  // 95%质量，文件小
+
+    } catch (error) {
+        console.error('截图错误:', error);
+        alert('截图功能暂不可用（需HTTPS环境或现代浏览器）。提示：可手动截屏。');
+    }
+});
+
         document.getElementById('loadPreset').addEventListener('click', () => {
             this.showPresetModal();
         });

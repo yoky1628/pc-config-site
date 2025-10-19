@@ -222,8 +222,6 @@ tbody tr:hover {
 .price-input {
     width: 80px;
 }
-/* 删除所有输入框的上下箭头隐藏规则 - 允许箭头显示 */
-/* 注意：以下规则已移除，以启用 number 输入的 spinner */
 /* 移动端表格优化 */
 @media (max-width: 768px) {
     body {
@@ -518,29 +516,38 @@ th:nth-child(7) {
     gap: 10px;
     flex-wrap: wrap;
 }
-/* 自定义数量输入框 spinner 箭头（通用，包括其它1/2） */
+/* 自定义数量输入框 spinner 箭头（上增下减，通用，包括其它1/2） */
 .quantity-input {
-    -moz-appearance: number-input; /* Firefox 显示箭头 */
+    -moz-appearance: number-input; /* Firefox 原生 */
 }
-/* WebKit 浏览器 (Chrome, Safari) 自定义箭头 */
+/* WebKit 浏览器 (Chrome, Safari) 自定义箭头：上箭头为向上三角（增），下箭头为向下三角（减） */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button {
-    -webkit-appearance: inner-spin-button !important; /* 强制显示 */
-    width: 14px;
-    height: 14px;
-    opacity: 1; /* 确保可见 */
+    -webkit-appearance: inner-spin-button !important;
+    opacity: 1;
     cursor: pointer;
     margin: 0 3px;
-    background: linear-gradient(#3498db, #3498db) no-repeat center / 1px 4px; /* 上箭头 */
-    background-position: center;
+    width: 14px;
+    height: 14px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><polygon points="7,1 1,13 13,13" fill="%233498db"/></svg>') no-repeat center; /* 上箭头：向上三角 */
+    background-size: contain;
 }
 .quantity-input::-webkit-inner-spin-button {
-    background: linear-gradient(#3498db, #3498db) no-repeat center / 4px 1px; /* 下箭头 */
-    transform: rotate(180deg); /* 旋转为下箭头 */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><polygon points="7,13 1,1 13,1" fill="%233498db"/></svg>') no-repeat center; /* 下箭头：向下三角 */
+    background-size: contain;
 }
-.quantity-input::-webkit-outer-spin-button:hover,
-.quantity-input::-webkit-inner-spin-button:hover {
+.quantity-input::-webkit-inner-spin-button:hover,
+.quantity-input::-webkit-outer-spin-button:hover {
+    opacity: 0.8;
     background-color: rgba(52, 152, 219, 0.2);
+}
+/* 移动端箭头优化 */
+@media (max-width: 768px) {
+    .quantity-input::-webkit-inner-spin-button,
+    .quantity-input::-webkit-outer-spin-button {
+        width: 12px;
+        height: 12px;
+    }
 }
 /* 打印样式 */
 @media print {
@@ -560,13 +567,5 @@ th:nth-child(7) {
    
     .btn {
         display: none;
-    }
-}
-/* 移动端箭头优化 */
-@media (max-width: 768px) {
-    .quantity-input::-webkit-inner-spin-button,
-    .quantity-input::-webkit-outer-spin-button {
-        width: 12px;
-        height: 12px;
     }
 }

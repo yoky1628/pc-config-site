@@ -246,7 +246,7 @@ class ConfigGenerator {
         const costInput = row.querySelector('.cost-input');
         
         const name = nameInput.value.trim();
-        const quantity = parseInt(quantityInput.value) || 0;
+        let quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
@@ -255,6 +255,11 @@ class ConfigGenerator {
             quantityInput.style.display = 'block';
             costInput.style.display = 'block';
             priceInput.style.display = 'block';
+            // 默认数量为1，如果为空或0
+            if (quantity === 0) {
+                quantityInput.value = '1';
+                quantity = 1;
+            }
         } else {
             quantityInput.style.display = 'none';
             costInput.style.display = 'none';

@@ -47,9 +47,13 @@ class ConfigGenerator {
                                    data-type="${type}" placeholder="请输入${type}名称">
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="1" placeholder="1"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <div class="quantity-control">
+                                <button type="button" class="quantity-btn decrease" data-type="${type}">-</button>
+                                <input type="text" class="quantity-input" data-type="${type}" 
+                                       value="1" placeholder="1"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <button type="button" class="quantity-btn increase" data-type="${type}">+</button>
+                            </div>
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
@@ -77,9 +81,13 @@ class ConfigGenerator {
                             </div>
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="" placeholder="0" style="display: none;"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <div class="quantity-control" style="display: none;">
+                                <button type="button" class="quantity-btn decrease" data-type="${type}">-</button>
+                                <input type="text" class="quantity-input" data-type="${type}" 
+                                       value="1" placeholder="1"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <button type="button" class="quantity-btn increase" data-type="${type}">+</button>
+                            </div>
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
@@ -115,6 +123,11 @@ class ConfigGenerator {
             }
             if (e.target.classList.contains('dropdown-item')) {
                 this.selectComponent(e.target);
+            }
+            
+            // 数量增减按钮事件
+            if (e.target.classList.contains('quantity-btn')) {
+                this.handleQuantityChange(e.target);
             }
             
             // 新增：点击页面其他区域时隐藏下拉框
@@ -181,6 +194,28 @@ class ConfigGenerator {
         });
     }
 
+    // 新增方法：处理数量增减
+    handleQuantityChange(button) {
+        const type = button.dataset.type;
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+        let quantity = parseInt(quantityInput.value) || 1;
+        
+        if (button.classList.contains('decrease')) {
+            // 减少数量，最小值为1
+            quantity = Math.max(1, quantity - 1);
+        } else if (button.classList.contains('increase')) {
+            // 增加数量
+            quantity += 1;
+        }
+        
+        quantityInput.value = quantity;
+        
+        // 触发输入事件来更新计算
+        const event = new Event('input', { bubbles: true });
+        quantityInput.dispatchEvent(event);
+    }
+
     // 新增方法：处理外部点击事件
     handleOutsideClick(e) {
         // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
@@ -216,7 +251,7 @@ class ConfigGenerator {
         const costInput = row.querySelector('.cost-input');
         
         // 获取输入值
-        const quantity = parseInt(quantityInput.value) || 0;
+        const quantity = parseInt(quantityInput.value) || 1; // 默认数量为1
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
@@ -251,7 +286,7 @@ class ConfigGenerator {
         const costInput = row.querySelector('.cost-input');
         
         const name = nameInput.value.trim();
-        const quantity = parseInt(quantityInput.value) || 0;
+        const quantity = parseInt(quantityInput.value) || 1; // 默认数量为1
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
@@ -377,6 +412,7 @@ class ConfigGenerator {
         this.currentSelectedIndex = -1;
     }
 
+    // 修改方法：选择配件时设置数量为1
     selectComponent(item) {
         const name = item.dataset.name;
         const type = item.dataset.type;
@@ -390,12 +426,12 @@ class ConfigGenerator {
         const input = item.closest('.search-container').querySelector('.search-input');
         input.value = name;
 
-        const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
+        const quantityControl = document.querySelector(`.quantity-control[data-type="${type}"]`);
         const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
         const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
         
-        quantityInput.style.display = 'block';
-        quantityInput.value = '1';
+        quantityControl.style.display = 'flex';
+        quantityControl.querySelector('.quantity-input').value = '1'; // 确保数量为1
         
         costInput.style.display = 'block';
         costInput.value = Math.round(price * 0.8);
@@ -407,7 +443,7 @@ class ConfigGenerator {
             name,
             price,
             cost: Math.round(price * 0.8),
-            quantity: 1,
+            quantity: 1, // 确保数量为1
             isCustom: false,
             manualCost: false
         };
@@ -526,18 +562,18 @@ class ConfigGenerator {
                         name: component.name,
                         price: component.price,
                         cost: Math.round(component.price * 0.8),
-                        quantity: 1,
+                        quantity: 1, // 确保数量为1
                         isCustom: false,
                         manualCost: false
                     };
 
                     input.value = component.name;
-                    const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
+                    const quantityControl = document.querySelector(`.quantity-control[data-type="${item.type}"]`);
                     const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
                     
-                    quantityInput.style.display = 'block';
-                    quantityInput.value = '1';
+                    quantityControl.style.display = 'flex';
+                    quantityControl.querySelector('.quantity-input').value = '1'; // 确保数量为1
                     
                     costInput.style.display = 'block';
                     costInput.value = Math.round(component.price * 0.8);
@@ -551,11 +587,12 @@ class ConfigGenerator {
         });
     }
 
+    // 修改方法：清除选择时重置数量为1
     clearSelection(type) {
         if (type === '其它1' || type === '其它2') {
             const row = document.querySelector(`tr[data-type="${type}"]`);
             row.querySelector('.other-name-input').value = '';
-            row.querySelector('.quantity-input').value = '1';
+            row.querySelector('.quantity-input').value = '1'; // 重置为1
             row.querySelector('.cost-input').value = '0';
             row.querySelector('.price-input').value = '0';
             row.querySelector('.subtotal').textContent = '-';
@@ -565,12 +602,12 @@ class ConfigGenerator {
             const input = row.querySelector('.search-input');
             input.value = '';
             
-            const quantityInput = row.querySelector('.quantity-input');
+            const quantityControl = row.querySelector('.quantity-control');
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
             
-            quantityInput.style.display = 'none';
-            quantityInput.value = '';
+            quantityControl.style.display = 'none';
+            quantityControl.querySelector('.quantity-input').value = '1'; // 重置为1
             
             costInput.style.display = 'none';
             costInput.value = '';
@@ -587,48 +624,49 @@ class ConfigGenerator {
     }
 
     async copyConfigToClipboard() {
-    const lines = [];
-    let totalAmount = 0;
+        const lines = [];
+        let totalAmount = 0;
 
-    // 定义配件类型的显示顺序
-    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-    
-    // 按照指定顺序处理配件
-    typeOrder.forEach(type => {
-        const component = this.selectedComponents[type];
-        if (component && component.quantity > 0 && component.price > 0) {
-            const subtotal = component.price * component.quantity;
-            totalAmount += subtotal;
-            
-            let displayName = component.name;
-            if (component.quantity > 1) {
-                displayName += `【数量${component.quantity}】`;
+        // 定义配件类型的显示顺序
+        const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        
+        // 按照指定顺序处理配件
+        typeOrder.forEach(type => {
+            const component = this.selectedComponents[type];
+            if (component && component.quantity > 0 && component.price > 0) {
+                const subtotal = component.price * component.quantity;
+                totalAmount += subtotal;
+                
+                let displayName = component.name;
+                if (component.quantity > 1) {
+                    displayName += `【数量${component.quantity}】`;
+                }
+                
+                lines.push(`${type}\t${displayName}\t${subtotal}`);
             }
-            
-            lines.push(`${type}\t${displayName}\t${subtotal}`);
+        });
+
+        if (lines.length > 0) {
+            lines.push(`总价\t${totalAmount}`);
         }
-    });
 
-    if (lines.length > 0) {
-        lines.push(`总价\t${totalAmount}`);
-    }
+        const text = lines.join('\n');
 
-    const text = lines.join('\n');
-
-    try {
-        await navigator.clipboard.writeText(text);
-        alert('配置单已复制到剪贴板！');
-    } catch (err) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('配置单已复制到剪贴板！');
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('配置单已复制到剪贴板！');
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('配置单已复制到剪贴板！');
+        }
     }
 }
-}
+
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();

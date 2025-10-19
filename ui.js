@@ -178,18 +178,23 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             return;
         }
 
+        const dpr = window.devicePixelRatio || 1;
+        const fullWidth = container.scrollWidth;
+        const fullHeight = container.scrollHeight;
+
         const canvas = await html2canvas(container, {
-            scale: 1.5,
+            scale: dpr,
+            width: fullWidth,
+            height: fullHeight,
             useCORS: true,
             allowTaint: false,
             backgroundColor: '#ffffff',
-            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn',
-            logging: true
+            ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'
         });
 
-        console.log('容器尺寸:', container.getBoundingClientRect());
+        console.log('设备DPI:', dpr);
+        console.log('完整尺寸:', fullWidth, 'x', fullHeight);
         console.log('Canvas尺寸:', canvas.width, 'x', canvas.height);
-        console.log('比例:', canvas.width / canvas.height);
 
         canvas.toBlob(async (blob) => {
             if (blob) {

@@ -75,6 +75,13 @@ class ConfigGenerator {
     }
 
     bindEvents() {
+        // 添加 touchstart/touchend for haptic simulation
+        document.addEventListener('touchstart', (e) => {
+            if (e.target.classList.contains('btn') || e.target.classList.contains('dropdown-item') || e.target.classList.contains('input-field')) {
+                this.simulateHaptic('light'); // 轻触反馈
+            }
+        }, { passive: true });
+
         document.addEventListener('click', (e) => {
             const target = e.target;
             if (target.classList.contains('search-input')) {
@@ -140,6 +147,18 @@ class ConfigGenerator {
         this.bindSpinEvents();
     }
 
+    simulateHaptic(type) {
+        // 模拟触觉反馈（浏览器支持 navigator.vibrate）
+        if (navigator.vibrate) {
+            const patterns = {
+                light: [10],
+                medium: [50],
+                heavy: [100]
+            };
+            navigator.vibrate(patterns[type] || patterns.light);
+        }
+    }
+
     bindSpinEvents() {
         document.addEventListener('input', (e) => {
             if (e.target.classList.contains('quantity-input')) {
@@ -177,6 +196,9 @@ class ConfigGenerator {
             });
         });
     }
+
+    // [其余方法保持不变，与之前提供的相同]
+    // handleOutsideClick, hideAllDropdowns, handleRegularInput, handleOtherInputImmediate, updateRegularRow, updateOtherRowDisplay, updateTotals, handleSearch, searchComponents, showAllOptions, showDropdown, selectComponent, handleKeyboard, selectDropdownItem, showPresetModal, getPresetConfigs, loadPresetConfig, clearSelection, copyConfigToClipboard
 
     handleOutsideClick(e) {
         if (!e.target.classList.contains('search-input') && 

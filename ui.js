@@ -43,8 +43,11 @@ class ConfigGenerator {
                     <tr data-type="${type}">
                         <td>${type}</td>
                         <td>
-                            <input type="text" class="other-name-input" 
-                                   data-type="${type}" placeholder="请输入${type}名称">
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="搜索或选择配件" 
+                                       data-type="${type}" autocomplete="off">
+                                <div class="dropdown" style="display: none;"></div>
+                            </div>
                         </td>
                         <td>
                             <input type="text" class="quantity-input" data-type="${type}" 
@@ -137,7 +140,7 @@ class ConfigGenerator {
             
             // 处理其它类型的输入
             if ((type === '其它1' || type === '其它2') && 
-                (e.target.classList.contains('other-name-input') || 
+                (e.target.classList.contains('search-input') || 
                  e.target.classList.contains('quantity-input') ||
                  e.target.classList.contains('price-input') ||
                  e.target.classList.contains('cost-input'))) {
@@ -245,7 +248,7 @@ class ConfigGenerator {
         const row = document.querySelector(`tr[data-type="${type}"]`);
         if (!row) return;
 
-        const nameInput = row.querySelector('.other-name-input');
+        const nameInput = row.querySelector('.search-input');
         const quantityInput = row.querySelector('.quantity-input');
         const priceInput = row.querySelector('.price-input');
         const costInput = row.querySelector('.cost-input');
@@ -254,6 +257,20 @@ class ConfigGenerator {
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
+
+        // 显示/隐藏输入框
+        if (name) {
+            quantityInput.style.display = 'block';
+            costInput.style.display = 'block';
+            priceInput.style.display = 'block';
+        } else {
+            quantityInput.style.display = 'none';
+            costInput.style.display = 'none';
+            priceInput.style.display = 'none';
+            quantityInput.value = '';
+            costInput.value = '';
+            priceInput.value = '';
+        }
 
         // 只要有名称、数量和价格就计算
         if (name && quantity > 0 && price > 0) {
@@ -554,10 +571,13 @@ class ConfigGenerator {
     clearSelection(type) {
         if (type === '其它1' || type === '其它2') {
             const row = document.querySelector(`tr[data-type="${type}"]`);
-            row.querySelector('.other-name-input').value = '';
-            row.querySelector('.quantity-input').value = '1';
-            row.querySelector('.cost-input').value = '0';
-            row.querySelector('.price-input').value = '0';
+            row.querySelector('.search-input').value = '';
+            row.querySelector('.quantity-input').value = '';
+            row.querySelector('.cost-input').value = '';
+            row.querySelector('.price-input').value = '';
+            row.querySelector('.quantity-input').style.display = 'none';
+            row.querySelector('.cost-input').style.display = 'none';
+            row.querySelector('.price-input').style.display = 'none';
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         } else {

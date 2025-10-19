@@ -295,7 +295,7 @@ tbody tr:hover {
     }
     
     .container {
-        max-width: 100%;
+        max-width: calc(100% - 16px); /* 新增：左右各留8px间距 */
         border-radius: 5px;
         margin: 0 auto;
         overflow: hidden;
@@ -386,6 +386,9 @@ tbody tr:hover {
 
 /* 小屏手机进一步优化 */
 @media (max-width: 480px) {
+    .container {
+        max-width: calc(100% - 16px); /* 新增：保持一致的间距 */
+    }
     body {
         padding: 3px;
     }

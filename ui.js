@@ -50,9 +50,9 @@ class ConfigGenerator {
                             </div>
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="" placeholder="0" style="display: none;"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <input type="number" class="quantity-input" data-type="${type}" 
+                                   value="" placeholder="0" style="display: none;" min="0" step="1"
+                                   oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
@@ -80,9 +80,9 @@ class ConfigGenerator {
                             </div>
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="" placeholder="0" style="display: none;"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <input type="number" class="quantity-input" data-type="${type}" 
+                                   value="" placeholder="0" style="display: none;" min="0" step="1"
+                                   oninput="this.value = Math.max(0, parseInt(this.value) || 0)">
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
@@ -604,47 +604,47 @@ class ConfigGenerator {
     }
 
     async copyConfigToClipboard() {
-    const lines = [];
-    let totalAmount = 0;
+        const lines = [];
+        let totalAmount = 0;
 
-    // 定义配件类型的显示顺序
-    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-    
-    // 按照指定顺序处理配件
-    typeOrder.forEach(type => {
-        const component = this.selectedComponents[type];
-        if (component && component.quantity > 0 && component.price > 0) {
-            const subtotal = component.price * component.quantity;
-            totalAmount += subtotal;
-            
-            let displayName = component.name;
-            if (component.quantity > 1) {
-                displayName += `【数量${component.quantity}】`;
+        // 定义配件类型的显示顺序
+        const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        
+        // 按照指定顺序处理配件
+        typeOrder.forEach(type => {
+            const component = this.selectedComponents[type];
+            if (component && component.quantity > 0 && component.price > 0) {
+                const subtotal = component.price * component.quantity;
+                totalAmount += subtotal;
+                
+                let displayName = component.name;
+                if (component.quantity > 1) {
+                    displayName += `【数量${component.quantity}】`;
+                }
+                
+                lines.push(`${type}\t${displayName}\t${subtotal}`);
             }
-            
-            lines.push(`${type}\t${displayName}\t${subtotal}`);
+        });
+
+        if (lines.length > 0) {
+            lines.push(`总价\t${totalAmount}`);
         }
-    });
 
-    if (lines.length > 0) {
-        lines.push(`总价\t${totalAmount}`);
+        const text = lines.join('\n');
+
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('配置单已复制到剪贴板！');
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('配置单已复制到剪贴板！');
+        }
     }
-
-    const text = lines.join('\n');
-
-    try {
-        await navigator.clipboard.writeText(text);
-        alert('配置单已复制到剪贴板！');
-    } catch (err) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('配置单已复制到剪贴板！');
-    }
-}
 }
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {

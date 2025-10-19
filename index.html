@@ -83,6 +83,16 @@
         </div>
     </div>
 
-    <script src="ui.js"></script>
+    <!-- 在原有 script 标签前添加 -->
+<script src="mobile-ui.js"></script>
+<script src="ui.js"></script>
+
+<script>
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+    const configGenerator = new ConfigGenerator();
+    mobileUI = new MobileUI(configGenerator);
+});
+</script>
 </body>
 </html>

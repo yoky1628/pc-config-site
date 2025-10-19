@@ -1,187 +1,977 @@
 [
   {
     "type": "CPU",
-    "name": "Intel i5-13400F",
+    "name": "intel 酷睿i3-12100F 散片",
+    "price": 499
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i3-13100F 散片",
+    "price": 519
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i3-12100 散片",
+    "price": 809
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i3-13100 散片",
+    "price": 939
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R5-5500 盒装",
+    "price": 539
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R5-5600 散片",
+    "price": 779
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R5-5600GT 散片",
+    "price": 899
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R5-7500F 散片",
+    "price": 969
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R5-9600X 散片",
+    "price": 1449
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R7-9700X 散片",
+    "price": 1899
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i5-12400F 散片",
+    "price": 869
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i5-13400F 散片",
+    "price": 1149
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i5-12400 散片",
     "price": 1249
   },
   {
     "type": "CPU",
-    "name": "Intel i7-13700K",
-    "price": 2499
+    "name": "intel 酷睿i5-13400 散片",
+    "price": 1399
   },
   {
     "type": "CPU",
-    "name": "Intel i9-13900K",
-    "price": 3799
+    "name": "AMD 锐龙R5-5600GT 盒装",
+    "price": 949
   },
   {
     "type": "CPU",
-    "name": "AMD R5 7600X",
-    "price": 1599
+    "name": "intel 酷睿i5-14600KF 散片",
+    "price": 1449
   },
   {
     "type": "CPU",
-    "name": "AMD R7 7700X",
+    "name": "intel 酷睿i7-14700F 散片",
     "price": 2199
   },
   {
     "type": "CPU",
-    "name": "AMD R9 7900X",
-    "price": 3399
+    "name": "intel 酷睿i7-14700 散片",
+    "price": 2199
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿i7-14700KF 散片",
+    "price": 2099
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿Ultra7 265K 盒装",
+    "price": 2199
+  },
+  {
+    "type": "CPU",
+    "name": "intel 酷睿Ultra9 285K 盒装",
+    "price": 3899
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R7-9800X3D 散片",
+    "price": 2999
+  },
+  {
+    "type": "CPU",
+    "name": "AMD 锐龙R7-9800X3D 盒装",
+    "price": 3299
   },
   {
     "type": "散热器",
-    "name": "九州风神 玄冰400",
+    "name": "安钛克A35 2热管 无光",
+    "price": 35
+  },
+  {
+    "type": "散热器",
+    "name": "安钛克A400 4铜管",
+    "price": 60
+  },
+  {
+    "type": "散热器",
+    "name": "安钛克A600 单塔 6热管",
+    "price": 90
+  },
+  {
+    "type": "散热器",
+    "name": "安钛克A660S 双塔 6热管",
+    "price": 159
+  },
+  {
+    "type": "散热器",
+    "name": "利民AX120R SE intel 无光",
     "price": 100
   },
   {
     "type": "散热器",
-    "name": "利民 PA120",
-    "price": 229
+    "name": "利民AX120R SE AMD 无光",
+    "price": 100
   },
   {
     "type": "散热器",
-    "name": "酷冷至尊 240水冷",
-    "price": 329
+    "name": "利民 寒冰装甲 360 ARGB 水冷",
+    "price": 399
   },
   {
     "type": "散热器",
-    "name": "恩杰 Kraken 360",
-    "price": 979
-  },
-  {
-    "type": "主板",
-    "name": "华硕 B760M-P",
-    "price": 919
-  },
-  {
-    "type": "主板",
-    "name": "微星 B760 战斧",
-    "price": 1099
-  },
-  {
-    "type": "主板",
-    "name": "技嘉 Z790 小雕",
-    "price": 1699
-  },
-  {
-    "type": "主板",
-    "name": "华硕 ROG Z790",
-    "price": 3199
-  },
-  {
-    "type": "内存",
-    "name": "金士顿 16GB DDR5 5200",
-    "price": 529
-  },
-  {
-    "type": "内存",
-    "name": "海盗船 32GB DDR5 5600",
-    "price": 759
-  },
-  {
-    "type": "内存",
-    "name": "芝奇 64GB DDR5 6000",
-    "price": 1599
-  },
-  {
-    "type": "硬盘",
-    "name": "三星 980 1TB NVMe",
-    "price": 609
-  },
-  {
-    "type": "硬盘",
-    "name": "西部数据 SN770 1TB",
-    "price": 559
-  },
-  {
-    "type": "硬盘",
-    "name": "三星 990 Pro 2TB",
-    "price": 1099
-  },
-  {
-    "type": "硬盘",
-    "name": "致态 TiPlus7100 2TB",
-    "price": 919
-  },
-  {
-    "type": "显卡",
-    "name": "技嘉 RTX 4060 8G",
-    "price": 2699
-  },
-  {
-    "type": "显卡",
-    "name": "七彩虹 RTX 4070 12G",
-    "price": 4099
-  },
-  {
-    "type": "显卡",
-    "name": "华硕 RTX 4080 16G",
-    "price": 7799
-  },
-  {
-    "type": "显卡",
-    "name": "蓝宝石 RX 7800XT",
-    "price": 4049
-  },
-  {
-    "type": "电源",
-    "name": "长城 650W 金牌",
+    "name": "利民寒冰装甲 360 ULTRA ARGB 水冷",
     "price": 549
   },
   {
-    "type": "电源",
-    "name": "海盗船 750W 金牌",
+    "type": "散热器",
+    "name": "瓦尔基里 V360 LOKI 3.5寸黑方屏",
+    "price": 999
+  },
+  {
+    "type": "散热器",
+    "name": "瓦尔基里 V360 LOKI 3.5寸白方屏",
+    "price": 1049
+  },
+  {
+    "type": "主板",
+    "name": "艾尔莎 H610M-Se DDR4",
+    "price": 339
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 H610M-D V20 DDR4",
+    "price": 379
+  },
+  {
+    "type": "主板",
+    "name": "微星PRO H610M-S DDR4",
+    "price": 449
+  },
+  {
+    "type": "主板",
+    "name": "技嘉 H610M-K DDR4",
+    "price": 459
+  },
+  {
+    "type": "主板",
+    "name": "华硕PRIME H610M-F D4",
+    "price": 499
+  },
+  {
+    "type": "主板",
+    "name": "微星 H610M-S WIFI DDR4",
+    "price": 559
+  },
+  {
+    "type": "主板",
+    "name": "铭瑄 MS-H610M WIFI DDR5",
+    "price": 619
+  },
+  {
+    "type": "主板",
+    "name": "影驰 H610M-E DDR4",
+    "price": 389
+  },
+  {
+    "type": "主板",
+    "name": "微星A520M-A PRO",
+    "price": 369
+  },
+  {
+    "type": "主板",
+    "name": "艾尔莎 B760M-Z DDR4",
+    "price": 439
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 B760M-F DDR4 V20 战斧",
+    "price": 499
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 BATTLE-AX B760M-K V20 DDR5 白",
+    "price": 609
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 BATTLE-AX B760M-T PRO V20 DDR4 白",
+    "price": 619
+  },
+  {
+    "type": "主板",
+    "name": "铭瑄 MS-挑战者B760M-F",
+    "price": 519
+  },
+  {
+    "type": "主板",
+    "name": "技嘉 B760M H DDR4",
+    "price": 599
+  },
+  {
+    "type": "主板",
+    "name": "华硕 B760M-F DDR4",
+    "price": 669
+  },
+  {
+    "type": "主板",
+    "name": "华硕PRIME B760M-K DDR4",
+    "price": 719
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 BATTLE-AX B760M-T WIFI V20 DDR5 白",
+    "price": 679
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 B760M-GHA WIFI V20 DDR4 白",
+    "price": 679
+  },
+  {
+    "type": "主板",
+    "name": "微星 B760M BOMBER DDR4",
+    "price": 719
+  },
+  {
+    "type": "主板",
+    "name": "华硕PRIME B760M-F DDR5",
+    "price": 739
+  },
+  {
+    "type": "主板",
+    "name": "微星PRO B760M-E DDR4",
+    "price": 609
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹 BATTLE-AX B760M-G WHITE WIFI DDR5 白",
+    "price": 739
+  },
+  {
+    "type": "主板",
+    "name": "技嘉 魔鹰 B760M GAMING AC DDR4 WIFI",
+    "price": 799
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹CVN B760I FROZEN WIFI V20 DDR4 ITX",
+    "price": 839
+  },
+  {
+    "type": "主板",
+    "name": "微星 B760M BOMBER WIFI DDR5",
+    "price": 879
+  },
+  {
+    "type": "主板",
+    "name": "技嘉 B760M GAMING WIFI 6 PLUS GEN5 DDR5",
+    "price": 929
+  },
+  {
+    "type": "主板",
+    "name": "微星 PRO B760M-A DDR4",
+    "price": 969
+  },
+  {
+    "type": "主板",
+    "name": "微星 PRO B760M-A WIFI DDR4",
+    "price": 1049
+  },
+  {
+    "type": "主板",
+    "name": "华硕 PRIME B760M-A WIFI DDR4",
+    "price": 1099
+  },
+  {
+    "type": "主板",
+    "name": "技嘉 小雕 B760M AORUS ELITE DDR5",
+    "price": 1149
+  },
+  {
+    "type": "主板",
+    "name": "微星 MAG B760M MORTAR II DDR5 迫击炮",
+    "price": 1049
+  },
+  {
+    "type": "主板",
+    "name": "微星 MAG B760M MORTAR DDR5 迫击炮",
+    "price": 1049
+  },
+  {
+    "type": "主板",
+    "name": "微星 MAG B760M MORTAR WIFI II DDR5 迫击炮",
+    "price": 1049
+  },
+  {
+    "type": "主板",
+    "name": "华硕 TUF GAMING B760M-PLUS WIFI DDR5 重炮手",
+    "price": 1099
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹B650M-D PRO BATTLE-AX DDR5",
+    "price": 639
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹B650M-GHA BATTLE-AX WIFI DDR5",
+    "price": 729
+  },
+  {
+    "type": "主板",
+    "name": "微星 B650M-E DDR5",
+    "price": 609
+  },
+  {
+    "type": "主板",
+    "name": "微星PRO B650M-B DDR5",
+    "price": 699
+  },
+  {
+    "type": "主板",
+    "name": "华硕PRIME B550M-K",
+    "price": 629
+  },
+  {
+    "type": "主板",
+    "name": "华硕B650M-F DDR5",
+    "price": 759
+  },
+  {
+    "type": "主板",
+    "name": "技嘉B650M GAMING WIFI DDR5",
+    "price": 839
+  },
+  {
+    "type": "主板",
+    "name": "技嘉B760M GAMING WIFI PLUS DDR5",
+    "price": 929
+  },
+  {
+    "type": "主板",
+    "name": "微星B650M GAMING WIFI DDR5",
+    "price": 989
+  },
+  {
+    "type": "主板",
+    "name": "微星B760M GAMING WIFI DDR5",
+    "price": 989
+  },
+  {
+    "type": "主板",
+    "name": "微星PRO Z890-P WIFI DDR5",
+    "price": 1349
+  },
+  {
+    "type": "主板",
+    "name": "微星MAG B650M MORTAR WIFI DDR5",
+    "price": 1099
+  },
+  {
+    "type": "主板",
+    "name": "华硕STRIX B650-A GAMING WIFI DDR5 吹雪",
+    "price": 1549
+  },
+  {
+    "type": "主板",
+    "name": "华硕TUF GAMING B850M-PLUS WIFI DDR5",
+    "price": 1299
+  },
+  {
+    "type": "主板",
+    "name": "华硕TUF GAMING Z890-PRO WIFI DDR5",
+    "price": 1899
+  },
+  {
+    "type": "主板",
+    "name": "华硕ROG STRIX X870-A GAMING WIFI DDR5 吹雪",
+    "price": 2399
+  },
+  {
+    "type": "内存",
+    "name": "威刚 万紫千红 8G 3200 DDR4",
+    "price": 209
+  },
+  {
+    "type": "内存",
+    "name": "金士顿 16G 3200 DDR4",
+    "price": 379
+  },
+  {
+    "type": "内存",
+    "name": "金百达 刃 16G (8*2)套装 3600  RGB DDR4",
+    "price": 499
+  },
+  {
+    "type": "内存",
+    "name": "金百达 银爵 32G (16*2) 3200 DDR4",
+    "price": 389
+  },
+  {
+    "type": "内存",
+    "name": "金百达 银爵 32G (16*2) 6000 DDR5",
     "price": 769
   },
   {
+    "type": "内存",
+    "name": "美商海盗船 复仇者 8G 3600 DDR4",
+    "price": 249
+  },
+  {
+    "type": "内存",
+    "name": "美商海盗船 复仇者 16G 6000 DDR5",
+    "price": 559
+  },
+  {
+    "type": "内存",
+    "name": "美商海盗船 复仇者 32G 6000 DDR5",
+    "price": 829
+  },
+  {
+    "type": "内存",
+    "name": "美商海盗船 复仇者 32G 6400 DDR5",
+    "price": 959
+  },
+  {
+    "type": "内存",
+    "name": "光威神武 RGB 32G (16*2) 7000 DDR5",
+    "price": 1049
+  },
+  {
+    "type": "硬盘",
+    "name": "雷克沙 NM610PRO 500G NVME 固态硬盘",
+    "price": 329
+  },
+  {
+    "type": "硬盘",
+    "name": "雷克沙 NM610PRO 1T NVME 固态硬盘",
+    "price": 479
+  },
+  {
+    "type": "硬盘",
+    "name": "金士顿NV3 500G NVME固态硬盘 PCIe4.0",
+    "price": 349
+  },
+  {
+    "type": "硬盘",
+    "name": "金士顿NV3 1T NVME固态硬盘 PCIe4.0",
+    "price": 509
+  },
+  {
+    "type": "硬盘",
+    "name": "金士顿NV3 2T NVME固态硬盘 PCIe4.0",
+    "price": 909
+  },
+  {
+    "type": "硬盘",
+    "name": "金士顿KC3000 2T NVME固态硬盘 PCIe4.0",
+    "price": 909
+  },
+  {
+    "type": "硬盘",
+    "name": "西数SN7100 1T NVME固态硬盘 PCIe4.0",
+    "price": 589
+  },
+  {
+    "type": "硬盘",
+    "name": "西数SN7100 2T NVME固态硬盘 PCIe4.0",
+    "price": 879
+  },
+  {
+    "type": "硬盘",
+    "name": "西数SN7100 4T NVME固态硬盘 PCIe4.0",
+    "price": 1749
+  },
+  {
+    "type": "硬盘",
+    "name": "三星PM9A1 1T NVME固态硬盘 PCIe4.0",
+    "price": 719
+  },
+  {
+    "type": "硬盘",
+    "name": "三星990 PRO 1T NVME固态硬盘 PCIe4.0",
+    "price": 829
+  },
+  {
+    "type": "硬盘",
+    "name": "三星PM9A1 2T NVME固态硬盘 PCIe4.0",
+    "price": 919
+  },
+  {
+    "type": "硬盘",
+    "name": "三星S9100 PRO 1T NVME固态硬盘 PCIe5.0",
+    "price": 929
+  },
+  {
+    "type": "硬盘",
+    "name": "三星S9100 PRO 2T NVME固态硬盘 PCIe5.0",
+    "price": 1549
+  },
+  {
+    "type": "硬盘",
+    "name": "三星990 PRO 4T NVME固态硬盘 PCIe4.0",
+    "price": 2199
+  },
+  {
+    "type": "硬盘",
+    "name": "三星S9100 PRO 4T NVME固态硬盘 PCIe5.0",
+    "price": 2849
+  },
+  {
     "type": "电源",
-    "name": "海韵 850W 金牌全模组",
-    "price": 749
+    "name": "长城ATX-400K 额定300W",
+    "price": 139
+  },
+  {
+    "type": "电源",
+    "name": "航嘉GS500 额定400W",
+    "price": 219
+  },
+  {
+    "type": "电源",
+    "name": "安钛克BP500 额定500W",
+    "price": 209
+  },
+  {
+    "type": "电源",
+    "name": "安钛克BP600 额定600W",
+    "price": 239
+  },
+  {
+    "type": "电源",
+    "name": "安钛克VP650 额定650W",
+    "price": 259
+  },
+  {
+    "type": "电源",
+    "name": "安钛克TP650W 额定650W 金牌全模组",
+    "price": 399
+  },
+  {
+    "type": "电源",
+    "name": "安钛克TP750W 额定750W 金牌全模组",
+    "price": 479
+  },
+  {
+    "type": "电源",
+    "name": "安钛克NE650 额定650W 金牌全模组",
+    "price": 569
+  },
+  {
+    "type": "电源",
+    "name": "安钛克TP1200W 额定1200W 金牌全模组",
+    "price": 799
+  },
+  {
+    "type": "电源",
+    "name": "航嘉GX850 额定850W 金牌全模组",
+    "price": 609
+  },
+  {
+    "type": "电源",
+    "name": "航嘉AX1100G 额定1100W 金牌全模组",
+    "price": 709
+  },
+  {
+    "type": "电源",
+    "name": "航嘉IP1250G 额定1250W 金牌全模组",
+    "price": 789
   },
   {
     "type": "机箱",
-    "name": "先马 平头哥",
+    "name": "硕美达2522 办公商务机箱",
+    "price": 45
+  },
+  {
+    "type": "机箱",
+    "name": "技展 小福星 手提小机箱",
+    "price": 60
+  },
+  {
+    "type": "机箱",
+    "name": "SoeYi V200 迷你机箱",
+    "price": 75
+  },
+  {
+    "type": "机箱",
+    "name": "SoeYi  u310 凤凰 一体成型 手提商务机箱",
     "price": 219
   },
   {
     "type": "机箱",
-    "name": "联力 包豪斯",
+    "name": "SoeYi  u310 凤凰 一体成型 手提商务机箱 白",
+    "price": 229
+  },
+  {
+    "type": "机箱",
+    "name": "技展 天空之城s02 海景房 白",
+    "price": 119
+  },
+  {
+    "type": "机箱",
+    "name": "航嘉BU420 MATX 小机箱",
+    "price": 109
+  },
+  {
+    "type": "机箱",
+    "name": "航嘉BU450X 静音防尘背线 商务办公机箱",
+    "price": 119
+  },
+  {
+    "type": "机箱",
+    "name": "动力火车 海景房琉璃电脑机箱 无立柱",
+    "price": 119
+  },
+  {
+    "type": "机箱",
+    "name": "技展 星煜H01 海景房 白",
+    "price": 219
+  },
+  {
+    "type": "机箱",
+    "name": "金河田 圣洛都GL02 海景房",
+    "price": 119
+  },
+  {
+    "type": "机箱",
+    "name": "金河田RTX27 无立柱海景房 黑",
+    "price": 269
+  },
+  {
+    "type": "机箱",
+    "name": "金河田RTX27 无立柱海景房 白",
+    "price": 279
+  },
+  {
+    "type": "机箱",
+    "name": "航嘉 G5 侧透中塔机箱",
+    "price": 129
+  },
+  {
+    "type": "机箱",
+    "name": "航嘉 G5 侧透中塔机箱 白",
+    "price": 139
+  },
+  {
+    "type": "机箱",
+    "name": "动力火车 臻选M5 滑轨玻璃侧透",
+    "price": 129
+  },
+  {
+    "type": "机箱",
+    "name": "Tt（Thermaltake）钢影 透S 海景房",
+    "price": 219
+  },
+  {
+    "type": "机箱",
+    "name": "Tt（Thermaltake）钢影 透EX 海景房 白色",
+    "price": 349
+  },
+  {
+    "type": "机箱",
+    "name": "长城 魅影M2",
+    "price": 149
+  },
+  {
+    "type": "机箱",
+    "name": "动力火车 梦境M 无立柱全景侧透",
+    "price": 189
+  },
+  {
+    "type": "机箱",
+    "name": "金河田 预见傲雪 白色 ATX",
+    "price": 189
+  },
+  {
+    "type": "机箱",
+    "name": "未知玩家 P60 mini 手提",
+    "price": 219
+  },
+  {
+    "type": "机箱",
+    "name": "阿尔法2000 工作站机箱",
+    "price": 249
+  },
+  {
+    "type": "机箱",
+    "name": "爱国者 星璨 岚 海景房 白",
+    "price": 439
+  },
+  {
+    "type": "机箱",
+    "name": "爱国者 星璨 岚 海景房 黑橙",
     "price": 479
   },
   {
     "type": "机箱",
-    "name": "恩杰 H510",
-    "price": 559
+    "name": "乔思伯 D300 无立柱曲面海景房",
+    "price": 499
   },
   {
-    "type": "显示器",
-    "name": "AOC 24寸 1080P",
-    "price": 679
+    "type": "机箱",
+    "name": "瓦尔基里 VK03M 海景房 6.2寸触摸屏 白",
+    "price": 449
   },
   {
-    "type": "显示器",
-    "name": "戴尔 27寸 2K",
-    "price": 1449
+    "type": "机箱",
+    "name": "瓦尔基里 VK03 海景房 6.2寸触摸屏",
+    "price": 409
   },
   {
-    "type": "显示器",
-    "name": "华硕 27寸 4K 144Hz",
-    "price": 3399
+    "type": "机箱",
+    "name": "瓦尔基里 VK03 海景房 6.2寸触摸屏 白",
+    "price": 429
   },
   {
-    "type": "键鼠套装",
-    "name": "罗技 MK275 无线",
-    "price": 209
+    "type": "机箱",
+    "name": "华硕A21 追影",
+    "price": 429
   },
   {
-    "type": "键鼠套装",
-    "name": "雷蛇 猎魂光蛛",
+    "type": "机箱",
+    "name": "安钛克 P20C ARGB E-ATX",
+    "price": 469
+  },
+  {
+    "type": "机箱",
+    "name": "安钛克 NX416L ARGB 中塔 白",
+    "price": 539
+  },
+  {
+    "type": "机箱",
+    "name": "几何未来 塞尚 三面玻璃",
+    "price": 489
+  },
+  {
+    "type": "机箱",
+    "name": "技嘉AORUS GB-AC300G 猎鹰 RGB",
     "price": 719
   },
   {
-    "type": "键鼠套装",
-    "name": "樱桃 MX3.0",
-    "price": 1049
+    "type": "机箱",
+    "name": "金河田9125B 全塔工作站机箱",
+    "price": 979
+  },
+  {
+    "type": "机箱",
+    "name": "华硕ROG GX601太阳神",
+    "price": 1649
+  },
+  {
+    "type": "显卡",
+    "name": "华硕DUAL RX6500XT O4G",
+    "price": 1099
+  },
+  {
+    "type": "显卡",
+    "name": "蓝宝石RX6500XT 白金版OC 4G",
+    "price": 1099
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX3050 虎将 6G",
+    "price": 1349
+  },
+  {
+    "type": "显卡",
+    "name": "万丽RTX3050 6G",
+    "price": 1299
+  },
+  {
+    "type": "显卡",
+    "name": "华硕RTX3050 O6G",
+    "price": 1349
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5050 战斧 DUO 8G",
+    "price": 2149
+  },
+  {
+    "type": "显卡",
+    "name": "华硕RX7650 GRE O8G 巨齿鲨",
+    "price": 2049
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RX7650 GRE GAMING OC 8G 魔鹰",
+    "price": 2049
+  },
+  {
+    "type": "显卡",
+    "name": "蓝宝石RX7650 GRE 白金版 8G",
+    "price": 2049
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5060 FIRE 8G",
+    "price": 2699
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RTX5060 8G OC 风魔",
+    "price": 2749
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060 Ultra W DUO OC 8G",
+    "price": 2899
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060Ti 战斧 DUO 8G",
+    "price": 3299
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060Ti Ultra DUO OC 8G",
+    "price": 3449
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5060Ti 圣刃 8G 白色",
+    "price": 3399
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060Ti 战斧 8G 豪华版 3风扇",
+    "price": 3449
+  },
+  {
+    "type": "显卡",
+    "name": "华硕RTX5060TI O8G 雪豹",
+    "price": 3549
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5060Ti 8G 金属大师 黑金版",
+    "price": 3549
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5060Ti 8G 金属大师 白金版",
+    "price": 3549
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060Ti 16G GDDR7 战斧豪华版",
+    "price": 3899
+  },
+  {
+    "type": "显卡",
+    "name": "华硕RTX5060Ti  TUF GAMING O8G",
+    "price": 3749
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RTX5060Ti OC 16G 风魔",
+    "price": 3999
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5060Ti Ultra DUO W OC 16G",
+    "price": 3949
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5060Ti MAX OC 16G GDDR7 金属大师 黑金版",
+    "price": 4049
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RX9060XT GAMING 8G 魔鹰",
+    "price": 2449
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RTX5070 12G 风魔",
+    "price": 4549
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5070Ti ULTRA W OC 16G",
+    "price": 6849
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5070Ti 16G 魔刃",
+    "price": 6549
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RTX5070Ti WINDFORCE OC 16G",
+    "price": 6799
+  },
+  {
+    "type": "显卡",
+    "name": "华擎RX9070 XT 16G 钢铁传奇",
+    "price": 5249
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5080 16G 魔刃",
+    "price": 8749
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5080 16G OC 金属大师",
+    "price": 8999
+  },
+  {
+    "type": "显卡",
+    "name": "影驰RTX5080 16G OC 金属大师 白",
+    "price": 8999
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5080 Ultra W OC 16G",
+    "price": 8649
+  },
+  {
+    "type": "显卡",
+    "name": "技嘉RTX5080 16G OC 风魔",
+    "price": 9349
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹RTX5080 AD OC 16G 银鲨",
+    "price": 9749
+  },
+  {
+    "type": "显卡",
+    "name": "华硕RTX 5080 TUF GAMING  O16G",
+    "price": 10349
   }
 ]

@@ -16,6 +16,11 @@
         </header>
 
         <main>
+            <!-- 移动端控制按钮 -->
+            <div class="mobile-controls">
+                <button id="mobileMenuBtn" class="btn mobile-menu-btn">菜单</button>
+            </div>
+
             <div class="controls">
                 <button id="loadPreset" class="btn">加载预设配置</button>
                 <button id="copyConfig" class="btn primary">一键复制配置单</button>
@@ -40,6 +45,11 @@
                 </table>
             </div>
 
+            <!-- 移动端卡片视图 -->
+            <div id="mobileCardView" class="mobile-card-view">
+                <!-- 移动端卡片内容由JS动态生成 -->
+            </div>
+
             <div class="summary">
                 <div class="total-row">
                     <span>总价: ¥<span id="totalPrice">0</span></span>
@@ -56,6 +66,19 @@
             <h3>选择预设配置</h3>
             <div id="presetList" class="preset-list">
                 <!-- 预设列表由JS生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 移动端菜单模态框 -->
+    <div id="mobileMenuModal" class="modal mobile-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>菜单</h3>
+            <div class="mobile-menu-list">
+                <button id="mobileLoadPreset" class="btn full-width">加载预设配置</button>
+                <button id="mobileCopyConfig" class="btn primary full-width">一键复制配置单</button>
+                <button id="mobileToggleView" class="btn full-width">切换视图</button>
             </div>
         </div>
     </div>

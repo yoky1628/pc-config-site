@@ -1,574 +1,635 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Microsoft YaHei', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-}
-header {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
-    padding: 20px;
-}
-.logo-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.logo-area h1 {
-    font-size: 24px;
-    font-weight: 300;
-}
-.date {
-    font-size: 14px;
-    opacity: 0.8;
-}
-.controls {
-    padding: 15px 20px;
-    background: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-.btn {
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 14px;
-}
-.btn:hover {
-    background: #f8f9fa;
-    border-color: #adb5bd;
-}
-.btn.primary {
-    background: #3498db;
-    color: white;
-    border-color: #2980b9;
-}
-.btn.primary:hover {
-    background: #2980b9;
-}
-/* 表格基础规则 */
-.table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px;
-    table-layout: fixed;
-}
-th, td {
-    border: 1px solid #dee2e6;
-    padding: 12px 8px;
-    text-align: left;
-    vertical-align: middle;
-}
-th {
-    background: #34495e;
-    color: white;
-    font-weight: 500;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-tbody tr:nth-child(even) {
-    background: #f8f9fa;
-}
-tbody tr:hover {
-    background: #e3f2fd;
-}
-.input-field {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 14px;
-}
-.input-field:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-.search-container {
-    position: relative;
-}
-.search-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 14px;
-}
-.dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-.dropdown-item {
-    padding: 8px 12px;
-    border-bottom: 1px solid #f5f5f5;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.dropdown-item:last-child {
-    border-bottom: none;
-}
-.dropdown-item:hover {
-    background: #3498db;
-    color: white;
-}
-.dropdown-item.selected {
-    background: #3498db;
-    color: white;
-}
-/* 滚动条样式 */
-.dropdown::-webkit-scrollbar {
-    width: 6px;
-}
-.dropdown::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-.dropdown::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 3px;
-}
-.dropdown::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-.summary {
-    padding: 20px;
-    background: #f8f9fa;
-    border-top: 1px solid #dee2e6;
-}
-.total-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: bold;
-    color: #2c3e50;
-}
-/* 模态框样式 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-}
-.close {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #999;
-}
-.close:hover {
-    color: #333;
-}
-.preset-list {
-    margin-top: 15px;
-}
-.preset-item {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.preset-item:hover {
-    background: #f8f9fa;
-}
-.preset-item h4 {
-    margin-bottom: 5px;
-    color: #2c3e50;
-}
-.preset-item p {
-    color: #666;
-    font-size: 14px;
-}
-/* 其它类型的输入框样式 */
-.other-name-input,
-.quantity-input,
-.cost-input,
-.price-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 14px;
-    background: white;
-}
-.other-name-input:focus,
-.quantity-input:focus,
-.cost-input:focus,
-.price-input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-/* 移除所有输入框的上下箭头 */
-.quantity-input::-webkit-outer-spin-button,
-.quantity-input::-webkit-inner-spin-button,
-.cost-input::-webkit-outer-spin-button,
-.cost-input::-webkit-inner-spin-button,
-.price-input::-webkit-outer-spin-button,
-.price-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.quantity-input[type=number],
-.cost-input[type=number],
-.price-input[type=number] {
-    -moz-appearance: textfield;
-}
-/* 数量控制样式 */
-.quantity-control {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-.quantity-btn {
-    width: 24px;
-    height: 24px;
-    border: 1px solid #ddd;
-    background: #f8f9fa;
-    border-radius: 3px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    transition: all 0.2s;
-}
-.quantity-btn:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
-}
-.quantity-btn:active {
-    background: #dee2e6;
-}
-.quantity-control .quantity-input {
-    width: 50px;
-    text-align: center;
-    margin: 0 2px;
-}
-/* 表格列宽优化 */
-th:nth-child(1), td:nth-child(1) { /* 类型列 */
-    width: 15%;
-    min-width: 60px;
-}
-th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 40%;
-    min-width: 180px;
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 9%;
-    min-width: 45px;
-}
-th:nth-child(4), td:nth-child(4) { /* 成本价列 */
-    width: 9%;
-    min-width: 50px;
-}
-th:nth-child(5), td:nth-child(5) { /* 销售价列 */
-    width: 9%;
-    min-width: 50px;
-}
-th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 9%;
-    min-width: 55px;
-}
-th:nth-child(7), td:nth-child(7) { /* 利润列 */
-    width: 9%;
-    min-width: 55px;
-}
-/* 输入框占满单元格 */
-td input {
-    width: 100%;
-    box-sizing: border-box;
-    max-width: 100%;
-}
-/* 确保数字列右对齐 */
-td:nth-child(3),
-td:nth-child(4),
-td:nth-child(5),
-td:nth-child(6),
-td:nth-child(7) {
-    text-align: right;
-}
-/* 表头保持左对齐 */
-th:nth-child(3),
-th:nth-child(4),
-th:nth-child(5),
-th:nth-child(6),
-th:nth-child(7) {
-    text-align: left;
-}
-/* 输入框内的文本右对齐 */
-.quantity-input,
-.cost-input,
-.price-input {
-    text-align: right;
-}
-/* 移动端表格优化 */
-@media (max-width: 768px) {
-    body {
-        padding: 5px;
-        font-size: 14px;
-    }
-   
-    .container {
-        border-radius: 5px;
-        margin: 0 auto;
-        width: 100%;
-    }
-   
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-    }
-   
-    table {
-        min-width: 500px;
-        font-size: 12px;
-        table-layout: fixed;
-    }
-   
-    /* 优化列宽 */
-    th:nth-child(1), td:nth-child(1) {
-        min-width: 40px;
-    }
-   
-    th:nth-child(2), td:nth-child(2) {
-        min-width: 80px;
-    }
-   
-    th:nth-child(3), td:nth-child(3) {
-        min-width: 35px;
-    }
-   
-    th:nth-child(4), td:nth-child(4) {
-        min-width: 50px;
-    }
-   
-    th:nth-child(5), td:nth-child(5) {
-        min-width: 50px;
-    }
-   
-    th:nth-child(6), td:nth-child(6) {
-        min-width: 55px;
-    }
-   
-    th:nth-child(7), td:nth-child(7) {
-        min-width: 55px;
-    }
-   
-    th, td {
-        padding: 6px 2px;
-        font-size: 11px;
-        line-height: 1.2;
-    }
-   
-    .search-input,
-    .other-name-input {
-        font-size: 11px;
-        padding: 4px;
-    }
-   
-    .quantity-input,
-    .cost-input,
-    .price-input {
-        width: 100%;
-        font-size: 11px;
-        padding: 4px;
-    }
-   
-    .controls {
-        padding: 10px;
-        gap: 5px;
-    }
-   
-    .btn {
-        padding: 6px 10px;
-        font-size: 12px;
-        flex: 1;
-        min-width: auto;
-    }
-   
-    .total-row {
-        padding: 10px 15px;
-        font-size: 14px;
-        flex-direction: column;
-        gap: 5px;
-        text-align: center;
-    }
-   
-    .logo-area {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-   
-    .logo-area h1 {
-        font-size: 18px;
-    }
-   
-    .date {
-        font-size: 12px;
-    }
-    
-    /* 移动端数量控制按钮 */
-    .quantity-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 12px;
-    }
-    
-    .quantity-control .quantity-input {
-        width: 40px;
-        font-size: 11px;
-    }
-}
-/* 小屏手机进一步优化 */
-@media (max-width: 480px) {
-    body {
-        padding: 2px;
-    }
-   
-    table {
-        min-width: 400px;
-    }
-   
-    th:nth-child(1), td:nth-child(1) { min-width: 35px; }
-    th:nth-child(2), td:nth-child(2) { min-width: 70px; }
-    th:nth-child(3), td:nth-child(3) { min-width: 30px; }
-    th:nth-child(4), td:nth-child(4) { min-width: 45px; }
-    th:nth-child(5), td:nth-child(5) { min-width: 45px; }
-    th:nth-child(6), td:nth-child(6) { min-width: 50px; }
-    th:nth-child(7), td:nth-child(7) { min-width: 50px; }
-   
-    th, td {
-        padding: 3px 1px;
-        font-size: 10px;
-    }
-   
-    .search-input,
-    .other-name-input,
-    .quantity-input,
-    .cost-input,
-    .price-input {
-        font-size: 10px;
-        padding: 2px;
-    }
-   
-    .btn {
-        padding: 5px 8px;
-        font-size: 11px;
+class ConfigGenerator {
+    constructor() {
+        this.components = [];
+        this.selectedComponents = {};
+        this.inputTimeout = null;
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
+        this.init();
     }
 
-    .dropdown {
-        max-width: 100vw;
-        left: auto;
-        right: auto;
+    async init() {
+        this.setCurrentDate();
+        await this.loadData();
+        this.renderTable();
+        this.bindEvents();
     }
-    .dropdown {
-        width: 100% !important;  /* 强制满td */
-        font-size: 10px;  /* 匹配小屏字体 */
-        max-height: 150px;  /* 减小，避免过多滚动 */
+
+    setCurrentDate() {
+        const now = new Date();
+        const dateStr = now.toISOString().split('T')[0];
+        document.getElementById('currentDate').textContent = dateStr;
     }
+
+    async loadData() {
+        try {
+            const response = await fetch('data.json');
+            if (!response.ok) throw new Error('数据加载失败');
+            this.components = await response.json();
+        } catch (error) {
+            console.error('加载数据失败:', error);
+            this.components = [];
+        }
+    }
+
+    renderTable() {
+        const tbody = document.getElementById('tableBody');
+        const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        
+        tbody.innerHTML = types.map(type => {
+            if (type === '其它1' || type === '其它2') {
+                return `
+                    <tr data-type="${type}">
+                        <td>${type}</td>
+                        <td>
+                            <input type="text" class="other-name-input" 
+                                   data-type="${type}" placeholder="请输入${type}名称">
+                        </td>
+                        <td>
+                            <input type="text" class="quantity-input" data-type="${type}" 
+                                   value="1" placeholder="1"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td>
+                            <input type="text" class="cost-input" data-type="${type}" 
+                                   placeholder="成本价" value="0"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td>
+                            <input type="text" class="price-input" data-type="${type}" 
+                                   placeholder="销售价" value="0"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td class="subtotal" data-type="${type}">-</td>
+                        <td class="profit" data-type="${type}">-</td>
+                    </tr>
+                `;
+            } else {
+                return `
+                    <tr data-type="${type}">
+                        <td>${type}</td>
+                        <td>
+                            <div class="search-container">
+                                <input type="text" class="search-input" placeholder="搜索或选择配件" 
+                                       data-type="${type}" autocomplete="off">
+                                <div class="dropdown" style="display: none;"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" class="quantity-input" data-type="${type}" 
+                                   value="" placeholder="0" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td>
+                            <input type="text" class="cost-input" data-type="${type}" 
+                                   placeholder="成本价" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td>
+                            <input type="text" class="price-input" data-type="${type}" 
+                                   placeholder="销售价" style="display: none;"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </td>
+                        <td class="subtotal" data-type="${type}">-</td>
+                        <td class="profit" data-type="${type}">-</td>
+                    </tr>
+                `;
+            }
+        }).join('');
+    }
+
+    bindEvents() {
+        // 搜索功能事件
+        document.addEventListener('input', (e) => {
+            if (e.target.classList.contains('search-input')) {
+                this.handleSearch(e.target);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('search-input')) {
+                if (e.target.value === '') {
+                    this.showAllOptions(e.target);
+                }
+            }
+            if (e.target.classList.contains('dropdown-item')) {
+                this.selectComponent(e.target);
+            }
+            
+            // 新增：点击页面其他区域时隐藏下拉框
+            this.handleOutsideClick(e);
+        });
+
+        // 修复：添加普通配件的输入事件处理
+        document.addEventListener('input', (e) => {
+            const type = e.target.dataset.type;
+            
+            // 处理普通配件的数量、价格、成本输入
+            if (type && type !== '其它1' && type !== '其它2') {
+                if (e.target.classList.contains('quantity-input') ||
+                    e.target.classList.contains('price-input') ||
+                    e.target.classList.contains('cost-input')) {
+                    
+                    this.handleRegularInput(type);
+                }
+            }
+            
+            // 处理其它类型的输入
+            if ((type === '其它1' || type === '其它2') && 
+                (e.target.classList.contains('other-name-input') || 
+                 e.target.classList.contains('quantity-input') ||
+                 e.target.classList.contains('price-input') ||
+                 e.target.classList.contains('cost-input'))) {
+                
+                this.handleOtherInputImmediate(type);
+            }
+            
+            // 搜索输入保持原有逻辑
+            if (e.target.classList.contains('search-input')) {
+                clearTimeout(this.inputTimeout);
+                this.inputTimeout = setTimeout(() => {
+                    this.handleSearch(e.target);
+                }, 300);
+            }
+        });
+
+        // 键盘事件
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboard(e);
+        });
+
+        // 按钮事件
+        document.getElementById('copyConfig').addEventListener('click', () => {
+            this.copyConfigToClipboard();
+        });
+
+        document.getElementById('loadPreset').addEventListener('click', () => {
+            this.showPresetModal();
+        });
+
+        // 模态框事件
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('presetModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('presetModal');
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // 新增方法：处理外部点击事件
+    handleOutsideClick(e) {
+        // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
+        if (!e.target.classList.contains('search-input') && 
+            !e.target.classList.contains('dropdown-item') &&
+            !e.target.closest('.dropdown')) {
+            
+            this.hideAllDropdowns();
+        }
+    }
+
+    // 新增方法：隐藏所有下拉框
+    hideAllDropdowns() {
+        const allDropdowns = document.querySelectorAll('.dropdown');
+        allDropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+        
+        // 重置当前下拉框状态
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
+    }
+
+    // 处理普通配件的输入
+    handleRegularInput(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+        const priceInput = row.querySelector('.price-input');
+        const costInput = row.querySelector('.cost-input');
+        
+        // 获取输入值
+        const quantity = parseInt(quantityInput.value) || 0;
+        const price = parseInt(priceInput.value) || 0;
+        const cost = parseInt(costInput.value) || 0;
+
+        // 更新组件数据
+        if (quantity > 0) {
+            component.quantity = quantity;
+        }
+        if (price > 0) {
+            component.price = price;
+        }
+        if (cost >= 0) {
+            component.cost = cost;
+            component.manualCost = true;
+        }
+
+        // 如果满足计算条件，更新显示
+        if (component.quantity > 0 && component.price > 0) {
+            this.updateRegularRow(type);
+        } else if (quantity === 0) {
+            this.clearSelection(type);
+        }
+    }
+
+    // 专门处理其它类型输入的立即响应方法
+    handleOtherInputImmediate(type) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        if (!row) return;
+
+        const nameInput = row.querySelector('.other-name-input');
+        const quantityInput = row.querySelector('.quantity-input');
+        const priceInput = row.querySelector('.price-input');
+        const costInput = row.querySelector('.cost-input');
+        
+        const name = nameInput.value.trim();
+        const quantity = parseInt(quantityInput.value) || 0;
+        const price = parseInt(priceInput.value) || 0;
+        const cost = parseInt(costInput.value) || 0;
+
+        // 只要有名称、数量和价格就计算
+        if (name && quantity > 0 && price > 0) {
+            this.selectedComponents[type] = {
+                name,
+                price,
+                cost: cost || 0,
+                quantity,
+                isCustom: true,
+                manualCost: cost > 0
+            };
+            
+            this.updateOtherRowDisplay(type);
+        } else {
+            delete this.selectedComponents[type];
+            this.updateOtherRowDisplay(type);
+        }
+    }
+
+    // 更新普通配件行的显示
+    updateRegularRow(type) {
+        const component = this.selectedComponents[type];
+        if (!component) return;
+
+        const subtotal = component.price * component.quantity;
+        const profit = (component.price - component.cost) * component.quantity;
+        
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+        row.querySelector('.profit').textContent = `¥${profit}`;
+
+        this.updateTotals();
+    }
+
+    // 更新其它类型行的显示
+    updateOtherRowDisplay(type) {
+        const component = this.selectedComponents[type];
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        
+        if (component && component.quantity > 0 && component.price > 0) {
+            const subtotal = component.price * component.quantity;
+            const profit = (component.price - component.cost) * component.quantity;
+            
+            row.querySelector('.subtotal').textContent = `¥${subtotal}`;
+            row.querySelector('.profit').textContent = `¥${profit}`;
+        } else {
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        }
+        
+        this.updateTotals();
+    }
+
+    // 更新总计
+    updateTotals() {
+        let totalPrice = 0;
+        let totalProfit = 0;
+
+        Object.values(this.selectedComponents).forEach(component => {
+            if (component.quantity > 0 && component.price > 0) {
+                totalPrice += component.price * component.quantity;
+                totalProfit += (component.price - component.cost) * component.quantity;
+            }
+        });
+
+        document.getElementById('totalPrice').textContent = totalPrice;
+        document.getElementById('totalProfit').textContent = totalProfit;
+    }
+
+    handleSearch(input) {
+        const query = input.value.trim();
+        const type = input.dataset.type;
+        
+        if (query === '') {
+            this.showAllOptions(input);
+            return;
+        }
+
+        const results = this.searchComponents(query, type);
+        this.showDropdown(input, results);
+    }
+
+    searchComponents(query, type) {
+        const lowerQuery = query.toLowerCase();
+        return this.components.filter(component => {
+            if (component.type !== type) return false;
+            return component.name.toLowerCase().includes(lowerQuery);
+        });
+    }
+
+    showAllOptions(input) {
+        const type = input.dataset.type;
+        const components = this.components.filter(c => c.type === type);
+        this.showDropdown(input, components);
+    }
+
+    showDropdown(input, components) {
+        const dropdown = input.nextElementSibling;
+        
+        // 新增：先隐藏所有其他下拉框
+        this.hideAllDropdowns();
+        
+        if (components.length === 0) {
+            dropdown.style.display = 'none';
+            this.currentDropdown = null;
+            this.currentDropdownItems = [];
+            this.currentSelectedIndex = -1;
+            return;
+        }
+
+        dropdown.innerHTML = components.map(component => `
+            <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
+                 data-price="${component.price}">
+                ${component.name} (¥${component.price})
+            </div>
+        `).join('');
+
+        dropdown.style.display = 'block';
+        this.currentDropdown = dropdown;
+        this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
+        this.currentSelectedIndex = -1;
+    }
+
+    selectComponent(item) {
+        const name = item.dataset.name;
+        const type = item.dataset.type;
+        const price = parseInt(item.dataset.price);
+
+        item.closest('.dropdown').style.display = 'none';
+        this.currentDropdown = null;
+        this.currentDropdownItems = [];
+        this.currentSelectedIndex = -1;
+
+        const input = item.closest('.search-container').querySelector('.search-input');
+        input.value = name;
+
+        const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
+        const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
+        const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
+        
+        quantityInput.style.display = 'block';
+        quantityInput.value = '1';
+        
+        costInput.style.display = 'block';
+        costInput.value = Math.round(price * 0.8);
+        
+        priceInput.style.display = 'block';
+        priceInput.value = price;
+
+        this.selectedComponents[type] = {
+            name,
+            price,
+            cost: Math.round(price * 0.8),
+            quantity: 1,
+            isCustom: false,
+            manualCost: false
+        };
+
+        this.updateRegularRow(type);
+    }
+
+    handleKeyboard(e) {
+        if (!this.currentDropdown || this.currentDropdown.style.display === 'none') {
+            return;
+        }
+
+        const items = this.currentDropdownItems;
+        if (items.length === 0) return;
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                this.currentSelectedIndex = (this.currentSelectedIndex + 1) % items.length;
+                this.selectDropdownItem(items, this.currentSelectedIndex);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                this.currentSelectedIndex = (this.currentSelectedIndex - 1 + items.length) % items.length;
+                this.selectDropdownItem(items, this.currentSelectedIndex);
+                break;
+            case 'Enter':
+                e.preventDefault();
+                if (this.currentSelectedIndex >= 0 && items[this.currentSelectedIndex]) {
+                    items[this.currentSelectedIndex].click();
+                }
+                break;
+            case 'Escape':
+                e.preventDefault();
+                this.currentDropdown.style.display = 'none';
+                this.currentDropdown = null;
+                this.currentDropdownItems = [];
+                this.currentSelectedIndex = -1;
+                break;
+        }
+    }
+
+    selectDropdownItem(items, index) {
+        items.forEach(item => item.classList.remove('selected'));
+        if (items[index]) {
+            items[index].classList.add('selected');
+            items[index].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    showPresetModal() {
+        const modal = document.getElementById('presetModal');
+        const presetList = document.getElementById('presetList');
+        
+        const presets = this.getPresetConfigs();
+        presetList.innerHTML = presets.map((preset, index) => `
+            <div class="preset-item" data-index="${index}">
+                <h4>${preset.name}</h4>
+                <p>${preset.description}</p>
+            </div>
+        `).join('');
+
+        presetList.querySelectorAll('.preset-item').forEach(item => {
+            item.addEventListener('click', () => {
+                this.loadPresetConfig(parseInt(item.dataset.index));
+                modal.style.display = 'none';
+            });
+        });
+
+        modal.style.display = 'block';
+    }
+
+    getPresetConfigs() {
+        return [
+            {
+                name: '办公配置',
+                description: '适合日常办公使用',
+                components: [
+                    { type: 'CPU', name: 'Intel i5-13400F' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' }
+                ]
+            },
+            {
+                name: '游戏配置',
+                description: '主流游戏配置',
+                components: [
+                    { type: 'CPU', name: 'Intel i7-13700K' },
+                    { type: '主板', name: '华硕 B760M-P' },
+                    { type: '内存', name: '金士顿 16GB DDR5 5200' },
+                    { type: '显卡', name: '技嘉 RTX 4060 8G' }
+                ]
+            }
+        ];
+    }
+
+    loadPresetConfig(index) {
+        const presets = this.getPresetConfigs();
+        const preset = presets[index];
+        
+        if (!preset) return;
+
+        Object.keys(this.selectedComponents).forEach(type => {
+            this.clearSelection(type);
+        });
+
+        preset.components.forEach(item => {
+            const component = this.components.find(c => 
+                c.type === item.type && c.name === item.name
+            );
+            
+            if (component) {
+                const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
+                if (input) {
+                    this.selectedComponents[item.type] = {
+                        name: component.name,
+                        price: component.price,
+                        cost: Math.round(component.price * 0.8),
+                        quantity: 1,
+                        isCustom: false,
+                        manualCost: false
+                    };
+
+                    input.value = component.name;
+                    const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
+                    const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
+                    const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
+                    
+                    quantityInput.style.display = 'block';
+                    quantityInput.value = '1';
+                    
+                    costInput.style.display = 'block';
+                    costInput.value = Math.round(component.price * 0.8);
+                    
+                    priceInput.style.display = 'block';
+                    priceInput.value = component.price;
+
+                    this.updateRegularRow(item.type);
+                }
+            }
+        });
+    }
+
+    clearSelection(type) {
+        if (type === '其它1' || type === '其它2') {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            row.querySelector('.other-name-input').value = '';
+            row.querySelector('.quantity-input').value = '1';
+            row.querySelector('.cost-input').value = '0';
+            row.querySelector('.price-input').value = '0';
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        } else {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            const input = row.querySelector('.search-input');
+            input.value = '';
+            
+            const quantityInput = row.querySelector('.quantity-input');
+            const costInput = row.querySelector('.cost-input');
+            const priceInput = row.querySelector('.price-input');
+            
+            quantityInput.style.display = 'none';
+            quantityInput.value = '';
+            
+            costInput.style.display = 'none';
+            costInput.value = '';
+            
+            priceInput.style.display = 'none';
+            priceInput.value = '';
+            
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+        }
+
+        delete this.selectedComponents[type];
+        this.updateTotals();
+    }
+
+    async copyConfigToClipboard() {
+    const lines = [];
+    let totalAmount = 0;
+
+    // 定义配件类型的显示顺序
+    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
     
-    .dropdown-item {
-        padding: 6px 4px;  /* 减小padding，适应窄宽 */
-        font-size: 10px;
-        white-space: nowrap;  /* 单行显示 */
-        overflow: hidden;
-        text-overflow: ellipsis;  /* 长文本省略... */
+    // 按照指定顺序处理配件
+    typeOrder.forEach(type => {
+        const component = this.selectedComponents[type];
+        if (component && component.quantity > 0 && component.price > 0) {
+            const subtotal = component.price * component.quantity;
+            totalAmount += subtotal;
+            
+            let displayName = component.name;
+            if (component.quantity > 1) {
+                displayName += `【数量${component.quantity}】`;
+            }
+            
+            lines.push(`${type}\t${displayName}\t${subtotal}`);
+        }
+    });
+
+    if (lines.length > 0) {
+        lines.push(`总价\t${totalAmount}`);
     }
-    
-    /* 小屏手机数量控制按钮 */
-    .quantity-btn {
-        width: 18px;
-        height: 18px;
-        font-size: 11px;
-    }
-    
-    .quantity-control .quantity-input {
-        width: 35px;
-        font-size: 10px;
+
+    const text = lines.join('\n');
+
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('配置单已复制到剪贴板！');
+    } catch (err) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('配置单已复制到剪贴板！');
     }
 }
-/* 打印样式 */
-@media print {
-    body {
-        background: white;
-        padding: 0;
-    }
-   
-    .container {
-        box-shadow: none;
-        border-radius: 0;
-    }
-   
-    .controls {
-        display: none;
-    }
-   
-    .btn {
-        display: none;
-    }
-    
-    /* 隐藏数量控制按钮 */
-    .quantity-btn {
-        display: none;
-    }
 }
+// 初始化应用
+document.addEventListener('DOMContentLoaded', () => {
+    new ConfigGenerator();
+});

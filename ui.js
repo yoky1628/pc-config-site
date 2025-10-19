@@ -178,23 +178,22 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             return;
         }
 
-        const dpr = window.devicePixelRatio || 1;
-        const fullWidth = container.scrollWidth;
-        const fullHeight = container.scrollHeight;
+        const renderWidth = container.offsetWidth;
+        const renderHeight = container.offsetHeight;
 
         const canvas = await html2canvas(container, {
-            scale: dpr,
-            width: fullWidth,
-            height: fullHeight,
+            scale: 1,
+            width: renderWidth,
+            height: renderHeight,
             useCORS: true,
             allowTaint: false,
             backgroundColor: '#ffffff',
             ignoreElements: (elem) => elem.id === 'loadPreset' || elem.id === 'copyConfig' || elem.id === 'screenshotBtn'
         });
 
-        console.log('设备DPI:', dpr);
-        console.log('完整尺寸:', fullWidth, 'x', fullHeight);
+        console.log('渲染尺寸:', renderWidth, 'x', renderHeight);
         console.log('Canvas尺寸:', canvas.width, 'x', canvas.height);
+        console.log('比例:', (canvas.width / canvas.height).toFixed(3));
 
         canvas.toBlob(async (blob) => {
             if (blob) {
@@ -204,7 +203,7 @@ document.getElementById('screenshotBtn').addEventListener('click', async () => {
             } else {
                 alert('截图生成失败！');
             }
-        }, 'image/png', 0.95);
+        }, 'image/png', 1);  // 新：质量100%，无压缩
 
     } catch (error) {
         console.error('截图错误:', error);

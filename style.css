@@ -8,7 +8,7 @@ body {
     font-family: 'Microsoft YaHei', Arial, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 10px;
     color: #333;
 }
 
@@ -21,10 +21,11 @@ body {
     overflow: hidden;
 }
 
+/* 头部样式 */
 header {
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
-    padding: 20px;
+    padding: 15px 20px;
 }
 
 .logo-area {
@@ -35,15 +36,28 @@ header {
 }
 
 .logo-area h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
 }
 
 .date {
-    font-size: 14px;
+    font-size: 12px;
     opacity: 0.8;
 }
 
+/* 移动端控制按钮 */
+.mobile-controls {
+    display: none;
+    padding: 10px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.mobile-menu-btn {
+    width: 100%;
+}
+
+/* 控制按钮组 */
 .controls {
     padding: 15px 20px;
     background: #f8f9fa;
@@ -54,13 +68,15 @@ header {
 }
 
 .btn {
-    padding: 8px 16px;
+    padding: 10px 16px;
     border: 1px solid #ddd;
     background: white;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 14px;
+    flex: 1;
+    min-width: 120px;
 }
 
 .btn:hover {
@@ -78,8 +94,15 @@ header {
     background: #2980b9;
 }
 
+.btn.full-width {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+/* 表格容器 */
 .table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -92,6 +115,7 @@ th, td {
     border: 1px solid #dee2e6;
     padding: 12px 8px;
     text-align: left;
+    font-size: 14px;
 }
 
 th {
@@ -110,30 +134,28 @@ tbody tr:hover {
     background: #e3f2fd;
 }
 
-.input-field {
+/* 输入框样式 */
+.input-field, .search-input, .other-name-input,
+.quantity-input, .cost-input, .price-input {
     width: 100%;
-    padding: 6px;
+    padding: 8px;
     border: 1px solid #ced4da;
-    border-radius: 3px;
+    border-radius: 4px;
     font-size: 14px;
+    background: white;
 }
 
-.input-field:focus {
+.input-field:focus, .search-input:focus,
+.other-name-input:focus, .quantity-input:focus,
+.cost-input:focus, .price-input:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
+/* 搜索下拉框 */
 .search-container {
     position: relative;
-}
-
-.search-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 14px;
 }
 
 .dropdown {
@@ -151,9 +173,10 @@ tbody tr:hover {
 }
 
 .dropdown-item {
-    padding: 8px 12px;
+    padding: 10px 12px;
     cursor: pointer;
     border-bottom: 1px solid #f8f9fa;
+    font-size: 14px;
 }
 
 .dropdown-item:hover, .dropdown-item.selected {
@@ -161,6 +184,74 @@ tbody tr:hover {
     color: white;
 }
 
+/* 移动端卡片视图 */
+.mobile-card-view {
+    display: none;
+    padding: 15px;
+}
+
+.mobile-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mobile-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.mobile-card-type {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.mobile-card-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.mobile-card-btn {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.mobile-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.mobile-card-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mobile-card-label {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.mobile-card-value {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 总计行 */
 .summary {
     padding: 20px;
     background: #f8f9fa;
@@ -185,16 +276,24 @@ tbody tr:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
     background-color: white;
-    margin: 5% auto;
+    margin: 10% auto;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     width: 90%;
     max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
     position: relative;
+}
+
+.mobile-modal .modal-content {
+    margin: 20% auto;
+    max-width: 300px;
 }
 
 .close {
@@ -210,14 +309,14 @@ tbody tr:hover {
     color: #333;
 }
 
-.preset-list {
+.preset-list, .mobile-menu-list {
     margin-top: 15px;
 }
 
-.preset-item {
+.preset-item, .mobile-menu-item {
     padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -237,40 +336,7 @@ tbody tr:hover {
     font-size: 14px;
 }
 
-/* 其它类型的输入框样式 */
-.other-name-input,
-.quantity-input,
-.cost-input,
-.price-input {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 3px;
-    font-size: 14px;
-    background: white;
-}
-
-.other-name-input:focus,
-.quantity-input:focus,
-.cost-input:focus,
-.price-input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-/* 数量输入框特定宽度 */
-.quantity-input {
-    width: 60px;
-}
-
-/* 价格输入框特定宽度 */
-.cost-input,
-.price-input {
-    width: 80px;
-}
-
-/* 移除所有输入框的上下箭头 */
+/* 移除数字输入框的上下箭头 */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button,
 .cost-input::-webkit-outer-spin-button,
@@ -287,7 +353,35 @@ tbody tr:hover {
     -moz-appearance: textfield;
 }
 
-/* 移动端表格优化 */
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 (768px - 1024px) */
+@media (max-width: 1024px) {
+    body {
+        padding: 8px;
+    }
+    
+    .container {
+        border-radius: 8px;
+    }
+    
+    .logo-area h1 {
+        font-size: 18px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 100px;
+    }
+    
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+}
+
+/* 手机设备 (768px 以下) */
 @media (max-width: 768px) {
     body {
         padding: 5px;
@@ -295,95 +389,12 @@ tbody tr:hover {
     }
     
     .container {
-        border-radius: 5px;
+        border-radius: 6px;
         margin: 0 auto;
     }
     
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin: 0 -10px;
-        padding: 0 10px;
-    }
-    
-    table {
-        min-width: 650px;
-        font-size: 12px;
-    }
-    
-    /* 优化列宽 */
-    th:nth-child(1), td:nth-child(1) {
-        width: 12%;
-        min-width: 50px;
-    }
-    
-    th:nth-child(2), td:nth-child(2) {
-        width: 28%;
-        min-width: 90px;
-    }
-    
-    th:nth-child(3), td:nth-child(3) {
-        width: 8%;
-        min-width: 40px;
-    }
-    
-    th:nth-child(4), td:nth-child(4) {
-        width: 10%;
-        min-width: 60px;
-    }
-    
-    th:nth-child(5), td:nth-child(5) {
-        width: 10%;
-        min-width: 60px;
-    }
-    
-    th:nth-child(6), td:nth-child(6) {
-        width: 12%;
-        min-width: 65px;
-    }
-    
-    th:nth-child(7), td:nth-child(7) {
-        width: 12%;
-        min-width: 65px;
-    }
-    
-    th, td {
-        padding: 6px 3px;
-        font-size: 11px;
-        line-height: 1.2;
-    }
-    
-    .search-input,
-    .other-name-input {
-        font-size: 11px;
-        padding: 4px 2px;
-    }
-    
-    .quantity-input,
-    .cost-input,
-    .price-input {
-        width: 100%;
-        font-size: 11px;
-        padding: 4px 2px;
-    }
-    
-    .controls {
-        padding: 10px;
-        gap: 8px;
-    }
-    
-    .btn {
-        padding: 8px 12px;
-        font-size: 13px;
-        flex: 1;
-        min-width: 0;
-    }
-    
-    .total-row {
+    header {
         padding: 12px 15px;
-        font-size: 16px;
-        flex-direction: column;
-        gap: 8px;
     }
     
     .logo-area {
@@ -393,210 +404,199 @@ tbody tr:hover {
     }
     
     .logo-area h1 {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .date {
-        font-size: 12px;
+        font-size: 11px;
+    }
+    
+    /* 隐藏桌面控制按钮，显示移动端控制 */
+    .controls {
+        display: none;
+    }
+    
+    .mobile-controls {
+        display: block;
+    }
+    
+    /* 隐藏表格，显示卡片视图 */
+    .table-container {
+        display: none;
+    }
+    
+    .mobile-card-view {
+        display: block;
+    }
+    
+    /* 移动端卡片样式优化 */
+    .mobile-card {
+        padding: 12px;
+    }
+    
+    .mobile-card-type {
+        font-size: 14px;
+    }
+    
+    .mobile-card-content {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .mobile-card-field {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .mobile-card-label {
+        font-size: 11px;
+    }
+    
+    .mobile-card-value {
+        font-size: 13px;
+    }
+    
+    .mobile-card-btn {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    /* 总计行优化 */
+    .summary {
+        padding: 15px;
+    }
+    
+    .total-row {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    /* 输入框优化 */
+    .search-input, .other-name-input,
+    .quantity-input, .cost-input, .price-input {
+        padding: 6px;
+        font-size: 13px;
+    }
+    
+    /* 下拉菜单优化 */
+    .dropdown {
+        max-height: 150px;
+    }
+    
+    .dropdown-item {
+        padding: 8px 10px;
+        font-size: 13px;
     }
 }
 
-/* 小屏手机进一步优化 */
+/* 小屏手机 (480px 以下) */
 @media (max-width: 480px) {
     body {
         padding: 3px;
     }
     
-    table {
-        min-width: 580px;
+    .container {
+        border-radius: 4px;
     }
     
-    th:nth-child(1), td:nth-child(1) { min-width: 45px; }
-    th:nth-child(2), td:nth-child(2) { min-width: 80px; }
-    th:nth-child(3), td:nth-child(3) { min-width: 35px; }
-    th:nth-child(4), td:nth-child(4) { min-width: 55px; }
-    th:nth-child(5), td:nth-child(5) { min-width: 55px; }
-    th:nth-child(6), td:nth-child(6) { min-width: 60px; }
-    th:nth-child(7), td:nth-child(7) { min-width: 60px; }
+    header {
+        padding: 10px 12px;
+    }
     
-    th, td {
-        padding: 4px 2px;
+    .logo-area h1 {
+        font-size: 14px;
+    }
+    
+    .date {
         font-size: 10px;
     }
     
-    .search-input,
-    .other-name-input,
-    .quantity-input,
-    .cost-input,
-    .price-input {
-        font-size: 10px;
-        padding: 3px 1px;
+    .mobile-card {
+        padding: 10px;
     }
     
-    .btn {
-        padding: 6px 8px;
+    .mobile-card-type {
+        font-size: 13px;
+    }
+    
+    .mobile-card-label {
+        font-size: 10px;
+    }
+    
+    .mobile-card-value {
         font-size: 12px;
     }
-}
-
-/* 表格列宽优化 */
-th:nth-child(1), td:nth-child(1) { /* 类型列 */
-    width: 15%;
-    min-width: 80px;
-}
-
-th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 25%;
-    min-width: 150px;
-}
-
-th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 10%;
-    min-width: 70px;
-}
-
-th:nth-child(4), td:nth-child(4) { /* 成本价列 */
-    width: 12%;
-    min-width: 90px;
-}
-
-th:nth-child(5), td:nth-child(5) { /* 销售价列 */
-    width: 12%;
-    min-width: 90px;
-}
-
-th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 13%;
-    min-width: 95px;
-}
-
-th:nth-child(7), td:nth-child(7) { /* 利润列 */
-    width: 13%;
-    min-width: 95px;
-}
-
-/* 输入框占满单元格 */
-td input {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* 确保数字列右对齐 */
-td:nth-child(3),
-td:nth-child(4),
-td:nth-child(5),
-td:nth-child(6),
-td:nth-child(7) {
-    text-align: right;
-}
-
-/* 表头保持左对齐 */
-th:nth-child(3),
-th:nth-child(4),
-th:nth-child(5),
-th:nth-child(6),
-th:nth-child(7) {
-    text-align: left;
-}
-
-/* 输入框内的文本右对齐 */
-.quantity-input,
-.cost-input,
-.price-input {
-    text-align: right;
-}
-
-/* 下拉菜单优化 */
-.dropdown {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.dropdown-item {
-    padding: 8px 12px;
-    border-bottom: 1px solid #f5f5f5;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.dropdown-item:last-child {
-    border-bottom: none;
-}
-
-.dropdown-item:hover {
-    background: #f8f9fa;
-}
-
-.dropdown-item.selected {
-    background: #3498db;
-    color: white;
-}
-
-/* 滚动条样式 */
-.dropdown::-webkit-scrollbar {
-    width: 6px;
-}
-
-.dropdown::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-.dropdown::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 3px;
-}
-
-.dropdown::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-
-/* 总计行样式优化 */
-.total-row {
-    background: #2c3e50;
-    color: white;
-    padding: 15px 20px;
-    margin: 0;
-    border-radius: 0 0 10px 10px;
-}
-
-.total-row span {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* 按钮组样式优化 */
-.controls {
-    background: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    padding: 15px 20px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* 打印样式 */
-@media print {
-    body {
-        background: white;
-        padding: 0;
+    
+    .summary {
+        padding: 12px;
     }
     
+    .total-row {
+        font-size: 14px;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        padding: 15px;
+    }
+    
+    .mobile-modal .modal-content {
+        margin: 10% auto;
+        max-width: 280px;
+    }
+}
+
+/* 横屏手机优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        margin: 5% auto;
+        max-height: 70vh;
+    }
+    
+    .mobile-card-view {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
     .container {
-        box-shadow: none;
-        border-radius: 0;
+        background: #1a1a1a;
+        color: #ffffff;
     }
     
-    .controls {
-        display: none;
+    .modal-content {
+        background: #2d2d2d;
+        color: #ffffff;
     }
     
+    .mobile-card {
+        background: #2d2d2d;
+        border-color: #404040;
+        color: #ffffff;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
     .btn {
-        display: none;
+        border-width: 2px;
+    }
+    
+    th, td {
+        border-width: 2px;
+    }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

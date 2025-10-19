@@ -117,7 +117,6 @@ class ConfigGenerator {
                 this.selectComponent(e.target);
             }
             
-            // 新增：点击页面其他区域时隐藏下拉框
             this.handleOutsideClick(e);
         });
 
@@ -125,7 +124,6 @@ class ConfigGenerator {
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
             
-            // 处理普通配件的数量、价格、成本输入
             if (type && type !== '其它1' && type !== '其它2') {
                 if (e.target.classList.contains('quantity-input') ||
                     e.target.classList.contains('price-input') ||
@@ -135,7 +133,6 @@ class ConfigGenerator {
                 }
             }
             
-            // 处理其它类型的输入
             if ((type === '其它1' || type === '其它2') && 
                 (e.target.classList.contains('other-name-input') || 
                  e.target.classList.contains('quantity-input') ||
@@ -145,7 +142,6 @@ class ConfigGenerator {
                 this.handleOtherInputImmediate(type);
             }
             
-            // 搜索输入保持原有逻辑
             if (e.target.classList.contains('search-input')) {
                 clearTimeout(this.inputTimeout);
                 this.inputTimeout = setTimeout(() => {
@@ -181,9 +177,7 @@ class ConfigGenerator {
         });
     }
 
-    // 新增方法：处理外部点击事件
     handleOutsideClick(e) {
-        // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
         if (!e.target.classList.contains('search-input') && 
             !e.target.classList.contains('dropdown-item') &&
             !e.target.closest('.dropdown')) {
@@ -192,20 +186,17 @@ class ConfigGenerator {
         }
     }
 
-    // 新增方法：隐藏所有下拉框
     hideAllDropdowns() {
         const allDropdowns = document.querySelectorAll('.dropdown');
         allDropdowns.forEach(dropdown => {
             dropdown.style.display = 'none';
         });
         
-        // 重置当前下拉框状态
         this.currentDropdown = null;
         this.currentDropdownItems = [];
         this.currentSelectedIndex = -1;
     }
 
-    // 处理普通配件的输入
     handleRegularInput(type) {
         const component = this.selectedComponents[type];
         if (!component) return;
@@ -215,12 +206,10 @@ class ConfigGenerator {
         const priceInput = row.querySelector('.price-input');
         const costInput = row.querySelector('.cost-input');
         
-        // 获取输入值
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
-        // 更新组件数据
         if (quantity > 0) {
             component.quantity = quantity;
         }
@@ -232,7 +221,6 @@ class ConfigGenerator {
             component.manualCost = true;
         }
 
-        // 如果满足计算条件，更新显示
         if (component.quantity > 0 && component.price > 0) {
             this.updateRegularRow(type);
         } else if (quantity === 0) {
@@ -240,7 +228,6 @@ class ConfigGenerator {
         }
     }
 
-    // 专门处理其它类型输入的立即响应方法
     handleOtherInputImmediate(type) {
         const row = document.querySelector(`tr[data-type="${type}"]`);
         if (!row) return;
@@ -255,7 +242,6 @@ class ConfigGenerator {
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
-        // 只要有名称、数量和价格就计算
         if (name && quantity > 0 && price > 0) {
             this.selectedComponents[type] = {
                 name,
@@ -273,7 +259,6 @@ class ConfigGenerator {
         }
     }
 
-    // 更新普通配件行的显示
     updateRegularRow(type) {
         const component = this.selectedComponents[type];
         if (!component) return;
@@ -288,7 +273,6 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    // 更新其它类型行的显示
     updateOtherRowDisplay(type) {
         const component = this.selectedComponents[type];
         const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -307,7 +291,6 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    // 更新总计
     updateTotals() {
         let totalPrice = 0;
         let totalProfit = 0;
@@ -353,7 +336,6 @@ class ConfigGenerator {
     showDropdown(input, components) {
         const dropdown = input.nextElementSibling;
         
-        // 新增：先隐藏所有其他下拉框
         this.hideAllDropdowns();
         
         if (components.length === 0) {
@@ -394,11 +376,15 @@ class ConfigGenerator {
         const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
         const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
         
+        // 🎯 修复：使用真实成本价而不是硬编码计算
+        const component = this.components.find(c => c.type === type && c.name === name);
+        const actualCost = component ? component.cost : Math.round(price * 0.8);
+        
         quantityInput.style.display = 'block';
         quantityInput.value = '1';
         
         costInput.style.display = 'block';
-        costInput.value = Math.round(price * 0.8);
+        costInput.value = actualCost;  // ✅ 使用真实成本价
         
         priceInput.style.display = 'block';
         priceInput.value = price;
@@ -406,7 +392,7 @@ class ConfigGenerator {
         this.selectedComponents[type] = {
             name,
             price,
-            cost: Math.round(price * 0.8),
+            cost: actualCost,  // ✅ 使用真实成本价
             quantity: 1,
             isCustom: false,
             manualCost: false
@@ -522,10 +508,11 @@ class ConfigGenerator {
             if (component) {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
+                    // 🎯 修复：预设配置也使用真实成本价
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
-                        cost: Math.round(component.price * 0.8),
+                        cost: component.cost,  // ✅ 使用真实成本价
                         quantity: 1,
                         isCustom: false,
                         manualCost: false
@@ -540,7 +527,7 @@ class ConfigGenerator {
                     quantityInput.value = '1';
                     
                     costInput.style.display = 'block';
-                    costInput.value = Math.round(component.price * 0.8);
+                    costInput.value = component.cost;  // ✅ 使用真实成本价
                     
                     priceInput.style.display = 'block';
                     priceInput.value = component.price;
@@ -587,48 +574,47 @@ class ConfigGenerator {
     }
 
     async copyConfigToClipboard() {
-    const lines = [];
-    let totalAmount = 0;
+        const lines = [];
+        let totalAmount = 0;
 
-    // 定义配件类型的显示顺序
-    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-    
-    // 按照指定顺序处理配件
-    typeOrder.forEach(type => {
-        const component = this.selectedComponents[type];
-        if (component && component.quantity > 0 && component.price > 0) {
-            const subtotal = component.price * component.quantity;
-            totalAmount += subtotal;
-            
-            let displayName = component.name;
-            if (component.quantity > 1) {
-                displayName += `【数量${component.quantity}】`;
+        const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        
+        typeOrder.forEach(type => {
+            const component = this.selectedComponents[type];
+            if (component && component.quantity > 0 && component.price > 0) {
+                const subtotal = component.price * component.quantity;
+                totalAmount += subtotal;
+                
+                let displayName = component.name;
+                if (component.quantity > 1) {
+                    displayName += `【数量${component.quantity}】`;
+                }
+                
+                lines.push(`${type}\t${displayName}\t${subtotal}`);
             }
-            
-            lines.push(`${type}\t${displayName}\t${subtotal}`);
+        });
+
+        if (lines.length > 0) {
+            lines.push(`总价\t${totalAmount}`);
         }
-    });
 
-    if (lines.length > 0) {
-        lines.push(`总价\t${totalAmount}`);
-    }
+        const text = lines.join('\n');
 
-    const text = lines.join('\n');
-
-    try {
-        await navigator.clipboard.writeText(text);
-        alert('配置单已复制到剪贴板！');
-    } catch (err) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('配置单已复制到剪贴板！');
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('配置单已复制到剪贴板！');
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('配置单已复制到剪贴板！');
+        }
     }
 }
-}
+
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();

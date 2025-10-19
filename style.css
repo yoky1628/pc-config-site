@@ -142,6 +142,9 @@ tbody tr:active { /* 行触摸反馈 */
     min-height: 44px; /* 高度 */
     display: flex;
     align-items: center;
+    pointer-events: auto; /* 修复选中问题 */
+    user-select: none; /* 防文本选中干扰 */
+    transition: all 0.1s ease; /* 缩短动画 */
 }
 .dropdown-item:active {
     background: #3498db;
@@ -374,6 +377,14 @@ tbody tr:active { /* 行触摸反馈 */
     .date {
         font-size: 14px;
     }
+
+    .dropdown-item {
+        min-height: 48px;  /* 稍增大触区，但不挤 */
+        padding: 16px 12px;
+    }
+    .dropdown {
+        max-height: 300px;  /* 增大滚动区 */
+    }
 }
 /* 小屏手机进一步优化 */
 @media (max-width: 480px) {
@@ -422,7 +433,7 @@ tbody tr:active { /* 行触摸反馈 */
     .dropdown {
         width: 100% !important;
         font-size: 14px;
-        max-height: 200px; /* 增大滚动区 */
+        max-height: 300px;  /* 增大滚动区 */
     }
     
     .dropdown-item {
@@ -506,14 +517,17 @@ th:nth-child(7) {
     border-top: none;
     max-height: 200px;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1001; /* 增大z-index，防穿透 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 增大阴影 */
+    pointer-events: auto; /* 修复选中问题 */
 }
 .dropdown-item {
     padding: 12px;
     border-bottom: 1px solid #f5f5f5;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease; /* 缩短动画 */
+    pointer-events: auto; /* 显式启用指针事件 */
+    user-select: none; /* 防文本选中干扰 */
 }
 .dropdown-item:last-child {
     border-bottom: none;
@@ -540,79 +554,4 @@ th:nth-child(7) {
 .dropdown::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
-/* 总计行样式优化 */
-.total-row {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    margin: 0;
-    border-radius: 0 0 10px 10px;
-    gap: 16px;
-}
-.total-row span {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-/* 按钮组样式优化 */
-.controls {
-    background: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    padding: 20px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-/* 自定义数量输入框 spinner 箭头（上增下减，通用，包括其它1/2） */
-.quantity-input {
-    -moz-appearance: number-input; /* Firefox 原生 */
-}
-/* WebKit 浏览器 (Chrome, Safari) 自定义箭头：上箭头为向上三角（增），下箭头为向下三角（减） */
-.quantity-input::-webkit-outer-spin-button,
-.quantity-input::-webkit-inner-spin-button {
-    -webkit-appearance: inner-spin-button !important;
-    opacity: 1;
-    cursor: pointer;
-    margin: 0 3px;
-    width: 18px; /* 增大触区 */
-    height: 18px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><polygon points="7,1 1,13 13,13" fill="%233498db"/></svg>') no-repeat center; /* 上箭头：向上三角 */
-    background-size: contain;
-}
-.quantity-input::-webkit-inner-spin-button {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><polygon points="7,13 1,1 13,1" fill="%233498db"/></svg>') no-repeat center; /* 下箭头：向下三角 */
-    background-size: contain;
-}
-.quantity-input::-webkit-inner-spin-button:hover,
-.quantity-input::-webkit-outer-spin-button:hover {
-    opacity: 0.8;
-    background-color: rgba(52, 152, 219, 0.2);
-}
-/* 移动端箭头优化 - 增大触区 */
-@media (max-width: 768px) {
-    .quantity-input::-webkit-inner-spin-button,
-    .quantity-input::-webkit-outer-spin-button {
-        width: 20px;
-        height: 20px;
-    }
-}
-/* 打印样式 */
-@media print {
-    body {
-        background: white;
-        padding: 0;
-    }
-   
-    .container {
-        box-shadow: none;
-        border-radius: 0;
-    }
-   
-    .controls {
-        display: none;
-    }
-   
-    .btn {
-        display: none;
-    }
-}
+/* 总计行

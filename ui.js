@@ -48,17 +48,17 @@ class ConfigGenerator {
                         </td>
                         <td>
                             <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="1" placeholder="1"
+                                   value="" placeholder="1"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
-                                   placeholder="成本价" value="0"
+                                   placeholder="成本价" value=""
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td>
                             <input type="text" class="price-input" data-type="${type}" 
-                                   placeholder="销售价" value="0"
+                                   placeholder="销售价" value=""
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </td>
                         <td class="subtotal" data-type="${type}">-</td>

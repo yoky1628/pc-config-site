@@ -381,6 +381,10 @@ class ConfigGenerator {
         const name = item.dataset.name;
         const type = item.dataset.type;
         const price = parseInt(item.dataset.price);
+        
+        // 新增：从组件数据中查找真实的成本价
+        const componentData = this.components.find(c => c.name === name && c.type === type);
+        const actualCost = componentData ? componentData.cost : Math.round(price * 0.8); // 备用方案
 
         item.closest('.dropdown').style.display = 'none';
         this.currentDropdown = null;
@@ -398,7 +402,7 @@ class ConfigGenerator {
         quantityInput.value = '1';
         
         costInput.style.display = 'block';
-        costInput.value = Math.round(price * 0.8);
+        costInput.value = actualCost;  // 修改这里：使用真实成本价
         
         priceInput.style.display = 'block';
         priceInput.value = price;
@@ -406,7 +410,7 @@ class ConfigGenerator {
         this.selectedComponents[type] = {
             name,
             price,
-            cost: Math.round(price * 0.8),
+            cost: actualCost,  // 修改这里：使用真实成本价
             quantity: 1,
             isCustom: false,
             manualCost: false
@@ -540,7 +544,7 @@ class ConfigGenerator {
                     quantityInput.value = '1';
                     
                     costInput.style.display = 'block';
-                    costInput.value = Math.round(component.price * 0.8);
+                    costInput.value = component.cost;  // 改为使用真实成本价，而不是Math.round(component.price * 0.8)
                     
                     priceInput.style.display = 'block';
                     priceInput.value = component.price;

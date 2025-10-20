@@ -160,7 +160,7 @@ class ConfigGenerator {
 
         // 从选中组件中移除
         delete this.selectedComponents[type];
-    
+
         // 更新总计
         this.updateTotals();
     }

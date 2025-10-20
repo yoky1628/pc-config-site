@@ -36,7 +36,7 @@ class ConfigGenerator {
     renderTable() {
         const tbody = document.getElementById('tableBody');
         const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-        
+
         tbody.innerHTML = types.map(type => {
             if (type === '其它1' || type === '其它2') {
                 return `
@@ -105,6 +105,52 @@ class ConfigGenerator {
         }).join('');
     }
 
+    // 清除整行数据的方法
+    clearRowData(type) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+
+        if (!row) return;
+
+        if (type === '其它1' || type === '其它2') {
+            // 处理其它类型的行
+            const nameInput = row.querySelector('.other-name-input');
+            const quantityInput = row.querySelector('.quantity-input');
+            const costInput = row.querySelector('.cost-input');
+            const priceInput = row.querySelector('.price-input');
+
+            nameInput.value = '';
+            quantityInput.value = '1';
+            costInput.value = '0';
+            priceInput.value = '0';
+        } else {
+            // 处理普通配件行
+            const searchInput = row.querySelector('.search-input');
+            const quantityInput = row.querySelector('.quantity-input');
+            const costInput = row.querySelector('.cost-input');
+            const priceInput = row.querySelector('.price-input');
+
+            searchInput.value = '';
+            quantityInput.style.display = 'none';
+            quantityInput.value = '';
+            costInput.style.display = 'none';
+            costInput.value = '';
+            priceInput.style.display = 'none';
+            priceInput.value = '';
+        }
+
+        // 重置显示数据
+        const subtotalCell = row.querySelector('.subtotal');
+        const profitCell = row.querySelector('.profit');
+        subtotalCell.textContent = '-';
+        profitCell.textContent = '-';
+
+        // 从选中组件中移除
+        delete this.selectedComponents[type];
+
+        // 更新总计
+        this.updateTotals();
+    }
+
     bindEvents() {
         // 搜索功能事件
         document.addEventListener('input', (e) => {
@@ -114,6 +160,10 @@ class ConfigGenerator {
         });
 
         document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('clear-row-btn')) {
+                const type = e.target.dataset.type;
+                this.clearRowData(type);
+            }
             if (e.target.classList.contains('search-input')) {
                 if (e.target.value === '') {
                     this.showAllOptions(e.target);
@@ -122,7 +172,7 @@ class ConfigGenerator {
             if (e.target.classList.contains('dropdown-item')) {
                 this.selectComponent(e.target);
             }
-            
+
             // 新增：点击页面其他区域时隐藏下拉框
             this.handleOutsideClick(e);
         });
@@ -130,27 +180,27 @@ class ConfigGenerator {
         // 修复：添加普通配件的输入事件处理
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
-            
+
             // 处理普通配件的数量、价格、成本输入
             if (type && type !== '其它1' && type !== '其它2') {
                 if (e.target.classList.contains('quantity-input') ||
                     e.target.classList.contains('price-input') ||
                     e.target.classList.contains('cost-input')) {
-                    
+
                     this.handleRegularInput(type);
                 }
             }
-            
+
             // 处理其它类型的输入
-            if ((type === '其它1' || type === '其它2') && 
-                (e.target.classList.contains('other-name-input') || 
-                 e.target.classList.contains('quantity-input') ||
-                 e.target.classList.contains('price-input') ||
-                 e.target.classList.contains('cost-input'))) {
-                
+            if ((type === '其它1' || type === '其它2') &&
+                (e.target.classList.contains('other-name-input') ||
+                    e.target.classList.contains('quantity-input') ||
+                    e.target.classList.contains('price-input') ||
+                    e.target.classList.contains('cost-input'))) {
+
                 this.handleOtherInputImmediate(type);
             }
-            
+
             // 搜索输入保持原有逻辑
             if (e.target.classList.contains('search-input')) {
                 clearTimeout(this.inputTimeout);
@@ -190,13 +240,14 @@ class ConfigGenerator {
     // 新增方法：处理外部点击事件
     handleOutsideClick(e) {
         // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
-        if (!e.target.classList.contains('search-input') && 
+        if (!e.target.classList.contains('search-input') &&
             !e.target.classList.contains('dropdown-item') &&
             !e.target.closest('.dropdown')) {
-            
+
             this.hideAllDropdowns();
         }
     }
+
 
     // 新增方法：隐藏所有下拉框
     hideAllDropdowns() {
@@ -204,7 +255,7 @@ class ConfigGenerator {
         allDropdowns.forEach(dropdown => {
             dropdown.style.display = 'none';
         });
-        
+
         // 重置当前下拉框状态
         this.currentDropdown = null;
         this.currentDropdownItems = [];
@@ -220,7 +271,7 @@ class ConfigGenerator {
         const quantityInput = row.querySelector('.quantity-input');
         const priceInput = row.querySelector('.price-input');
         const costInput = row.querySelector('.cost-input');
-        
+
         // 获取输入值
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
@@ -255,7 +306,7 @@ class ConfigGenerator {
         const quantityInput = row.querySelector('.quantity-input');
         const priceInput = row.querySelector('.price-input');
         const costInput = row.querySelector('.cost-input');
-        
+
         const name = nameInput.value.trim();
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
@@ -271,7 +322,7 @@ class ConfigGenerator {
                 isCustom: true,
                 manualCost: cost > 0
             };
-            
+
             this.updateOtherRowDisplay(type);
         } else {
             delete this.selectedComponents[type];
@@ -286,7 +337,7 @@ class ConfigGenerator {
 
         const subtotal = component.price * component.quantity;
         const profit = (component.price - component.cost) * component.quantity;
-        
+
         const row = document.querySelector(`tr[data-type="${type}"]`);
         row.querySelector('.subtotal').textContent = `¥${subtotal}`;
         row.querySelector('.profit').textContent = `¥${profit}`;
@@ -298,18 +349,18 @@ class ConfigGenerator {
     updateOtherRowDisplay(type) {
         const component = this.selectedComponents[type];
         const row = document.querySelector(`tr[data-type="${type}"]`);
-        
+
         if (component && component.quantity > 0 && component.price > 0) {
             const subtotal = component.price * component.quantity;
             const profit = (component.price - component.cost) * component.quantity;
-            
+
             row.querySelector('.subtotal').textContent = `¥${subtotal}`;
             row.querySelector('.profit').textContent = `¥${profit}`;
         } else {
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }
-        
+
         this.updateTotals();
     }
 
@@ -332,7 +383,7 @@ class ConfigGenerator {
     handleSearch(input) {
         const query = input.value.trim();
         const type = input.dataset.type;
-        
+
         if (query === '') {
             this.showAllOptions(input);
             return;
@@ -358,10 +409,10 @@ class ConfigGenerator {
 
     showDropdown(input, components) {
         const dropdown = input.nextElementSibling;
-        
+
         // 新增：先隐藏所有其他下拉框
         this.hideAllDropdowns();
-        
+
         if (components.length === 0) {
             dropdown.style.display = 'none';
             this.currentDropdown = null;
@@ -387,7 +438,7 @@ class ConfigGenerator {
         const name = item.dataset.name;
         const type = item.dataset.type;
         const price = parseInt(item.dataset.price);
-        
+
         // 新增：从组件数据中查找真实的成本价
         const componentData = this.components.find(c => c.name === name && c.type === type);
         const actualCost = componentData ? componentData.cost : Math.round(price * 0.8); // 备用方案
@@ -403,13 +454,13 @@ class ConfigGenerator {
         const quantityInput = document.querySelector(`.quantity-input[data-type="${type}"]`);
         const costInput = document.querySelector(`.cost-input[data-type="${type}"]`);
         const priceInput = document.querySelector(`.price-input[data-type="${type}"]`);
-        
+
         quantityInput.style.display = 'block';
         quantityInput.value = '1';
-        
+
         costInput.style.display = 'block';
         costInput.value = actualCost;  // 修改这里：使用真实成本价
-        
+
         priceInput.style.display = 'block';
         priceInput.value = price;
 
@@ -464,14 +515,14 @@ class ConfigGenerator {
         items.forEach(item => item.classList.remove('selected'));
         if (items[index]) {
             items[index].classList.add('selected');
-            items[index].scrollIntoView({ block: 'nearest' });
+            items[index].scrollIntoView({block: 'nearest'});
         }
     }
 
     showPresetModal() {
         const modal = document.getElementById('presetModal');
         const presetList = document.getElementById('presetList');
-        
+
         const presets = this.getPresetConfigs();
         presetList.innerHTML = presets.map((preset, index) => `
             <div class="preset-item" data-index="${index}">
@@ -496,19 +547,19 @@ class ConfigGenerator {
                 name: '办公配置',
                 description: '适合日常办公使用',
                 components: [
-                    { type: 'CPU', name: 'Intel i5-13400F' },
-                    { type: '主板', name: '华硕 B760M-P' },
-                    { type: '内存', name: '金士顿 16GB DDR5 5200' }
+                    {type: 'CPU', name: 'Intel i5-13400F'},
+                    {type: '主板', name: '华硕 B760M-P'},
+                    {type: '内存', name: '金士顿 16GB DDR5 5200'}
                 ]
             },
             {
                 name: '游戏配置',
                 description: '主流游戏配置',
                 components: [
-                    { type: 'CPU', name: 'Intel i7-13700K' },
-                    { type: '主板', name: '华硕 B760M-P' },
-                    { type: '内存', name: '金士顿 16GB DDR5 5200' },
-                    { type: '显卡', name: '技嘉 RTX 4060 8G' }
+                    {type: 'CPU', name: 'Intel i7-13700K'},
+                    {type: '主板', name: '华硕 B760M-P'},
+                    {type: '内存', name: '金士顿 16GB DDR5 5200'},
+                    {type: '显卡', name: '技嘉 RTX 4060 8G'}
                 ]
             }
         ];
@@ -517,7 +568,7 @@ class ConfigGenerator {
     loadPresetConfig(index) {
         const presets = this.getPresetConfigs();
         const preset = presets[index];
-        
+
         if (!preset) return;
 
         Object.keys(this.selectedComponents).forEach(type => {
@@ -525,10 +576,10 @@ class ConfigGenerator {
         });
 
         preset.components.forEach(item => {
-            const component = this.components.find(c => 
+            const component = this.components.find(c =>
                 c.type === item.type && c.name === item.name
             );
-            
+
             if (component) {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
@@ -545,13 +596,13 @@ class ConfigGenerator {
                     const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
                     const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
-                    
+
                     quantityInput.style.display = 'block';
                     quantityInput.value = '1';
-                    
+
                     costInput.style.display = 'block';
                     costInput.value = component.cost;  // 改为使用真实成本价，而不是Math.round(component.price * 0.8)
-                    
+
                     priceInput.style.display = 'block';
                     priceInput.value = component.price;
 
@@ -574,20 +625,20 @@ class ConfigGenerator {
             const row = document.querySelector(`tr[data-type="${type}"]`);
             const input = row.querySelector('.search-input');
             input.value = '';
-            
+
             const quantityInput = row.querySelector('.quantity-input');
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
-            
+
             quantityInput.style.display = 'none';
             quantityInput.value = '';
-            
+
             costInput.style.display = 'none';
             costInput.value = '';
-            
+
             priceInput.style.display = 'none';
             priceInput.value = '';
-            
+
             row.querySelector('.subtotal').textContent = '-';
             row.querySelector('.profit').textContent = '-';
         }
@@ -597,48 +648,49 @@ class ConfigGenerator {
     }
 
     async copyConfigToClipboard() {
-    const lines = [];
-    let totalAmount = 0;
+        const lines = [];
+        let totalAmount = 0;
 
-    // 定义配件类型的显示顺序
-    const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-    
-    // 按照指定顺序处理配件
-    typeOrder.forEach(type => {
-        const component = this.selectedComponents[type];
-        if (component && component.quantity > 0 && component.price > 0) {
-            const subtotal = component.price * component.quantity;
-            totalAmount += subtotal;
-            
-            let displayName = component.name;
-            if (component.quantity > 1) {
-                displayName += `【数量${component.quantity}】`;
+        // 定义配件类型的显示顺序
+        const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+
+        // 按照指定顺序处理配件
+        typeOrder.forEach(type => {
+            const component = this.selectedComponents[type];
+            if (component && component.quantity > 0 && component.price > 0) {
+                const subtotal = component.price * component.quantity;
+                totalAmount += subtotal;
+
+                let displayName = component.name;
+                if (component.quantity > 1) {
+                    displayName += `【数量${component.quantity}】`;
+                }
+
+                lines.push(`${type}\t${displayName}\t${subtotal}`);
             }
-            
-            lines.push(`${type}\t${displayName}\t${subtotal}`);
+        });
+
+        if (lines.length > 0) {
+            lines.push(`总价\t${totalAmount}`);
         }
-    });
 
-    if (lines.length > 0) {
-        lines.push(`总价\t${totalAmount}`);
-    }
+        const text = lines.join('\n');
 
-    const text = lines.join('\n');
-
-    try {
-        await navigator.clipboard.writeText(text);
-        alert('配置单已复制到剪贴板！');
-    } catch (err) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('配置单已复制到剪贴板！');
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('配置单已复制到剪贴板！');
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('配置单已复制到剪贴板！');
+        }
     }
 }
-}
+
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();

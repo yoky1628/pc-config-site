@@ -722,7 +722,7 @@ class ConfigGenerator {
             // 更新总计
             this.updateTotals();
 
-            alert('配置单已清空！');
+            // alert('配置单已清空！');
         }
     }
 

@@ -405,7 +405,7 @@ tbody tr:hover {
 }
 /* 表格列宽优化 */
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
-    width: 12%;  /* 原15% → 12% */
+    width: 5%;  /* 原15% → 12% */
     min-width: 60px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */

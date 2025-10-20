@@ -249,7 +249,12 @@ tbody tr:hover {
         margin: 0 auto;
         width: 100%;
     }
-   
+   .clear-row-btn {
+        right: 4px;
+        padding: 3px 6px;
+        font-size: 10px;
+    }
+    
     .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -266,7 +271,8 @@ tbody tr:hover {
    
     /* 优化列宽 */
     th:nth-child(1), td:nth-child(1) {
-        min-width: 40px;
+        padding-right: 25px;
+        min-width: 70px;
     }
    
     th:nth-child(2), td:nth-child(2) {
@@ -404,9 +410,35 @@ tbody tr:hover {
     }
 }
 /* 表格列宽优化 */
+/* 清除行按钮样式 */
+.clear-row-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #e74c3c;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    line-height: 1;
+}
+
+.clear-row-btn:hover {
+    opacity: 1;
+    background: #c0392b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
     width: 12%;  /* 原15% → 12% */
-    min-width: 60px;
+    min-width: 80px;
+    position: relative;
+    padding-right: 30px; /* 为按钮留出空间 */
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
     width: 43%;  /* 原40% → 43% */

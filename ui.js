@@ -245,6 +245,11 @@ class ConfigGenerator {
             this.showPresetModal();
         });
 
+        // 一键清空配置单
+        document.getElementById('clearAll').addEventListener('click', () => {
+            this.clearAllConfig();
+        });
+
         // 模态框事件
         document.querySelector('.close').addEventListener('click', () => {
             document.getElementById('presetModal').style.display = 'none';
@@ -667,6 +672,58 @@ class ConfigGenerator {
 
         delete this.selectedComponents[type];
         this.updateTotals();
+    }
+
+    // 一键清空所有配置
+    clearAllConfig() {
+        if (confirm('确定要清空所有配置吗？这将清除所有已选择的配件。')) {
+            // 清空所有选中组件
+            this.selectedComponents = {};
+
+            // 重置所有行
+            const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+
+            types.forEach(type => {
+                const row = document.querySelector(`tr[data-type="${type}"]`);
+                if (!row) return;
+
+                if (type === '其它1' || type === '其它2') {
+                    // 重置其它配件行
+                    const nameInput = row.querySelector('.other-name-input');
+                    const quantityInput = row.querySelector('.quantity-input');
+                    const costInput = row.querySelector('.cost-input');
+                    const priceInput = row.querySelector('.price-input');
+
+                    nameInput.value = '';
+                    quantityInput.value = '1';
+                    costInput.value = '0';
+                    priceInput.value = '0';
+                } else {
+                    // 重置普通配件行
+                    const searchInput = row.querySelector('.search-input');
+                    const quantityInput = row.querySelector('.quantity-input');
+                    const costInput = row.querySelector('.cost-input');
+                    const priceInput = row.querySelector('.price-input');
+
+                    searchInput.value = '';
+                    quantityInput.value = '1';
+                    quantityInput.style.display = 'block';
+                    costInput.style.display = 'none';
+                    costInput.value = '';
+                    priceInput.style.display = 'none';
+                    priceInput.value = '';
+                }
+
+                // 重置显示数据
+                row.querySelector('.subtotal').textContent = '-';
+                row.querySelector('.profit').textContent = '-';
+            });
+
+            // 更新总计
+            this.updateTotals();
+
+            alert('配置单已清空！');
+        }
     }
 
     // 添加调整数量的方法

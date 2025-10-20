@@ -290,7 +290,7 @@ tbody tr:hover {
 
 /* 数量加减按钮 */
 .quantity-btn {
-    width: 180px;
+    width: 50px;
     height: 20px;
     border: 1px solid #ddd;
     background: #f8f9fa;
@@ -301,6 +301,7 @@ tbody tr:hover {
     justify-content: center;
     font-size: 12px;
     transition: all 0.2s ease;
+    flex-shrink: 0;  /* 新增：防止被压缩 */
 }
 
 .quantity-btn:hover {

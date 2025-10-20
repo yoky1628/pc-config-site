@@ -283,7 +283,9 @@ tbody tr:hover {
 .quantity-container {
     display: flex;
     align-items: center;
+    justify-content: center;  /* 添加这一行：水平居中对齐 */
     gap: 4px;
+    width: 100%;  /* 确保容器占满整个单元格 */
 }
 
 /* 数量加减按钮 */
@@ -354,7 +356,7 @@ tbody tr:hover {
     }
 
     .quantity-container {
-        gap: 2px;
+        justify-content: center;
     }
 
     .quantity-btn {
@@ -575,8 +577,6 @@ th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
     width: 6%; /* 原9% → 6% */
     min-width: 45px;
-    text-align: center;
-    
 }
 
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */

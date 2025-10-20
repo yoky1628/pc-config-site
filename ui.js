@@ -651,8 +651,9 @@ class ConfigGenerator {
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
 
-            quantityInput.style.display = 'none';
-            quantityInput.value = '';
+            // quantityInput.style.display = 'none';
+            quantityInput.style.display = 'block';  // 改为 block，保持显示
+            quantityInput.value = '';               // 清空数量值
 
             costInput.style.display = 'none';
             costInput.value = '';

@@ -121,28 +121,33 @@ class ConfigGenerator {
         if (!row) return;
 
         if (type === '其它1' || type === '其它2') {
-            // 处理其它类型的行
+            // 处理其它类型的行 - 只重置值，不隐藏元素
             const nameInput = row.querySelector('.other-name-input');
             const quantityInput = row.querySelector('.quantity-input');
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
 
             nameInput.value = '';
-            quantityInput.value = '1';
+            quantityInput.value = '1';  // 其它配件重置为1
             costInput.value = '0';
             priceInput.value = '0';
         } else {
-            // 处理普通配件行
+            // 处理普通配件行 - 重置值但保持数量容器可见
             const searchInput = row.querySelector('.search-input');
-            const quantityInput = row.querySelector('.quantity-input');
+            const quantityContainer = row.querySelector('.quantity-container');
+            const quantityInput = quantityContainer.querySelector('.quantity-input');
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
 
             searchInput.value = '';
-            quantityInput.style.display = 'none';
+
+            // 保持数量容器显示，只重置值
             quantityInput.value = '';
+            quantityInput.style.display = 'block';  // 确保显示
+
             costInput.style.display = 'none';
             costInput.value = '';
+
             priceInput.style.display = 'none';
             priceInput.value = '';
         }
@@ -155,7 +160,7 @@ class ConfigGenerator {
 
         // 从选中组件中移除
         delete this.selectedComponents[type];
-
+    
         // 更新总计
         this.updateTotals();
     }

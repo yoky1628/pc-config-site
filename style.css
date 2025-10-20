@@ -409,7 +409,7 @@ th:nth-child(1), td:nth-child(1) { /* 类型列 */
     min-width: 60px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 44%;  /* 原40% → 44% */
+    width: 43%;  /* 原40% → 43% */
     min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;

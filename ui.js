@@ -50,10 +50,11 @@ class ConfigGenerator {
                                    data-type="${type}" placeholder="请输入${type}名称">
                         </td>
                         <td>
-                            <div class="quantity-container">
+                            <!-- 修改：只为其它配件添加 quantity-container -->
+                            <div class="quantity-container" data-type="${type}">
                                 <button class="quantity-btn minus-btn" data-type="${type}">-</button>
                                 <input type="text" class="quantity-input" data-type="${type}" 
-                                       value="" placeholder="0" style="display: none;"
+                                       value="1" placeholder="1"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <button class="quantity-btn plus-btn" data-type="${type}">+</button>
                             </div>

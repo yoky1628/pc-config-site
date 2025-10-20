@@ -569,14 +569,14 @@ th:nth-child(1), td:nth-child(1) { /* 类型列 */
 }
 
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 36%; /* 原43% → 40% */
+    width: 38%; /* 原43% → 40% */
     min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 10%; /* 原9% → 6% */
+    width: 8%; /* 原9% → 6% */
     min-width: 45px;
 }
 

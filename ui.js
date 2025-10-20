@@ -677,6 +677,8 @@ class ConfigGenerator {
 
         if (isPlus) {
             quantity++;
+            // 确保数量框显示
+            quantityInput.style.display = 'block';
         } else {
             quantity = Math.max(0, quantity - 1); // 数量不能小于0
         }
@@ -697,6 +699,7 @@ class ConfigGenerator {
                 }
             } else if (quantity > 0) {
                 // 如果还没有选择配件但设置了数量，显示输入框
+                quantityInput.style.display = 'block';  // 确保数量框显示
                 const costInput = row.querySelector('.cost-input');
                 const priceInput = row.querySelector('.price-input');
                 costInput.style.display = 'block';

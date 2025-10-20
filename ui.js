@@ -50,9 +50,13 @@ class ConfigGenerator {
                                    data-type="${type}" placeholder="请输入${type}名称">
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="1" placeholder="1"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <div class="quantity-container">
+                                <button class="quantity-btn minus-btn" data-type="${type}">-</button>
+                                <input type="text" class="quantity-input" data-type="${type}" 
+                                       value="" placeholder="0" style="display: none;"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <button class="quantity-btn plus-btn" data-type="${type}">+</button>
+                            </div>
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 
@@ -83,9 +87,13 @@ class ConfigGenerator {
                             </div>
                         </td>
                         <td>
-                            <input type="text" class="quantity-input" data-type="${type}" 
-                                   value="" placeholder="0" style="display: none;"
-                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <div class="quantity-container">
+                                <button class="quantity-btn minus-btn" data-type="${type}">-</button>
+                                <input type="text" class="quantity-input" data-type="${type}" 
+                                       value="1" placeholder="1"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <button class="quantity-btn plus-btn" data-type="${type}">+</button>
+                            </div>
                         </td>
                         <td>
                             <input type="text" class="cost-input" data-type="${type}" 

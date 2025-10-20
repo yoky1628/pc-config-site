@@ -41,7 +41,10 @@ class ConfigGenerator {
             if (type === '其它1' || type === '其它2') {
                 return `
                     <tr data-type="${type}">
-                        <td>${type}</td>
+                        <td>
+                            ${type}
+                            <button class="clear-row-btn" data-type="${type}" title="清除整行">🗑️</button>
+                        </td>
                         <td>
                             <input type="text" class="other-name-input" 
                                    data-type="${type}" placeholder="请输入${type}名称">
@@ -68,7 +71,10 @@ class ConfigGenerator {
             } else {
                 return `
                     <tr data-type="${type}">
-                        <td>${type}</td>
+                        <td>
+                            ${type}
+                            <button class="clear-row-btn" data-type="${type}" title="清除整行">🗑️</button>
+                        </td>
                         <td>
                             <div class="search-container">
                                 <input type="text" class="search-input" placeholder="搜索或选择配件" 

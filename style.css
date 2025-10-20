@@ -119,19 +119,6 @@ tbody tr:hover {
     border-radius: 3px;
     font-size: 14px;
 }
-.dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #ced4da;
-    border-top: none;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 .dropdown-item {
     padding: 8px 12px;
     cursor: pointer;
@@ -402,6 +389,19 @@ tbody tr:hover {
         left: auto;
         right: auto;
     }
+    .dropdown {
+        width: 100% !important;  /* 强制满td */
+        font-size: 10px;  /* 匹配小屏字体 */
+        max-height: 150px;  /* 减小，避免过多滚动 */
+    }
+    
+    .dropdown-item {
+        padding: 6px 4px;  /* 减小padding，适应窄宽 */
+        font-size: 10px;
+        white-space: nowrap;  /* 单行显示 */
+        overflow: hidden;
+        text-overflow: ellipsis;  /* 长文本省略... */
+    }
 }
 /* 表格列宽优化 */
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
@@ -409,30 +409,30 @@ th:nth-child(1), td:nth-child(1) { /* 类型列 */
     min-width: 60px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 25%;
-    min-width: 100px;
+    width: 40%;
+    min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 10%;
-    min-width: 50px;
+    width: 9%;
+    min-width: 45px;
 }
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */
-    width: 12%;
-    min-width: 60px;
+    width: 9%;
+    min-width: 50px;
 }
 th:nth-child(5), td:nth-child(5) { /* 销售价列 */
-    width: 12%;
-    min-width: 60px;
+    width: 9%;
+    min-width: 50px;
 }
 th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 13%;
-    min-width: 65px;
+    width: 9%;
+    min-width: 55px;
 }
 th:nth-child(7), td:nth-child(7) { /* 利润列 */
-    width: 13%;
-    min-width: 65px;
+    width: 9%;
+    min-width: 55px;
 }
 /* 输入框占满单元格 */
 td input {
@@ -462,14 +462,21 @@ th:nth-child(7) {
 .price-input {
     text-align: right;
 }
-/* 下拉菜单优化 */
+/* 下拉菜单优化（统一规则：包含定位和自适应） */
 .dropdown {
+    position: absolute;  /* 从第一个继承，确保定位 */
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;  /* 新增：强制满父td宽，随单元格变化 */
     background: white;
     border: 1px solid #ddd;
     border-radius: 0 0 4px 4px;
+    border-top: none;  /* 统一用none，避免双线 */
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* 从第一个继承，添加阴影 */
 }
 .dropdown-item {
     padding: 8px 12px;
@@ -481,7 +488,7 @@ th:nth-child(7) {
     border-bottom: none;
 }
 .dropdown-item:hover {
-    background: #f8f9fa;
+    background: #3498db;
 }
 .dropdown-item.selected {
     background: #3498db;

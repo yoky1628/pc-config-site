@@ -557,6 +557,7 @@ tbody tr:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* 表格列表框控制 */
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
     width: 16%; /* 原12% → 16% */
     min-width: 80px;
@@ -574,6 +575,7 @@ th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
     width: 6%; /* 原9% → 6% */
     min-width: 45px;
+    text-align: center;
 }
 
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */

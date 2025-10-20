@@ -405,33 +405,33 @@ tbody tr:hover {
 }
 /* 表格列宽优化 */
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
-    width: 15%;
+    width: 12%;  /* 原15% → 12% */
     min-width: 60px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 40%;
+    width: 44%;  /* 原40% → 44% */
     min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 9%;
+    width: 9%;   /* 保持不变 */
     min-width: 45px;
 }
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */
-    width: 9%;
+    width: 9%;   /* 保持不变 */
     min-width: 50px;
 }
 th:nth-child(5), td:nth-child(5) { /* 销售价列 */
-    width: 9%;
+    width: 9%;   /* 保持不变 */
     min-width: 50px;
 }
 th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 9%;
+    width: 9%;   /* 保持不变 */
     min-width: 55px;
 }
 th:nth-child(7), td:nth-child(7) { /* 利润列 */
-    width: 9%;
+    width: 9%;   /* 保持不变 */
     min-width: 55px;
 }
 /* 输入框占满单元格 */

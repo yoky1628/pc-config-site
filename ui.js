@@ -168,6 +168,13 @@ class ConfigGenerator {
         });
 
         document.addEventListener('click', (e) => {
+            // 新增：加减按钮事件
+            if (e.target.classList.contains('quantity-btn')) {
+                const type = e.target.dataset.type;
+                const isPlus = e.target.classList.contains('plus-btn');
+                this.adjustQuantity(type, isPlus);
+            }
+
             if (e.target.classList.contains('clear-row-btn')) {
                 const type = e.target.dataset.type;
                 this.clearRowData(type);
@@ -653,6 +660,43 @@ class ConfigGenerator {
 
         delete this.selectedComponents[type];
         this.updateTotals();
+    }
+
+    // 添加调整数量的方法
+    adjustQuantity(type, isPlus) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        const quantityInput = row.querySelector('.quantity-input');
+
+        let quantity = parseInt(quantityInput.value) || 0;
+
+        if (isPlus) {
+            quantity++;
+        } else {
+            quantity = Math.max(0, quantity - 1); // 数量不能小于0
+        }
+
+        quantityInput.value = quantity;
+
+        // 触发输入事件来更新价格计算
+        if (type === '其它1' || type === '其它2') {
+            this.handleOtherInputImmediate(type);
+        } else {
+            // 对于普通配件，只有当已经选择了配件时才更新
+            if (this.selectedComponents[type]) {
+                this.selectedComponents[type].quantity = quantity;
+                if (quantity > 0) {
+                    this.updateRegularRow(type);
+                } else {
+                    this.clearSelection(type);
+                }
+            } else if (quantity > 0) {
+                // 如果还没有选择配件但设置了数量，显示输入框
+                const costInput = row.querySelector('.cost-input');
+                const priceInput = row.querySelector('.price-input');
+                costInput.style.display = 'block';
+                priceInput.style.display = 'block';
+            }
+        }
     }
 
     async copyConfigToClipboard() {

@@ -225,7 +225,7 @@ tbody tr:hover {
     width: 80px;
 }
 /* 移除所有输入框的上下箭头 */
-.quantity-input::-webkit-outer-spin-button,
+/*.quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button,
 .cost-input::-webkit-outer-spin-button,
 .cost-input::-webkit-inner-spin-button,
@@ -238,7 +238,7 @@ tbody tr:hover {
 .cost-input[type=number],
 .price-input[type=number] {
     -moz-appearance: textfield;
-}
+} */
 /* 移动端表格优化 */
 @media (max-width: 768px) {
     body {

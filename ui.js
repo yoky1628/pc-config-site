@@ -42,8 +42,8 @@ class ConfigGenerator {
                 return `
                     <tr data-type="${type}">
                         <td>
-                            ${type}
-                            <button class="clear-row-btn" data-type="${type}" title="清除整行">🗑️</button>
+                            <span class="type-text">${type}</span>
+                            <button class="clear-row-btn" data-type="${type}" title="清除整行">×</button>
                         </td>
                         <td>
                             <input type="text" class="other-name-input" 
@@ -72,8 +72,8 @@ class ConfigGenerator {
                 return `
                     <tr data-type="${type}">
                         <td>
-                            ${type}
-                            <button class="clear-row-btn" data-type="${type}" title="清除整行">🗑️</button>
+                            <span class="type-text">${type}</span>
+                            <button class="clear-row-btn" data-type="${type}" title="清除整行">×</button>
                         </td>
                         <td>
                             <div class="search-container">

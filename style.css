@@ -243,7 +243,7 @@ tbody tr:hover {
         padding: 5px;
         font-size: 14px;
     }
-   
+
     .container {
         border-radius: 5px;
         margin: 0 auto;
@@ -254,7 +254,7 @@ tbody tr:hover {
         padding: 2px 4px;
         font-size: 8px;
     }
-    
+
     .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -262,55 +262,55 @@ tbody tr:hover {
         padding: 0;
         width: 100%;
     }
-   
+
     table {
         min-width: 500px;
         font-size: 12px;
         table-layout: fixed;
     }
-   
+
     /* 优化列宽 */
     th:nth-child(1), td:nth-child(1) {
         padding-right: 25px;
         min-width: 70px;
     }
-   
+
     th:nth-child(2), td:nth-child(2) {
         min-width: 80px;
     }
-   
+
     th:nth-child(3), td:nth-child(3) {
         min-width: 35px;
     }
-   
+
     th:nth-child(4), td:nth-child(4) {
         min-width: 50px;
     }
-   
+
     th:nth-child(5), td:nth-child(5) {
         min-width: 50px;
     }
-   
+
     th:nth-child(6), td:nth-child(6) {
         min-width: 55px;
     }
-   
+
     th:nth-child(7), td:nth-child(7) {
         min-width: 55px;
     }
-   
+
     th, td {
         padding: 6px 2px;
         font-size: 11px;
         line-height: 1.2;
     }
-   
+
     .search-input,
     .other-name-input {
         font-size: 11px;
         padding: 4px;
     }
-   
+
     .quantity-input,
     .cost-input,
     .price-input {
@@ -318,19 +318,19 @@ tbody tr:hover {
         font-size: 11px;
         padding: 4px;
     }
-   
+
     .controls {
         padding: 10px;
         gap: 5px;
     }
-   
+
     .btn {
         padding: 6px 10px;
         font-size: 12px;
         flex: 1;
         min-width: auto;
     }
-   
+
     .total-row {
         padding: 10px 15px;
         font-size: 14px;
@@ -338,17 +338,17 @@ tbody tr:hover {
         gap: 5px;
         text-align: center;
     }
-   
+
     .logo-area {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
     }
-   
+
     .logo-area h1 {
         font-size: 18px;
     }
-   
+
     .date {
         font-size: 12px;
     }
@@ -358,11 +358,11 @@ tbody tr:hover {
     body {
         padding: 2px;
     }
-   
+
     table {
         min-width: 400px;
     }
-   
+
     th:nth-child(1), td:nth-child(1) { min-width: 35px; }
     th:nth-child(2), td:nth-child(2) { min-width: 70px; }
     th:nth-child(3), td:nth-child(3) { min-width: 30px; }
@@ -370,12 +370,12 @@ tbody tr:hover {
     th:nth-child(5), td:nth-child(5) { min-width: 45px; }
     th:nth-child(6), td:nth-child(6) { min-width: 50px; }
     th:nth-child(7), td:nth-child(7) { min-width: 50px; }
-   
+
     th, td {
         padding: 3px 1px;
         font-size: 10px;
     }
-   
+
     .search-input,
     .other-name-input,
     .quantity-input,
@@ -384,7 +384,7 @@ tbody tr:hover {
         font-size: 10px;
         padding: 2px;
     }
-   
+
     .btn {
         padding: 5px 8px;
         font-size: 11px;
@@ -400,7 +400,7 @@ tbody tr:hover {
         font-size: 10px;  /* 匹配小屏字体 */
         max-height: 150px;  /* 减小，避免过多滚动 */
     }
-    
+
     .dropdown-item {
         padding: 6px 4px;  /* 减小padding，适应窄宽 */
         font-size: 10px;
@@ -435,19 +435,19 @@ tbody tr:hover {
 }
 
 th:nth-child(1), td:nth-child(1) { /* 类型列 */
-    width: 12%;  /* 原15% → 12% */
+    width: 16%;  /* 原12% → 16% */
     min-width: 80px;
     position: relative;
-    padding-right: 30px; /* 为按钮留出空间 */
+    padding-right: 30px;
 }
 th:nth-child(2), td:nth-child(2) { /* 配件名称列 */
-    width: 43%;  /* 原40% → 43% */
+    width: 40%;  /* 原43% → 40% */
     min-width: 180px;
     word-break: break-word;
     overflow-wrap: break-word;
 }
 th:nth-child(3), td:nth-child(3) { /* 数量列 */
-    width: 9%;   /* 保持不变 */
+    width: 6%;   /* 原9% → 6% */
     min-width: 45px;
 }
 th:nth-child(4), td:nth-child(4) { /* 成本价列 */
@@ -459,11 +459,11 @@ th:nth-child(5), td:nth-child(5) { /* 销售价列 */
     min-width: 50px;
 }
 th:nth-child(6), td:nth-child(6) { /* 小计列 */
-    width: 9%;   /* 保持不变 */
+    width: 10%;  /* 原9% → 10% */
     min-width: 55px;
 }
 th:nth-child(7), td:nth-child(7) { /* 利润列 */
-    width: 9%;   /* 保持不变 */
+    width: 10%;  /* 原9% → 10% */
     min-width: 55px;
 }
 /* 输入框占满单元格 */
@@ -569,16 +569,16 @@ th:nth-child(7) {
         background: white;
         padding: 0;
     }
-   
+
     .container {
         box-shadow: none;
         border-radius: 0;
     }
-   
+
     .controls {
         display: none;
     }
-   
+
     .btn {
         display: none;
     }

@@ -690,22 +690,22 @@ class ConfigGenerator {
         if (type === '其它1' || type === '其它2') {
             this.handleOtherInputImmediate(type);
         } else {
-            // 对于普通配件，只有当已经选择了配件时才更新
-            if (this.selectedComponents[type]) {
-                this.selectedComponents[type].quantity = quantity;
-                if (quantity > 0) {
-                    this.updateRegularRow(type);
-                } else {
-                    this.clearSelection(type);
-                }
-            } else if (quantity > 0) {
-                // 如果还没有选择配件但设置了数量，显示输入框
-                quantityInput.style.display = 'block';  // 确保数量框显示
-                const costInput = row.querySelector('.cost-input');
-                const priceInput = row.querySelector('.price-input');
-                costInput.style.display = 'block';
-                priceInput.style.display = 'block';
-            }
+            // 这里这里：其它配件数量减到0时删除该配件
+            // 直接在这里清空该行的所有数据
+            const nameInput = row.querySelector('.other-name-input');
+            const costInput = row.querySelector('.cost-input');
+            const priceInput = row.querySelector('.price-input');
+
+            nameInput.value = '';
+            quantityInput.value = '1';  // 重置数量为1
+            costInput.value = '0';
+            priceInput.value = '0';
+
+            row.querySelector('.subtotal').textContent = '-';
+            row.querySelector('.profit').textContent = '-';
+
+            delete this.selectedComponents[type];
+            this.updateTotals();
         }
     }
 

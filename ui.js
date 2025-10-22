@@ -810,10 +810,6 @@ class ConfigGenerator {
     }
 }
 
-// 初始化应用
-document.addEventListener('DOMContentLoaded', () => {
-    new ConfigGenerator();
-});
 
 class ConfigGenerator {
     constructor() {

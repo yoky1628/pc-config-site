@@ -814,7 +814,7 @@ class ConfigGenerator {
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();
 });
-=======
+
 class ConfigGenerator {
     constructor() {
         this.components = [];
@@ -1631,4 +1631,3 @@ class ConfigGenerator {
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();
 });
->>>>>>> df8247cd9dd3d6f194cdc973b5283882ec52f1a8

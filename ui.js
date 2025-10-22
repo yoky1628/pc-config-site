@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class ConfigGenerator {
     constructor() {
         this.components = [];

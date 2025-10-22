@@ -610,7 +610,7 @@ class ConfigGenerator {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
                     this.selectedComponents[item.type] = {
-                        name: component.name,
+                        refined_name: component.name,
                         price: component.price,
                         cost: Math.round(component.price * 0.8),
                         quantity: 1,

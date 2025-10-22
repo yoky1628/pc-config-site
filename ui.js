@@ -423,7 +423,7 @@ class ConfigGenerator {
         const lowerQuery = query.toLowerCase();
         return this.components.filter(component => {
             if (component.type !== type) return false;
-            return component.name.toLowerCase().includes(lowerQuery);
+            return component.refined_name.toLowerCase().includes(lowerQuery);
         });
     }
 
@@ -448,9 +448,9 @@ class ConfigGenerator {
         }
 
         dropdown.innerHTML = components.map(component => `
-            <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
+            <div class="dropdown-item" data-name="${component.refined_name}" data-type="${component.type}"
                  data-price="${component.price}">
-                ${component.name} (¥${component.price})
+                ${component.refined_name} (¥${component.price})
             </div>
         `).join('');
 
@@ -610,7 +610,7 @@ class ConfigGenerator {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
                     this.selectedComponents[item.type] = {
-                        refined_name: component.name,
+                        refined_name: component.refined_name,
                         price: component.price,
                         cost: Math.round(component.price * 0.8),
                         quantity: 1,
@@ -618,7 +618,7 @@ class ConfigGenerator {
                         manualCost: false
                     };
 
-                    input.value = component.name;
+                    input.value = component.refined_name;
                     const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
                     const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
@@ -780,7 +780,7 @@ class ConfigGenerator {
                 const subtotal = component.price * component.quantity;
                 totalAmount += subtotal;
 
-                let displayName = component.name;
+                let displayName = component.refined_name;
                 if (component.quantity > 1) {
                     displayName += `【数量${component.quantity}】`;
                 }

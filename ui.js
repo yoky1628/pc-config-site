@@ -586,7 +586,8 @@ class ConfigGenerator {
                 components: [
                     {type: 'CPU', name: 'Intel i5-13400F'},
                     {type: '主板', name: '华硕 B760M-P'},
-                    {type: '内存', name: '金士顿 16GB DDR5 5200'}
+                    {type: '内存', name: '金士顿 16GB DDR5 5200'},
+                    {type: '固态硬盘', name: '金士顿 NV2 1TB NVMe PCIe 4.0 固态硬盘'}
                 ]
             },
             {
@@ -596,7 +597,8 @@ class ConfigGenerator {
                     {type: 'CPU', name: 'Intel i7-13700K'},
                     {type: '主板', name: '华硕 B760M-P'},
                     {type: '内存', name: '金士顿 16GB DDR5 5200'},
-                    {type: '显卡', name: '技嘉 RTX 4060 8G'}
+                    {type: '显卡', name: '技嘉 RTX 4060 8G'},
+                    {type: '固态硬盘', name: '金士顿 NV2 1TB NVMe PCIe 4.0 固态硬盘'}
                 ]
             }
         ];
@@ -621,9 +623,9 @@ class ConfigGenerator {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
                     this.selectedComponents[item.type] = {
-                        refined_name: component.refined_name,
+                        refined_name: component.name,
                         price: component.price,
-                        cost: Math.round(component.price * 0.8),
+                        cost: component.cost,  // 使用真实成本价
                         quantity: 1,
                         isCustom: false,
                         manualCost: false

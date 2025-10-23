@@ -451,7 +451,7 @@ class ConfigGenerator {
         }
 
         dropdown.innerHTML = components.map(component => `
-            <div class="dropdown-item" data-name="${component.refined_name}" data-type="${component.type}"
+            <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
                  data-price="${component.price}">
                 
                 ${component.name} (¥${component.price})  <!-- 显示完整名称 -->
@@ -629,7 +629,7 @@ class ConfigGenerator {
                         manualCost: false
                     };
 
-                    input.value = component.refined_name;
+                    input.value = component.name;
                     const quantityInput = document.querySelector(`.quantity-input[data-type="${item.type}"]`);
                     const costInput = document.querySelector(`.cost-input[data-type="${item.type}"]`);
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
@@ -791,7 +791,7 @@ class ConfigGenerator {
                 const subtotal = component.price * component.quantity;
                 totalAmount += subtotal;
 
-                let displayName = component.refined_name;
+                let displayName = component.name;
                 if (component.quantity > 1) {
                     displayName += `【数量${component.quantity}】`;
                 }

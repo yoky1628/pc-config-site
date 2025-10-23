@@ -466,8 +466,14 @@ class ConfigGenerator {
         const price = parseInt(item.dataset.price);
 
         // 新增：从组件数据中查找真实的成本价
-        const componentData = this.components.find(c => c.name === name && c.type === type);
-        const actualCost = componentData ? componentData.cost : Math.round(price * 0.8); // 备用方案
+        // c 代表当前正在遍历的配件对象（来自 this.components 数组）
+        // c.refined_name 是当前配件的精简显示名称（来自 data.json）
+        // name 是用户从下拉列表选择的名称（实际上是 refined_name，来自 item.dataset.name）
+        const componentData = this.components.find(c => c.refined_name === name && c.type === type);
+        // componentData 如果找到，就是匹配的完整配件对象
+        // componentData.cost 是该配件的真实成本价
+        // 如果没找到(componentData为undefined)，成本价设为0
+        const actualCost = componentData ? componentData.cost : 0; // 备用方案
 
         item.closest('.dropdown').style.display = 'none';
         this.currentDropdown = null;

@@ -779,9 +779,68 @@ class ConfigGenerator {
         }
     }
 
+    // async copyConfigToClipboard() {
+    //     const lines = [];
+    //     let totalAmount = 0;
+    //
+    //     // 定义配件类型的显示顺序
+    //     const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+    //
+    //     // 按照指定顺序处理配件
+    //     typeOrder.forEach(type => {
+    //         const component = this.selectedComponents[type];
+    //         if (component && component.quantity > 0 && component.price > 0) {
+    //             const subtotal = component.price * component.quantity;
+    //             totalAmount += subtotal;
+    //
+    //             let displayName = component.name;
+    //             if (component.quantity > 1) {
+    //                 displayName += `【数量${component.quantity}】`;
+    //             }
+    //
+    //             lines.push(`${type}\t${displayName}\t${subtotal}`);
+    //         }
+    //     });
+    //
+    //     if (lines.length > 0) {
+    //         lines.push(`总价\t${totalAmount}`);
+    //     }
+    //
+    //     const text = lines.join('\n');
+    //
+    //     try {
+    //         await navigator.clipboard.writeText(text);
+    //         alert('配置单已复制到剪贴板！');
+    //     } catch (err) {
+    //         const textArea = document.createElement('textarea');
+    //         textArea.value = text;
+    //         document.body.appendChild(textArea);
+    //         textArea.select();
+    //         document.execCommand('copy');
+    //         document.body.removeChild(textArea);
+    //         alert('配置单已复制到剪贴板！');
+    //     }
+    // }
+
     async copyConfigToClipboard() {
         const lines = [];
         let totalAmount = 0;
+
+        // 添加标题和生成时间
+        lines.push('电脑配置单');
+        const now = new Date();
+        const timeStr = now.toLocaleString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }).replace(/\//g, '/');
+        lines.push(`生成时间：${timeStr}`);
+        lines.push('========================================');
+        lines.push(''); // 空行
 
         // 定义配件类型的显示顺序
         const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
@@ -795,16 +854,17 @@ class ConfigGenerator {
 
                 let displayName = component.name;
                 if (component.quantity > 1) {
-                    displayName += `【数量${component.quantity}】`;
+                    displayName += ` ×${component.quantity}`;
                 }
 
-                lines.push(`${type}\t${displayName}\t${subtotal}`);
+                lines.push(`● ${type}：【${displayName}】${subtotal}元`);
             }
         });
 
-        if (lines.length > 0) {
-            lines.push(`总价\t${totalAmount}`);
-        }
+        // 添加分隔符和总价
+        lines.push('');
+        lines.push('========================================');
+        lines.push(`配置总价：${totalAmount}元 （不含运费，默认顺丰到付）`);
 
         const text = lines.join('\n');
 

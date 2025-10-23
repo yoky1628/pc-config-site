@@ -423,7 +423,10 @@ class ConfigGenerator {
         const lowerQuery = query.toLowerCase();
         return this.components.filter(component => {
             if (component.type !== type) return false;
-            return component.refined_name.toLowerCase().includes(lowerQuery);
+            // return component.refined_name.toLowerCase().includes(lowerQuery);
+
+            // 修改这里：搜索时匹配完整名称
+            return component.name.toLowerCase().includes(lowerQuery);
         });
     }
 
@@ -450,7 +453,8 @@ class ConfigGenerator {
         dropdown.innerHTML = components.map(component => `
             <div class="dropdown-item" data-name="${component.refined_name}" data-type="${component.type}"
                  data-price="${component.price}">
-                ${component.refined_name} (¥${component.price})
+                
+                ${component.name} (¥${component.price})  <!-- 显示完整名称 -->
             </div>
         `).join('');
 
@@ -469,7 +473,8 @@ class ConfigGenerator {
         // c 代表当前正在遍历的配件对象（来自 this.components 数组）
         // c.refined_name 是当前配件的精简显示名称（来自 data.json）
         // name 是用户从下拉列表选择的名称（实际上是 refined_name，来自 item.dataset.name）
-        const componentData = this.components.find(c => c.refined_name === name && c.type === type);
+        // const componentData = this.components.find(c => c.refined_name === name && c.type === type);
+        const componentData = this.components.find(c => c.name === name && c.type === type);
         // componentData 如果找到，就是匹配的完整配件对象
         // componentData.cost 是该配件的真实成本价
         // 如果没找到(componentData为undefined)，成本价设为0

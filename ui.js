@@ -35,7 +35,7 @@ class ConfigGenerator {
 
     renderTable() {
         const tbody = document.getElementById('tableBody');
-        const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        const types = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
         tbody.innerHTML = types.map(type => {
             if (type === '其它1' || type === '其它2') {

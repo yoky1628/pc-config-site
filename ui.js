@@ -694,7 +694,7 @@ class ConfigGenerator {
             this.selectedComponents = {};
 
             // 重置所有行
-            const types = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+            const types = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
             types.forEach(type => {
                 const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -843,7 +843,7 @@ class ConfigGenerator {
         lines.push(''); // 空行
 
         // 定义配件类型的显示顺序
-        const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
+        const typeOrder = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
         // 按照指定顺序处理配件
         typeOrder.forEach(type => {

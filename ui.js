@@ -460,7 +460,33 @@ class ConfigGenerator {
 
         dropdown.style.display = 'block';
 
-        dropdown.style.width = '650px';  // 宽度变大！（可调成 300px 或其他）
+        // dropdown.style.width = '650px';  // 宽度变大！（可调成 300px 或其他）
+
+        // ← 新增：自适应宽度（手机/电脑通用）
+        let dropdownWidth;
+        if (window.innerWidth < 768) {  // 手机端
+            dropdownWidth = 'calc(100vw - 20px)';  // 全屏宽 - 边距
+        } else {
+            dropdownWidth = input.offsetWidth + 20 + 'px';  // 电脑：匹配输入框 + 余量
+        }
+        dropdown.style.width = dropdownWidth;
+
+        // ← 新增：确保定位和样式（手机端也适用）
+        dropdown.style.position = 'absolute';
+        dropdown.style.left = '0';  // 对齐输入框左边
+        dropdown.style.zIndex = '1000';
+        dropdown.style.backgroundColor = 'white';
+        dropdown.style.border = '1px solid #ccc';
+        dropdown.style.borderTop = 'none';  // 可选：上边框不显示
+        dropdown.style.maxHeight = '200px';
+        dropdown.style.overflowY = 'auto';
+        dropdown.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';  // 稍强阴影，手机更明显
+
+        
+
+
+
+
 
         this.currentDropdown = dropdown;
         this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));

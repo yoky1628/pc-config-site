@@ -463,14 +463,22 @@ class ConfigGenerator {
         this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
 
 
-        // ← JS 辅助：精确高度到 .container 底（手机）
         if (window.innerWidth < 768) {
+            const inputRect = input.getBoundingClientRect(); // 用输入框位置，确保左对齐
+            const screenWidth = window.innerWidth;
+            const extendWidth = screenWidth - inputRect.left - 20; // 从输入框左到屏幕右 -20px
             const container = document.querySelector('.container');
-            const dropdownRect = dropdown.getBoundingClientRect();
             const containerRect = container.getBoundingClientRect();
-            const availableHeight = containerRect.bottom - dropdownRect.top - 10; // -10px 安全距
-            dropdown.style.setProperty('max-height', Math.max(150, availableHeight) + 'px', 'important'); // 最小150px
+            const availableHeight = containerRect.bottom - inputRect.bottom - 10; // 到容器底 -10px
+
+            dropdown.style.setProperty('width', extendWidth + 'px', 'important');
+            dropdown.style.setProperty('left', inputRect.left + 'px', 'important'); // 精确左对齐输入框
+            dropdown.style.setProperty('max-height', Math.max(150, availableHeight) + 'px', 'important');
             dropdown.style.overflowY = 'auto';
+            dropdown.style.right = 'auto'; // 忽略 right，确保向右延伸
+
+            // 调试日志（用完删）
+            console.log('输入框 left:', inputRect.left, '延伸宽度:', extendWidth, '高度:', availableHeight);
         }
 
         this.currentSelectedIndex = -1;

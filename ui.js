@@ -459,6 +459,9 @@ class ConfigGenerator {
         `).join('');
 
         dropdown.style.display = 'block';
+
+        dropdown.style.width = '650px';  // 宽度变大！（可调成 300px 或其他）
+
         this.currentDropdown = dropdown;
         this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
         this.currentSelectedIndex = -1;

@@ -421,12 +421,26 @@ class ConfigGenerator {
 
     searchComponents(query, type) {
         const lowerQuery = query.toLowerCase();
-        return this.components.filter(component => {
-            if (component.type !== type) return false;
-            // return component.refined_name.toLowerCase().includes(lowerQuery);
 
-            // 修改这里：搜索时匹配完整名称
-            return component.name.toLowerCase().includes(lowerQuery);
+        // 解析关键词（空格分隔）
+        const keywords = lowerQuery.split(/\s+/).filter(k => k);
+
+        return this.components.filter(component => {
+            if (component.type !== type) return false;  // 只限对应分类
+    
+            // 品牌/规格 OR 匹配（含任意一个关键词）
+            if (keywords.length > 0) {
+                const hasMatch = keywords.some(kw => component.name.toLowerCase().includes(kw));
+                if (!hasMatch) return false;
+            } else {
+                // 无关键词时，返回所有对应 type
+                return true;
+            }
+
+            return true;
+        }).sort((a, b) => {  // 价格升序，其次名称
+            if (a.price !== b.price) return a.price - b.price;
+            return a.name.localeCompare(b.name, 'zh', { sensitivity: 'base' });
         });
     }
 

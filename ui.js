@@ -461,6 +461,18 @@ class ConfigGenerator {
         dropdown.style.display = 'block';
         this.currentDropdown = dropdown;
         this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
+
+
+        // ← JS 辅助：精确高度到 .container 底（手机）
+        if (window.innerWidth < 768) {
+            const container = document.querySelector('.container');
+            const dropdownRect = dropdown.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const availableHeight = containerRect.bottom - dropdownRect.top - 10; // -10px 安全距
+            dropdown.style.setProperty('max-height', Math.max(150, availableHeight) + 'px', 'important'); // 最小150px
+            dropdown.style.overflowY = 'auto';
+        }
+
         this.currentSelectedIndex = -1;
     }
 

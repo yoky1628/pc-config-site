@@ -34,6 +34,7 @@ class ConfigGenerator {
                     row.querySelector('.quantity-input').value = component.quantity || 1;
                     row.querySelector('.cost-input').value = component.cost || 0;
                     row.querySelector('.price-input').value = component.price || 0;
+                    this.handleOtherInputImmediate(type);
                 } else {
                     row.querySelector('.search-input').value = component.name || '';
                     row.querySelector('.quantity-input').value = component.quantity || 1;
@@ -44,6 +45,7 @@ class ConfigGenerator {
                 }
 
                 this.selectedComponents[type] = component;
+                this.updateRegularRow(type);
             });
 
             this.updateTotals();
@@ -53,7 +55,7 @@ class ConfigGenerator {
         }
     }
 
-    
+
 
 
 

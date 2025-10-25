@@ -181,7 +181,7 @@ class ConfigGenerator {
                 this.adjustQuantity(type, isPlus);
             }
 
-            
+
             if (e.target.classList.contains('search-input')) {
                 if (e.target.value === '') {
                     this.showAllOptions(e.target);
@@ -460,6 +460,10 @@ class ConfigGenerator {
             this.currentSelectedIndex = -1;
             return;
         }
+
+        // 先按价格排序
+        const sortedComponents = components.sort((a, b) => a.price - b.price); // 价格从低到高
+        // 或者 b.price - a.price 从高到低
 
         dropdown.innerHTML = components.map(component => `
             <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"

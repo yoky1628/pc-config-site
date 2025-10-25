@@ -529,7 +529,7 @@ tbody tr:hover {
     .dropdown-item {
         padding: 6px 4px; /* 减小padding，适应窄宽 */
         font-size: 10px;
-        white-space: nowrap; /* 单行显示 */
+        white-space: normal; /* 单行显示或者多行 */
         overflow: hidden;
         text-overflow: ellipsis; /* 长文本省略... */
     }

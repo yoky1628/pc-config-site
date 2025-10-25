@@ -238,6 +238,15 @@ class ConfigGenerator {
             this.copyConfigToClipboard();
         });
 
+        // 就添加这两行：
+        document.getElementById('saveConfig').addEventListener('click', () => {
+            this.saveConfig();
+        });
+
+        document.getElementById('loadConfig').addEventListener('click', () => {
+            this.loadConfig();
+        });
+
         document.getElementById('loadPreset').addEventListener('click', () => {
             this.showPresetModal();
         });

@@ -419,14 +419,28 @@ class ConfigGenerator {
         this.showDropdown(input, results);
     }
 
+    // searchComponents(query, type) {
+    //     const lowerQuery = query.toLowerCase();
+    //     return this.components.filter(component => {
+    //         if (component.type !== type) return false;
+    //         // return component.refined_name.toLowerCase().includes(lowerQuery);
+    //
+    //         // 修改这里：搜索时匹配完整名称
+    //         return component.name.toLowerCase().includes(lowerQuery);
+    //     });
+    // }
+
     searchComponents(query, type) {
-        const lowerQuery = query.toLowerCase();
+        const keywords = query.toLowerCase().split(/\s+/);
+
         return this.components.filter(component => {
             if (component.type !== type) return false;
-            // return component.refined_name.toLowerCase().includes(lowerQuery);
 
-            // 修改这里：搜索时匹配完整名称
-            return component.name.toLowerCase().includes(lowerQuery);
+            const text = component.name.toLowerCase();
+            // 超级简单的智能匹配：把空格和特殊字符都当成普通字符
+            return keywords.every(keyword =>
+                text.replace(/[\s\-\+\(\)]/g, '').includes(keyword)
+            );
         });
     }
 

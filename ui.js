@@ -1,4 +1,63 @@
 class ConfigGenerator {
+    // 保存配置到本地存储
+    saveConfig() {
+        try {
+            const configData = {
+                components: this.selectedComponents,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('pcConfig', JSON.stringify(configData));
+            alert('配置已保存！');
+        } catch (e) {
+            alert('保存失败');
+        }
+    }
+
+    // 从本地存储加载配置
+    loadConfig() {
+        try {
+            const saved = localStorage.getItem('pcConfig');
+            if (!saved) {
+                alert('没有找到保存的配置');
+                return;
+            }
+
+            const configData = JSON.parse(saved);
+            this.clearAllConfig();
+
+            Object.entries(configData.components).forEach(([type, component]) => {
+                const row = document.querySelector(`tr[data-type="${type}"]`);
+                if (!row) return;
+
+                if (type === '其它1' || type === '其它2') {
+                    row.querySelector('.other-name-input').value = component.name || '';
+                    row.querySelector('.quantity-input').value = component.quantity || 1;
+                    row.querySelector('.cost-input').value = component.cost || 0;
+                    row.querySelector('.price-input').value = component.price || 0;
+                } else {
+                    row.querySelector('.search-input').value = component.name || '';
+                    row.querySelector('.quantity-input').value = component.quantity || 1;
+                    row.querySelector('.cost-input').value = component.cost || 0;
+                    row.querySelector('.price-input').value = component.price || 0;
+                    row.querySelector('.cost-input').style.display = 'block';
+                    row.querySelector('.price-input').style.display = 'block';
+                }
+
+                this.selectedComponents[type] = component;
+            });
+
+            this.updateTotals();
+            alert('配置加载成功！');
+        } catch (e) {
+            alert('加载配置失败');
+        }
+    }
+
+    
+
+
+
+
     constructor() {
         this.components = [];
         this.selectedComponents = {};

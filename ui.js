@@ -421,26 +421,12 @@ class ConfigGenerator {
 
     searchComponents(query, type) {
         const lowerQuery = query.toLowerCase();
-
-        // 解析关键词（空格分隔）
-        const keywords = lowerQuery.split(/\s+/).filter(k => k);
-
         return this.components.filter(component => {
-            if (component.type !== type) return false;  // 只限对应分类
-    
-            // 品牌/规格 OR 匹配（含任意一个关键词）
-            if (keywords.length > 0) {
-                const hasMatch = keywords.some(kw => component.name.toLowerCase().includes(kw));
-                if (!hasMatch) return false;
-            } else {
-                // 无关键词时，返回所有对应 type
-                return true;
-            }
+            if (component.type !== type) return false;
+            // return component.refined_name.toLowerCase().includes(lowerQuery);
 
-            return true;
-        }).sort((a, b) => {  // 价格升序，其次名称
-            if (a.price !== b.price) return a.price - b.price;
-            return a.name.localeCompare(b.name, 'zh', { sensitivity: 'base' });
+            // 修改这里：搜索时匹配完整名称
+            return component.name.toLowerCase().includes(lowerQuery);
         });
     }
 
@@ -451,61 +437,32 @@ class ConfigGenerator {
     }
 
     showDropdown(input, components) {
-    const dropdown = input.nextElementSibling;
+        const dropdown = input.nextElementSibling;
 
-    // 新增：先隐藏所有其他下拉框
-    this.hideAllDropdowns();
+        // 新增：先隐藏所有其他下拉框
+        this.hideAllDropdowns();
 
-    if (components.length === 0) {
-        dropdown.style.display = 'none';
-        this.currentDropdown = null;
-        this.currentDropdownItems = [];
-        this.currentSelectedIndex = -1;
-        return;
-    }
-
-    // ← 新增：优先按价格升序，其次按名称升序排序
-    components.sort((a, b) => {
-        if (a.price !== b.price) {
-            return a.price - b.price;  // 价格升序
+        if (components.length === 0) {
+            dropdown.style.display = 'none';
+            this.currentDropdown = null;
+            this.currentDropdownItems = [];
+            this.currentSelectedIndex = -1;
+            return;
         }
-        return a.name.localeCompare(b.name, 'zh', { sensitivity: 'base' });  // 名称升序（中文/英文通用，忽略大小写/标点）
-    });
 
-    dropdown.innerHTML = components.map(component => `
-        <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
-             data-price="${component.price}">
-            
-            ${component.name} (¥${component.price})  <!-- 显示完整名称 -->
-        </div>
-    `).join('');
+        dropdown.innerHTML = components.map(component => `
+            <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
+                 data-price="${component.price}">
+                
+                ${component.name} (¥${component.price})  <!-- 显示完整名称 -->
+            </div>
+        `).join('');
 
-    dropdown.style.display = 'block';
-
-    // ← 你的自适应宽度代码（保持不变）
-    let dropdownWidth;
-    if (window.innerWidth < 768) {
-        dropdownWidth = 'calc(100vw - 20px)';
-    } else {
-        dropdownWidth = input.offsetWidth + 20 + 'px';
+        dropdown.style.display = 'block';
+        this.currentDropdown = dropdown;
+        this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
+        this.currentSelectedIndex = -1;
     }
-    dropdown.style.width = dropdownWidth;
-
-    // 你的其他定位样式（保持不变）
-    dropdown.style.position = 'absolute';
-    dropdown.style.left = '0';
-    dropdown.style.zIndex = '1000';
-    dropdown.style.backgroundColor = 'white';
-    dropdown.style.border = '1px solid #ccc';
-    dropdown.style.borderTop = 'none';
-    dropdown.style.maxHeight = '200px';
-    dropdown.style.overflowY = 'auto';
-    dropdown.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-
-    this.currentDropdown = dropdown;
-    this.currentDropdownItems = Array.from(dropdown.querySelectorAll('.dropdown-item'));
-    this.currentSelectedIndex = -1;
-}
 
     selectComponent(item) {
         const name = item.dataset.name;

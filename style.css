@@ -323,40 +323,6 @@ tbody tr:hover {
     font-size: 14px;
 }
 
-
-/* ← 手机端：宽度延展到右边距20px，高度延伸到 .container 底 */
-@media (max-width: 768px) {
-    .dropdown {
-        width: calc(100vw - 20px) !important; /* 延展到屏幕最右 -20px */
-        left: calc(-100vw + 100% + 20px) !important; /* 从 td 左开始，溢出到屏幕右 -20px（精确对齐 td 左 + 全宽 -20px） */
-        right: auto !important; /* 忽略 right，别拉伸 */
-        max-width: none !important;
-        max-height: calc(100vh - 120px) !important; /* 高度到屏幕底 -120px（预留 header/controls/summary 高 ≈100-120px）；实际延伸到 .container 底需 JS 辅助见下 */
-        border-radius: 4px;
-        font-size: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .dropdown-item {
-        padding: 10px 12px;
-        font-size: 12px;
-        min-height: 20px;
-        white-space: normal !important; /* 强制换行，无截断 */
-        overflow: visible !important; /* 允许文本完整显示 */
-        text-overflow: clip !important; /* 禁止 ellipsis */
-        word-wrap: break-word; /* 确保长词换行 */
-        hyphens: auto; /* 可选：自动断字 */
-    }
-
-    .search-container {
-        position: relative !important;
-    }
-}
-
-
-
-
-
 /* 移动端表格优化 */
 @media (max-width: 768px) {
     body {
@@ -555,20 +521,17 @@ tbody tr:hover {
     }
 
     .dropdown {
-        width: calc(100vw - 10px) !important; /* 减边距，更贴右 */
-        left: calc(-100vw + 100% + 10px) !important;
-        font-size: 11px; /* 匹配小屏字体 */
-        max-height: calc(100vh - 100px) !important; /* 调整预留高 */
+        width: 100% !important; /* 强制满td */
+        font-size: 10px; /* 匹配小屏字体 */
+        max-height: 150px; /* 减小，避免过多滚动 */
     }
 
     .dropdown-item {
-        padding: 8px 10px;
-        font-size: 11px;
-        white-space: normal !important; /* 强制覆盖原 nowrap */
-        overflow: visible !important; /* 覆盖原 hidden */
-        text-overflow: clip !important; /* 覆盖原 ellipsis */
-        word-wrap: break-word; /* 长词换行 */
-        line-height: 1.4; /* 稍增行高，易读 */
+        padding: 6px 4px; /* 减小padding，适应窄宽 */
+        font-size: 10px;
+        white-space: nowrap; /* 单行显示 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 长文本省略... */
     }
 }
 
@@ -671,19 +634,19 @@ th:nth-child(7) {
 
 /* 下拉菜单优化（统一规则：包含定位和自适应） */
 .dropdown {
-    position: absolute;
+    position: absolute; /* 从第一个继承，确保定位 */
     top: 100%;
     left: 0;
     right: 0;
-    width: 100%; /* 电脑：满 td 宽（180px min） */
+    width: 100%; /* 新增：强制满父td宽，随单元格变化 */
     background: white;
     border: 1px solid #ddd;
     border-radius: 0 0 4px 4px;
-    border-top: none;
-    max-height: 200px; /* 电脑：默认200px，可滚动 */
+    border-top: none; /* 统一用none，避免双线 */
+    max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 从第一个继承，添加阴影 */
 }
 
 .dropdown-item {
@@ -691,10 +654,6 @@ th:nth-child(7) {
     border-bottom: 1px solid #f5f5f5;
     cursor: pointer;
     transition: background-color 0.2s;
-    white-space: normal; /* 允许换行，显示完整长名 */
-    overflow: visible; /* 别隐藏溢出文本 */
-    text-overflow: clip; /* 别 ellipsis */
-    line-height: 1.3; /* 易读行高 */
 }
 
 .dropdown-item:last-child {
@@ -703,7 +662,6 @@ th:nth-child(7) {
 
 .dropdown-item:hover {
     background: #3498db;
-    color: white;
 }
 
 .dropdown-item.selected {

@@ -43,7 +43,7 @@ class ConfigGenerator {
                     <tr data-type="${type}">
                         <td>
                             <span class="type-text">${type}</span>
-                            <button class="clear-row-btn" data-type="${type}" title="清除整行">×</button>
+                            
                         </td>
                         <td>
                             <input type="text" class="other-name-input" 
@@ -78,7 +78,7 @@ class ConfigGenerator {
                     <tr data-type="${type}">
                         <td>
                             <span class="type-text">${type}</span>
-                            <button class="clear-row-btn" data-type="${type}" title="清除整行">×</button>
+                            
                         </td>
                         <td>
                             <div class="search-container">
@@ -181,10 +181,7 @@ class ConfigGenerator {
                 this.adjustQuantity(type, isPlus);
             }
 
-            if (e.target.classList.contains('clear-row-btn')) {
-                const type = e.target.dataset.type;
-                this.clearRowData(type);
-            }
+            
             if (e.target.classList.contains('search-input')) {
                 if (e.target.value === '') {
                     this.showAllOptions(e.target);

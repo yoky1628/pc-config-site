@@ -15,45 +15,50 @@ class ConfigGenerator {
 
     // 从本地存储加载配置
     loadConfig() {
-        try {
-            const saved = localStorage.getItem('pcConfig');
-            if (!saved) {
-                alert('没有找到保存的配置');
-                return;
+    try {
+        const saved = localStorage.getItem('pcConfig');
+        if (!saved) {
+            alert('没有找到保存的配置');
+            return;
+        }
+
+        const configData = JSON.parse(saved);
+        this.clearAllConfig();
+
+        Object.entries(configData.components).forEach(([type, component]) => {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            if (!row) return;
+
+            if (type === '其它1' || type === '其它2') {
+                // 其它配件处理逻辑不变
+                row.querySelector('.other-name-input').value = component.name || '';
+                row.querySelector('.quantity-input').value = component.quantity || 1;
+                row.querySelector('.cost-input').value = component.cost || 0;
+                row.querySelector('.price-input').value = component.price || 0;
+                this.handleOtherInputImmediate(type);
+            } else {
+                // 安全修改：只更新显示，不触发搜索
+                const searchInput = row.querySelector('.search-input');
+                searchInput.value = component.name || '';
+
+                // 直接更新选中组件数据，避免触发input事件
+                this.selectedComponents[type] = {
+                    ...component,
+                    name: component.name || ''
+                };
+
+                // 手动更新行显示
+                this.updateRegularRow(type);
             }
 
-            const configData = JSON.parse(saved);
-            this.clearAllConfig();
-
-            Object.entries(configData.components).forEach(([type, component]) => {
-                const row = document.querySelector(`tr[data-type="${type}"]`);
-                if (!row) return;
-
-                if (type === '其它1' || type === '其它2') {
-                    row.querySelector('.other-name-input').value = component.name || '';
-                    row.querySelector('.quantity-input').value = component.quantity || 1;
-                    row.querySelector('.cost-input').value = component.cost || 0;
-                    row.querySelector('.price-input').value = component.price || 0;
-                    this.handleOtherInputImmediate(type);
-                } else {
-                    row.querySelector('.search-input').value = component.name || '';
-                    row.querySelector('.quantity-input').value = component.quantity || 1;
-                    row.querySelector('.cost-input').value = component.cost || 0;
-                    row.querySelector('.price-input').value = component.price || 0;
-                    row.querySelector('.cost-input').style.display = 'block';
-                    row.querySelector('.price-input').style.display = 'block';
-                }
-
-                this.selectedComponents[type] = component;
-                this.updateRegularRow(type);
-            });
-
             this.updateTotals();
-            alert('配置加载成功！');
-        } catch (e) {
-            alert('加载配置失败');
-        }
+        });
+
+        alert('配置加载成功！');
+    } catch (e) {
+        alert('加载配置失败');
     }
+}
 
 
 

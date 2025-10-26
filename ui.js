@@ -787,7 +787,7 @@ class ConfigGenerator {
         const lines = [];
         let totalAmount = 0;
 
-        lines.push('电脑配置单');
+        lines.push('装机天下电脑配置单 www.dnpz.net');
         const now = new Date();
         const timeStr = now.toLocaleString('zh-CN', {
             year: 'numeric',
@@ -799,8 +799,7 @@ class ConfigGenerator {
             hour12: false
         }).replace(/\//g, '/');
         lines.push(`生成时间：${timeStr}`);
-        lines.push('========================================');
-        lines.push('');
+        lines.push('=======================');
 
         const typeOrder = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
@@ -819,9 +818,12 @@ class ConfigGenerator {
             }
         });
 
-        lines.push('');
-        lines.push('========================================');
+        lines.push('=======================');
         lines.push(`配置总价：${totalAmount}元 （不含运费，默认顺丰到付）`);
+        lines.push(`承诺：所有配件保证全新正品 利润微薄！不议价！`);
+        lines.push(`微信：156169653`);
+        lines.push(`官方网站：http:www.dnpz.net`);
+        lines.push(`淘宝店：装机天下组装电脑店`);
 
         const text = lines.join('\n');
 

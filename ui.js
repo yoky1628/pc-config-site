@@ -600,28 +600,28 @@ class ConfigGenerator {
                 name: '办公配置',
                 description: '经济实用办公电脑配置',
                 components: [
-                    {type: 'CPU', name: '（散片）英特尔 i3-12100F CPU处理器【4核8线程】质保三年'},
-                    {type: '散热器', name: '安钛克 A35 2热管 静音无光CPU散热器（1700架构/intel平台专用）'},
-                    {type: '主板', name: '七彩虹 H610M-D V20 DDR4 台式机主板'},
-                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条'},
-                    {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘'},
-                    {type: '显卡', name: '艾尔莎 R5 220 1G 幻影 办公家用独立显卡（VGA+DVI+HDMI）'},
-                    {type: '电源', name: '硕一台式机电脑电源全新PC电源 静音王450W额定300W(静音版)'},
-                    {type: '机箱', name: '硕美达 2522 U2*2 办公商务机箱（仅支持小板）'}
+                    {type: 'CPU', name: '（散片）英特尔 i3-12100F CPU处理器【4核8线程】质保三年', quantity: 1},
+                    {type: '散热器', name: '安钛克 A35 2热管 静音无光CPU散热器（1700架构/intel平台专用）', quantity: 1},
+                    {type: '主板', name: '七彩虹 H610M-D V20 DDR4 台式机主板', quantity: 1},
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},  // 添加 quantity: 2
+                    {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
+                    {type: '显卡', name: '艾尔莎 R5 220 1G 幻影 办公家用独立显卡（VGA+DVI+HDMI）', quantity: 1},
+                    {type: '电源', name: '硕一台式机电脑电源全新PC电源 静音王450W额定300W(静音版)', quantity: 1},
+                    {type: '机箱', name: '硕美达 2522 U2*2 办公商务机箱（仅支持小板）', quantity: 1}
                 ]
             },
             {
                 name: '游戏配置',
                 description: '高性能游戏电脑配置',
                 components: [
-                    {type: 'CPU', name: '(散片)英特尔 i5-12400F 6核12线程 CPU(LGA1700/4.4Ghz /18M)'},
-                    {type: '散热器', name: '安钛克 战虎 A400SE 战斗版 4铜管 散热器（高度148MM/Intel平台专用）'},
-                    {type: '主板', name: '微星（MSI）PRO H610M-S DDR4  台式机主板'},
-                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条'},
-                    {type: '固态硬盘', name: '雷克沙 NM610PRO 1T M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘'},
-                    {type: '显卡', name: '七彩虹 RTX 5050 8G DUO 战斧双风扇 电竞游戏显卡'},
-                    {type: '电源', name: '安钛克 BP500P  额定500W 台式机电脑静音电源'},
-                    {type: '机箱', name: '技展 天空之城  黑 海景房机箱（支持240水冷）'}
+                    {type: 'CPU', name: '(散片)英特尔 i5-12400F 6核12线程 CPU(LGA1700/4.4Ghz /18M)', quantity: 1},
+                    {type: '散热器', name: '安钛克 战虎 A400SE 战斗版 4铜管 散热器（高度148MM/Intel平台专用）', quantity: 1},
+                    {type: '主板', name: '微星（MSI）PRO H610M-S DDR4  台式机主板', quantity: 1},
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},  // 添加 quantity: 2
+                    {type: '固态硬盘', name: '雷克沙 NM610PRO 1T M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
+                    {type: '显卡', name: '七彩虹 RTX 5050 8G DUO 战斧双风扇 电竞游戏显卡', quantity: 1},
+                    {type: '电源', name: '安钛克 BP500P  额定500W 台式机电脑静音电源', quantity: 1},
+                    {type: '机箱', name: '技展 天空之城  黑 海景房机箱（支持240水冷）', quantity: 1}
                 ]
             }
         ];

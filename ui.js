@@ -1,4 +1,125 @@
 class ConfigGenerator {
+    // 在ConfigGenerator类中添加这个方法
+importFromText(configText) {
+    try {
+        // 清空当前配置
+        this.clearAllConfig();
+        
+        const lines = configText.split('\n');
+        let currentType = '';
+        
+        lines.forEach(line => {
+            line = line.trim();
+            
+            // 匹配配件行：● 类型：【名称】价格元
+            const match = line.match(/●\s*([^：]+)：【([^】]+)】(\d+)元/);
+            if (match) {
+                const type = match[1].trim();
+                let name = match[2].trim();
+                const price = parseInt(match[3]);
+                
+                // 处理数量（如 "内存条 ×2"）
+                let quantity = 1;
+                const quantityMatch = name.match(/×(\d+)$/);
+                if (quantityMatch) {
+                    quantity = parseInt(quantityMatch[1]);
+                    name = name.replace(/×\d+$/, '').trim();
+                }
+                
+                this.importComponent(type, name, price, quantity);
+            }
+        });
+        
+        this.updateTotals();
+        alert('配置导入成功！');
+    } catch (e) {
+        console.error('导入失败:', e);
+        alert('导入失败，请检查格式是否正确');
+    }
+}
+
+// 辅助方法：导入单个组件
+importComponent(type, name, price, quantity = 1) {
+    const component = this.components.find(c => 
+        c.type === type && c.name.includes(name)
+    );
+    
+    if (component) {
+        const row = document.querySelector(`tr[data-type="${type}"]`);
+        if (row) {
+            const searchInput = row.querySelector('.search-input');
+            const quantityInput = row.querySelector('.quantity-input');
+            const costInput = row.querySelector('.cost-input');
+            const priceInput = row.querySelector('.price-input');
+            
+            searchInput.value = component.name;
+            quantityInput.value = quantity;
+            costInput.value = component.cost;
+            priceInput.value = price;
+            
+            quantityInput.style.display = 'block';
+            costInput.style.display = 'block';
+            priceInput.style.display = 'block';
+            
+            this.selectedComponents[type] = {
+                name: component.name,
+                price: price,
+                cost: component.cost,
+                quantity: quantity,
+                isCustom: false,
+                manualCost: false
+            };
+            
+            this.updateRegularRow(type);
+        }
+    }
+}
+
+// 在bindEvents()中添加按钮事件
+document.getElementById('importConfig').addEventListener('click', () => {
+    this.showImportModal();
+});
+
+// 显示导入模态框
+showImportModal() {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>粘贴配置单文本</h3>
+            <textarea id="importTextarea" placeholder="请粘贴配置单文本..." rows="15" style="width: 100%; margin: 10px 0;"></textarea>
+            <button id="confirmImport" class="btn primary">确认导入</button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    modal.style.display = 'block';
+    
+    // 事件绑定
+    modal.querySelector('.close').addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    
+    modal.querySelector('#confirmImport').addEventListener('click', () => {
+        const text = document.getElementById('importTextarea').value;
+        if (text.trim()) {
+            this.importFromText(text);
+            document.body.removeChild(modal);
+        } else {
+            alert('请输入配置单文本');
+        }
+    });
+    
+    // 点击外部关闭
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+}
+    
+    
     // 保存配置到本地存储
     saveConfig() {
         try {
@@ -603,7 +724,7 @@ class ConfigGenerator {
                     {type: 'CPU', name: '（散片）英特尔 i3-12100F CPU处理器【4核8线程】质保三年', quantity: 1},
                     {type: '散热器', name: '安钛克 A35 2热管 静音无光CPU散热器（1700架构/intel平台专用）', quantity: 1},
                     {type: '主板', name: '七彩虹 H610M-D V20 DDR4 台式机主板', quantity: 1},
-                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},  // 添加 quantity: 2
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 1},  // 添加 quantity: 2
                     {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
                     {type: '显卡', name: '艾尔莎 R5 220 1G 幻影 办公家用独立显卡（VGA+DVI+HDMI）', quantity: 1},
                     {type: '电源', name: '硕一台式机电脑电源全新PC电源 静音王450W额定300W(静音版)', quantity: 1},
@@ -611,8 +732,8 @@ class ConfigGenerator {
                 ]
             },
             {
-                name: 'AMD配置',
-                description: 'AMD平台高性价比配置',
+                name: '轻度游戏',
+                description: 'AMD高性能核显游戏配置',
                 components: [
                     {type: 'CPU', name: '（盒装）AMD 锐龙5 5600GT处理器(r5) 6核12线程 加速频率至高4.6GHz', quantity: 1},
                     {type: '主板', name: '技嘉 A520M K V2 VGA HDMI 双接口', quantity: 1},

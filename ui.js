@@ -82,41 +82,69 @@ document.getElementById('importConfig').addEventListener('click', () => {
 
 // 显示导入模态框
 showImportModal() {
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close">&times;</span>
+    // 复用现有的预设配置模态框
+    const modal = document.getElementById('presetModal');
+    const presetList = document.getElementById('presetList');
+
+    // 保存原始内容以便恢复
+    const originalContent = presetList.innerHTML;
+
+    // 设置导入界面
+    presetList.innerHTML = `
+        <div style="text-align: left;">
             <h3>粘贴配置单文本</h3>
-            <textarea id="importTextarea" placeholder="请粘贴配置单文本..." rows="15" style="width: 100%; margin: 10px 0;"></textarea>
-            <button id="confirmImport" class="btn primary">确认导入</button>
+            <textarea id="importTextarea" placeholder="请粘贴配置单文本..." rows="12" style="width: 100%; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;"></textarea>
+            <button id="confirmImport" class="btn primary" style="width: 100%;">确认导入</button>
         </div>
     `;
-    
-    document.body.appendChild(modal);
+
     modal.style.display = 'block';
-    
-    // 事件绑定
-    modal.querySelector('.close').addEventListener('click', () => {
-        document.body.removeChild(modal);
-    });
-    
-    modal.querySelector('#confirmImport').addEventListener('click', () => {
+
+    // 自动聚焦到文本区域
+    setTimeout(() => {
+        const textarea = document.getElementById('importTextarea');
+        if (textarea) textarea.focus();
+    }, 100);
+
+    // 事件绑定 - 使用一次性事件监听器
+    const confirmHandler = () => {
         const text = document.getElementById('importTextarea').value;
         if (text.trim()) {
             this.importFromText(text);
-            document.body.removeChild(modal);
+            modal.style.display = 'none';
+            // 恢复原始内容
+            presetList.innerHTML = originalContent;
         } else {
             alert('请输入配置单文本');
         }
-    });
-    
-    // 点击外部关闭
-    window.addEventListener('click', (e) => {
+    };
+
+    const importBtn = document.getElementById('confirmImport');
+    importBtn.addEventListener('click', confirmHandler, { once: true });
+
+    // 修改关闭按钮行为 - 恢复原始内容
+    const closeBtn = modal.querySelector('.close');
+    const originalCloseHandler = closeBtn.onclick;
+
+    closeBtn.onclick = () => {
+        modal.style.display = 'none';
+        // 恢复原始内容
+        presetList.innerHTML = originalContent;
+        // 恢复原始关闭事件
+        closeBtn.onclick = originalCloseHandler;
+    };
+
+    // 点击外部关闭 - 同样恢复原始内容
+    const clickHandler = (e) => {
         if (e.target === modal) {
-            document.body.removeChild(modal);
+            modal.style.display = 'none';
+            // 恢复原始内容
+            presetList.innerHTML = originalContent;
+            window.removeEventListener('click', clickHandler);
         }
-    });
+    };
+
+    window.addEventListener('click', clickHandler);
 }
     
     

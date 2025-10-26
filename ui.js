@@ -611,6 +611,18 @@ class ConfigGenerator {
                 ]
             },
             {
+                name: 'AMD配置',
+                description: 'AMD平台高性价比配置',
+                components: [
+                    {type: 'CPU', name: '（盒装）AMD 锐龙5 5600GT处理器(r5) 6核12线程 加速频率至高4.6GHz', quantity: 1},
+                    {type: '主板', name: '技嘉 A520M K V2 VGA HDMI 双接口', quantity: 1},
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},
+                    {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
+                    {type: '电源', name: '航嘉GS400 额定300W静音台式电源(工包）', quantity: 1},
+                    {type: '机箱', name: '技展 天空之城  黑 海景房机箱（支持240水冷）', quantity: 1}
+                ]
+            },
+            {
                 name: '游戏配置',
                 description: '高性能游戏电脑配置',
                 components: [

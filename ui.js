@@ -598,12 +598,16 @@ class ConfigGenerator {
         return [
             {
                 name: '办公配置',
-                description: '适合日常办公使用',
+                description: '经济实用办公电脑配置',
                 components: [
-                    {type: 'CPU', name: 'Intel i5-13400F'},
-                    {type: '主板', name: '华硕 B760M-P'},
-                    {type: '内存', name: '金士顿 16GB DDR5 5200'},
-                    {type: '固态硬盘', name: '金士顿 NV2 1TB NVMe PCIe 4.0 固态硬盘'}
+                    {type: 'CPU', name: '（散片）英特尔 i3-12100F CPU处理器【4核8线程】质保三年'},
+                    {type: '散热器', name: '安钛克 A35 2热管 静音无光CPU散热器（1700架构/intel平台专用）'},
+                    {type: '主板', name: '七彩虹 H610M-D V20 DDR4 台式机主板'},
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条'},
+                    {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘'},
+                    {type: '显卡', name: '艾尔莎 R5 220 1G 幻影 办公家用独立显卡（VGA+DVI+HDMI）'},
+                    {type: '电源', name: '硕一台式机电脑电源全新PC电源 静音王450W额定300W(静音版)'},
+                    {type: '机箱', name: '硕美达 2522 U2*2 办公商务机箱（仅支持小板）'}
                 ]
             },
             {
@@ -641,11 +645,14 @@ class ConfigGenerator {
             if (component) {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
+                    // 新增：支持预设数量，保持向后兼容
+                    const quantity = item.quantity || 1;
+
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
                         cost: component.cost,
-                        quantity: 1,
+                        quantity: quantity,  // 修改这里
                         isCustom: false,
                         manualCost: false
                     };
@@ -656,7 +663,7 @@ class ConfigGenerator {
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
 
                     quantityInput.style.display = 'block';
-                    quantityInput.value = '1';
+                    quantityInput.value = quantity;  // 修改这里
 
                     costInput.style.display = 'block';
                     costInput.value = component.cost;
@@ -669,7 +676,6 @@ class ConfigGenerator {
             }
         });
     }
-
     clearSelection(type) {
         if (type === '其它1' || type === '其它2') {
             const row = document.querySelector(`tr[data-type="${type}"]`);

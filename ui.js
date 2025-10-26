@@ -813,7 +813,6 @@ class ConfigGenerator {
             this.clearAllConfig();
 
             const lines = configText.split('\n');
-            let currentType = '';
 
             lines.forEach(line => {
                 line = line.trim();
@@ -823,17 +822,22 @@ class ConfigGenerator {
                 if (match) {
                     const type = match[1].trim();
                     let name = match[2].trim();
-                    const price = parseInt(match[3]);
+                    const subtotal = parseInt(match[3]);  // 小计金额
 
-                    // 处理数量（如 "内存条 ×2"）
+                    // 更精确方案：只对内存处理数量，其他配件默认数量1
                     let quantity = 1;
-                    const quantityMatch = name.match(/×(\d+)$/);
-                    if (quantityMatch) {
-                        quantity = parseInt(quantityMatch[1]);
-                        name = name.replace(/×\d+$/, '').trim();
+                    if (type === '内存') {
+                        const quantityMatch = name.match(/×(\d+)$/);
+                        if (quantityMatch) {
+                            quantity = parseInt(quantityMatch[1]);
+                            name = name.replace(/×\d+$/, '').trim();
+                        }
                     }
 
-                    this.importComponent(type, name, price, quantity);
+                    // 计算单价：小计 ÷ 数量
+                    const unitPrice = Math.round(subtotal / quantity);
+
+                    this.importComponent(type, name, unitPrice, quantity);
                 }
             });
 

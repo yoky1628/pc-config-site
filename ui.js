@@ -1,153 +1,4 @@
 class ConfigGenerator {
-    // 在ConfigGenerator类中添加这个方法
-importFromText(configText) {
-    try {
-        // 清空当前配置
-        this.clearAllConfig();
-        
-        const lines = configText.split('\n');
-        let currentType = '';
-        
-        lines.forEach(line => {
-            line = line.trim();
-            
-            // 匹配配件行：● 类型：【名称】价格元
-            const match = line.match(/●\s*([^：]+)：【([^】]+)】(\d+)元/);
-            if (match) {
-                const type = match[1].trim();
-                let name = match[2].trim();
-                const price = parseInt(match[3]);
-                
-                // 处理数量（如 "内存条 ×2"）
-                let quantity = 1;
-                const quantityMatch = name.match(/×(\d+)$/);
-                if (quantityMatch) {
-                    quantity = parseInt(quantityMatch[1]);
-                    name = name.replace(/×\d+$/, '').trim();
-                }
-                
-                this.importComponent(type, name, price, quantity);
-            }
-        });
-        
-        this.updateTotals();
-        alert('配置导入成功！');
-    } catch (e) {
-        console.error('导入失败:', e);
-        alert('导入失败，请检查格式是否正确');
-    }
-}
-
-// 辅助方法：导入单个组件
-importComponent(type, name, price, quantity = 1) {
-    const component = this.components.find(c => 
-        c.type === type && c.name.includes(name)
-    );
-    
-    if (component) {
-        const row = document.querySelector(`tr[data-type="${type}"]`);
-        if (row) {
-            const searchInput = row.querySelector('.search-input');
-            const quantityInput = row.querySelector('.quantity-input');
-            const costInput = row.querySelector('.cost-input');
-            const priceInput = row.querySelector('.price-input');
-            
-            searchInput.value = component.name;
-            quantityInput.value = quantity;
-            costInput.value = component.cost;
-            priceInput.value = price;
-            
-            quantityInput.style.display = 'block';
-            costInput.style.display = 'block';
-            priceInput.style.display = 'block';
-            
-            this.selectedComponents[type] = {
-                name: component.name,
-                price: price,
-                cost: component.cost,
-                quantity: quantity,
-                isCustom: false,
-                manualCost: false
-            };
-            
-            this.updateRegularRow(type);
-        }
-    }
-}
-
-// 在bindEvents()中添加按钮事件
-document.getElementById('importConfig').addEventListener('click', () => {
-    this.showImportModal();
-});
-
-// 显示导入模态框
-showImportModal() {
-    // 复用现有的预设配置模态框
-    const modal = document.getElementById('presetModal');
-    const presetList = document.getElementById('presetList');
-
-    // 保存原始内容以便恢复
-    const originalContent = presetList.innerHTML;
-
-    // 设置导入界面
-    presetList.innerHTML = `
-        <div style="text-align: left;">
-            <h3>粘贴配置单文本</h3>
-            <textarea id="importTextarea" placeholder="请粘贴配置单文本..." rows="12" style="width: 100%; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;"></textarea>
-            <button id="confirmImport" class="btn primary" style="width: 100%;">确认导入</button>
-        </div>
-    `;
-
-    modal.style.display = 'block';
-
-    // 自动聚焦到文本区域
-    setTimeout(() => {
-        const textarea = document.getElementById('importTextarea');
-        if (textarea) textarea.focus();
-    }, 100);
-
-    // 事件绑定 - 使用一次性事件监听器
-    const confirmHandler = () => {
-        const text = document.getElementById('importTextarea').value;
-        if (text.trim()) {
-            this.importFromText(text);
-            modal.style.display = 'none';
-            // 恢复原始内容
-            presetList.innerHTML = originalContent;
-        } else {
-            alert('请输入配置单文本');
-        }
-    };
-
-    const importBtn = document.getElementById('confirmImport');
-    importBtn.addEventListener('click', confirmHandler, { once: true });
-
-    // 修改关闭按钮行为 - 恢复原始内容
-    const closeBtn = modal.querySelector('.close');
-    const originalCloseHandler = closeBtn.onclick;
-
-    closeBtn.onclick = () => {
-        modal.style.display = 'none';
-        // 恢复原始内容
-        presetList.innerHTML = originalContent;
-        // 恢复原始关闭事件
-        closeBtn.onclick = originalCloseHandler;
-    };
-
-    // 点击外部关闭 - 同样恢复原始内容
-    const clickHandler = (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            // 恢复原始内容
-            presetList.innerHTML = originalContent;
-            window.removeEventListener('click', clickHandler);
-        }
-    };
-
-    window.addEventListener('click', clickHandler);
-}
-    
-    
     // 保存配置到本地存储
     saveConfig() {
         try {
@@ -198,7 +49,7 @@ showImportModal() {
             });
 
             this.updateTotals();
-            console.log('配置加载成功'); // 控制台日志
+            console.log('配置加载成功');
         } catch (e) {
             alert('加载配置失败');
         }
@@ -434,6 +285,11 @@ showImportModal() {
 
         document.getElementById('clearAll').addEventListener('click', () => {
             this.clearAllConfig();
+        });
+
+        // 新增：导入配置按钮事件
+        document.getElementById('importConfig').addEventListener('click', () => {
+            this.showImportModal();
         });
 
         document.querySelector('.close').addEventListener('click', () => {
@@ -752,7 +608,7 @@ showImportModal() {
                     {type: 'CPU', name: '（散片）英特尔 i3-12100F CPU处理器【4核8线程】质保三年', quantity: 1},
                     {type: '散热器', name: '安钛克 A35 2热管 静音无光CPU散热器（1700架构/intel平台专用）', quantity: 1},
                     {type: '主板', name: '七彩虹 H610M-D V20 DDR4 台式机主板', quantity: 1},
-                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 1},  // 添加 quantity: 2
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 1},
                     {type: '固态硬盘', name: '雷克沙 NM610PRO 500G M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
                     {type: '显卡', name: '艾尔莎 R5 220 1G 幻影 办公家用独立显卡（VGA+DVI+HDMI）', quantity: 1},
                     {type: '电源', name: '硕一台式机电脑电源全新PC电源 静音王450W额定300W(静音版)', quantity: 1},
@@ -778,7 +634,7 @@ showImportModal() {
                     {type: 'CPU', name: '(散片)英特尔 i5-12400F 6核12线程 CPU(LGA1700/4.4Ghz /18M)', quantity: 1},
                     {type: '散热器', name: '安钛克 战虎 A400SE 战斗版 4铜管 散热器（高度148MM/Intel平台专用）', quantity: 1},
                     {type: '主板', name: '微星（MSI）PRO H610M-S DDR4  台式机主板', quantity: 1},
-                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},  // 添加 quantity: 2
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条', quantity: 2},
                     {type: '固态硬盘', name: '雷克沙 NM610PRO 1T M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘', quantity: 1},
                     {type: '显卡', name: '七彩虹 RTX 5050 8G DUO 战斧双风扇 电竞游戏显卡', quantity: 1},
                     {type: '电源', name: '安钛克 BP500P  额定500W 台式机电脑静音电源', quantity: 1},
@@ -806,14 +662,13 @@ showImportModal() {
             if (component) {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
-                    // 新增：支持预设数量，保持向后兼容
                     const quantity = item.quantity || 1;
 
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
                         cost: component.cost,
-                        quantity: quantity,  // 修改这里
+                        quantity: quantity,
                         isCustom: false,
                         manualCost: false
                     };
@@ -824,7 +679,7 @@ showImportModal() {
                     const priceInput = document.querySelector(`.price-input[data-type="${item.type}"]`);
 
                     quantityInput.style.display = 'block';
-                    quantityInput.value = quantity;  // 修改这里
+                    quantityInput.value = quantity;
 
                     costInput.style.display = 'block';
                     costInput.value = component.cost;
@@ -837,6 +692,7 @@ showImportModal() {
             }
         });
     }
+
     clearSelection(type) {
         if (type === '其它1' || type === '其它2') {
             const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -948,6 +804,149 @@ showImportModal() {
                 priceInput.style.display = 'block';
             }
         }
+    }
+
+    // 新增：从文本导入配置
+    importFromText(configText) {
+        try {
+            // 清空当前配置
+            this.clearAllConfig();
+
+            const lines = configText.split('\n');
+            let currentType = '';
+
+            lines.forEach(line => {
+                line = line.trim();
+
+                // 匹配配件行：● 类型：【名称】价格元
+                const match = line.match(/●\s*([^：]+)：【([^】]+)】(\d+)元/);
+                if (match) {
+                    const type = match[1].trim();
+                    let name = match[2].trim();
+                    const price = parseInt(match[3]);
+
+                    // 处理数量（如 "内存条 ×2"）
+                    let quantity = 1;
+                    const quantityMatch = name.match(/×(\d+)$/);
+                    if (quantityMatch) {
+                        quantity = parseInt(quantityMatch[1]);
+                        name = name.replace(/×\d+$/, '').trim();
+                    }
+
+                    this.importComponent(type, name, price, quantity);
+                }
+            });
+
+            this.updateTotals();
+            alert('配置导入成功！');
+        } catch (e) {
+            console.error('导入失败:', e);
+            alert('导入失败，请检查格式是否正确');
+        }
+    }
+
+    // 新增：导入单个组件
+    importComponent(type, name, price, quantity = 1) {
+        const component = this.components.find(c =>
+            c.type === type && c.name.includes(name)
+        );
+
+        if (component) {
+            const row = document.querySelector(`tr[data-type="${type}"]`);
+            if (row) {
+                const searchInput = row.querySelector('.search-input');
+                const quantityInput = row.querySelector('.quantity-input');
+                const costInput = row.querySelector('.cost-input');
+                const priceInput = row.querySelector('.price-input');
+
+                searchInput.value = component.name;
+                quantityInput.value = quantity;
+                costInput.value = component.cost;
+                priceInput.value = price;
+
+                quantityInput.style.display = 'block';
+                costInput.style.display = 'block';
+                priceInput.style.display = 'block';
+
+                this.selectedComponents[type] = {
+                    name: component.name,
+                    price: price,
+                    cost: component.cost,
+                    quantity: quantity,
+                    isCustom: false,
+                    manualCost: false
+                };
+
+                this.updateRegularRow(type);
+            }
+        }
+    }
+
+    // 新增：显示导入模态框
+    showImportModal() {
+        // 复用现有的预设配置模态框
+        const modal = document.getElementById('presetModal');
+        const presetList = document.getElementById('presetList');
+
+        // 保存原始内容以便恢复
+        const originalContent = presetList.innerHTML;
+
+        // 设置导入界面
+        presetList.innerHTML = `
+            <div style="text-align: left;">
+                <h3>粘贴配置单文本</h3>
+                <textarea id="importTextarea" placeholder="请粘贴配置单文本..." rows="12" style="width: 100%; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;"></textarea>
+                <button id="confirmImport" class="btn primary" style="width: 100%;">确认导入</button>
+            </div>
+        `;
+
+        modal.style.display = 'block';
+
+        // 自动聚焦到文本区域
+        setTimeout(() => {
+            const textarea = document.getElementById('importTextarea');
+            if (textarea) textarea.focus();
+        }, 100);
+
+        // 事件绑定 - 使用一次性事件监听器
+        const confirmHandler = () => {
+            const text = document.getElementById('importTextarea').value;
+            if (text.trim()) {
+                this.importFromText(text);
+                modal.style.display = 'none';
+                // 恢复原始内容
+                presetList.innerHTML = originalContent;
+            } else {
+                alert('请输入配置单文本');
+            }
+        };
+
+        const importBtn = document.getElementById('confirmImport');
+        importBtn.addEventListener('click', confirmHandler, { once: true });
+
+        // 修改关闭按钮行为 - 恢复原始内容
+        const closeBtn = modal.querySelector('.close');
+        const originalCloseHandler = closeBtn.onclick;
+
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
+            // 恢复原始内容
+            presetList.innerHTML = originalContent;
+            // 恢复原始关闭事件
+            closeBtn.onclick = originalCloseHandler;
+        };
+
+        // 点击外部关闭 - 同样恢复原始内容
+        const clickHandler = (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                // 恢复原始内容
+                presetList.innerHTML = originalContent;
+                window.removeEventListener('click', clickHandler);
+            }
+        };
+
+        window.addEventListener('click', clickHandler);
     }
 
     async copyConfigToClipboard() {

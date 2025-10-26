@@ -15,70 +15,45 @@ class ConfigGenerator {
 
     // 从本地存储加载配置
     loadConfig() {
-    try {
-        console.log('=== loadConfig开始执行 ===');
-        const saved = localStorage.getItem('pcConfig');
-        console.log('读取的本地存储:', saved);
-
-        if (!saved) {
-            alert('没有找到保存的配置');
-            return;
-        }
-
-        const configData = JSON.parse(saved);
-        console.log('解析的配置数据:', configData);
-
-        this.clearAllConfig();
-
-        Object.entries(configData.components).forEach(([type, component]) => {
-            console.log('处理组件:', type, component);
-            const row = document.querySelector(`tr[data-type="${type}"]`);
-            console.log('找到的行元素:', row);
-
-            if (!row) {
-                console.log('未找到行，跳过');
+        try {
+            const saved = localStorage.getItem('pcConfig');
+            if (!saved) {
+                alert('没有找到保存的配置');
                 return;
             }
 
-            if (type === '其它1' || type === '其它2') {
-                console.log('处理其他配件');
-                row.querySelector('.other-name-input').value = component.name || '';
-                row.querySelector('.quantity-input').value = component.quantity || 1;
-                row.querySelector('.cost-input').value = component.cost || 0;
-                row.querySelector('.price-input').value = component.price || 0;
-                this.handleOtherInputImmediate(type);
-            } else {
-                console.log('处理常规配件');
-                const searchInput = row.querySelector('.search-input');
-                console.log('搜索输入框:', searchInput);
-                searchInput.value = component.name || '';
-                console.log('设置搜索框值为:', component.name);
+            const configData = JSON.parse(saved);
+            this.clearAllConfig();
 
-                this.selectedComponents[type] = {
-                    ...component,
-                    name: component.name || ''
-                };
-                console.log('更新selectedComponents:', this.selectedComponents[type]);
+            Object.entries(configData.components).forEach(([type, component]) => {
+                const row = document.querySelector(`tr[data-type="${type}"]`);
+                if (!row) return;
 
-                console.log('调用updateRegularRow');
-                this.updateRegularRow(type);
-            }
-        });
+                if (type === '其它1' || type === '其它2') {
+                    row.querySelector('.other-name-input').value = component.name || '';
+                    row.querySelector('.quantity-input').value = component.quantity || 1;
+                    row.querySelector('.cost-input').value = component.cost || 0;
+                    row.querySelector('.price-input').value = component.price || 0;
+                    this.handleOtherInputImmediate(type);
+                } else {
+                    const searchInput = row.querySelector('.search-input');
+                    searchInput.value = component.name || '';
 
-        console.log('调用updateTotals');
-        this.updateTotals();
-        console.log('当前选中组件:', this.selectedComponents);
-        alert('配置加载成功！');
-    } catch (e) {
-        console.error('加载配置错误:', e);
-        alert('加载配置失败');
+                    this.selectedComponents[type] = {
+                        ...component,
+                        name: component.name || ''
+                    };
+
+                    this.updateRegularRow(type);
+                }
+            });
+
+            this.updateTotals();
+            alert('配置加载成功！');
+        } catch (e) {
+            alert('加载配置失败');
+        }
     }
-}
-
-
-
-
-
 
     constructor() {
         this.components = [];
@@ -124,14 +99,12 @@ class ConfigGenerator {
                     <tr data-type="${type}">
                         <td>
                             <span class="type-text">${type}</span>
-                            
                         </td>
                         <td>
                             <input type="text" class="other-name-input" 
                                    data-type="${type}" placeholder="请输入${type}名称">
                         </td>
                         <td>
-                            <!-- 修改：只为其它配件添加 quantity-container -->
                             <div class="quantity-container" data-type="${type}">
                                 <button class="quantity-btn minus-btn" data-type="${type}">-</button>
                                 <input type="text" class="quantity-input" data-type="${type}" 
@@ -159,7 +132,6 @@ class ConfigGenerator {
                     <tr data-type="${type}">
                         <td>
                             <span class="type-text">${type}</span>
-                            
                         </td>
                         <td>
                             <div class="search-container">
@@ -202,18 +174,16 @@ class ConfigGenerator {
         if (!row) return;
 
         if (type === '其它1' || type === '其它2') {
-            // 处理其它类型的行 - 只重置值，不隐藏元素
             const nameInput = row.querySelector('.other-name-input');
             const quantityInput = row.querySelector('.quantity-input');
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
 
             nameInput.value = '';
-            quantityInput.value = '1';  // 其它配件重置为1
+            quantityInput.value = '1';
             costInput.value = '0';
             priceInput.value = '0';
         } else {
-            // 处理普通配件行 - 重置值但保持数量容器可见
             const searchInput = row.querySelector('.search-input');
             const quantityContainer = row.querySelector('.quantity-container');
             const quantityInput = quantityContainer.querySelector('.quantity-input');
@@ -221,33 +191,24 @@ class ConfigGenerator {
             const priceInput = row.querySelector('.price-input');
 
             searchInput.value = '';
-
-            // 保持数量容器显示，只重置值
             quantityInput.value = '';
-            quantityInput.style.display = 'block';  // 确保显示
-
+            quantityInput.style.display = 'block';
             costInput.style.display = 'none';
             costInput.value = '';
-
             priceInput.style.display = 'none';
             priceInput.value = '';
         }
 
-        // 重置显示数据
         const subtotalCell = row.querySelector('.subtotal');
         const profitCell = row.querySelector('.profit');
         subtotalCell.textContent = '-';
         profitCell.textContent = '-';
 
-        // 从选中组件中移除
         delete this.selectedComponents[type];
-
-        // 更新总计
         this.updateTotals();
     }
 
     bindEvents() {
-        // 搜索功能事件
         document.addEventListener('input', (e) => {
             if (e.target.classList.contains('search-input')) {
                 this.handleSearch(e.target);
@@ -255,13 +216,11 @@ class ConfigGenerator {
         });
 
         document.addEventListener('click', (e) => {
-            // 新增：加减按钮事件
             if (e.target.classList.contains('quantity-btn')) {
                 const type = e.target.dataset.type;
                 const isPlus = e.target.classList.contains('plus-btn');
                 this.adjustQuantity(type, isPlus);
             }
-
 
             if (e.target.classList.contains('search-input')) {
                 if (e.target.value === '') {
@@ -272,15 +231,12 @@ class ConfigGenerator {
                 this.selectComponent(e.target);
             }
 
-            // 新增：点击页面其他区域时隐藏下拉框
             this.handleOutsideClick(e);
         });
 
-        // 修复：添加普通配件的输入事件处理
         document.addEventListener('input', (e) => {
             const type = e.target.dataset.type;
 
-            // 处理普通配件的数量、价格、成本输入
             if (type && type !== '其它1' && type !== '其它2') {
                 if (e.target.classList.contains('quantity-input') ||
                     e.target.classList.contains('price-input') ||
@@ -290,7 +246,6 @@ class ConfigGenerator {
                 }
             }
 
-            // 处理其它类型的输入
             if ((type === '其它1' || type === '其它2') &&
                 (e.target.classList.contains('other-name-input') ||
                     e.target.classList.contains('quantity-input') ||
@@ -300,7 +255,6 @@ class ConfigGenerator {
                 this.handleOtherInputImmediate(type);
             }
 
-            // 搜索输入保持原有逻辑
             if (e.target.classList.contains('search-input')) {
                 clearTimeout(this.inputTimeout);
                 this.inputTimeout = setTimeout(() => {
@@ -309,17 +263,14 @@ class ConfigGenerator {
             }
         });
 
-        // 键盘事件
         document.addEventListener('keydown', (e) => {
             this.handleKeyboard(e);
         });
 
-        // 按钮事件
         document.getElementById('copyConfig').addEventListener('click', () => {
             this.copyConfigToClipboard();
         });
 
-        // 就添加这两行：
         document.getElementById('saveConfig').addEventListener('click', () => {
             this.saveConfig();
         });
@@ -332,12 +283,10 @@ class ConfigGenerator {
             this.showPresetModal();
         });
 
-        // 一键清空配置单
         document.getElementById('clearAll').addEventListener('click', () => {
             this.clearAllConfig();
         });
 
-        // 模态框事件
         document.querySelector('.close').addEventListener('click', () => {
             document.getElementById('presetModal').style.display = 'none';
         });
@@ -350,9 +299,7 @@ class ConfigGenerator {
         });
     }
 
-    // 新增方法：处理外部点击事件
     handleOutsideClick(e) {
-        // 如果点击的不是搜索输入框或下拉框项目，则隐藏所有下拉框
         if (!e.target.classList.contains('search-input') &&
             !e.target.classList.contains('dropdown-item') &&
             !e.target.closest('.dropdown')) {
@@ -361,21 +308,17 @@ class ConfigGenerator {
         }
     }
 
-
-    // 新增方法：隐藏所有下拉框
     hideAllDropdowns() {
         const allDropdowns = document.querySelectorAll('.dropdown');
         allDropdowns.forEach(dropdown => {
             dropdown.style.display = 'none';
         });
 
-        // 重置当前下拉框状态
         this.currentDropdown = null;
         this.currentDropdownItems = [];
         this.currentSelectedIndex = -1;
     }
 
-    // 处理普通配件的输入
     handleRegularInput(type) {
         const component = this.selectedComponents[type];
         if (!component) return;
@@ -385,12 +328,10 @@ class ConfigGenerator {
         const priceInput = row.querySelector('.price-input');
         const costInput = row.querySelector('.cost-input');
 
-        // 获取输入值
         const quantity = parseInt(quantityInput.value) || 0;
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
-        // 更新组件数据
         if (quantity > 0) {
             component.quantity = quantity;
         }
@@ -402,7 +343,6 @@ class ConfigGenerator {
             component.manualCost = true;
         }
 
-        // 如果满足计算条件，更新显示
         if (component.quantity > 0 && component.price > 0) {
             this.updateRegularRow(type);
         } else if (quantity === 0) {
@@ -410,7 +350,6 @@ class ConfigGenerator {
         }
     }
 
-    // 专门处理其它类型输入的立即响应方法
     handleOtherInputImmediate(type) {
         const row = document.querySelector(`tr[data-type="${type}"]`);
         if (!row) return;
@@ -425,7 +364,6 @@ class ConfigGenerator {
         const price = parseInt(priceInput.value) || 0;
         const cost = parseInt(costInput.value) || 0;
 
-        // 只要有名称、数量和价格就计算
         if (name && quantity > 0 && price > 0) {
             this.selectedComponents[type] = {
                 name,
@@ -443,7 +381,6 @@ class ConfigGenerator {
         }
     }
 
-    // 更新普通配件行的显示
     updateRegularRow(type) {
         const component = this.selectedComponents[type];
         if (!component) return;
@@ -458,7 +395,6 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    // 更新其它类型行的显示
     updateOtherRowDisplay(type) {
         const component = this.selectedComponents[type];
         const row = document.querySelector(`tr[data-type="${type}"]`);
@@ -477,7 +413,6 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    // 更新总计
     updateTotals() {
         let totalPrice = 0;
         let totalProfit = 0;
@@ -506,17 +441,6 @@ class ConfigGenerator {
         this.showDropdown(input, results);
     }
 
-    // searchComponents(query, type) {
-    //     const lowerQuery = query.toLowerCase();
-    //     return this.components.filter(component => {
-    //         if (component.type !== type) return false;
-    //         // return component.refined_name.toLowerCase().includes(lowerQuery);
-    //
-    //         // 修改这里：搜索时匹配完整名称
-    //         return component.name.toLowerCase().includes(lowerQuery);
-    //     });
-    // }
-
     searchComponents(query, type) {
         const keywords = query.toLowerCase().split(/\s+/);
 
@@ -524,7 +448,6 @@ class ConfigGenerator {
             if (component.type !== type) return false;
 
             const text = component.name.toLowerCase();
-            // 超级简单的智能匹配：把空格和特殊字符都当成普通字符
             return keywords.every(keyword =>
                 text.replace(/[\s\-\+\(\)]/g, '').includes(keyword)
             );
@@ -540,7 +463,6 @@ class ConfigGenerator {
     showDropdown(input, components) {
         const dropdown = input.nextElementSibling;
 
-        // 新增：先隐藏所有其他下拉框
         this.hideAllDropdowns();
 
         if (components.length === 0) {
@@ -551,15 +473,12 @@ class ConfigGenerator {
             return;
         }
 
-        // 先按价格排序
-        const sortedComponents = components.sort((a, b) => a.price - b.price); // 价格从低到高
-        // 或者 b.price - a.price 从高到低
+        const sortedComponents = components.sort((a, b) => a.price - b.price);
 
         dropdown.innerHTML = components.map(component => `
             <div class="dropdown-item" data-name="${component.name}" data-type="${component.type}"
                  data-price="${component.price}">
-                
-                ${component.name} (¥${component.price})  <!-- 显示完整名称 -->
+                ${component.name} (¥${component.price})
             </div>
         `).join('');
 
@@ -574,16 +493,8 @@ class ConfigGenerator {
         const type = item.dataset.type;
         const price = parseInt(item.dataset.price);
 
-        // 新增：从组件数据中查找真实的成本价
-        // c 代表当前正在遍历的配件对象（来自 this.components 数组）
-        // c.refined_name 是当前配件的精简显示名称（来自 data.json）
-        // name 是用户从下拉列表选择的名称（实际上是 refined_name，来自 item.dataset.name）
-        // const componentData = this.components.find(c => c.refined_name === name && c.type === type);
         const componentData = this.components.find(c => c.name === name && c.type === type);
-        // componentData 如果找到，就是匹配的完整配件对象
-        // componentData.cost 是该配件的真实成本价
-        // 如果没找到(componentData为undefined)，成本价设为0
-        const actualCost = componentData ? componentData.cost : 0; // 备用方案
+        const actualCost = componentData ? componentData.cost : 0;
 
         item.closest('.dropdown').style.display = 'none';
         this.currentDropdown = null;
@@ -601,7 +512,7 @@ class ConfigGenerator {
         quantityInput.value = '1';
 
         costInput.style.display = 'block';
-        costInput.value = actualCost;  // 修改这里：使用真实成本价
+        costInput.value = actualCost;
 
         priceInput.style.display = 'block';
         priceInput.value = price;
@@ -609,7 +520,7 @@ class ConfigGenerator {
         this.selectedComponents[type] = {
             name,
             price,
-            cost: actualCost,  // 修改这里：使用真实成本价
+            cost: actualCost,
             quantity: 1,
             isCustom: false,
             manualCost: false
@@ -733,7 +644,7 @@ class ConfigGenerator {
                     this.selectedComponents[item.type] = {
                         name: component.name,
                         price: component.price,
-                        cost: component.cost,  // 使用真实成本价
+                        cost: component.cost,
                         quantity: 1,
                         isCustom: false,
                         manualCost: false
@@ -748,7 +659,7 @@ class ConfigGenerator {
                     quantityInput.value = '1';
 
                     costInput.style.display = 'block';
-                    costInput.value = component.cost;  // 改为使用真实成本价，而不是Math.round(component.price * 0.8)
+                    costInput.value = component.cost;
 
                     priceInput.style.display = 'block';
                     priceInput.value = component.price;
@@ -777,9 +688,8 @@ class ConfigGenerator {
             const costInput = row.querySelector('.cost-input');
             const priceInput = row.querySelector('.price-input');
 
-            // quantityInput.style.display = 'none';
-            quantityInput.style.display = 'block';  // 改为 block，保持显示
-            quantityInput.value = '';               // 清空数量值
+            quantityInput.style.display = 'block';
+            quantityInput.value = '';
 
             costInput.style.display = 'none';
             costInput.value = '';
@@ -795,13 +705,10 @@ class ConfigGenerator {
         this.updateTotals();
     }
 
-    // 一键清空所有配置
     clearAllConfig() {
         if (confirm('确定要清空所有配置吗？这将清除所有已选择的配件。')) {
-            // 清空所有选中组件
             this.selectedComponents = {};
 
-            // 重置所有行
             const types = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
             types.forEach(type => {
@@ -809,7 +716,6 @@ class ConfigGenerator {
                 if (!row) return;
 
                 if (type === '其它1' || type === '其它2') {
-                    // 重置其它配件行
                     const nameInput = row.querySelector('.other-name-input');
                     const quantityInput = row.querySelector('.quantity-input');
                     const costInput = row.querySelector('.cost-input');
@@ -820,7 +726,6 @@ class ConfigGenerator {
                     costInput.value = '0';
                     priceInput.value = '0';
                 } else {
-                    // 重置普通配件行
                     const searchInput = row.querySelector('.search-input');
                     const quantityInput = row.querySelector('.quantity-input');
                     const costInput = row.querySelector('.cost-input');
@@ -835,19 +740,14 @@ class ConfigGenerator {
                     priceInput.value = '';
                 }
 
-                // 重置显示数据
                 row.querySelector('.subtotal').textContent = '-';
                 row.querySelector('.profit').textContent = '-';
             });
 
-            // 更新总计
             this.updateTotals();
-
-            // alert('配置单已清空！');
         }
     }
 
-    // 添加调整数量的方法
     adjustQuantity(type, isPlus) {
         const row = document.querySelector(`tr[data-type="${type}"]`);
         const quantityInput = row.querySelector('.quantity-input');
@@ -856,19 +756,16 @@ class ConfigGenerator {
 
         if (isPlus) {
             quantity++;
-            // 确保数量框显示
             quantityInput.style.display = 'block';
         } else {
-            quantity = Math.max(0, quantity - 1); // 数量不能小于0
+            quantity = Math.max(0, quantity - 1);
         }
 
         quantityInput.value = quantity;
 
-        // 触发输入事件来更新价格计算
         if (type === '其它1' || type === '其它2') {
             this.handleOtherInputImmediate(type);
         } else {
-            // 对于普通配件，只有当已经选择了配件时才更新
             if (this.selectedComponents[type]) {
                 this.selectedComponents[type].quantity = quantity;
                 if (quantity > 0) {
@@ -877,8 +774,7 @@ class ConfigGenerator {
                     this.clearSelection(type);
                 }
             } else if (quantity > 0) {
-                // 如果还没有选择配件但设置了数量，显示输入框
-                quantityInput.style.display = 'block';  // 确保数量框显示
+                quantityInput.style.display = 'block';
                 const costInput = row.querySelector('.cost-input');
                 const priceInput = row.querySelector('.price-input');
                 costInput.style.display = 'block';
@@ -887,54 +783,10 @@ class ConfigGenerator {
         }
     }
 
-    // async copyConfigToClipboard() {
-    //     const lines = [];
-    //     let totalAmount = 0;
-    //
-    //     // 定义配件类型的显示顺序
-    //     const typeOrder = ['CPU', '散热器', '主板', '内存', '硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
-    //
-    //     // 按照指定顺序处理配件
-    //     typeOrder.forEach(type => {
-    //         const component = this.selectedComponents[type];
-    //         if (component && component.quantity > 0 && component.price > 0) {
-    //             const subtotal = component.price * component.quantity;
-    //             totalAmount += subtotal;
-    //
-    //             let displayName = component.name;
-    //             if (component.quantity > 1) {
-    //                 displayName += `【数量${component.quantity}】`;
-    //             }
-    //
-    //             lines.push(`${type}\t${displayName}\t${subtotal}`);
-    //         }
-    //     });
-    //
-    //     if (lines.length > 0) {
-    //         lines.push(`总价\t${totalAmount}`);
-    //     }
-    //
-    //     const text = lines.join('\n');
-    //
-    //     try {
-    //         await navigator.clipboard.writeText(text);
-    //         alert('配置单已复制到剪贴板！');
-    //     } catch (err) {
-    //         const textArea = document.createElement('textarea');
-    //         textArea.value = text;
-    //         document.body.appendChild(textArea);
-    //         textArea.select();
-    //         document.execCommand('copy');
-    //         document.body.removeChild(textArea);
-    //         alert('配置单已复制到剪贴板！');
-    //     }
-    // }
-
     async copyConfigToClipboard() {
         const lines = [];
         let totalAmount = 0;
 
-        // 添加标题和生成时间
         lines.push('电脑配置单');
         const now = new Date();
         const timeStr = now.toLocaleString('zh-CN', {
@@ -948,12 +800,10 @@ class ConfigGenerator {
         }).replace(/\//g, '/');
         lines.push(`生成时间：${timeStr}`);
         lines.push('========================================');
-        lines.push(''); // 空行
+        lines.push('');
 
-        // 定义配件类型的显示顺序
         const typeOrder = ['CPU', '散热器', '主板', '内存', '固态硬盘', '显卡', '电源', '机箱', '显示器', '键鼠套装', '其它1', '其它2'];
 
-        // 按照指定顺序处理配件
         typeOrder.forEach(type => {
             const component = this.selectedComponents[type];
             if (component && component.quantity > 0 && component.price > 0) {
@@ -969,7 +819,6 @@ class ConfigGenerator {
             }
         });
 
-        // 添加分隔符和总价
         lines.push('');
         lines.push('========================================');
         lines.push(`配置总价：${totalAmount}元 （不含运费，默认顺丰到付）`);
@@ -991,8 +840,6 @@ class ConfigGenerator {
     }
 }
 
-
-// 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     new ConfigGenerator();
 });

@@ -16,46 +16,61 @@ class ConfigGenerator {
     // 从本地存储加载配置
     loadConfig() {
     try {
+        console.log('=== loadConfig开始执行 ===');
         const saved = localStorage.getItem('pcConfig');
+        console.log('读取的本地存储:', saved);
+
         if (!saved) {
             alert('没有找到保存的配置');
             return;
         }
 
         const configData = JSON.parse(saved);
+        console.log('解析的配置数据:', configData);
+
         this.clearAllConfig();
 
         Object.entries(configData.components).forEach(([type, component]) => {
+            console.log('处理组件:', type, component);
             const row = document.querySelector(`tr[data-type="${type}"]`);
-            if (!row) return;
+            console.log('找到的行元素:', row);
+
+            if (!row) {
+                console.log('未找到行，跳过');
+                return;
+            }
 
             if (type === '其它1' || type === '其它2') {
-                // 其它配件处理逻辑不变
+                console.log('处理其他配件');
                 row.querySelector('.other-name-input').value = component.name || '';
                 row.querySelector('.quantity-input').value = component.quantity || 1;
                 row.querySelector('.cost-input').value = component.cost || 0;
                 row.querySelector('.price-input').value = component.price || 0;
                 this.handleOtherInputImmediate(type);
             } else {
-                // 安全修改：只更新显示，不触发搜索
+                console.log('处理常规配件');
                 const searchInput = row.querySelector('.search-input');
+                console.log('搜索输入框:', searchInput);
                 searchInput.value = component.name || '';
+                console.log('设置搜索框值为:', component.name);
 
-                // 直接更新选中组件数据，避免触发input事件
                 this.selectedComponents[type] = {
                     ...component,
                     name: component.name || ''
                 };
+                console.log('更新selectedComponents:', this.selectedComponents[type]);
 
-                // 手动更新行显示
+                console.log('调用updateRegularRow');
                 this.updateRegularRow(type);
             }
-
-            this.updateTotals();
         });
 
+        console.log('调用updateTotals');
+        this.updateTotals();
+        console.log('当前选中组件:', this.selectedComponents);
         alert('配置加载成功！');
     } catch (e) {
+        console.error('加载配置错误:', e);
         alert('加载配置失败');
     }
 }
@@ -716,7 +731,7 @@ class ConfigGenerator {
                 const input = document.querySelector(`.search-input[data-type="${item.type}"]`);
                 if (input) {
                     this.selectedComponents[item.type] = {
-                        refined_name: component.name,
+                        name: component.name,
                         price: component.price,
                         cost: component.cost,  // 使用真实成本价
                         quantity: 1,

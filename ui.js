@@ -677,13 +677,16 @@ class ConfigGenerator {
             },
             {
                 name: '游戏配置',
-                description: '主流游戏配置',
+                description: '高性能游戏电脑配置',
                 components: [
-                    {type: 'CPU', name: 'Intel i7-13700K'},
-                    {type: '主板', name: '华硕 B760M-P'},
-                    {type: '内存', name: '金士顿 16GB DDR5 5200'},
-                    {type: '显卡', name: '技嘉 RTX 4060 8G'},
-                    {type: '固态硬盘', name: '金士顿 NV2 1TB NVMe PCIe 4.0 固态硬盘'}
+                    {type: 'CPU', name: '(散片)英特尔 i5-12400F 6核12线程 CPU(LGA1700/4.4Ghz /18M)'},
+                    {type: '散热器', name: '安钛克 战虎 A400SE 战斗版 4铜管 散热器（高度148MM/Intel平台专用）'},
+                    {type: '主板', name: '微星（MSI）PRO H610M-S DDR4  台式机主板'},
+                    {type: '内存', name: '三星德乐 DDR4 8G 3200 台式机内存条'},
+                    {type: '固态硬盘', name: '雷克沙 NM610PRO 1T M.2接口 NVMe协议（PCIe 3.0x4）读速3300MB/s  SSD固态硬盘'},
+                    {type: '显卡', name: '七彩虹 RTX 5050 8G DUO 战斧双风扇 电竞游戏显卡'},
+                    {type: '电源', name: '安钛克 BP500P  额定500W 台式机电脑静音电源'},
+                    {type: '机箱', name: '技展 天空之城  黑 海景房机箱（支持240水冷）'}
                 ]
             }
         ];

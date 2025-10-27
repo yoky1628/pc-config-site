@@ -979,6 +979,18 @@ class ConfigGenerator {
                 totalAmount += subtotal;
 
                 let displayName = component.name;
+
+                // 只为普通配件检查搜索框值
+                if (type !== '其它1' && type !== '其它2') {
+                    const row = document.querySelector(`tr[data-type="${type}"]`);
+                    if (row) {
+                        const searchInput = row.querySelector('.search-input');
+                        if (searchInput && searchInput.value.trim()) {
+                            displayName = searchInput.value.trim();
+                        }
+                    }
+                }
+                
                 if (component.quantity > 1) {
                     displayName += ` ×${component.quantity}`;
                 }

@@ -449,16 +449,16 @@
   },
   {
     "type": "内存",
-    "name": "镁光 DDR4 8G 2400 笔记本内存条",
-    "refined_name": "镁光 DDR4 8G 2400 笔记本内存条",
+    "name": "OV DDR4 3200 8G 内存条 台式机 PC 内存条",
+    "refined_name": "OV DDR4 3200 8G PC",
     "cost": 277,
     "price": 285,
     "category": "mid-range"
   },
   {
     "type": "内存",
-    "name": "OV DDR4 3200 8G 内存条 台式机 PC 内存条",
-    "refined_name": "OV DDR4 3200 8G PC",
+    "name": "镁光 DDR4 8G 2400 笔记本内存条",
+    "refined_name": "镁光 DDR4 8G 2400 笔记本内存条",
     "cost": 277,
     "price": 285,
     "category": "mid-range"
@@ -769,16 +769,16 @@
   },
   {
     "type": "内存",
-    "name": "三星(samsung) DDR4 16G 3200原厂笔记本内存",
-    "refined_name": "三星 DDR4 16G 3200原厂笔记本内存",
+    "name": "士必得N4 16G 2666 笔记本内存条 DDR4 16G 2666笔记本内存",
+    "refined_name": "士必得N4 16G 2666 笔记本内存条 DDR4 16G 2666笔记本内存",
     "cost": 510,
     "price": 518,
     "category": "high-end"
   },
   {
     "type": "内存",
-    "name": "士必得N4 16G 2666 笔记本内存条 DDR4 16G 2666笔记本内存",
-    "refined_name": "士必得N4 16G 2666 笔记本内存条 DDR4 16G 2666笔记本内存",
+    "name": "三星(samsung) DDR4 16G 3200原厂笔记本内存",
+    "refined_name": "三星 DDR4 16G 3200原厂笔记本内存",
     "cost": 510,
     "price": 518,
     "category": "high-end"
@@ -2305,14 +2305,6 @@
   },
   {
     "type": "CPU",
-    "name": "(散片)英特尔 i5-14600KF 台式机处理器 (LGA1700/14核20线程/3.5GHz/24M缓存/125W)",
-    "refined_name": "(散片)英特尔 i5-14600KF 台式机处理器",
-    "cost": 1310,
-    "price": 1321,
-    "category": "high-end"
-  },
-  {
-    "type": "CPU",
     "name": "（盒装）英特尔(Intel) i5-14600KF 14核20线程 台式机CPU",
     "refined_name": "（盒装）英特尔 i5-14600KF 台式机CPU",
     "cost": 1313,
@@ -2321,10 +2313,18 @@
   },
   {
     "type": "CPU",
+    "name": "(散片)英特尔 i5-14600KF 台式机处理器 (LGA1700/14核20线程/3.5GHz/24M缓存/125W)",
+    "refined_name": "(散片)英特尔 i5-14600KF 台式机处理器",
+    "cost": 1320,
+    "price": 1331,
+    "category": "high-end"
+  },
+  {
+    "type": "CPU",
     "name": "（盒装）英特尔(Intel) i5-14600K 14核20线程 台式机CPU",
     "refined_name": "（盒装）英特尔 i5-14600K 台式机CPU",
-    "cost": 1340,
-    "price": 1351,
+    "cost": 1343,
+    "price": 1354,
     "category": "high-end"
   },
   {
@@ -2371,8 +2371,8 @@
     "type": "CPU",
     "name": "(散片)英特尔 i7-12700KF 12核20线程 CPU（5.0Ghz 25M三级缓存）质保三年",
     "refined_name": "(散片)英特尔 i7-12700KF CPU质保三年",
-    "cost": 1477,
-    "price": 1488,
+    "cost": 1485,
+    "price": 1496,
     "category": "high-end"
   },
   {
@@ -2411,8 +2411,8 @@
     "type": "CPU",
     "name": "（盒装）英特尔 酷睿 Ultra 7 265KF 台式机处理器（20核20线程）",
     "refined_name": "（盒装）英特尔 酷睿 Ultra 7 265KF 台式机处理器",
-    "cost": 1745,
-    "price": 1761,
+    "cost": 1735,
+    "price": 1751,
     "category": "high-end"
   },
   {
@@ -2435,8 +2435,8 @@
     "type": "CPU",
     "name": "（盒装）英特尔 酷睿 Ultra 7 265K CPU处理器（20核20线程/5.7Hz睿频至高/36MB/125W）",
     "refined_name": "（盒装）英特尔 酷睿 Ultra 7 265K CPU处理器",
-    "cost": 1790,
-    "price": 1806,
+    "cost": 1788,
+    "price": 1804,
     "category": "high-end"
   },
   {
@@ -2509,6 +2509,14 @@
     "refined_name": "(散片)英特尔i7-14700KF",
     "cost": 2005,
     "price": 2026,
+    "category": "flagship"
+  },
+  {
+    "type": "CPU",
+    "name": "(散片)英特尔 i7-14700KF 台式机处理器(LGA1700/20核28线程/3.4GHz/33M缓存/125W)",
+    "refined_name": "(散片)英特尔 i7-14700KF 台式机处理器",
+    "cost": 2013,
+    "price": 2034,
     "category": "flagship"
   },
   {
@@ -2758,6 +2766,14 @@
     "cost": 296,
     "price": 326,
     "category": "entry"
+  },
+  {
+    "type": "主板",
+    "name": "七彩虹（Colorful）BATTLE-AX B450M-T M.2 V14 DDR4游戏主板 支持5600/3700X/3600X（AMD B450/Socket AM4）",
+    "refined_name": "七彩虹BATTLE-AX B450M-T M.2 V14 DDR4游戏主板 支持5600/3700X/3600X",
+    "cost": 300,
+    "price": 330,
+    "category": "mid-range"
   },
   {
     "type": "主板",
@@ -3097,6 +3113,14 @@
   },
   {
     "type": "主板",
+    "name": "七彩虹（Colorful）BATTLE-AX B550M-D PRO V14 主板DDR4 支持5700G/5600/5500 (AMD B550/AM4)",
+    "refined_name": "七彩虹BATTLE-AX B550M-D PRO V14 主板DDR4 支持5700G/5600/5500",
+    "cost": 425,
+    "price": 475,
+    "category": "mid-range"
+  },
+  {
+    "type": "主板",
     "name": "七彩虹（Colorful） 战斧B660M-D PRO V20",
     "refined_name": "七彩虹 战斧B660M-D PRO V20",
     "cost": 440,
@@ -3105,10 +3129,10 @@
   },
   {
     "type": "主板",
-    "name": "华硕 PRIME H510M-K 主板",
-    "refined_name": "华硕 PRIME H510M-K",
-    "cost": 443.5,
-    "price": 494,
+    "name": "七彩虹 BATTLE-AX B760M-D V20 台式电脑主板",
+    "refined_name": "七彩虹 BATTLE-AX B760M-D V20 台式电脑主板",
+    "cost": 445,
+    "price": 495,
     "category": "mid-range"
   },
   {
@@ -3121,10 +3145,10 @@
   },
   {
     "type": "主板",
-    "name": "七彩虹 BATTLE-AX B760M-D V20 台式电脑主板",
-    "refined_name": "七彩虹 BATTLE-AX B760M-D V20 台式电脑主板",
-    "cost": 445,
-    "price": 495,
+    "name": "华硕 PRIME H510M-K 主板",
+    "refined_name": "华硕 PRIME H510M-K",
+    "cost": 453.5,
+    "price": 504,
     "category": "mid-range"
   },
   {
@@ -3313,16 +3337,16 @@
   },
   {
     "type": "主板",
-    "name": "七彩虹 B650M-D PRO BATTLE-AX DDR5 战斧 台式机主板（支持AMD B650/AM5)",
-    "refined_name": "七彩虹 B650M-D PRO BATTLE-AX DDR5 战斧 台式机主板（支持AMD B650/AM5)",
+    "name": "华擎（ASRock）A620M-HDV/M.2支持AMD CPU7900 （AMD A620/Socket AM5）",
+    "refined_name": "华擎A620M-HDV/M.2支持AMD CPU7900",
     "cost": 555,
     "price": 615,
     "category": "mid-range"
   },
   {
     "type": "主板",
-    "name": "华擎（ASRock）A620M-HDV/M.2支持AMD CPU7900 （AMD A620/Socket AM5）",
-    "refined_name": "华擎A620M-HDV/M.2支持AMD CPU7900",
+    "name": "七彩虹 B650M-D PRO BATTLE-AX DDR5 战斧 台式机主板（支持AMD B650/AM5)",
+    "refined_name": "七彩虹 B650M-D PRO BATTLE-AX DDR5 战斧 台式机主板（支持AMD B650/AM5)",
     "cost": 555,
     "price": 615,
     "category": "mid-range"
@@ -3529,6 +3553,14 @@
   },
   {
     "type": "主板",
+    "name": "七彩虹（Colorful）CVN B760I-A FROZEN WIFI V20 DDR4 主板 支持CPU 12600KF/14600KF",
+    "refined_name": "七彩虹CVN B760I-A FROZEN WIFI V20 DDR4 支持CPU 12600KF/14600KF",
+    "cost": 655,
+    "price": 715,
+    "category": "mid-range"
+  },
+  {
+    "type": "主板",
     "name": "技嘉 B860M H  DDR5 台式机主板 支持神光同步",
     "refined_name": "技嘉 H DDR5 支持神光同步",
     "cost": 670,
@@ -3617,16 +3649,16 @@
   },
   {
     "type": "主板",
-    "name": "技嘉 B860M D2H DDR5 台式机主板",
-    "refined_name": "技嘉 D2H DDR5",
+    "name": "微星（MSI）PRO B650M-P 电脑主板 支持CPU7950X3D/7900X3D/7800X3D (AMD B650/AM5接口）",
+    "refined_name": "微星PRO B650M-P 支持CPU7950X3D/7900X3D/7800X3D (AMD B650/AM5接口）",
     "cost": 710,
     "price": 770,
     "category": "mid-range"
   },
   {
     "type": "主板",
-    "name": "微星（MSI）PRO B650M-P 电脑主板 支持CPU7950X3D/7900X3D/7800X3D (AMD B650/AM5接口）",
-    "refined_name": "微星PRO B650M-P 支持CPU7950X3D/7900X3D/7800X3D (AMD B650/AM5接口）",
+    "name": "技嘉 B860M D2H DDR5 台式机主板",
+    "refined_name": "技嘉 D2H DDR5",
     "cost": 710,
     "price": 770,
     "category": "mid-range"
@@ -3737,16 +3769,16 @@
   },
   {
     "type": "主板",
-    "name": "华擎B760M PRO D5匠心主板 支持 12 13 代",
-    "refined_name": "PRO D5匠心主板 12 13 代",
+    "name": "微星B760M GAMING PLUS WIFI DDR4",
+    "refined_name": "GAMING PLUS WIFI DDR4",
     "cost": 840,
     "price": 900,
     "category": "high-end"
   },
   {
     "type": "主板",
-    "name": "微星B760M GAMING PLUS WIFI DDR4",
-    "refined_name": "GAMING PLUS WIFI DDR4",
+    "name": "华擎B760M PRO D5匠心主板 支持 12 13 代",
+    "refined_name": "PRO D5匠心主板 12 13 代",
     "cost": 840,
     "price": 900,
     "category": "high-end"
@@ -4049,6 +4081,14 @@
   },
   {
     "type": "主板",
+    "name": "七彩虹（Colorful） iGame Z790D5 FLOW 流萤 支持酷睿12代/13代/14代CPU 台式机主板",
+    "refined_name": "七彩虹 iGame Z790D5 FLOW 流萤 支持酷睿12代/13代/14代CPU",
+    "cost": 1210,
+    "price": 1290,
+    "category": "high-end"
+  },
+  {
+    "type": "主板",
     "name": "华硕 TUF GAMING B850M-PLUS DDR5 非WIFI版 重炮手台式机主板",
     "refined_name": "华硕 TUF GAMING B850M-PLUS DDR5 非WIFI版 重炮手台式机主板",
     "cost": 1220,
@@ -4113,14 +4153,6 @@
   },
   {
     "type": "主板",
-    "name": "华擎（ASRock） Z790 PG SONIC 索尼克联名款 主板 支持DDR5 神光同步 华擎主板 Z790 PG SONIC D5 单主板",
-    "refined_name": "华擎 Z790 PG SONIC 索尼克联名款 支持DDR5 神光同步 华擎主板 Z790 PG SONIC D5 单主板",
-    "cost": 1265,
-    "price": 1345,
-    "category": "high-end"
-  },
-  {
-    "type": "主板",
     "name": "技嘉Z790M AORUS ELITE AX  DDR5",
     "refined_name": "AORUS ELITE AX DDR5",
     "cost": 1265,
@@ -4129,16 +4161,24 @@
   },
   {
     "type": "主板",
-    "name": "微星（MSI）PRO Z790-P WiFi DDR5电脑主板支持13600KF/ 13700K",
-    "refined_name": "微星PRO Z790-P WiFi DDR5电脑主板支持13600KF/ 13700K",
-    "cost": 1275,
-    "price": 1355,
+    "name": "华擎（ASRock） Z790 PG SONIC 索尼克联名款 主板 支持DDR5 神光同步 华擎主板 Z790 PG SONIC D5 单主板",
+    "refined_name": "华擎 Z790 PG SONIC 索尼克联名款 支持DDR5 神光同步 华擎主板 Z790 PG SONIC D5 单主板",
+    "cost": 1265,
+    "price": 1345,
     "category": "high-end"
   },
   {
     "type": "主板",
     "name": "技嘉 Z790 EAGLE AX WIFI6 E DDR5 台式机主板",
     "refined_name": "技嘉 Z790 EAGLE AX WIFI6 E DDR5",
+    "cost": 1275,
+    "price": 1355,
+    "category": "high-end"
+  },
+  {
+    "type": "主板",
+    "name": "微星（MSI）PRO Z790-P WiFi DDR5电脑主板支持13600KF/ 13700K",
+    "refined_name": "微星PRO Z790-P WiFi DDR5电脑主板支持13600KF/ 13700K",
     "cost": 1275,
     "price": 1355,
     "category": "high-end"
@@ -4681,14 +4721,6 @@
   },
   {
     "type": "显卡",
-    "name": "丽台 NVIDIA Quadro P400 2G GDDR5（工包）带三个迷你DP 需要另配转接线 /平面制图设计专业显卡",
-    "refined_name": "丽台 NVIDIA Quadro P400 2G GDDR5（工包）带三个迷你DP 需要另配转接线 /平面制图设计专业显卡",
-    "cost": 240,
-    "price": 280,
-    "category": "entry"
-  },
-  {
-    "type": "显卡",
     "name": "翔升 GT730 2GD3 战雕  电竞台式机独立显卡",
     "refined_name": "翔升 GT730 2GD3 战雕 电竞台式机独立显卡",
     "cost": 240,
@@ -4705,16 +4737,16 @@
   },
   {
     "type": "显卡",
-    "name": "翔升 730 4G 单风扇 半高电脑独立显卡",
-    "refined_name": "翔升 730 4G 单风扇 半高电脑独立显卡",
+    "name": "翔升 GT730 4G     单风扇 台式机显卡",
+    "refined_name": "翔升 GT730 4G 单风扇 台式机显卡",
     "cost": 250,
     "price": 290,
     "category": "entry"
   },
   {
     "type": "显卡",
-    "name": "翔升 GT730 4G     单风扇 台式机显卡",
-    "refined_name": "翔升 GT730 4G 单风扇 台式机显卡",
+    "name": "翔升 730 4G 单风扇 半高电脑独立显卡",
+    "refined_name": "翔升 730 4G 单风扇 半高电脑独立显卡",
     "cost": 250,
     "price": 290,
     "category": "entry"
@@ -4777,18 +4809,18 @@
   },
   {
     "type": "显卡",
-    "name": "丽台（LEADTEK）NVIDIA Quadro P600 2GB GDDR5/128bit/64GBps/ 绘图专业显卡",
-    "refined_name": "丽台NVIDIA Quadro P600 绘图专业显卡",
-    "cost": 310,
-    "price": 350,
+    "name": "（工包）英伟达 P620 2GB 办公家用台式机显卡 四个miniDP",
+    "refined_name": "（工包）英伟达 P620 办公家用台式机显卡 四个miniDP",
+    "cost": 315,
+    "price": 355,
     "category": "mid-range"
   },
   {
     "type": "显卡",
-    "name": "（工包）英伟达 P620 2GB 办公家用台式机显卡 四个miniDP",
-    "refined_name": "（工包）英伟达 P620 办公家用台式机显卡 四个miniDP",
-    "cost": 320,
-    "price": 360,
+    "name": "丽台（LEADTEK）NVIDIA Quadro P600 2GB GDDR5/128bit/64GBps/ 绘图专业显卡",
+    "refined_name": "丽台NVIDIA Quadro P600 绘图专业显卡",
+    "cost": 330,
+    "price": 370,
     "category": "mid-range"
   },
   {
@@ -4931,16 +4963,16 @@
     "type": "显卡",
     "name": "丽台显卡 Quadro P1000（工包 质保一年） 4GB 4*miniDP 不带线 专业图形设计工作站显卡",
     "refined_name": "丽台显卡 Quadro P1000（工包 质保一年） 4*miniDP 不带线 专业图形设计工作站显卡",
-    "cost": 795,
-    "price": 845,
+    "cost": 785,
+    "price": 835,
     "category": "mid-range"
   },
   {
     "type": "显卡",
     "name": "丽台（LEADTEK）NVIDIA T400 4G GDDR6 显卡三个迷你DP  不带线 （工包装）",
     "refined_name": "丽台NVIDIA T400 4G GDDR6 显卡三个迷你DP 不带线 （工包装）",
-    "cost": 830,
-    "price": 880,
+    "cost": 850,
+    "price": 900,
     "category": "high-end"
   },
   {
@@ -4963,8 +4995,8 @@
     "type": "显卡",
     "name": "丽台显卡P2000 DP*4（工包 质保一年）5GB 四个大DP 不带转接线 多屏专业绘图显卡 专业图形处理显卡",
     "refined_name": "丽台显卡P2000 DP*4（工包 四个大DP 不带转接线 多屏专业绘图显卡 专业图形处理显卡",
-    "cost": 1085,
-    "price": 1145,
+    "cost": 1095,
+    "price": 1155,
     "category": "high-end"
   },
   {
@@ -5137,18 +5169,18 @@
   },
   {
     "type": "显卡",
-    "name": "丽台 NVIDIA Quadro P4000 8G DP 四个大Dp 不带转接线 专业图形显卡 （工包）",
-    "refined_name": "丽台 NVIDIA Quadro P4000 8G DP 四个大Dp 不带转接线 专业图形显卡 （工包）",
-    "cost": 1965,
-    "price": 2025,
-    "category": "high-end"
-  },
-  {
-    "type": "显卡",
     "name": "影驰 GeForce RTX 5050 8G OC 圣刃 白色 电竞游戏显卡",
     "refined_name": "影驰 GeForce RTX 5050 8G OC 圣刃 白色 电竞游戏显卡",
     "cost": 1970,
     "price": 2030,
+    "category": "high-end"
+  },
+  {
+    "type": "显卡",
+    "name": "丽台 NVIDIA Quadro P4000 8G DP 四个大Dp 不带转接线 专业图形显卡 （工包）",
+    "refined_name": "丽台 NVIDIA Quadro P4000 8G DP 四个大Dp 不带转接线 专业图形显卡 （工包）",
+    "cost": 1975,
+    "price": 2035,
     "category": "high-end"
   },
   {
@@ -5195,8 +5227,8 @@
     "type": "显卡",
     "name": "丽台（LEADTEK）RTX4000 8GB GDDR6显存渲染图形显卡",
     "refined_name": "丽台RTX4000 GDDR6显存渲染图形显卡",
-    "cost": 2050,
-    "price": 2130,
+    "cost": 2040,
+    "price": 2120,
     "category": "flagship"
   },
   {
@@ -5245,6 +5277,14 @@
     "refined_name": "索泰 GEFORCE RTX 5060 星夜 OC 双风扇 电竞游戏显卡",
     "cost": 2495,
     "price": 2575,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹（Colorful）GeForce RTX 5060 橘影橙 8GB GDDR7 DLSS 4 猫卡定制 游戏设计电脑显卡",
+    "refined_name": "七彩虹GeForce RTX 5060 橘影橙 GDDR7 DLSS 4 猫卡定制 游戏设计电脑显卡",
+    "cost": 2500,
+    "price": 2580,
     "category": "flagship"
   },
   {
@@ -5321,18 +5361,18 @@
   },
   {
     "type": "显卡",
-    "name": "七彩虹 RTX 5060 Ultra W  OC 8G 三风扇 电竞游戏显卡",
-    "refined_name": "七彩虹 RTX 5060 Ultra W OC 8G 三风扇 电竞游戏显卡",
-    "cost": 2580,
-    "price": 2670,
+    "name": "英伟达 NVIDIA T1000 8G  GDDR6 专业显卡 工包",
+    "refined_name": "英伟达 NVIDIA T1000 8G GDDR6 专业显卡",
+    "cost": 2570,
+    "price": 2660,
     "category": "flagship"
   },
   {
     "type": "显卡",
-    "name": "英伟达 NVIDIA T1000 8G  GDDR6 专业显卡 工包",
-    "refined_name": "英伟达 NVIDIA T1000 8G GDDR6 专业显卡",
-    "cost": 2590,
-    "price": 2680,
+    "name": "七彩虹 RTX 5060 Ultra W  OC 8G 三风扇 电竞游戏显卡",
+    "refined_name": "七彩虹 RTX 5060 Ultra W OC 8G 三风扇 电竞游戏显卡",
+    "cost": 2580,
+    "price": 2670,
     "category": "flagship"
   },
   {
@@ -5355,8 +5395,8 @@
     "type": "显卡",
     "name": "七彩虹 RTX5060 Advanced OC 8G 三风扇 电竞游戏显卡",
     "refined_name": "七彩虹 RTX5060 Advanced OC 8G 三风扇 电竞游戏显卡",
-    "cost": 2630,
-    "price": 2720,
+    "cost": 2620,
+    "price": 2710,
     "category": "flagship"
   },
   {
@@ -5569,14 +5609,6 @@
   },
   {
     "type": "显卡",
-    "name": "丽台（LEADTEK）  NVIDIA A2000 6G 工业包装",
-    "refined_name": "丽台 NVIDIA A2000 6G 工业包装",
-    "cost": 3650,
-    "price": 3750,
-    "category": "flagship"
-  },
-  {
-    "type": "显卡",
     "name": "七彩虹 RTX 5060Ti Ultra W OC 16G 台式机电脑独立显卡",
     "refined_name": "七彩虹 RTX 5060Ti Ultra W OC 16G 台式机电脑独立显卡",
     "cost": 3735,
@@ -5593,18 +5625,18 @@
   },
   {
     "type": "显卡",
-    "name": "影驰 RTX 5070  12G 魔刃 黑色 电竞游戏独立显卡",
-    "refined_name": "影驰 RTX 5070 12G 魔刃 黑色 电竞游戏独立显卡",
-    "cost": 4680,
-    "price": 4800,
+    "name": "丽台（LEADTEK）  NVIDIA A2000 6G 工业包装",
+    "refined_name": "丽台 NVIDIA A2000 6G 工业包装",
+    "cost": 3770,
+    "price": 3870,
     "category": "flagship"
   },
   {
     "type": "显卡",
-    "name": "华硕 PRIME GeForce RTX 5070 O12G 大师系列 三风扇 电竞游戏显卡",
-    "refined_name": "华硕 PRIME GeForce RTX 5070 O12G 大师系列 三风扇 电竞游戏显卡",
-    "cost": 4700,
-    "price": 4820,
+    "name": "影驰 RTX 5070  12G 魔刃 黑色 电竞游戏独立显卡",
+    "refined_name": "影驰 RTX 5070 12G 魔刃 黑色 电竞游戏独立显卡",
+    "cost": 4680,
+    "price": 4800,
     "category": "flagship"
   },
   {
@@ -5617,18 +5649,26 @@
   },
   {
     "type": "显卡",
-    "name": "七彩虹 RTX5070 12G GDDR7 DLSS4 战斧豪华 台式电脑显卡",
-    "refined_name": "七彩虹 RTX5070 12G GDDR7 DLSS4 战斧豪华 台式电脑显卡",
-    "cost": 4740,
-    "price": 4860,
+    "name": "华硕 PRIME GeForce RTX 5070 O12G 大师系列 三风扇 电竞游戏显卡",
+    "refined_name": "华硕 PRIME GeForce RTX 5070 O12G 大师系列 三风扇 电竞游戏显卡",
+    "cost": 4700,
+    "price": 4820,
     "category": "flagship"
   },
   {
     "type": "显卡",
     "name": "丽台 RTX A2000  Ada 16G 设计作图渲染专业显卡",
     "refined_name": "丽台 RTX A2000 Ada 16G 设计作图渲染专业显卡",
-    "cost": 4780,
-    "price": 4900,
+    "cost": 4730,
+    "price": 4850,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹 RTX5070 12G GDDR7 DLSS4 战斧豪华 台式电脑显卡",
+    "refined_name": "七彩虹 RTX5070 12G GDDR7 DLSS4 战斧豪华 台式电脑显卡",
+    "cost": 4740,
+    "price": 4860,
     "category": "flagship"
   },
   {
@@ -5673,6 +5713,14 @@
   },
   {
     "type": "显卡",
+    "name": "七彩虹（Colorful）iGame GeForce RTX 5070 Vulcan X OC 12GB  GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "refined_name": "七彩虹iGame GeForce RTX 5070 Vulcan X OC GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "cost": 5200,
+    "price": 5320,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
     "name": "技嘉 GeForce RTX™ 5070 GAMING OC 12G",
     "refined_name": "技嘉 GeForce RTX™ 5070 GAMING OC 12G",
     "cost": 5210,
@@ -5693,6 +5741,14 @@
     "refined_name": "华擎 AMD RADEON RX 9070XT 16G 钢铁传奇 电竞游戏设计电脑显卡",
     "cost": 5259,
     "price": 5379,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹（Colorful）iGame GeForce RTX 5070 Vulcan W OC 12GB  GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "refined_name": "七彩虹iGame GeForce RTX 5070 Vulcan W OC GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "cost": 5350,
+    "price": 5470,
     "category": "flagship"
   },
   {
@@ -5785,6 +5841,14 @@
   },
   {
     "type": "显卡",
+    "name": "七彩虹iGame  RTX 5070Ti Vulcan X OC 火神 16GB",
+    "refined_name": "七彩虹iGame RTX 5070Ti Vulcan X OC 火神",
+    "cost": 7450,
+    "price": 7600,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
     "name": "七彩虹 RTX 5070Ti  Vulcan OC 16G 黑火神 电脑游戏显卡",
     "refined_name": "七彩虹 RTX 5070Ti Vulcan OC 16G 黑火神 电脑游戏显卡",
     "cost": 7500,
@@ -5865,10 +5929,26 @@
   },
   {
     "type": "显卡",
+    "name": "七彩虹（Colorful）iGame GeForce RTX 5080 Vulcan W OC 16GB GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "refined_name": "七彩虹iGame GeForce RTX 5080 Vulcan W OC GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "cost": 10400,
+    "price": 10650,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
     "name": "英伟达RTX 4500 Ada专业图形独立显卡24G建模渲染【工包】",
     "refined_name": "英伟达RTX 4500 Ada专业图形独立显卡24G建模渲染",
-    "cost": 13050,
-    "price": 13300,
+    "cost": 13550,
+    "price": 13800,
+    "category": "flagship"
+  },
+  {
+    "type": "显卡",
+    "name": "七彩虹（Colorful）iGame GeForce RTX 5090 D v2 Advanced 24GB GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "refined_name": "七彩虹iGame GeForce RTX 5090 D v2 Advanced GDDR7 DLSS 4 电竞光追游戏设计电脑显卡",
+    "cost": 15800,
+    "price": 16050,
     "category": "flagship"
   },
   {
@@ -5957,14 +6037,6 @@
     "refined_name": "星舞 K2000系列 512G M.2 NVME Pcie3.0 固态硬盘",
     "cost": 350,
     "price": 360,
-    "category": "mid-range"
-  },
-  {
-    "type": "固态硬盘",
-    "name": "爱国者（aigo）DP35 512G M.2 NVMe PCI3.0协议固态",
-    "refined_name": "爱国者DP35 512G M.2 NVMe PCI3.0协议固态",
-    "cost": 375,
-    "price": 385,
     "category": "mid-range"
   },
   {
@@ -8437,14 +8509,6 @@
     "refined_name": "辛巴达 850EV0 台式机电脑电源",
     "cost": 135,
     "price": 175,
-    "category": "entry"
-  },
-  {
-    "type": "电源",
-    "name": "安钛克 BP500P  额定500W 台式机电脑静音电源",
-    "refined_name": "安钛克 BP500P 台式机电脑静音电源",
-    "cost": 155,
-    "price": 205,
     "category": "entry"
   },
   {
@@ -11217,16 +11281,16 @@
   },
   {
     "type": "机箱",
-    "name": "航嘉（Huntkey）GS680C 钢化玻璃侧透机箱 电脑台式主机箱游戏机箱（支持ATX主板/顶置360水冷/长显卡） 黑色",
-    "refined_name": "航嘉GS680C 钢化玻璃侧透机箱 电脑台式主机箱游戏机箱 黑色",
+    "name": "硕一920海景房机箱 黑色 支持中板 360水冷",
+    "refined_name": "硕一920海景房机箱 黑色 支持中板 360水冷",
     "cost": 135,
     "price": 185,
     "category": "entry"
   },
   {
     "type": "机箱",
-    "name": "硕一920海景房机箱 黑色 支持中板 360水冷",
-    "refined_name": "硕一920海景房机箱 黑色 支持中板 360水冷",
+    "name": "航嘉（Huntkey）GS680C 钢化玻璃侧透机箱 电脑台式主机箱游戏机箱（支持ATX主板/顶置360水冷/长显卡） 黑色",
+    "refined_name": "航嘉GS680C 钢化玻璃侧透机箱 电脑台式主机箱游戏机箱 黑色",
     "cost": 135,
     "price": 185,
     "category": "entry"
@@ -11353,6 +11417,14 @@
   },
   {
     "type": "机箱",
+    "name": "硕一 U310黑色  加厚0.8mm全金属面板手提",
+    "refined_name": "硕一 U310黑色 加厚0.8mm全金属面板手提",
+    "cost": 150,
+    "price": 200,
+    "category": "entry"
+  },
+  {
+    "type": "机箱",
     "name": "爱国者 半岛铁盒 N4 机箱黑色 （支持M-ATX)",
     "refined_name": "爱国者 半岛铁盒 N4 机箱黑色 （支持M-ATX)",
     "cost": 150,
@@ -11371,14 +11443,6 @@
     "type": "机箱",
     "name": "航嘉（Huntkey）S920 暴风雪 白色 钢化玻璃全景侧透电竞游戏水冷机箱",
     "refined_name": "航嘉S920 暴风雪 白色 钢化玻璃全景侧透电竞游戏水冷机箱",
-    "cost": 150,
-    "price": 200,
-    "category": "entry"
-  },
-  {
-    "type": "机箱",
-    "name": "硕一 U310黑色  加厚0.8mm全金属面板手提",
-    "refined_name": "硕一 U310黑色 加厚0.8mm全金属面板手提",
     "cost": 150,
     "price": 200,
     "category": "entry"
@@ -11449,6 +11513,14 @@
   },
   {
     "type": "机箱",
+    "name": "爱国者 W20 白色 侧透游戏机箱（支持360水冷/支持M-ATX)",
+    "refined_name": "爱国者 W20 白色 侧透游戏机箱（支持360水冷/支持M-ATX)",
+    "cost": 160,
+    "price": 210,
+    "category": "entry"
+  },
+  {
+    "type": "机箱",
     "name": "硕一  u310 白色 凤凰桌面手提商务侧透网孔机箱",
     "refined_name": "硕一 u310 白色 凤凰桌面手提商务侧透网孔机箱",
     "cost": 160,
@@ -11459,14 +11531,6 @@
     "type": "机箱",
     "name": "动力火车智界360电脑机箱台式机MATX玻璃侧透机箱白色",
     "refined_name": "动力火车智界360电脑机箱台式机MATX玻璃侧透机箱白色",
-    "cost": 160,
-    "price": 210,
-    "category": "entry"
-  },
-  {
-    "type": "机箱",
-    "name": "爱国者 W20 白色 侧透游戏机箱（支持360水冷/支持M-ATX)",
-    "refined_name": "爱国者 W20 白色 侧透游戏机箱（支持360水冷/支持M-ATX)",
     "cost": 160,
     "price": 210,
     "category": "entry"
@@ -11609,6 +11673,14 @@
   },
   {
     "type": "机箱",
+    "name": "金河田（Golden field）RTX27  白色海景房游戏机箱支持240水冷",
+    "refined_name": "金河田RTX27 白色海景房游戏机箱支持240水冷",
+    "cost": 195,
+    "price": 245,
+    "category": "entry"
+  },
+  {
+    "type": "机箱",
     "name": "航嘉GX780A踏浪  黑色 typec接口   海景房机箱电脑台式机360水冷侧透游戏电竞机箱 (支持360水冷/ATX主板)",
     "refined_name": "航嘉GX780A踏浪 黑色 typec接口 海景房机箱电脑台式机360水冷侧透游戏电竞机箱",
     "cost": 195,
@@ -11617,8 +11689,8 @@
   },
   {
     "type": "机箱",
-    "name": "金河田（Golden field）RTX27  白色海景房游戏机箱支持240水冷",
-    "refined_name": "金河田RTX27 白色海景房游戏机箱支持240水冷",
+    "name": "航嘉 GX760S 雷霆堡垒 白色 无立柱快拆 海景房游戏机箱（顶置360水冷/M-ATX主板/9风扇位/显卡限长400MM)",
+    "refined_name": "航嘉 GX760S 雷霆堡垒 白色 无立柱快拆 海景房游戏机箱（顶置360水冷/M-ATX主板/9风扇位/显卡限长400MM)",
     "cost": 195,
     "price": 245,
     "category": "entry"
@@ -11635,14 +11707,6 @@
     "type": "机箱",
     "name": "爱国者半岛铁盒蒼溟机箱 黑色 支持大主板 360水冷",
     "refined_name": "爱国者半岛铁盒蒼溟机箱 黑色 支持大主板 360水冷",
-    "cost": 195,
-    "price": 245,
-    "category": "entry"
-  },
-  {
-    "type": "机箱",
-    "name": "航嘉 GX760S 雷霆堡垒 白色 无立柱快拆 海景房游戏机箱（顶置360水冷/M-ATX主板/9风扇位/显卡限长400MM)",
-    "refined_name": "航嘉 GX760S 雷霆堡垒 白色 无立柱快拆 海景房游戏机箱（顶置360水冷/M-ATX主板/9风扇位/显卡限长400MM)",
     "cost": 195,
     "price": 245,
     "category": "entry"
@@ -12081,16 +12145,16 @@
   },
   {
     "type": "散热器",
-    "name": "【白色正叶】骨伽 星链V2 机箱积木风扇（5v3针主板同步/PWM温控调节/降噪防震脚垫）",
-    "refined_name": "白色正叶 骨伽 星链V2 机箱积木风扇",
+    "name": "【黑色正叶】骨伽 星链V2 机箱积木风扇（5v3针主板同步/PWM温控调节/降噪防震脚垫）",
+    "refined_name": "黑色正叶 骨伽 星链V2 机箱积木风扇",
     "cost": 36,
     "price": 45,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "【黑色正叶】骨伽 星链V2 机箱积木风扇（5v3针主板同步/PWM温控调节/降噪防震脚垫）",
-    "refined_name": "黑色正叶 骨伽 星链V2 机箱积木风扇",
+    "name": "【白色正叶】骨伽 星链V2 机箱积木风扇（5v3针主板同步/PWM温控调节/降噪防震脚垫）",
+    "refined_name": "白色正叶 骨伽 星链V2 机箱积木风扇",
     "cost": 36,
     "price": 45,
     "category": "entry"
@@ -12817,16 +12881,16 @@
   },
   {
     "type": "散热器",
-    "name": "九州风神Z10   5g 硅脂",
-    "refined_name": "九州风神Z10 5g 硅脂",
+    "name": "5V3针  ARGB 拓展线",
+    "refined_name": "5V3针 ARGB 拓展线",
     "cost": 18,
     "price": 27,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "5V3针  ARGB 拓展线",
-    "refined_name": "5V3针 ARGB 拓展线",
+    "name": "九州风神Z10   5g 硅脂",
+    "refined_name": "九州风神Z10 5g 硅脂",
     "cost": 18,
     "price": 27,
     "category": "entry"
@@ -12873,16 +12937,16 @@
   },
   {
     "type": "散热器",
-    "name": "24V 小风扇",
-    "refined_name": "24V 小风扇",
+    "name": "超频三 12025 4针智能温控 炫彩版 CPU散热风扇",
+    "refined_name": "超频三 12025 4针智能温控 炫彩版 CPU散热风扇",
     "cost": 18,
     "price": 27,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "超频三 12025 4针智能温控 炫彩版 CPU散热风扇",
-    "refined_name": "超频三 12025 4针智能温控 炫彩版 CPU散热风扇",
+    "name": "24V 小风扇",
+    "refined_name": "24V 小风扇",
     "cost": 18,
     "price": 27,
     "category": "entry"
@@ -12921,16 +12985,16 @@
   },
   {
     "type": "散热器",
-    "name": "金河田（Golden field）艾尔登FZ-L12 ARGB 白色 机箱风扇（ 正叶）",
-    "refined_name": "金河田艾尔登FZ-L12 ARGB 白色 机箱风扇",
+    "name": "金河田（Golden field）艾尔登FZ-L12 ARGB 黑色机箱风扇（ 正叶）",
+    "refined_name": "金河田艾尔登FZ-L12 ARGB 黑色机箱风扇",
     "cost": 19.9,
     "price": 29,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "金河田（Golden field）艾尔登FZ-L12 ARGB 黑色机箱风扇（ 正叶）",
-    "refined_name": "金河田艾尔登FZ-L12 ARGB 黑色机箱风扇",
+    "name": "金河田（Golden field）艾尔登FZ-L12 ARGB 白色 机箱风扇（ 正叶）",
+    "refined_name": "金河田艾尔登FZ-L12 ARGB 白色 机箱风扇",
     "cost": 19.9,
     "price": 29,
     "category": "entry"
@@ -13009,6 +13073,14 @@
   },
   {
     "type": "散热器",
+    "name": "魔幻空间 棱镜6Pro 12CM ARGB温控 机箱风扇（单个白色正叶）",
+    "refined_name": "魔幻空间 棱镜6Pro 12CM ARGB温控 机箱风扇",
+    "cost": 21,
+    "price": 30,
+    "category": "entry"
+  },
+  {
+    "type": "散热器",
     "name": "Intel 原装风扇",
     "refined_name": "Intel 原装风扇",
     "cost": 21,
@@ -13027,14 +13099,6 @@
     "type": "散热器",
     "name": "魔幻空间 G200 2热管 9厘米风扇 无光版 CPU散热器（支持1700/高度132MM）",
     "refined_name": "魔幻空间 G200 2热管 9厘米风扇 无光版 CPU散热器",
-    "cost": 21,
-    "price": 30,
-    "category": "entry"
-  },
-  {
-    "type": "散热器",
-    "name": "魔幻空间 棱镜6Pro 12CM ARGB温控 机箱风扇（单个白色正叶）",
-    "refined_name": "魔幻空间 棱镜6Pro 12CM ARGB温控 机箱风扇",
     "cost": 21,
     "price": 30,
     "category": "entry"
@@ -13305,6 +13369,14 @@
   },
   {
     "type": "散热器",
+    "name": "灯带  5V 3针ARGB  100CM  1米",
+    "refined_name": "灯带 5V 3针ARGB 100CM 1米",
+    "cost": 28,
+    "price": 37,
+    "category": "entry"
+  },
+  {
+    "type": "散热器",
     "name": "技嘉9215 4针智能    （一个）",
     "refined_name": "技嘉9215 4针智能",
     "cost": 28,
@@ -13331,14 +13403,6 @@
     "type": "散热器",
     "name": "酷行者 塞铜 2厘米高度 一体机散热",
     "refined_name": "酷行者 塞铜 2厘米高度 一体机散热",
-    "cost": 28,
-    "price": 37,
-    "category": "entry"
-  },
-  {
-    "type": "散热器",
-    "name": "灯带  5V 3针ARGB  100CM  1米",
-    "refined_name": "灯带 5V 3针ARGB 100CM 1米",
     "cost": 28,
     "price": 37,
     "category": "entry"
@@ -13385,16 +13449,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民TL-C14C-S TL-C14CW-S ARGB幻彩14cm机箱风扇静音PWM温控风扇 TL-C14C-S 黑色ARGB盒装 单只",
-    "refined_name": "利民TL-C14C-S TL-C14CW-S ARGB幻彩14cm机箱风扇静音PWM温控风扇 TL-C14C-S 黑色ARGB盒装 单只",
+    "name": "利民（Thermalright）LGA17XX-BCF GRAY Intel 12代CPU弯曲矫正型固定扣具 全铝合金+绝缘垫含TF7 2G散热配件",
+    "refined_name": "利民LGA17XX-BCF GRAY Intel 12代CPU弯曲矫正型固定扣具 全铝合金+绝缘垫含TF7 2G散热配件",
     "cost": 33,
     "price": 42,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "利民（Thermalright）LGA17XX-BCF GRAY Intel 12代CPU弯曲矫正型固定扣具 全铝合金+绝缘垫含TF7 2G散热配件",
-    "refined_name": "利民LGA17XX-BCF GRAY Intel 12代CPU弯曲矫正型固定扣具 全铝合金+绝缘垫含TF7 2G散热配件",
+    "name": "利民TL-C14C-S TL-C14CW-S ARGB幻彩14cm机箱风扇静音PWM温控风扇 TL-C14C-S 黑色ARGB盒装 单只",
+    "refined_name": "利民TL-C14C-S TL-C14CW-S ARGB幻彩14cm机箱风扇静音PWM温控风扇 TL-C14C-S 黑色ARGB盒装 单只",
     "cost": 33,
     "price": 42,
     "category": "entry"
@@ -13473,6 +13537,14 @@
   },
   {
     "type": "散热器",
+    "name": "魔幻空间T90   4 热管 9厘米风扇   13.5厘米高度  炫彩光  适用  115X  1700    架构",
+    "refined_name": "魔幻空间T90 4 热管 9厘米风扇 13.5厘米高度 炫彩光 适用 115X 1700 架构",
+    "cost": 38,
+    "price": 47,
+    "category": "entry"
+  },
+  {
+    "type": "散热器",
     "name": "9010 4针智能    （1对2个）",
     "refined_name": "9010 4针智能",
     "cost": 38,
@@ -13481,8 +13553,8 @@
   },
   {
     "type": "散热器",
-    "name": "魔幻空间T90   4 热管 9厘米风扇   13.5厘米高度  炫彩光  适用  115X  1700    架构",
-    "refined_name": "魔幻空间T90 4 热管 9厘米风扇 13.5厘米高度 炫彩光 适用 115X 1700 架构",
+    "name": "影驰8015  4针智能   （一对2个  ）",
+    "refined_name": "影驰8015 4针智能",
     "cost": 38,
     "price": 47,
     "category": "entry"
@@ -13515,14 +13587,6 @@
     "type": "散热器",
     "name": "金钱豹 12025  4P PWM      1000-2200转",
     "refined_name": "金钱豹 12025 4P PWM 1000-2200转",
-    "cost": 38,
-    "price": 47,
-    "category": "entry"
-  },
-  {
-    "type": "散热器",
-    "name": "影驰8015  4针智能   （一对2个  ）",
-    "refined_name": "影驰8015 4针智能",
     "cost": 38,
     "price": 47,
     "category": "entry"
@@ -13769,16 +13833,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民（Thermalright）TFX(2g)（导热硅脂/ CPU散热膏/ 2g装/导热系数14.3/笔记本导热膏）",
-    "refined_name": "利民TFX",
+    "name": "赛普雷（SOPLAY） 冷山ET400 ARGB版 4热管多平台CPU散热器支持1700",
+    "refined_name": "赛普雷 冷山ET400 ARGB版 4热管多平台CPU散热器支持1700",
     "cost": 60,
     "price": 69,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "赛普雷（SOPLAY） 冷山ET400 ARGB版 4热管多平台CPU散热器支持1700",
-    "refined_name": "赛普雷 冷山ET400 ARGB版 4热管多平台CPU散热器支持1700",
+    "name": "利民（Thermalright）TFX(2g)（导热硅脂/ CPU散热膏/ 2g装/导热系数14.3/笔记本导热膏）",
+    "refined_name": "利民TFX",
     "cost": 60,
     "price": 69,
     "category": "entry"
@@ -14089,6 +14153,14 @@
   },
   {
     "type": "散热器",
+    "name": "利民TL-B12   风扇",
+    "refined_name": "利民TL-B12 风扇",
+    "cost": 85,
+    "price": 94,
+    "category": "entry"
+  },
+  {
+    "type": "散热器",
     "name": "利民 积木 TL-M12QW X3 12CM 白色反叶 炫彩边框 机箱风扇（积木正叶三联包）",
     "refined_name": "利民 积木 TL-M12QW X3 12CM 白色反叶 炫彩边框 机箱风扇",
     "cost": 85,
@@ -14129,14 +14201,6 @@
   },
   {
     "type": "散热器",
-    "name": "利民TL-B12   风扇",
-    "refined_name": "利民TL-B12 风扇",
-    "cost": 85,
-    "price": 94,
-    "category": "entry"
-  },
-  {
-    "type": "散热器",
     "name": "12代原装风扇 5VARGB",
     "refined_name": "12代原装风扇 5VARGB",
     "cost": 86,
@@ -14169,16 +14233,16 @@
   },
   {
     "type": "散热器",
-    "name": "2U 铜4针   服务器  115X   2011    架构",
-    "refined_name": "2U 铜4针 服务器 115X 2011 架构",
+    "name": "1U服务器散热器涡轮纯铜双滚珠4针温控2011/115X/1366",
+    "refined_name": "1U服务器散热器涡轮纯铜双滚珠4针温控2011/115X/1366",
     "cost": 92,
     "price": 101,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "1U服务器散热器涡轮纯铜双滚珠4针温控2011/115X/1366",
-    "refined_name": "1U服务器散热器涡轮纯铜双滚珠4针温控2011/115X/1366",
+    "name": "2U 铜4针   服务器  115X   2011    架构",
+    "refined_name": "2U 铜4针 服务器 115X 2011 架构",
     "cost": 92,
     "price": 101,
     "category": "entry"
@@ -14297,6 +14361,14 @@
   },
   {
     "type": "散热器",
+    "name": "Thermalright 利民HR-10 2280 PRO M.2 SSD固态硬盘散热器热管散热马甲 HR-10 2280 PRO纯黑版 带温控风扇",
+    "refined_name": "Thermalright 利民HR-10 2280 PRO M.2 SSD固态硬盘散热器热管散热马甲 HR-10 2280 PRO纯黑版 带温控风扇",
+    "cost": 105,
+    "price": 120,
+    "category": "entry"
+  },
+  {
+    "type": "散热器",
     "name": "利民 AK120 MINI V2系列 ARGB 5热管 风冷散热器 （双平台通用）",
     "refined_name": "利民 AK120 MINI V2系列 ARGB 5热管 风冷散热器",
     "cost": 105,
@@ -14307,14 +14379,6 @@
     "type": "散热器",
     "name": "利民 AK120 MINI V2 5热管 单塔 CPU散热器 135MM高度",
     "refined_name": "利民 AK120 MINI V2 5热管 单塔 CPU散热器 135MM高度",
-    "cost": 105,
-    "price": 120,
-    "category": "entry"
-  },
-  {
-    "type": "散热器",
-    "name": "Thermalright 利民HR-10 2280 PRO M.2 SSD固态硬盘散热器热管散热马甲 HR-10 2280 PRO纯黑版 带温控风扇",
-    "refined_name": "Thermalright 利民HR-10 2280 PRO M.2 SSD固态硬盘散热器热管散热马甲 HR-10 2280 PRO纯黑版 带温控风扇",
     "cost": 105,
     "price": 120,
     "category": "entry"
@@ -14465,16 +14529,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民 AXP90-X36   3.6厘米高度  9厘米4针智能 4热管",
-    "refined_name": "利民 AXP90-X36 3.6厘米高度 9厘米4针智能 4热管",
+    "name": "猫头鹰 NF-F12 PWM 12cm风扇（智能温控/4针冷排风扇/U12S风扇）",
+    "refined_name": "猫头鹰 NF-F12 PWM 12cm风扇",
     "cost": 132,
     "price": 147,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "猫头鹰 NF-F12 PWM 12cm风扇（智能温控/4针冷排风扇/U12S风扇）",
-    "refined_name": "猫头鹰 NF-F12 PWM 12cm风扇",
+    "name": "利民 AXP90-X36   3.6厘米高度  9厘米4针智能 4热管",
+    "refined_name": "利民 AXP90-X36 3.6厘米高度 9厘米4针智能 4热管",
     "cost": 132,
     "price": 147,
     "category": "entry"
@@ -14985,16 +15049,16 @@
   },
   {
     "type": "散热器",
-    "name": "九州风神 冰立方 AK620",
-    "refined_name": "九州风神 冰立方 AK620",
+    "name": "利民AXP-120-X67   WHITE  ARGB 白色   6热管下压",
+    "refined_name": "利民AXP-120-X67 WHITE ARGB 白色 6热管下压",
     "cost": 247,
     "price": 277,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "利民AXP-120-X67   WHITE  ARGB 白色   6热管下压",
-    "refined_name": "利民AXP-120-X67 WHITE ARGB 白色 6热管下压",
+    "name": "九州风神 冰立方 AK620",
+    "refined_name": "九州风神 冰立方 AK620",
     "cost": 247,
     "price": 277,
     "category": "entry"
@@ -15177,16 +15241,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民(Thermalright) AQUA ELITE 360 ARGB V3 一体式水冷散热器 C12B-S 风扇 SS2扣具ARGB冷头 支持LGA1700",
-    "refined_name": "利民 AQUA ELITE 360 ARGB V3 一体式水冷散热器 C12B-S 风扇 SS2扣具ARGB冷头 支持LGA1700",
+    "name": "九州风神 AS500 Plus CPU风冷散热器",
+    "refined_name": "九州风神 AS500 Plus CPU风冷散热器",
     "cost": 286,
     "price": 326,
     "category": "entry"
   },
   {
     "type": "散热器",
-    "name": "九州风神 AS500 Plus CPU风冷散热器",
-    "refined_name": "九州风神 AS500 Plus CPU风冷散热器",
+    "name": "利民(Thermalright) AQUA ELITE 360 ARGB V3 一体式水冷散热器 C12B-S 风扇 SS2扣具ARGB冷头 支持LGA1700",
+    "refined_name": "利民 AQUA ELITE 360 ARGB V3 一体式水冷散热器 C12B-S 风扇 SS2扣具ARGB冷头 支持LGA1700",
     "cost": 286,
     "price": 326,
     "category": "entry"
@@ -15265,16 +15329,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民(Thermalright) SS135 BLACK 黑魂 CPU散热器 135高度AGHP6热管双塔全电镀回流焊金属顶盖S-FDB性能风扇",
-    "refined_name": "利民 SS135 BLACK 黑魂 CPU散热器 135高度AGHP6热管双塔全电镀回流焊金属顶盖S-FDB性能风扇",
+    "name": "利民散热器  FC140 冰封统领  1700版",
+    "refined_name": "利民散热器 FC140 冰封统领 1700版",
     "cost": 307,
     "price": 347,
     "category": "mid-range"
   },
   {
     "type": "散热器",
-    "name": "利民散热器  FC140 冰封统领  1700版",
-    "refined_name": "利民散热器 FC140 冰封统领 1700版",
+    "name": "利民(Thermalright) SS135 BLACK 黑魂 CPU散热器 135高度AGHP6热管双塔全电镀回流焊金属顶盖S-FDB性能风扇",
+    "refined_name": "利民 SS135 BLACK 黑魂 CPU散热器 135高度AGHP6热管双塔全电镀回流焊金属顶盖S-FDB性能风扇",
     "cost": 307,
     "price": 347,
     "category": "mid-range"
@@ -15441,6 +15505,14 @@
   },
   {
     "type": "散热器",
+    "name": "利民（Thermalright）TL-B12W-S 12CM 性能级风压扇 2150转速PWM  S-FDB轴承 三次元动平衡 三联包套装",
+    "refined_name": "利民TL-B12W-S 12CM 性能级风压扇 2150转速PWM S-FDB轴承 三次元动平衡 三联包套装",
+    "cost": 360,
+    "price": 400,
+    "category": "mid-range"
+  },
+  {
+    "type": "散热器",
     "name": "利民散热器 FC140 WHITE  1700版",
     "refined_name": "利民散热器 FC140 WHITE 1700版",
     "cost": 360,
@@ -15459,14 +15531,6 @@
     "type": "散热器",
     "name": "NH-L9I  CH.BK  全黑版本  (H)37MM.X(W)114MM.X(D)92MM",
     "refined_name": "NH-L9I CH.BK 全黑版本 37MM.X114MM.X92MM",
-    "cost": 360,
-    "price": 400,
-    "category": "mid-range"
-  },
-  {
-    "type": "散热器",
-    "name": "利民（Thermalright）TL-B12W-S 12CM 性能级风压扇 2150转速PWM  S-FDB轴承 三次元动平衡 三联包套装",
-    "refined_name": "利民TL-B12W-S 12CM 性能级风压扇 2150转速PWM S-FDB轴承 三次元动平衡 三联包套装",
     "cost": 360,
     "price": 400,
     "category": "mid-range"
@@ -15513,16 +15577,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民冰封棱镜FROZEN PRISM 360  BLACK",
-    "refined_name": "利民冰封棱镜FROZEN PRISM 360 BLACK",
+    "name": "利民 FROZEN WARFRAME 360 SE ARGB BLACK 寒冰装甲 黑色 一体式水冷散热器",
+    "refined_name": "利民 FROZEN WARFRAME 360 SE ARGB BLACK 寒冰装甲 黑色 一体式水冷散热器",
     "cost": 395,
     "price": 435,
     "category": "mid-range"
   },
   {
     "type": "散热器",
-    "name": "利民 FROZEN WARFRAME 360 SE ARGB BLACK 寒冰装甲 黑色 一体式水冷散热器",
-    "refined_name": "利民 FROZEN WARFRAME 360 SE ARGB BLACK 寒冰装甲 黑色 一体式水冷散热器",
+    "name": "利民冰封棱镜FROZEN PRISM 360  BLACK",
+    "refined_name": "利民冰封棱镜FROZEN PRISM 360 BLACK",
     "cost": 395,
     "price": 435,
     "category": "mid-range"
@@ -15593,16 +15657,16 @@
   },
   {
     "type": "散热器",
-    "name": "利民FW240寒冰装甲白色ARGB液晶方屏显示水冷显示器模块化液晶屏白色一体式水冷360",
-    "refined_name": "利民FW240寒冰装甲白色ARGB液晶方屏显示水冷显示器模块化液晶屏白色一体式水冷360",
+    "name": "猫头鹰（NOCTUA）NH-U9S CPU散热器 （多平台115X/2011/AMD/1700/A9 PWM风扇/U型塔式CPU散热器）",
+    "refined_name": "猫头鹰NH-U9S CPU散热器",
     "cost": 420,
     "price": 460,
     "category": "mid-range"
   },
   {
     "type": "散热器",
-    "name": "猫头鹰（NOCTUA）NH-U9S CPU散热器 （多平台115X/2011/AMD/1700/A9 PWM风扇/U型塔式CPU散热器）",
-    "refined_name": "猫头鹰NH-U9S CPU散热器",
+    "name": "利民FW240寒冰装甲白色ARGB液晶方屏显示水冷显示器模块化液晶屏白色一体式水冷360",
+    "refined_name": "利民FW240寒冰装甲白色ARGB液晶方屏显示水冷显示器模块化液晶屏白色一体式水冷360",
     "cost": 420,
     "price": 460,
     "category": "mid-range"
@@ -15825,16 +15889,16 @@
   },
   {
     "type": "散热器",
-    "name": "猫头鹰风冷 NH-D12L双塔5热管回流焊铜底CPU风冷散热器1700 AM NH D12",
-    "refined_name": "猫头鹰风冷 NH-D12L双塔5热管回流焊铜底CPU风冷散热器1700 AM NH D12",
+    "name": "利民 Frozen Warframe 360 ULTRA ARGB 寒冰装甲 白色 模块化磁吸可拆液晶 水冷散热器 支持14代LGA1851/1700",
+    "refined_name": "利民 Frozen Warframe 360 ULTRA ARGB 寒冰装甲 白色 模块化磁吸可拆液晶 水冷散热器 支持14代LGA1851/1700",
     "cost": 560,
     "price": 620,
     "category": "mid-range"
   },
   {
     "type": "散热器",
-    "name": "利民 Frozen Warframe 360 ULTRA ARGB 寒冰装甲 白色 模块化磁吸可拆液晶 水冷散热器 支持14代LGA1851/1700",
-    "refined_name": "利民 Frozen Warframe 360 ULTRA ARGB 寒冰装甲 白色 模块化磁吸可拆液晶 水冷散热器 支持14代LGA1851/1700",
+    "name": "猫头鹰风冷 NH-D12L双塔5热管回流焊铜底CPU风冷散热器1700 AM NH D12",
+    "refined_name": "猫头鹰风冷 NH-D12L双塔5热管回流焊铜底CPU风冷散热器1700 AM NH D12",
     "cost": 560,
     "price": 620,
     "category": "mid-range"
@@ -15873,14 +15937,6 @@
   },
   {
     "type": "散热器",
-    "name": "利民 EV360 ARGB 白色 精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
-    "refined_name": "利民 EV360 ARGB 白色 精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
-    "cost": 640,
-    "price": 700,
-    "category": "mid-range"
-  },
-  {
-    "type": "散热器",
     "name": "利民  EV360 ARGB 白色  精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
     "refined_name": "利民 EV360 ARGB 白色 精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
     "cost": 640,
@@ -15889,16 +15945,24 @@
   },
   {
     "type": "散热器",
-    "name": "利民 MJOLNIR VISION 360 雷神之锤 白色 ARGB水冷3.5吋IPS液晶屏水冷散热器",
-    "refined_name": "利民 MJOLNIR VISION 360 雷神之锤 白色 ARGB水冷3.5吋IPS液晶屏水冷散热器",
-    "cost": 649,
-    "price": 709,
+    "name": "利民 EV360 ARGB 白色 精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
+    "refined_name": "利民 EV360 ARGB 白色 精英视界 2.73吋磁吸IPS液晶屏水冷散热器",
+    "cost": 640,
+    "price": 700,
     "category": "mid-range"
   },
   {
     "type": "散热器",
     "name": "九州风神 冰堡垒  LS720  360 水冷",
     "refined_name": "九州风神 冰堡垒 LS720 360 水冷",
+    "cost": 649,
+    "price": 709,
+    "category": "mid-range"
+  },
+  {
+    "type": "散热器",
+    "name": "利民 MJOLNIR VISION 360 雷神之锤 白色 ARGB水冷3.5吋IPS液晶屏水冷散热器",
+    "refined_name": "利民 MJOLNIR VISION 360 雷神之锤 白色 ARGB水冷3.5吋IPS液晶屏水冷散热器",
     "cost": 649,
     "price": 709,
     "category": "mid-range"
@@ -16449,16 +16513,16 @@
   },
   {
     "type": "显示器",
-    "name": "冠视奇G2408 23.8寸曲屏无边白色超薄款",
-    "refined_name": "冠视奇G2408 23.8寸曲屏无边白色超薄款",
+    "name": "HPC（惠浦） H259 24.5英寸 无边框显示器 75HZ 自带HDMI线",
+    "refined_name": "HPC H259 24.5英寸 无边框显示器 75HZ 自带HDMI线",
     "cost": 314,
     "price": 364,
     "category": "mid-range"
   },
   {
     "type": "显示器",
-    "name": "HPC（惠浦） H259 24.5英寸 无边框显示器 75HZ 自带HDMI线",
-    "refined_name": "HPC H259 24.5英寸 无边框显示器 75HZ 自带HDMI线",
+    "name": "冠视奇G2408 23.8寸曲屏无边白色超薄款",
+    "refined_name": "冠视奇G2408 23.8寸曲屏无边白色超薄款",
     "cost": 314,
     "price": 364,
     "category": "mid-range"
@@ -17041,14 +17105,6 @@
   },
   {
     "type": "显示器",
-    "name": "HPC（惠浦） H321 31.5寸 75Hz 家用办公显示器 自带HDMI线",
-    "refined_name": "HPC H321 31.5寸 75Hz 家用办公显示器 自带HDMI线",
-    "cost": 599,
-    "price": 679,
-    "category": "mid-range"
-  },
-  {
-    "type": "显示器",
     "name": "飞利浦 242S9B 24寸 高清IPS护眼 防蓝光办公显示器",
     "refined_name": "飞利浦 242S9B 24寸 高清IPS护眼 防蓝光办公显示器",
     "cost": 600,
@@ -17145,16 +17201,16 @@
   },
   {
     "type": "显示器",
-    "name": "联想（Lenovo）来酷M2427Q 2K/QHD超清 IPS 微边框 低蓝光不闪屏 HDMI+DP接口 可壁挂",
-    "refined_name": "联想来酷M2427Q 2K/QHD超清 IPS 微边框 低蓝光不闪屏 HDMI+DP接口 可壁挂",
+    "name": "飞利浦27M2N2500NF IPS   2K 144HZ  四倍高清游戏显示器",
+    "refined_name": "IPS 2K 144HZ 四倍高清游戏显示器",
     "cost": 660,
     "price": 740,
     "category": "mid-range"
   },
   {
     "type": "显示器",
-    "name": "飞利浦27M2N2500NF IPS   2K 144HZ  四倍高清游戏显示器",
-    "refined_name": "IPS 2K 144HZ 四倍高清游戏显示器",
+    "name": "联想（Lenovo）来酷M2427Q 2K/QHD超清 IPS 微边框 低蓝光不闪屏 HDMI+DP接口 可壁挂",
+    "refined_name": "联想来酷M2427Q 2K/QHD超清 IPS 微边框 低蓝光不闪屏 HDMI+DP接口 可壁挂",
     "cost": 660,
     "price": 740,
     "category": "mid-range"
@@ -18961,16 +19017,16 @@
   },
   {
     "type": "键盘",
-    "name": "联想异能者有线键盘K104 USB接口 全尺寸即插即用台式笔记本外接通用 黑色 镭雕字符 经久耐磨 全新用料 淡然无味",
-    "refined_name": "联想异能者有线键盘K104 USB接口 全尺寸即插即用台式笔记本外接通用 黑色 镭雕字符 经久耐磨 全新用料 淡然无味",
+    "name": "长城（Great Wall）K2  有线办公家用单键盘",
+    "refined_name": "长城K2 有线办公家用单键盘",
     "cost": 24,
     "price": 24,
     "category": "entry"
   },
   {
     "type": "键盘",
-    "name": "长城（Great Wall）K2  有线办公家用单键盘",
-    "refined_name": "长城K2 有线办公家用单键盘",
+    "name": "联想异能者有线键盘K104 USB接口 全尺寸即插即用台式笔记本外接通用 黑色 镭雕字符 经久耐磨 全新用料 淡然无味",
+    "refined_name": "联想异能者有线键盘K104 USB接口 全尺寸即插即用台式笔记本外接通用 黑色 镭雕字符 经久耐磨 全新用料 淡然无味",
     "cost": 24,
     "price": 24,
     "category": "entry"
@@ -19553,6 +19609,14 @@
   },
   {
     "type": "键盘",
+    "name": "双飞燕（A4TECH）FBK25 无线蓝牙键盘 ipad平板手机笔记本电脑外接办公通专用短款便携键盘 飞时代 遂空灰",
+    "refined_name": "双飞燕FBK25 无线蓝牙键盘 ipad平板手机笔记本电脑外接办公通专用短款便携键盘 飞时代 遂空灰",
+    "cost": 90,
+    "price": 90,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
     "name": "联想（Lenovo）GK10 黑色塑胶面板+黑色底壳 混光 全键无冲突  上灯位 铜套插拔红轴 98键 机械键盘正品 黑色机械键盘",
     "refined_name": "联想GK10 黑色塑胶面板+黑色底壳 混光 全键无冲突 上灯位 铜套插拔红轴 98键 机械键盘正品 黑色机械键盘",
     "cost": 90,
@@ -19585,16 +19649,16 @@
   },
   {
     "type": "键盘",
-    "name": "双飞燕（A4TECH）FBK25 无线蓝牙键盘 ipad平板手机笔记本电脑外接办公通专用短款便携键盘 飞时代 遂空灰",
-    "refined_name": "双飞燕FBK25 无线蓝牙键盘 ipad平板手机笔记本电脑外接办公通专用短款便携键盘 飞时代 遂空灰",
-    "cost": 90,
-    "price": 90,
+    "name": "狼蛛（AULA）S99无线蓝牙有线三模机械手感RGB背光拼色静音复古灰【三模/RGB】单键盘",
+    "refined_name": "狼蛛S99无线蓝牙有线三模机械手感RGB背光拼色静音复古灰 三模/RGB 单键盘",
+    "cost": 91,
+    "price": 91,
     "category": "entry"
   },
   {
     "type": "键盘",
-    "name": "狼蛛（AULA）S99无线蓝牙有线三模机械手感RGB背光拼色静音复古灰【三模/RGB】单键盘",
-    "refined_name": "狼蛛S99无线蓝牙有线三模机械手感RGB背光拼色静音复古灰 三模/RGB 单键盘",
+    "name": "联想（Lenovo） GK10 白色茶轴混光版 type-c键线分离 塑胶面板+白色底壳 混光",
+    "refined_name": "联想 GK10 白色茶轴混光版 type-c键线分离 塑胶面板+白色底壳 混光",
     "cost": 91,
     "price": 91,
     "category": "entry"
@@ -19611,14 +19675,6 @@
     "type": "键盘",
     "name": "联想（Lenovo） GK10 黑色青轴混光版 type-c键线分离 塑胶面板+白色底壳",
     "refined_name": "联想 GK10 黑色青轴混光版 type-c键线分离 塑胶面板+白色底壳",
-    "cost": 91,
-    "price": 91,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "联想（Lenovo） GK10 白色茶轴混光版 type-c键线分离 塑胶面板+白色底壳 混光",
-    "refined_name": "联想 GK10 白色茶轴混光版 type-c键线分离 塑胶面板+白色底壳 混光",
     "cost": 91,
     "price": 91,
     "category": "entry"
@@ -19643,6 +19699,14 @@
     "type": "键盘",
     "name": "（AULA）狼蛛F2068Pro机械键盘 电脑有线键盘 游戏键盘 104全键拼色热插拔键盘    黑+灰+绿    青轴",
     "refined_name": "狼蛛F2068Pro机械键盘 电脑有线键盘 游戏键盘 104全键拼色热插拔键盘 黑+灰+绿 青轴",
+    "cost": 93,
+    "price": 93,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
+    "name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键白色",
+    "refined_name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键白色",
     "cost": 93,
     "price": 93,
     "category": "entry"
@@ -19675,14 +19739,6 @@
     "type": "键盘",
     "name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键黑色",
     "refined_name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键黑色",
-    "cost": 93,
-    "price": 93,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键白色",
-    "refined_name": "AOC GK290区域混光 两侧RGB发光 双色键帽闭口字符 青轴 108键白色",
     "cost": 93,
     "price": 93,
     "category": "entry"
@@ -19793,14 +19849,6 @@
   },
   {
     "type": "键盘",
-    "name": "（Aula）狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 复古灰",
-    "refined_name": "狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 复古灰",
-    "cost": 97,
-    "price": 97,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
     "name": "达尔优LK200超薄便携无线蓝牙键盘ipd手机平板笔记本  白色",
     "refined_name": "达尔优LK200超薄便携无线蓝牙键盘ipd手机平板笔记本 白色",
     "cost": 97,
@@ -19811,6 +19859,14 @@
     "type": "键盘",
     "name": "（Aula）狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 原野绿",
     "refined_name": "狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 原野绿",
+    "cost": 97,
+    "price": 97,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
+    "name": "（Aula）狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 复古灰",
+    "refined_name": "狼蛛S99Pro 三模键盘 有线Type-c+蓝牙+2.4G无线 硅胶键盘 三拼球形键帽 复古灰",
     "cost": 97,
     "price": 97,
     "category": "entry"
@@ -19921,16 +19977,16 @@
   },
   {
     "type": "键盘",
-    "name": "（Aula）狼蛛Win68He 标准版 磁轴有线机械键盘 电竞游戏客制化 8K回报率  单拼黑色键帽  灰木磁轴",
-    "refined_name": "狼蛛Win68He 标准版 磁轴有线机械键盘 电竞游戏客制化 8K回报率 单拼黑色键帽 灰木磁轴",
+    "name": "狼蛛（AULA）WiN60 黑色侧刻 灰木磁轴键盘黑",
+    "refined_name": "狼蛛WiN60 黑色侧刻 灰木磁轴键盘黑",
     "cost": 113,
     "price": 113,
     "category": "entry"
   },
   {
     "type": "键盘",
-    "name": "狼蛛（AULA）WiN60 黑色侧刻 灰木磁轴键盘黑",
-    "refined_name": "狼蛛WiN60 黑色侧刻 灰木磁轴键盘黑",
+    "name": "（Aula）狼蛛Win68He 标准版 磁轴有线机械键盘 电竞游戏客制化 8K回报率  单拼黑色键帽  灰木磁轴",
+    "refined_name": "狼蛛Win68He 标准版 磁轴有线机械键盘 电竞游戏客制化 8K回报率 单拼黑色键帽 灰木磁轴",
     "cost": 113,
     "price": 113,
     "category": "entry"
@@ -19961,6 +20017,14 @@
   },
   {
     "type": "键盘",
+    "name": "森松尼（sunsonny）J9 USB 竞技游戏机械键盘 白粉双拼",
+    "refined_name": "森松尼J9 USB 竞技游戏机械键盘 白粉双拼",
+    "cost": 114,
+    "price": 114,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
     "name": "森松尼（sunsonny）J9 USB 竞技游戏机械键盘 蓝色",
     "refined_name": "森松尼J9 USB 竞技游戏机械键盘 蓝色",
     "cost": 114,
@@ -19985,14 +20049,6 @@
   },
   {
     "type": "键盘",
-    "name": "森松尼（sunsonny）J9 USB 竞技游戏机械键盘 白粉双拼",
-    "refined_name": "森松尼J9 USB 竞技游戏机械键盘 白粉双拼",
-    "cost": 114,
-    "price": 114,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
     "name": "Aula狼蛛 F2088pro 三配色机械键盘 有线电竞游戏办公104键【绿林-主题键帽】混光   （青轴/茶轴可选 ）",
     "refined_name": "Aula狼蛛 F2088pro 三配色机械键盘 有线电竞游戏办公104键 绿林-主题键帽 混光",
     "cost": 115,
@@ -20011,6 +20067,22 @@
     "type": "键盘",
     "name": "达尔优LK165牧马人机械键盘104键有线混光发光台式机笔记本外接游戏外设 混光黑-青轴",
     "refined_name": "达尔优LK165牧马人机械键盘104键有线混光发光台式机笔记本外接游戏外设 混光黑-青轴",
+    "cost": 119,
+    "price": 119,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
+    "name": "狼蛛（aula）F3020有线机械键盘 带旋转按钮 金属面板 全键热插拔 混光 黑色",
+    "refined_name": "狼蛛F3020有线机械键盘 带旋转按钮 金属面板 全键热插拔 混光 黑色",
+    "cost": 119,
+    "price": 119,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
+    "name": "狼蛛（aula）F3020 有线游戏机械键盘  金属面板 多功能按钮 炫酷背景灯效  白色",
+    "refined_name": "狼蛛F3020 有线游戏机械键盘 金属面板 多功能按钮 炫酷背景灯效 白色",
     "cost": 119,
     "price": 119,
     "category": "entry"
@@ -20043,22 +20115,6 @@
     "type": "键盘",
     "name": "狼蛛（aula）F3020有线机械键盘  青轴  旋转按钮  发光  游戏 商务  办公家用  白色",
     "refined_name": "狼蛛F3020有线机械键盘 青轴 旋转按钮 发光 商务 办公家用 白色",
-    "cost": 119,
-    "price": 119,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "狼蛛（aula）F3020有线机械键盘 带旋转按钮 金属面板 全键热插拔 混光 黑色",
-    "refined_name": "狼蛛F3020有线机械键盘 带旋转按钮 金属面板 全键热插拔 混光 黑色",
-    "cost": 119,
-    "price": 119,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "狼蛛（aula）F3020 有线游戏机械键盘  金属面板 多功能按钮 炫酷背景灯效  白色",
-    "refined_name": "狼蛛F3020 有线游戏机械键盘 金属面板 多功能按钮 炫酷背景灯效 白色",
     "cost": 119,
     "price": 119,
     "category": "entry"
@@ -20297,6 +20353,14 @@
   },
   {
     "type": "键盘",
+    "name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名库洛米滑板",
+    "refined_name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名库洛米滑板",
+    "cost": 192,
+    "price": 192,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
     "name": "罗技（logitech）K380蓝牙键盘网红女生可爱办公笔记本电脑手机ipad平板MAC薄膜键盘 蓝牙键鼠套装 【K380】蓝牙键盘 甜品屋美乐蒂",
     "refined_name": "罗技K380蓝牙键盘网红女生可爱办公笔记本电脑手机ipad平板MAC薄膜键盘 蓝牙键鼠套装 K380 蓝牙键盘 甜品屋美乐蒂",
     "cost": 192,
@@ -20323,14 +20387,6 @@
     "type": "键盘",
     "name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名HelloKitty",
     "refined_name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名HelloKitty",
-    "cost": 192,
-    "price": 192,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名库洛米滑板",
-    "refined_name": "罗技K380无线蓝牙键盘薄便携办公键盘安卓电脑手机平板iPad送女生女友礼物 K380联名库洛米滑板",
     "cost": 192,
     "price": 192,
     "category": "entry"
@@ -20481,6 +20537,14 @@
   },
   {
     "type": "键盘",
+    "name": "狼蛛(Aula)L87 三模机械键盘 87键 RGB光 古尘轴 下灯位 侧刻  渐变灰 / 渐变紫 / 渐变白+蓝",
+    "refined_name": "狼蛛L87 三模机械键盘 87键 RGB光 古尘轴 下灯位 侧刻 渐变灰 / 渐变紫 / 渐变白+蓝",
+    "cost": 245,
+    "price": 245,
+    "category": "entry"
+  },
+  {
+    "type": "键盘",
     "name": "狼蛛F87Pro 黑透+黑色雾透键帽 有线+无线+蓝牙三模机械键盘 RGB光，流星轴，电池10000ma",
     "refined_name": "狼蛛F87Pro 黑透+黑色雾透键帽 有线+无线+蓝牙三模机械键盘 RGB光，流星轴，电池10000ma",
     "cost": 245,
@@ -20499,14 +20563,6 @@
     "type": "键盘",
     "name": "狼蛛HERO84白色+pbt白色等高线侧刻键帽+rgb+黑皇轴+0.01精度，有线 白色侧刻等高线/黑皇磁轴键盘白色",
     "refined_name": "狼蛛HERO84白色+pbt白色等高线侧刻键帽+rgb+黑皇轴+0.01精度，有线 白色侧刻等高线/黑皇磁轴键盘白色",
-    "cost": 245,
-    "price": 245,
-    "category": "entry"
-  },
-  {
-    "type": "键盘",
-    "name": "狼蛛(Aula)L87 三模机械键盘 87键 RGB光 古尘轴 下灯位 侧刻  渐变灰 / 渐变紫 / 渐变白+蓝",
-    "refined_name": "狼蛛L87 三模机械键盘 87键 RGB光 古尘轴 下灯位 侧刻 渐变灰 / 渐变紫 / 渐变白+蓝",
     "cost": 245,
     "price": 245,
     "category": "entry"
@@ -20577,16 +20633,16 @@
   },
   {
     "type": "键盘",
-    "name": "狼蛛-HRE068HE黑雾透/玉皇磁轴/有线 雾透 有线版玉皇磁轴 黑透黑色",
-    "refined_name": "狼蛛-HRE068HE黑雾透/玉皇磁轴/有线 雾透 有线版玉皇磁轴 黑透黑色",
+    "name": "（Aula）狼蛛Hero 84HE 客制化磁轴机械有线键盘 RGB霓虹灯 箱五层填充 无畏契约8K回报率  粉色渐变    玉皇磁轴",
+    "refined_name": "狼蛛Hero 84HE 客制化磁轴机械有线键盘 RGB霓虹灯 箱五层填充 无畏契约8K回报率 粉色渐变 玉皇磁轴",
     "cost": 275,
     "price": 275,
     "category": "entry"
   },
   {
     "type": "键盘",
-    "name": "（Aula）狼蛛Hero 84HE 客制化磁轴机械有线键盘 RGB霓虹灯 箱五层填充 无畏契约8K回报率  粉色渐变    玉皇磁轴",
-    "refined_name": "狼蛛Hero 84HE 客制化磁轴机械有线键盘 RGB霓虹灯 箱五层填充 无畏契约8K回报率 粉色渐变 玉皇磁轴",
+    "name": "狼蛛-HRE068HE黑雾透/玉皇磁轴/有线 雾透 有线版玉皇磁轴 黑透黑色",
+    "refined_name": "狼蛛-HRE068HE黑雾透/玉皇磁轴/有线 雾透 有线版玉皇磁轴 黑透黑色",
     "cost": 275,
     "price": 275,
     "category": "entry"
@@ -20825,6 +20881,14 @@
   },
   {
     "type": "键盘",
+    "name": "罗技（Logitech）K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 白色",
+    "refined_name": "罗技K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 白色",
+    "cost": 510,
+    "price": 510,
+    "category": "mid-range"
+  },
+  {
+    "type": "键盘",
     "name": "罗技（Logitech）K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 黑色",
     "refined_name": "罗技K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 黑色",
     "cost": 510,
@@ -20841,14 +20905,6 @@
   },
   {
     "type": "键盘",
-    "name": "罗技（Logitech）K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 白色",
-    "refined_name": "罗技K950键盘 蓝牙键盘 办公键盘 无线键盘 便携超薄键盘 优选系列 三设备切换 白色",
-    "cost": 510,
-    "price": 510,
-    "category": "mid-range"
-  },
-  {
-    "type": "键盘",
     "name": "樱桃（CHERRY）MX2.0S 无线键盘 G80-3824LUAEU-2 机械键盘 蓝牙键盘 三模游戏键盘  黑色 黑轴",
     "refined_name": "樱桃MX2.0S 无线键盘 G80-3824LUAEU-2 机械键盘 蓝牙键盘 三模游戏键盘 黑色 黑轴",
     "cost": 519,
@@ -20857,16 +20913,16 @@
   },
   {
     "type": "键盘",
-    "name": "双飞燕（A4TECH）LT98   AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 机械狗",
-    "refined_name": "双飞燕LT98 AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 机械狗",
+    "name": "双飞燕（A4TECH）LT98  AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 逆行者",
+    "refined_name": "双飞燕LT98 AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 逆行者",
     "cost": 530,
     "price": 530,
     "category": "mid-range"
   },
   {
     "type": "键盘",
-    "name": "双飞燕（A4TECH）LT98  AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 逆行者",
-    "refined_name": "双飞燕LT98 AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 逆行者",
+    "name": "双飞燕（A4TECH）LT98   AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 机械狗",
+    "refined_name": "双飞燕LT98 AT87 88键有线机械键盘 野蛮部落PBT键帽办公电脑电竞吃鸡FPS游戏轻音血手幽灵 机械狗",
     "cost": 530,
     "price": 530,
     "category": "mid-range"
@@ -20953,16 +21009,16 @@
   },
   {
     "type": "键盘",
-    "name": "樱桃（CHERRY）MX3.0S TKL 机械键盘 G80-3877LWAEU-2 RGB灯效 游戏键盘 有线键盘机械  黑色 轻音红轴 静音",
-    "refined_name": "樱桃MX3.0S TKL 机械键盘 G80-3877LWAEU-2 RGB灯效 游戏键盘 有线键盘机械 黑色 轻音红轴 静音",
+    "name": "樱桃（CHERRY）MX3.0S TKL 机械键盘 G80-3877LSAEU-2 RGB灯效 游戏键盘 有线键盘机械  黑色 青轴",
+    "refined_name": "樱桃MX3.0S TKL 机械键盘 G80-3877LSAEU-2 RGB灯效 游戏键盘 有线键盘机械 黑色 青轴",
     "cost": 620,
     "price": 620,
     "category": "mid-range"
   },
   {
     "type": "键盘",
-    "name": "樱桃（CHERRY）MX3.0S TKL 机械键盘 G80-3877LSAEU-2 RGB灯效 游戏键盘 有线键盘机械  黑色 青轴",
-    "refined_name": "樱桃MX3.0S TKL 机械键盘 G80-3877LSAEU-2 RGB灯效 游戏键盘 有线键盘机械 黑色 青轴",
+    "name": "樱桃（CHERRY）MX3.0S TKL 机械键盘 G80-3877LWAEU-2 RGB灯效 游戏键盘 有线键盘机械  黑色 轻音红轴 静音",
+    "refined_name": "樱桃MX3.0S TKL 机械键盘 G80-3877LWAEU-2 RGB灯效 游戏键盘 有线键盘机械 黑色 轻音红轴 静音",
     "cost": 620,
     "price": 620,
     "category": "mid-range"
@@ -21009,16 +21065,16 @@
   },
   {
     "type": "键盘",
-    "name": "CHERRY樱桃 MX3.0S无线键盘 机械键盘 宝可梦联名款 喷火龙键盘 三透PBT键帽 黑神话悟空蓝牙有线三模",
-    "refined_name": "CHERRY樱桃 MX3.0S无线键盘 机械键盘 宝可梦联名款 喷火龙键盘 三透PBT键帽 黑神话悟空蓝牙有线三模",
+    "name": "CHERRY 樱桃 MX3.0S无线键盘 蓝牙彩光机械键盘 宝可梦联名款 皮卡丘键盘 PBT键帽 宝可梦联名 RGB三模【蓝牙/有线/无线】 RGB 【红轴】 樱桃",
+    "refined_name": "CHERRY 樱桃 MX3.0S无线键盘 蓝牙彩光机械键盘 宝可梦联名款 皮卡丘键盘 PBT键帽 宝可梦联名 RGB三模 蓝牙/有线/无线 RGB 红轴 樱桃",
     "cost": 1008,
     "price": 1008,
     "category": "high-end"
   },
   {
     "type": "键盘",
-    "name": "CHERRY 樱桃 MX3.0S无线键盘 蓝牙彩光机械键盘 宝可梦联名款 皮卡丘键盘 PBT键帽 宝可梦联名 RGB三模【蓝牙/有线/无线】 RGB 【红轴】 樱桃",
-    "refined_name": "CHERRY 樱桃 MX3.0S无线键盘 蓝牙彩光机械键盘 宝可梦联名款 皮卡丘键盘 PBT键帽 宝可梦联名 RGB三模 蓝牙/有线/无线 RGB 红轴 樱桃",
+    "name": "CHERRY樱桃 MX3.0S无线键盘 机械键盘 宝可梦联名款 喷火龙键盘 三透PBT键帽 黑神话悟空蓝牙有线三模",
+    "refined_name": "CHERRY樱桃 MX3.0S无线键盘 机械键盘 宝可梦联名款 喷火龙键盘 三透PBT键帽 黑神话悟空蓝牙有线三模",
     "cost": 1008,
     "price": 1008,
     "category": "high-end"
@@ -21561,16 +21617,16 @@
   },
   {
     "type": "鼠标",
-    "name": "森松尼 M-7萤火虫高端游戏鼠标 卡其色",
-    "refined_name": "森松尼 M-7萤火虫高端游戏鼠标 卡其色",
+    "name": "森松尼 S-M7 游戏鼠标 深蓝色  萤火虫高端游戏鼠标，dpi可调节，人体工学外形，握感手感俱佳，带磁环编织线抗干扰",
+    "refined_name": "森松尼 S-M7 游戏鼠标 深蓝色 萤火虫高端游戏鼠标，dpi可调节，人体工学外形，握感手感俱佳，带磁环编织线抗干扰",
     "cost": 31,
     "price": 31,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "森松尼 S-M7 游戏鼠标 深蓝色  萤火虫高端游戏鼠标，dpi可调节，人体工学外形，握感手感俱佳，带磁环编织线抗干扰",
-    "refined_name": "森松尼 S-M7 游戏鼠标 深蓝色 萤火虫高端游戏鼠标，dpi可调节，人体工学外形，握感手感俱佳，带磁环编织线抗干扰",
+    "name": "森松尼 M-7萤火虫高端游戏鼠标 卡其色",
+    "refined_name": "森松尼 M-7萤火虫高端游戏鼠标 卡其色",
     "cost": 31,
     "price": 31,
     "category": "entry"
@@ -21689,16 +21745,16 @@
   },
   {
     "type": "鼠标",
-    "name": "森松尼S-R6月夕高端双模充电鼠标 卡其色",
-    "refined_name": "森松尼S-R6月夕高端双模充电鼠标 卡其色",
+    "name": "森松尼S-R6月夕高端双模充电鼠标",
+    "refined_name": "森松尼S-R6月夕高端双模充电鼠标",
     "cost": 46.5,
     "price": 47,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "森松尼S-R6月夕高端双模充电鼠标",
-    "refined_name": "森松尼S-R6月夕高端双模充电鼠标",
+    "name": "森松尼S-R6月夕高端双模充电鼠标 卡其色",
+    "refined_name": "森松尼S-R6月夕高端双模充电鼠标 卡其色",
     "cost": 46.5,
     "price": 47,
     "category": "entry"
@@ -22049,16 +22105,16 @@
   },
   {
     "type": "鼠标",
-    "name": "富德   E311  办公家用游戏轻量化2.4G无线鼠标      白色",
-    "refined_name": "富德 E311 办公家用游戏轻量化2.4G无线鼠标 白色",
+    "name": "富德   E311  办公家用游戏轻量化2.4G无线鼠标      黑色",
+    "refined_name": "富德 E311 办公家用游戏轻量化2.4G无线鼠标 黑色",
     "cost": 12.5,
     "price": 13,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "富德   E311  办公家用游戏轻量化2.4G无线鼠标      黑色",
-    "refined_name": "富德 E311 办公家用游戏轻量化2.4G无线鼠标 黑色",
+    "name": "富德   E311  办公家用游戏轻量化2.4G无线鼠标      白色",
+    "refined_name": "富德 E311 办公家用游戏轻量化2.4G无线鼠标 白色",
     "cost": 12.5,
     "price": 13,
     "category": "entry"
@@ -22145,16 +22201,16 @@
   },
   {
     "type": "鼠标",
-    "name": "联想services M01有线鼠标 USB接口",
-    "refined_name": "联想services M01有线鼠标 USB接口",
+    "name": "富德 3600N 有线办公商务家用  三档DPI可调USB接口有线鼠标  【科技黑】",
+    "refined_name": "富德 3600N 有线办公商务家用 三档DPI可调USB接口有线鼠标 科技黑",
     "cost": 13,
     "price": 13,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "富德 3600N 有线办公商务家用  三档DPI可调USB接口有线鼠标  【科技黑】",
-    "refined_name": "富德 3600N 有线办公商务家用 三档DPI可调USB接口有线鼠标 科技黑",
+    "name": "联想services M01有线鼠标 USB接口",
+    "refined_name": "联想services M01有线鼠标 USB接口",
     "cost": 13,
     "price": 13,
     "category": "entry"
@@ -22305,6 +22361,14 @@
   },
   {
     "type": "鼠标",
+    "name": "森松尼（sunsonny）S-M1 黑色 USB 竞技游戏 有线光电鼠标",
+    "refined_name": "森松尼S-M1 黑色 USB 竞技游戏 有线光电鼠标",
+    "cost": 14,
+    "price": 14,
+    "category": "entry"
+  },
+  {
+    "type": "鼠标",
     "name": "长城M150Pro 办公鼠标 黑色 加配重1.5米线长",
     "refined_name": "长城M150Pro 办公鼠标 黑色 加配重1.5米线长",
     "cost": 14,
@@ -22323,14 +22387,6 @@
     "type": "鼠标",
     "name": "方正（Founder）N100 2.4G无线便携办公鼠标 白色",
     "refined_name": "方正N100 2.4G无线便携办公鼠标 白色",
-    "cost": 14,
-    "price": 14,
-    "category": "entry"
-  },
-  {
-    "type": "鼠标",
-    "name": "森松尼（sunsonny）S-M1 黑色 USB 竞技游戏 有线光电鼠标",
-    "refined_name": "森松尼S-M1 黑色 USB 竞技游戏 有线光电鼠标",
     "cost": 14,
     "price": 14,
     "category": "entry"
@@ -22561,6 +22617,14 @@
   },
   {
     "type": "鼠标",
+    "name": "飞利浦SPK7317 无线鼠标 白色",
+    "refined_name": "飞利浦SPK7317 无线鼠标 白色",
+    "cost": 16.9,
+    "price": 17,
+    "category": "entry"
+  },
+  {
+    "type": "鼠标",
     "name": "联想Services N260 无线鼠标 2.4Ghz鼠标 1200DPI商务办公鼠标 黑色",
     "refined_name": "联想Services N260 无线鼠标 2.4Ghz鼠标 1200DPI商务办公鼠标 黑色",
     "cost": 16.9,
@@ -22619,14 +22683,6 @@
     "type": "鼠标",
     "name": "追光豹139USB发光游戏光电有线鼠标电脑配件 七彩呼吸灯",
     "refined_name": "追光豹139USB发光游戏光电有线鼠标电脑配件 七彩呼吸灯",
-    "cost": 17,
-    "price": 17,
-    "category": "entry"
-  },
-  {
-    "type": "鼠标",
-    "name": "飞利浦SPK7317 无线鼠标 白色",
-    "refined_name": "飞利浦SPK7317 无线鼠标 白色",
     "cost": 17,
     "price": 17,
     "category": "entry"
@@ -22769,16 +22825,16 @@
   },
   {
     "type": "鼠标",
-    "name": "富德 i210 黑色 办公家用 无线静音鼠标 蓝色",
-    "refined_name": "富德 i210 黑色 办公家用 无线静音鼠标 蓝色",
+    "name": "爱国者（aigo) Q705A 家用办公无线鼠标",
+    "refined_name": "爱国者（aigo) Q705A 家用办公无线鼠标",
     "cost": 19,
     "price": 19,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "爱国者（aigo) Q705A 家用办公无线鼠标",
-    "refined_name": "爱国者（aigo) Q705A 家用办公无线鼠标",
+    "name": "富德 i210 黑色 办公家用 无线静音鼠标 蓝色",
+    "refined_name": "富德 i210 黑色 办公家用 无线静音鼠标 蓝色",
     "cost": 19,
     "price": 19,
     "category": "entry"
@@ -22937,14 +22993,6 @@
   },
   {
     "type": "鼠标",
-    "name": "联想来酷Lecoo   WS202DM 蓝牙+无线鼠标",
-    "refined_name": "联想来酷Lecoo WS202DM 蓝牙+无线鼠标",
-    "cost": 20.9,
-    "price": 21,
-    "category": "entry"
-  },
-  {
-    "type": "鼠标",
     "name": "富勒（Fuhlen）A02G黑色  台机笔记本电脑办公  2.4G节能鼠标 （有声版）",
     "refined_name": "富勒A02G黑色 台机笔记本电脑办公 2.4G节能鼠标",
     "cost": 20.9,
@@ -23033,16 +23081,16 @@
   },
   {
     "type": "鼠标",
-    "name": "联想异能者N390 无线蓝牙双模轻音鼠标  2.4G无线+蓝牙 Type-C充电式白色",
-    "refined_name": "联想异能者N390 无线蓝牙双模轻音鼠标 2.4G无线+蓝牙 Type-C充电式白色",
+    "name": "联想异能者N390 无线蓝牙双模轻音鼠标 黑色 2.4G无线+蓝牙 Type-C充电式",
+    "refined_name": "联想异能者N390 无线蓝牙双模轻音鼠标 黑色 2.4G无线+蓝牙 Type-C充电式",
     "cost": 21,
     "price": 21,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "联想异能者N390 无线蓝牙双模轻音鼠标 黑色 2.4G无线+蓝牙 Type-C充电式",
-    "refined_name": "联想异能者N390 无线蓝牙双模轻音鼠标 黑色 2.4G无线+蓝牙 Type-C充电式",
+    "name": "联想异能者N390 无线蓝牙双模轻音鼠标  2.4G无线+蓝牙 Type-C充电式白色",
+    "refined_name": "联想异能者N390 无线蓝牙双模轻音鼠标 2.4G无线+蓝牙 Type-C充电式白色",
     "cost": 21,
     "price": 21,
     "category": "entry"
@@ -23321,16 +23369,16 @@
   },
   {
     "type": "鼠标",
-    "name": "爱国者（aigo）Q825A USB有线鼠标笔记本台式机电脑商务办公发光家用鼠标",
-    "refined_name": "爱国者Q825A USB有线鼠标笔记本台式机电脑商务办公发光家用鼠标",
+    "name": "扬彩Q20游戏发光鼠标（白）",
+    "refined_name": "扬彩Q20游戏发光鼠标",
     "cost": 26,
     "price": 26,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "扬彩Q20游戏发光鼠标（白）",
-    "refined_name": "扬彩Q20游戏发光鼠标",
+    "name": "爱国者（aigo）Q825A USB有线鼠标笔记本台式机电脑商务办公发光家用鼠标",
+    "refined_name": "爱国者Q825A USB有线鼠标笔记本台式机电脑商务办公发光家用鼠标",
     "cost": 26,
     "price": 26,
     "category": "entry"
@@ -23889,16 +23937,16 @@
   },
   {
     "type": "鼠标",
-    "name": "达尔优（dareu） LM121  商务办公经典 笔记本台式电脑家用办公 USB接口鼠标  黄色粉色蓝色黑色颜色随机",
-    "refined_name": "达尔优 LM121 商务办公经典 笔记本台式电脑家用办公 USB接口鼠标 黄色粉色蓝色黑色颜色随机",
+    "name": "双飞燕旗舰店（A4TECH）G3-200N无线鼠标家用商务办公台式笔记本通用智能省电方便携带 黑色",
+    "refined_name": "双飞燕旗舰店G3-200N无线鼠标家用商务办公台式笔记本通用智能省电方便携带 黑色",
     "cost": 37.5,
     "price": 38,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "双飞燕旗舰店（A4TECH）G3-200N无线鼠标家用商务办公台式笔记本通用智能省电方便携带 黑色",
-    "refined_name": "双飞燕旗舰店G3-200N无线鼠标家用商务办公台式笔记本通用智能省电方便携带 黑色",
+    "name": "达尔优（dareu） LM121  商务办公经典 笔记本台式电脑家用办公 USB接口鼠标  黄色粉色蓝色黑色颜色随机",
+    "refined_name": "达尔优 LM121 商务办公经典 笔记本台式电脑家用办公 USB接口鼠标 黄色粉色蓝色黑色颜色随机",
     "cost": 37.5,
     "price": 38,
     "category": "entry"
@@ -24145,16 +24193,16 @@
   },
   {
     "type": "鼠标",
-    "name": "富德i360t无线蓝牙鼠标 黑色 三模商务办公家用游戏ipad平板手机台式机mac笔记本电脑男生女生通用省电无线鼠标",
-    "refined_name": "富德i360t无线蓝牙鼠标 黑色 三模商务办公家用游戏ipad平板手机台式机mac笔记本电脑男生女生通用省电无线鼠标",
+    "name": "富德365T蓝牙无线鼠标",
+    "refined_name": "富德365T蓝牙无线鼠标",
     "cost": 45.5,
     "price": 46,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "富德365T蓝牙无线鼠标",
-    "refined_name": "富德365T蓝牙无线鼠标",
+    "name": "富德i360t无线蓝牙鼠标 黑色 三模商务办公家用游戏ipad平板手机台式机mac笔记本电脑男生女生通用省电无线鼠标",
+    "refined_name": "富德i360t无线蓝牙鼠标 黑色 三模商务办公家用游戏ipad平板手机台式机mac笔记本电脑男生女生通用省电无线鼠标",
     "cost": 45.5,
     "price": 46,
     "category": "entry"
@@ -24225,16 +24273,16 @@
   },
   {
     "type": "鼠标",
-    "name": "魔界公爵G702鼠标彩色",
-    "refined_name": "魔界公爵G702鼠标彩色",
+    "name": "联想来酷MS108透明发光7D鼠标有线RGB灯效电竞游戏办公鼠标 联想来酷透明游戏鼠标 RGB 有线联想来酷透明游戏鼠标RGB",
+    "refined_name": "联想来酷MS108透明发光7D鼠标有线RGB灯效电竞游戏办公鼠标 联想来酷透明游戏鼠标 RGB 有线联想来酷透明游戏鼠标RGB",
     "cost": 46.5,
     "price": 47,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "联想来酷MS108透明发光7D鼠标有线RGB灯效电竞游戏办公鼠标 联想来酷透明游戏鼠标 RGB 有线联想来酷透明游戏鼠标RGB",
-    "refined_name": "联想来酷MS108透明发光7D鼠标有线RGB灯效电竞游戏办公鼠标 联想来酷透明游戏鼠标 RGB 有线联想来酷透明游戏鼠标RGB",
+    "name": "魔界公爵G702鼠标彩色",
+    "refined_name": "魔界公爵G702鼠标彩色",
     "cost": 46.5,
     "price": 47,
     "category": "entry"
@@ -24409,16 +24457,16 @@
   },
   {
     "type": "鼠标",
-    "name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 银色",
-    "refined_name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 银色",
+    "name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 粉色",
+    "refined_name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 粉色",
     "cost": 56.5,
     "price": 57,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 粉色",
-    "refined_name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 粉色",
+    "name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 银色",
+    "refined_name": "iFound方正科技W913D 蓝牙 无线双模静音 办公 家用鼠标 即插即用 持久续航 银色",
     "cost": 56.5,
     "price": 57,
     "category": "entry"
@@ -24505,16 +24553,16 @@
   },
   {
     "type": "鼠标",
-    "name": "罗技（Logitech）M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 米白色",
-    "refined_name": "罗技M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 米白色",
+    "name": "罗技（Logitech）M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 茱萸粉",
+    "refined_name": "罗技M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 茱萸粉",
     "cost": 65.5,
     "price": 66,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "罗技（Logitech）M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 茱萸粉",
-    "refined_name": "罗技M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 茱萸粉",
+    "name": "罗技（Logitech）M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 米白色",
+    "refined_name": "罗技M221 企业级无线轻音鼠标 办公鼠标 对称鼠标 带无线微型接收器 米白色",
     "cost": 65.5,
     "price": 66,
     "category": "entry"
@@ -24809,16 +24857,16 @@
   },
   {
     "type": "鼠标",
-    "name": "联想（Lenovo）GM11无线蓝牙三模鼠标 黑色 可充电鼠标 RGB灯效",
-    "refined_name": "联想GM11无线蓝牙三模鼠标 黑色 可充电鼠标 RGB灯效",
+    "name": "蝰蛇X11pro 三模轻量化无线鼠标 带底座 赤焰红",
+    "refined_name": "蝰蛇X11pro 三模轻量化无线鼠标 带底座 赤焰红",
     "cost": 85,
     "price": 85,
     "category": "entry"
   },
   {
     "type": "鼠标",
-    "name": "蝰蛇X11pro 三模轻量化无线鼠标 带底座 赤焰红",
-    "refined_name": "蝰蛇X11pro 三模轻量化无线鼠标 带底座 赤焰红",
+    "name": "联想（Lenovo）GM11无线蓝牙三模鼠标 黑色 可充电鼠标 RGB灯效",
+    "refined_name": "联想GM11无线蓝牙三模鼠标 黑色 可充电鼠标 RGB灯效",
     "cost": 85,
     "price": 85,
     "category": "entry"
@@ -25177,6 +25225,14 @@
   },
   {
     "type": "鼠标",
+    "name": "罗技（Logitech）M650 企业级无线蓝牙鼠标 办公鼠标 男女通用双模中小手鼠标 优选系列 带Logi Bolt接收器 粉色M",
+    "refined_name": "罗技M650 企业级无线蓝牙鼠标 办公鼠标 男女通用双模中小手鼠标 优选系列 带Logi Bolt接收器 粉色M",
+    "cost": 217,
+    "price": 217,
+    "category": "entry"
+  },
+  {
+    "type": "鼠标",
     "name": "罗技（Logitech）M650无线蓝牙鼠标 妙控办公静音鼠标Mac苹果ipad鼠标 大小手男女通用 L 黑色 中大手型 M750同系列",
     "refined_name": "罗技M650无线蓝牙鼠标 妙控办公静音鼠标Mac苹果ipad鼠标 大小手男女通用 L 黑色 中大手型 M750同系列",
     "cost": 217,
@@ -25211,14 +25267,6 @@
     "type": "鼠标",
     "name": "罗技（Logitech）M650鼠标 无线蓝牙鼠标 办公轻音鼠标 双模连接 企业采购 M650无线蓝牙鼠标-珍珠白",
     "refined_name": "罗技M650鼠标 无线蓝牙鼠标 办公轻音鼠标 双模连接 企业采购 M650无线蓝牙鼠标-珍珠白",
-    "cost": 217,
-    "price": 217,
-    "category": "entry"
-  },
-  {
-    "type": "鼠标",
-    "name": "罗技（Logitech）M650 企业级无线蓝牙鼠标 办公鼠标 男女通用双模中小手鼠标 优选系列 带Logi Bolt接收器 粉色M",
-    "refined_name": "罗技M650 企业级无线蓝牙鼠标 办公鼠标 男女通用双模中小手鼠标 优选系列 带Logi Bolt接收器 粉色M",
     "cost": 217,
     "price": 217,
     "category": "entry"
@@ -25297,6 +25345,14 @@
   },
   {
     "type": "鼠标",
+    "name": "罗技（Logitech）Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 粉色",
+    "refined_name": "罗技Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 粉色",
+    "cost": 380,
+    "price": 380,
+    "category": "mid-range"
+  },
+  {
+    "type": "鼠标",
     "name": "罗技（Logitech）Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 白色",
     "refined_name": "罗技Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 白色",
     "cost": 380,
@@ -25307,14 +25363,6 @@
     "type": "鼠标",
     "name": "罗技（Logitech）Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 黑色",
     "refined_name": "罗技Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 黑色",
-    "cost": 380,
-    "price": 380,
-    "category": "mid-range"
-  },
-  {
-    "type": "鼠标",
-    "name": "罗技（Logitech）Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 粉色",
-    "refined_name": "罗技Lift人体工学鼠标 垂直鼠标 小手鼠标 无线蓝牙鼠标 3台设备秒切换 带Logi Bolt接收器 粉色",
     "cost": 380,
     "price": 380,
     "category": "mid-range"
@@ -25865,16 +25913,16 @@
   },
   {
     "type": "键鼠套装",
-    "name": "富德 EK783 无线键盘鼠标套装 静音台式机笔记本电脑用外接便携家用 黑色",
-    "refined_name": "富德 EK783 无线键盘鼠标套装 静音台式机笔记本电脑用外接便携家用 黑色",
+    "name": "雷狼 TF770 无线键鼠套装 蓝色",
+    "refined_name": "雷狼 TF770 无线键鼠套装 蓝色",
     "cost": 51.5,
     "price": 62,
     "category": "entry"
   },
   {
     "type": "键鼠套装",
-    "name": "雷狼 TF770 无线键鼠套装 蓝色",
-    "refined_name": "雷狼 TF770 无线键鼠套装 蓝色",
+    "name": "富德 EK783 无线键盘鼠标套装 静音台式机笔记本电脑用外接便携家用 黑色",
+    "refined_name": "富德 EK783 无线键盘鼠标套装 静音台式机笔记本电脑用外接便携家用 黑色",
     "cost": 51.5,
     "price": 62,
     "category": "entry"
@@ -26545,16 +26593,16 @@
   },
   {
     "type": "键鼠套装",
-    "name": "惠普HP 藏羚羊键鼠有线套装 黑色",
-    "refined_name": "惠普HP 藏羚羊键鼠有线套装 黑色",
+    "name": "AOC KM100有线机械手感键盘鼠标套装游戏电竞台式电脑笔记本发光键鼠标套装白色",
+    "refined_name": "AOC KM100有线机械手感键盘鼠标套装游戏电竞台式电脑笔记本发光键鼠标套装白色",
     "cost": 30,
     "price": 40,
     "category": "entry"
   },
   {
     "type": "键鼠套装",
-    "name": "AOC KM100有线机械手感键盘鼠标套装游戏电竞台式电脑笔记本发光键鼠标套装白色",
-    "refined_name": "AOC KM100有线机械手感键盘鼠标套装游戏电竞台式电脑笔记本发光键鼠标套装白色",
+    "name": "惠普HP 藏羚羊键鼠有线套装 黑色",
+    "refined_name": "惠普HP 藏羚羊键鼠有线套装 黑色",
     "cost": 30,
     "price": 40,
     "category": "entry"
@@ -27209,14 +27257,6 @@
   },
   {
     "type": "键鼠套装",
-    "name": "方正（Founder）KN310  无线键鼠套装 轻音办公家用",
-    "refined_name": "方正KN310 无线键鼠套装 轻音办公家用",
-    "cost": 46,
-    "price": 56,
-    "category": "entry"
-  },
-  {
-    "type": "键鼠套装",
     "name": "雷柏（Rapoo）雷柏X120PRO有线键盘鼠标套装家用电脑商务办公高笔记本 白色",
     "refined_name": "雷柏雷柏X120PRO有线键盘鼠标套装家用电脑商务办公高笔记本 白色",
     "cost": 46,
@@ -27227,6 +27267,14 @@
     "type": "键鼠套装",
     "name": "达尔优LK186T 无线键鼠套装 黑色",
     "refined_name": "达尔优LK186T 无线键鼠套装 黑色",
+    "cost": 46,
+    "price": 56,
+    "category": "entry"
+  },
+  {
+    "type": "键鼠套装",
+    "name": "方正（Founder）KN310  无线键鼠套装 轻音办公家用",
+    "refined_name": "方正KN310 无线键鼠套装 轻音办公家用",
     "cost": 46,
     "price": 56,
     "category": "entry"
@@ -27281,6 +27329,14 @@
   },
   {
     "type": "键鼠套装",
+    "name": "联想来酷 KW211 无线键鼠套装 白色",
+    "refined_name": "联想来酷 KW211 无线键鼠套装 白色",
+    "cost": 47,
+    "price": 57,
+    "category": "entry"
+  },
+  {
+    "type": "键鼠套装",
     "name": "达尔优（DAREU）LK186T无线键盘鼠标套装 键鼠套装白色",
     "refined_name": "达尔优LK186T无线键盘鼠标套装 键鼠套装白色",
     "cost": 47,
@@ -27291,14 +27347,6 @@
     "type": "键鼠套装",
     "name": "联想Services PW31 商务办公有线键鼠套装",
     "refined_name": "联想Services PW31 商务办公有线键鼠套装",
-    "cost": 47,
-    "price": 57,
-    "category": "entry"
-  },
-  {
-    "type": "键鼠套装",
-    "name": "联想来酷 KW211 无线键鼠套装 白色",
-    "refined_name": "联想来酷 KW211 无线键鼠套装 白色",
     "cost": 47,
     "price": 57,
     "category": "entry"
@@ -27417,16 +27465,16 @@
   },
   {
     "type": "键鼠套装",
-    "name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 白色",
-    "refined_name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 白色",
+    "name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装  黑色",
+    "refined_name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 黑色",
     "cost": 51.5,
     "price": 62,
     "category": "entry"
   },
   {
     "type": "键鼠套装",
-    "name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装  黑色",
-    "refined_name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 黑色",
+    "name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 白色",
+    "refined_name": "爱国者(aigo）WQ7619 2.4G无线键盘鼠标套装 白色",
     "cost": 51.5,
     "price": 62,
     "category": "entry"
@@ -27793,16 +27841,16 @@
   },
   {
     "type": "键鼠套装",
-    "name": "富德EK8870  全键拼色圆帽无线键鼠套装 自动休眠省电 茉莉雪顶",
-    "refined_name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 茉莉雪顶",
+    "name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 荷塘月色",
+    "refined_name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 荷塘月色",
     "cost": 73,
     "price": 83,
     "category": "entry"
   },
   {
     "type": "键鼠套装",
-    "name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 荷塘月色",
-    "refined_name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 荷塘月色",
+    "name": "富德EK8870  全键拼色圆帽无线键鼠套装 自动休眠省电 茉莉雪顶",
+    "refined_name": "富德EK8870 全键拼色圆帽无线键鼠套装 自动休眠省电 茉莉雪顶",
     "cost": 73,
     "price": 83,
     "category": "entry"
@@ -28121,16 +28169,16 @@
   },
   {
     "type": "键鼠套装",
-    "name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 灰白绿青轴",
-    "refined_name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 灰白绿青轴",
+    "name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 黑白粉青轴",
+    "refined_name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 黑白粉青轴",
     "cost": 200,
     "price": 220,
     "category": "entry"
   },
   {
     "type": "键鼠套装",
-    "name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 黑白粉青轴",
-    "refined_name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 黑白粉青轴",
+    "name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 灰白绿青轴",
+    "refined_name": "AOC GKM100无线蓝牙机械键盘鼠标套装 无线三模连接 客制化热插拔轴 灰白绿青轴",
     "cost": 200,
     "price": 220,
     "category": "entry"
@@ -28145,14 +28193,6 @@
   },
   {
     "type": "键鼠套装",
-    "name": "罗技（logitech）PEBBLE 2 COMBO无线键鼠套装 蓝牙办公键盘静音鼠标鹅卵石套装 双模 ipad键盘Mac多设备 小巧便携 【2.4G+蓝牙静音无线套装】 烟云灰",
-    "refined_name": "罗技PEBBLE 2 COMBO无线键鼠套装 蓝牙办公键盘静音鼠标鹅卵石套装 双模 ipad键盘Mac多设备 小巧便携 2.4G+蓝牙静音无线套装 烟云灰",
-    "cost": 214,
-    "price": 234,
-    "category": "entry"
-  },
-  {
-    "type": "键鼠套装",
     "name": "罗技（Logitech）PEBBLE 2 COMBO无线键鼠套装  无线键盘鼠标  蓝牙无线双模 乳白色",
     "refined_name": "罗技PEBBLE 2 COMBO无线键鼠套装 无线键盘鼠标 蓝牙无线双模 乳白色",
     "cost": 214,
@@ -28161,10 +28201,10 @@
   },
   {
     "type": "键鼠套装",
-    "name": "罗技（Logitech）PEBBLE 2 COMBO 无线键鼠套装 办公轻音蓝牙键盘鼠标 轻薄便携时尚 2.4G+蓝牙 夜幕黑",
-    "refined_name": "罗技PEBBLE 2 COMBO 无线键鼠套装 办公轻音蓝牙键盘鼠标 轻薄便携时尚 2.4G+蓝牙 夜幕黑",
-    "cost": 222,
-    "price": 242,
+    "name": "罗技（logitech）PEBBLE 2 COMBO无线键鼠套装 蓝牙办公键盘静音鼠标鹅卵石套装 双模 ipad键盘Mac多设备 小巧便携 【2.4G+蓝牙静音无线套装】 烟云灰",
+    "refined_name": "罗技PEBBLE 2 COMBO无线键鼠套装 蓝牙办公键盘静音鼠标鹅卵石套装 双模 ipad键盘Mac多设备 小巧便携 2.4G+蓝牙静音无线套装 烟云灰",
+    "cost": 214,
+    "price": 234,
     "category": "entry"
   },
   {
@@ -28179,6 +28219,14 @@
     "type": "键鼠套装",
     "name": "罗技 PEBBLE 2 COMBO无线键鼠套装 双模连接 轻薄便携商务办公 自定义按键 夜幕黑",
     "refined_name": "罗技 PEBBLE 2 COMBO无线键鼠套装 双模连接 轻薄便携商务办公 自定义按键 夜幕黑",
+    "cost": 222,
+    "price": 242,
+    "category": "entry"
+  },
+  {
+    "type": "键鼠套装",
+    "name": "罗技（Logitech）PEBBLE 2 COMBO 无线键鼠套装 办公轻音蓝牙键盘鼠标 轻薄便携时尚 2.4G+蓝牙 夜幕黑",
+    "refined_name": "罗技PEBBLE 2 COMBO 无线键鼠套装 办公轻音蓝牙键盘鼠标 轻薄便携时尚 2.4G+蓝牙 夜幕黑",
     "cost": 222,
     "price": 242,
     "category": "entry"
@@ -28217,14 +28265,6 @@
   },
   {
     "type": "键鼠套装",
-    "name": "罗技（Logitech）POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 嫣然粉",
-    "refined_name": "罗技POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 嫣然粉",
-    "cost": 390,
-    "price": 420,
-    "category": "mid-range"
-  },
-  {
-    "type": "键鼠套装",
     "name": "罗技（Logitech）POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 夜幕黑",
     "refined_name": "罗技POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 夜幕黑",
     "cost": 390,
@@ -28241,16 +28281,24 @@
   },
   {
     "type": "键鼠套装",
-    "name": "罗技（Logitech）优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装【石墨灰】",
-    "refined_name": "罗技优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装 石墨灰",
-    "cost": 730,
-    "price": 760,
+    "name": "罗技（Logitech）POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 嫣然粉",
+    "refined_name": "罗技POP ICON KEYS无线蓝牙键盘 键鼠套装 一键AI 紧凑型蓝牙键盘 轻音按键 无线蓝牙双模 笔记本键盘 POP ICON COMBO键鼠套装 嫣然粉",
+    "cost": 390,
+    "price": 420,
     "category": "mid-range"
   },
   {
     "type": "键鼠套装",
     "name": "罗技（Logitech）优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装【珍珠白】",
     "refined_name": "罗技优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装 珍珠白",
+    "cost": 730,
+    "price": 760,
+    "category": "mid-range"
+  },
+  {
+    "type": "键鼠套装",
+    "name": "罗技（Logitech）优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装【石墨灰】",
+    "refined_name": "罗技优选系列MK950键鼠套装 超薄便携套装 无线蓝牙键鼠套装 静音键盘鼠标 全尺寸键盘 商务办公多设备 MK950超薄键鼠套装 石墨灰",
     "cost": 730,
     "price": 760,
     "category": "mid-range"
